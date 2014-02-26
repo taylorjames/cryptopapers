@@ -180,9 +180,10 @@ $().ready(function ()
 		window.print();
 		});
 		
-	$('#compress-decompress-button').click(function() 
+	$('input[name=compression]').change(function() 
 		{
 		Default_Compress = !Default_Compress;
+
 		$("#private-key-submit").click();
 		});
 		
@@ -319,8 +320,16 @@ $().ready(function ()
 			<div class="key-details"> 
 				<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
 				<br />
-				<label class="left-label">Compressed:</label><input type="text" id="private-key-compressed" readonly />
-				<input type="button" id="compress-decompress-button" class="button" value="Compress / Decompress" />
+				<label class="left-label">Compression:</label>
+				<div class="switch-toggle compression switch-2 switch-candy ">
+						<input type="radio" name="compression" value="Yes" id="compressed" checked />
+						<label for="compressed">Yes</label>
+
+						<input type="radio" name="compression" value="No" id="decompressed" />
+						<label for="decompressed">No</label> 
+
+						<a></a>
+				</div>
 				<br />
 				<label class="left-label">Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
 				<br />
