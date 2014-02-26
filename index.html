@@ -445,12 +445,12 @@ $().ready(function ()
 <form id="form1">
 	<div class="coin-setup">
 		<div class="private-key"> 
-			Input Private Key:
+			<label>Input Private Key:</label>
 			<input type="text" id="private-key-input" />
 		</div>
 		
 		<div class="coin-type">
-			Coin: 
+			<label>Coin:</label>
 			<input type="radio" name="key-type" value="btc" checked /> Bitcoin
 			<input type="radio" name="key-type" value="ltc" /> Litecoin
 			<input type="radio" name="key-type" value="nmc" /> Namecoin
@@ -459,7 +459,7 @@ $().ready(function ()
 		</div>
 		
 		<div class="backup">
-			Backup:
+			<label>Backup:</label>
 			<input type="radio" name="wallet-backup" value="Yes" checked /> Yes
 			<input type="radio" name="wallet-backup" value="No" /> No
 		</div>
@@ -468,24 +468,24 @@ $().ready(function ()
 		
 		
 		<div class="key-details"> 
-			Private Key Hex: <input type="text" id="private-key-hex" readonly />
+			<label>Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
 			<br />
-			Compressed: <input type="text" id="private-key-compressed" readonly />
+			<label>Compressed:</label><input type="text" id="private-key-compressed" readonly />
 			<input type="button" id="compress-decompress-button" class="button" value="Compress / Decompress" />
 			<br />
-			Private Key Wallet Import Format (WIF): <input type="text" id="private-key-wif" readonly />
+			<label>Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
 			<br />
-			Private Key CheckSum: <input type="text" id="private-key-checksum" readonly />
+			<label>Private Key CheckSum:</label><input type="text" id="private-key-checksum" readonly />
 			<br />
-			Public Key Hex: <input type="text" id="public-key-hex" readonly />
+			<label>Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
 			<br />			
-			Public Key Hash160: <input type="text" id="public-key-hash160" readonly />
+			<label>Public Key Hash160:</label><input type="text" id="public-key-hash160" readonly />
 			<br />
-			Address CheckSum: <input type="text" id="public-key-address-checksum" readonly />
+			<label>Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
 			<br />		
-			Public Address: <input type="text" id="public-address" readonly />
+			<label>Public Address:</label><input type="text" id="public-address" readonly />
 			<br />
-			Verified: <input type="text" id="coin-address-verify" readonly />
+			<label>Verified:</label><input type="text" id="coin-address-verify" readonly />
 			
 		</div>
 		
