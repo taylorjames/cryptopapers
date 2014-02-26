@@ -105,7 +105,7 @@ $().ready(function ()
 			return;
 			}
 		
-		$('.key-details').show();
+		$('.key-details').fadeIn();
 		
 		$('#private-key-hex').val(PrivKeyHex);
 		$('#private-key-wif').val(PrivKeyWIF);
@@ -199,7 +199,7 @@ $().ready(function ()
 		var section = $(this).attr('section');
 		
 		$('.wrapper .inner > .section').hide();
-		$('.wrapper .inner > .section.' + section).show();
+		$('.wrapper .inner > .section.' + section).fadeIn();
 		});
 	
 	var SampleKey = 'KzeoBK2VnJYHYWqpG9sKEXnxLupouDb97RSAQeazYVWjd2tPKv1A';
