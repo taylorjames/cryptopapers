@@ -1,7 +1,12 @@
 
 @media print 
 {
-	.coin-setup
+	@page {size: landscape}
+	
+	#header,
+	.coin-setup,
+	.print-buttons,
+	.menu
 	{
 		display: none;
 	}
@@ -10,12 +15,23 @@
 		margin: 0px;
 		padding: 0px;
 	}
+	.inner
+	{
+		max-width: none !important;
+	}
 }
 
 body{
 	margin:0px;
 	padding:0px;
 }
+
+.button{
+	font-size: 27px;
+	padding: 16px;
+}
+
+
 .wrapper{
 	width:100%;
 }
@@ -39,38 +55,46 @@ body{
 	margin:auto;
 }
 
-.coin-type, .backup{
-	width:100%;
-	height:50px;
-	float:left;
-}
-
-
 
 .coin-type input{
+
 }
-label{
-	clear:both;
-	float:left;
+
+.coin-type .coin-type-radio,
+.wallet-backup-radio {
+	border: 1px solid;
+	padding: 4px;
+	border-radius: 5px;
+	margin: 3px;
+	background-color: #eeeeee;
+}
+
+.coin-setup label.left-label {
+	width: 300px;
+	text-align: right;
+	display: block;
+	height: 40px;
+	float: left;
+	padding-right: 12px;
+	padding-top: 7px;
+}
+.coin-setup > div,
+.coin-setup > .key-import > div {
+	min-height: 50px
 }
 
 #form1{
-	height:650px;
 }
 
 input[type=text]{
 	height:30px;
 	margin-bottom:20px;
 	margin-left:10px;
-	margin-top:-10px;
-	float:left;
-	display:block;
 }
 
 input[type=button]{
-	float:left;
-	display:block;
 }
+
 #private-key-wif,
 #private-key-hex,
 #public-key-hex,
@@ -90,17 +114,61 @@ input[type=button]{
 	width: 500px;
 	margin-bottom: 30px;
 }
+#private-key-submit
+{
+	margin-left: 441px;
+	width: 200px;
+}
 
 .coin-setup
 {
-	padding:30px;
+
+
+	padding: 30px;
 }
 
+.key-import
+{
+	border: 1px solid;
+	padding: 10px;
+	border-radius: 10px;
+
+}
 .key-details
 {
+	display: none;
 	margin-top: 20px;
+	border: 1px solid;
+	padding: 10px;
+	border-radius: 10px;
 }
 
+.menu {
+	background-color: #dddddd;
+}
+
+.menu ul {
+	padding: 10px;
+	margin: auto;
+	max-width: 960px;
+	text-align: left;
+}
+
+.menu ul li {
+	display: inline;
+	padding: 10px;
+	font-weight: bold;
+	font-size: 18px;
+	cursor: pointer;
+}
+.menu ul li.disabled {
+	color: gray;
+	cursor: default;
+}
+.menu ul li.active {
+	background-color: #cccccc;
+	border-bottom: 2px solid black;
+}
 
 .coin-wallet
 {
@@ -113,6 +181,15 @@ input[type=button]{
 	margin-right: 25px;
 }
 
+.print-buttons
+{
+	margin-top: 10px;
+	text-align: center;
+}
+.print-buttons .button
+{
+	margin-left: 160px;
+}
 	
 .coin-wallet-1
 {

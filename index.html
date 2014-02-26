@@ -37,6 +37,8 @@
 	
 	<script type="text/javascript" src="js/jquery-qrcode/jquery.qrcode.js"></script>
 	<script type="text/javascript" src="js/jquery-qrcode/qrcode.js"></script>
+	
+	<script type="text/javascript" src="crypto-papers.js"></script>
 
 	<link rel="stylesheet" href="style.css" />
 
@@ -44,261 +46,8 @@
 
 	<script>
 	
-	function GetDefaultCompress(CoinType)
-		{
-		if (CoinType == 'nmc')
-			return false;
-		else
-			return true;
-		}
-	function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
-		{
-		if (CoinType == 'nmc')
-			{
-			var t = PrivateKeyWIF.substr(0, 1);
-			return t == 'L' || t == 'K';
-			}
-			
-		var res = ParseBase58PrivateKey(PrivateKeyWIF); 
-		var version = res[0];
-		var payload = res[1];
-		var Compressed = (payload.length > 32);
-		return Compressed;
-		}
-		
-    function ParseBase58PrivateKey(PrivateKeyHex)
-		{
-        var bytes = Bitcoin.Base58.decode(PrivateKeyHex);
-		
-        var end = bytes.length - 4;
-        var hash = bytes.slice(0, end);
-		
-        var checksum = Crypto.SHA256(Crypto.SHA256(hash, {asBytes: true}), {asBytes: true});
-		
-        if (checksum[0] != bytes[end] ||
-            checksum[1] != bytes[end+1] ||
-            checksum[2] != bytes[end+2] ||
-            checksum[3] != bytes[end+3])
-                throw new Error("Wrong checksum");
-				
-        var version = hash.shift();
-		
-        return [version, hash];
-		}
-	
-	function Log(Text)
-		{
-		if (true) // LOG?
-			console.log(Text);
-		}
-		
-    function GetEncoded(pt, Compressed) 
-		{
-		var x = pt.getX().toBigInteger();
-		var y = pt.getY().toBigInteger();
-		var enc = integerToBytes(x, 32);
-		
-		if (Compressed)
-			{
-			if (y.isEven())
-				{
-				enc.unshift(0x02);
-				} 
-			else
-				{
-				enc.unshift(0x03);
-				}
-			}
-		else
-			{
-			enc.unshift(0x04);
-			enc = enc.concat(integerToBytes(y, 32));
-			}
-		return enc;
-		}
-	
-	function GetPublicKey(PrivateKeyHex, Compressed)
-		{
-		var curve = getSECCurveByName("secp256k1") //found in bitcoin-js/src/jsbn/sec.js
-
-		//convert our random array or private key to a Big Integer
-		var privateKeyBN = BigInteger.fromByteArrayUnsigned(Crypto.util.hexToBytes(PrivateKeyHex));
-
-		var curvePt = curve.getG().multiply(privateKeyBN);
-
-		var PublicKeyBytes = GetEncoded(curvePt, Compressed)
-		
-		var PublicKeyHex = Crypto.util.bytesToHex(PublicKeyBytes);
-
-		Log("Public Key: " + PublicKeyHex);
-		
-		return PublicKeyHex;
-		}
-		
-	function GetAddressFromKey(CoinType, PrivKeyHex, Compressed)
-		{
-		var PublicKeyHex = GetPublicKey(PrivKeyHex, Compressed);
-		
-		return GetAddress(CoinType, PublicKeyHex);
-		}
-		
-	function GetAddress(CoinType, PublicKeyHex)
-		{
-		var PublicKeyBytes = Crypto.util.hexToBytes(PublicKeyHex);
-		
-		var KeyHash160 = GetKeyHash160(PublicKeyBytes);
-		
-		Log("Key Hash160: " + KeyHash160);
-				
-		var version = Crypto.util.hexToBytes(GetAddressPrefixHex(CoinType));
-		var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
-		KeyHash160Bytes.unshift(version);
-		
-		$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes));
-		
-		var CheckSum = GetCheckSum(KeyHash160Bytes);
-		
-		$('#public-key-address-checksum').val(CheckSum);
-		
-		Log("CheckSum: " + CheckSum);
-		
-		var UnencodedAddress = GetAddressPrefixHex(CoinType) + KeyHash160 + CheckSum;
-		
-		
-		var Address = Bitcoin.Base58.encode(Crypto.util.hexToBytes(UnencodedAddress));
-		
-		return Address;
-		}
-		
-	function GetKeyHash160(PublicKeyBytes)
-		{
-		return Crypto.RIPEMD160(Crypto.util.hexToBytes(Crypto.SHA256(PublicKeyBytes)));
-		}
-		
-	function GetCheckSum(KeyHashBytes)
-		{
-		var DoubleSHA = Crypto.SHA256(Crypto.util.hexToBytes(Crypto.SHA256(KeyHashBytes)));
-		return DoubleSHA.substr(0, 8);
-		}
-		
-	function GetAddressPrefixHex(CoinType)
-		{
-		if (CoinType == 'btc')
-			return '00';
-		if (CoinType == 'ltc')
-			return '30';
-		if (CoinType == 'nmc')
-			return '34';
-		}
-		
-	function GetVersionHex(CoinType)
-		{
-		return '80';
-		}
-		
-	function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
-		{
-		if (Compressed)
-			{
-			var PrivKeyBytes = Crypto.util.hexToBytes(PrivateKeyHex);
-			PrivKeyBytes.push(0x01);
-			
-			PrivateKeyHex = Crypto.util.bytesToHex(PrivKeyBytes);
-			}
-			
-		var PrivateKeyHexExt = GetVersionHex(CoinType) + PrivateKeyHex;
-		
-		var PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexExt));
-		
-		Log("Private Key SHA 1: " + PrivateKeyHexHash);
-		
-		PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexHash));
-		
-		Log("Private Key SHA 2: " + PrivateKeyHexHash);
-		
-		var CheckSum = PrivateKeyHexHash.substr(0, 8);
-		
-		$('#private-key-checksum').val(CheckSum);
-		
-		PrivateKeyHexExt = PrivateKeyHexExt + CheckSum;
-		
-		var PrivateKeyBase58 =  Bitcoin.Base58.encode(Crypto.util.hexToBytes(PrivateKeyHexExt));
-		
-		return PrivateKeyBase58;
-		/*
-		if (UseCompression)
-			{
-			var PrivKeyBytesCompressed = Crypto.util.hexToBytes(PrivKeyHex);
-			PrivKeyBytesCompressed.push(0x01);
-			
-			var privateKeyWIFCompressed = new Bitcoin.Address(PrivKeyBytesCompressed);
-			privateKeyWIFCompressed.version = 0x80;
-			privateKeyWIFCompressed = privateKeyWIFCompressed.toString();
-			
-			PrivKeyWIF = privateKeyWIFCompressed;
-			}
-		else
-			{
-			PrivKeyWIF = new Bitcoin.Address(Crypto.util.hexToBytes(PrivKeyHex));
-			PrivKeyWIF.version = 0x80; //0x80 = 128, https://en.bitcoin.it/wiki/List_of_address_prefixes
-			PrivKeyWIF = PrivKeyWIF.toString();
-			}
-		*/
-		}
-	function PrivateKeyWIFToHex(PrivateKeyWIF)
-		{
-		var PrivateKeyBase58 = Bitcoin.Base58.decode(PrivateKeyWIF);
-		PrivateKeyBase58 = Crypto.util.bytesToHex(PrivateKeyBase58);
-		PrivateKeyBase58 = PrivateKeyBase58.substr(0, PrivateKeyBase58.length - 8);
-		PrivateKeyBase58 = PrivateKeyBase58.substr(2);
-		
-		var res = ParseBase58PrivateKey(PrivateKeyWIF); 
-		var version = res[0];
-		var payload = res[1];
-		if (payload.length > 32)
-			{
-			payload.pop();
-			compressed = true;
-			return Crypto.util.bytesToHex(payload);
-			}
-			
-		return PrivateKeyBase58;
-		}
-		
-		
-	/* NXT Address Generation - Convert from Java to JavaScript
-	
-	// Find Curve25519 JavaScript implementation
-	
-	static byte[] getPublicKey(String secretPhrase)
-		{		
-		try
-			{			
-			byte[] publicKey = new byte[32];
-			Curve25519.keygen(publicKey, null, MessageDigest.getInstance("SHA-256").digest(secretPhrase.getBytes("UTF-8")));
-			
-			return publicKey;
-			
-			}
-		catch (Exception e) 
-			{			
-			return null;			
-			}
-		}
-		
-	static long getId(byte[] publicKey) throws Exception
-		{		
-		byte[] publicKeyHash = MessageDigest.getInstance("SHA-256").digest(publicKey);
-		BigInteger bigInteger = new BigInteger(1, new byte[] {publicKeyHash[7], publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], publicKeyHash[0]});
-		return bigInteger.longValue();
-		}
-		
-	*/
-	
 	</script>
 </head>
-
- 
 <body>
 <script type="text/javascript">
 
@@ -350,6 +99,8 @@ $().ready(function ()
 			return;
 			}
 		
+		$('.key-details').show();
+		
 		$('#private-key-hex').val(PrivKeyHex);
 		$('#private-key-wif').val(PrivKeyWIF);
 		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
@@ -398,7 +149,7 @@ $().ready(function ()
 			$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
 			}	
 			
-		$('.coin-wallets').removeClass('btc').removeClass('ltc').removeClass('nmc');
+		$('.coin-wallets').removeClass('btc').removeClass('ltc').removeClass('nmc').removeClass('ppc').removeClass('nxt');
 		$('.coin-wallets').addClass(CoinType);
 
 		$('.coin-wallet-address').html(Address);
@@ -429,101 +180,163 @@ $().ready(function ()
 		$("#private-key-submit").click();
 		});
 		
+		
+	$('.menu li').click(function() 
+		{
+		if ($(this).hasClass('disabled'))
+			return;
+			
+		$('.menu li.active').removeClass('active');
+		$(this).addClass('active');
+		
+		var section = $(this).attr('section');
+		
+		$('.wrapper .inner > .section').hide();
+		$('.wrapper .inner > .section.' + section).show();
+		});
+	
 	var SampleKey = 'KzeoBK2VnJYHYWqpG9sKEXnxLupouDb97RSAQeazYVWjd2tPKv1A';
 	$('#private-key-input').val(SampleKey);
 	
+	$('.menu li')[2].click();
 //	$('#private-key-submit').click();
 	});
 </script>
-<div id="header" class="wrapper"><!-- start wrapper -->
-<div class="inner">
-	<a href="" title="" /><img id="logo" src="images/logo.png"/></a>
+
+<div id="header" class="wrapper">
+	<div class="inner">
+		<a href="" title="" /><img id="logo" src="images/logo.png"/></a>
+	</div>
 </div>
-</div><!-- end wrapper -->
-<div class="wrapper"><!-- start wrapper -->
-<div class="inner">
+
+<div class="menu">
+	<ul>
+		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
+		<li section="security" class="menu-key-security disabled">Security</li>
+		<li section="coin-setup" class="active menu-key-import">Key Import</li>
+		<li section="coin-generation" class="inactive disabled">Key Generation</li>
+		<li section="coin-wallets" class="inactive menu-key-print">Print</li>		
+	</ul>
+</div>
+
 <form id="form1">
-	<div class="coin-setup">
-		<div class="private-key"> 
-			<label>Input Private Key:</label>
-			<input type="text" id="private-key-input" />
-		</div>
-		
-		<div class="coin-type">
-			<label>Coin:</label>
-			<input type="radio" name="key-type" value="btc" checked /> Bitcoin
-			<input type="radio" name="key-type" value="ltc" /> Litecoin
-			<input type="radio" name="key-type" value="nmc" /> Namecoin
-			<input type="radio" name="key-type" value="ppc" disabled /> PeerCoin
-			<input type="radio" name="key-type" value="nxt" disabled /> NXT
-		</div>
-		
-		<div class="backup">
-			<label>Backup:</label>
-			<input type="radio" name="wallet-backup" value="Yes" checked /> Yes
-			<input type="radio" name="wallet-backup" value="No" /> No
-		</div>
-		
-		<input type="button" id="private-key-submit" class="button" value="Create" />
-		
-		
-		<div class="key-details"> 
-			<label>Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
-			<br />
-			<label>Compressed:</label><input type="text" id="private-key-compressed" readonly />
-			<input type="button" id="compress-decompress-button" class="button" value="Compress / Decompress" />
-			<br />
-			<label>Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
-			<br />
-			<label>Private Key CheckSum:</label><input type="text" id="private-key-checksum" readonly />
-			<br />
-			<label>Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
-			<br />			
-			<label>Public Key Hash160:</label><input type="text" id="public-key-hash160" readonly />
-			<br />
-			<label>Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
-			<br />		
-			<label>Public Address:</label><input type="text" id="public-address" readonly />
-			<br />
-			<label>Verified:</label><input type="text" id="coin-address-verify" readonly />
+<div class="wrapper">
+	<div class="inner">
+		<div class="section about-crypto-papers"></div>
+		<div class="section security"></div>
+		<div class="section coin-setup">
+			<div class="key-import">
+				<div class="coin-type">
+					<label class="left-label">Coin:</label>
+					
+					<span class="coin-type-radio">
+						<input type="radio" name="key-type" value="btc" id="coin-btc"  checked /> 
+						<label for="coin-btc">Bitcoin</label>
+					</span>
+					
+					<span class="coin-type-radio">
+						<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
+						<label for="coin-ltc">Litecoin</label>
+					</span>
+					
+					<span class="coin-type-radio">
+						<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
+						<label for="coin-nmc">Namecoin</label>
+					</span>
+					
+					<span class="coin-type-radio">
+						<input type="radio" name="key-type" value="ppc" id="coin-ppc" disabled /> 
+						<label for="coin-ppc">PeerCoin</label>
+					</span>
+					
+					<span class="coin-type-radio">
+						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
+						<label for="coin-nxt">NXT</label>
+					</span>
+				</div>
+				
+				<div class="private-key"> 
+					<label class="left-label">Input Private Key:</label>
+					<input type="text" id="private-key-input" />
+				</div>
+				
+				
+				<div class="backup">
+					<label class="left-label">Backup:</label>
+					
+					<span class="wallet-backup-radio">
+						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+						<label for="wallet-backup-yes">Yes</label> 
+					</span>
+					
+					<span class="wallet-backup-radio">
+						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
+						<label for="wallet-backup-no">No</label> 
+					</span>
+				</div>
+				
+				<input type="button" id="private-key-submit" class="button" value="Create" />
 			
+			</div>			
+			
+			<div class="key-details"> 
+				<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
+				<br />
+				<label class="left-label">Compressed:</label><input type="text" id="private-key-compressed" readonly />
+				<input type="button" id="compress-decompress-button" class="button" value="Compress / Decompress" />
+				<br />
+				<label class="left-label">Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
+				<br />
+				<label class="left-label">Private Key CheckSum:</label><input type="text" id="private-key-checksum" readonly />
+				<br />
+				<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
+				<br />			
+				<label class="left-label">Public Key Hash160:</label><input type="text" id="public-key-hash160" readonly />
+				<br />
+				<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
+				<br />		
+				<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
+				<br />
+				<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" readonly />
+				
+			</div>			
 		</div>
-		
-		<input type="button" id="print-button" class="button" value="Print" />
-		
-		<input type="button" id="toggle-back-front" class="button" value="Back / Front" />
-		
+		<div class="section coin-generation"></div>
+		<div class="section btc coin-wallets">
+			
+			<div class="print-buttons">
+				<input type="button" id="print-button" class="button" value="Print" />
+				
+				<input type="button" id="toggle-back-front" class="button" value="Back / Front" />
+			</div>
+			
+			<div class="coin-wallet coin-wallet-1">
+				<div class="coin-wallet-left">
+					<div class="coin-wallet-address top">&nbsp;</div>
+					<div class="coin-wallet-address-qr"></div>
+					<div class="coin-wallet-address bottom">&nbsp;</div>
+				</div>
+				<div class="coin-wallet-right">
+					<div class="coin-wallet-private-key top">&nbsp;</div>
+					<div class="coin-wallet-private-key-qr"></div>
+					<div class="coin-wallet-private-key bottom">&nbsp;</div>
+				</div>
+			</div>
+			<div class="coin-wallet coin-wallet-2">
+				<div class="coin-wallet-left">
+					<div class="coin-wallet-address top">&nbsp;</div>
+					<div class="coin-wallet-address-qr"></div>
+					<div class="coin-wallet-address bottom">&nbsp;</div>
+				</div>
+				<div class="coin-wallet-right">
+					<div class="coin-wallet-private-key top">&nbsp;</div>
+					<div class="coin-wallet-private-key-qr"></div>
+					<div class="coin-wallet-private-key bottom">&nbsp;</div>
+				</div>		
+			</div>
+		</div>
 	</div>
+</div>
 </form>
-
-<div class="coin-wallets">
-	<div class="coin-wallet coin-wallet-1">
-		<div class="coin-wallet-left">
-			<div class="coin-wallet-address top"></div>
-			<div class="coin-wallet-address-qr"></div>
-			<div class="coin-wallet-address bottom"></div>
-		</div>
-		<div class="coin-wallet-right">
-			<div class="coin-wallet-private-key top"></div>
-			<div class="coin-wallet-private-key-qr"></div>
-			<div class="coin-wallet-private-key bottom"></div>
-		</div>
-	</div>
-	<div class="coin-wallet coin-wallet-2">
-		<div class="coin-wallet-left">
-			<div class="coin-wallet-address top"></div>
-			<div class="coin-wallet-address-qr"></div>
-			<div class="coin-wallet-address bottom"></div>
-		</div>
-		<div class="coin-wallet-right">
-			<div class="coin-wallet-private-key top"></div>
-			<div class="coin-wallet-private-key-qr"></div>
-			<div class="coin-wallet-private-key bottom"></div>
-		</div>		
-	</div>
-</div>
-</div>
-</div> <!-- end wrapper -->
-
 </body>
 </html>
