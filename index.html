@@ -5,38 +5,38 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<title>BitCoin Wallet Creator</title>
 
-	<script type="text/javascript" src="jquery.js"></script>
-	<script type="text/javascript" src="big-integer.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/big-integer.js"></script>
 	
-	<script type="text/javascript" src="bitcoin-js/crypto-js/crypto.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
 
-	<script type="text/javascript" src="bitcoin-js/crypto-js/sha256.js"></script>
-	<script type="text/javascript" src="bitcoin-js/crypto-js/ripemd160.js"></script>
-	<script type="text/javascript" src="bitcoin-js/jsbn/prng4.js"></script>
-	<script type="text/javascript" src="bitcoin-js/jsbn/rng.js"></script>
-	<script type="text/javascript" src="bitcoin-js/jsbn/jsbn.js"></script>
-	<script type="text/javascript" src="bitcoin-js/jsbn/jsbn2.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/crypto-js/sha256.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/crypto-js/ripemd160.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/prng4.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/rng.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn2.js"></script>
 
-	<script type="text/javascript" src="bitcoin-js/jsbn/ec.js"></script>
-	<script type="text/javascript" src="bitcoin-js/jsbn/sec.js"></script>
-	<script type="text/javascript" src="bitcoin-js/events/eventemitter.js"></script>
-	<script type="text/javascript" src="bitcoin-js/bitcoin.js"></script>
-	<script type="text/javascript" src="bitcoin-js/util.js"></script>
-	<script type="text/javascript" src="bitcoin-js/base58.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/ec.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/jsbn/sec.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/events/eventemitter.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/bitcoin.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/util.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/base58.js"></script>
 
-	<script type="text/javascript" src="bitcoin-js/address.js"></script>
-	<script type="text/javascript" src="bitcoin-js/ecdsa.js"></script>
-	<script type="text/javascript" src="bitcoin-js/eckey.js"></script>
-	<script type="text/javascript" src="bitcoin-js/opcode.js"></script>
-	<script type="text/javascript" src="bitcoin-js/script.js"></script>
-	<script type="text/javascript" src="bitcoin-js/transaction.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/address.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/ecdsa.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/eckey.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/opcode.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/script.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/transaction.js"></script>
 
-	<script type="text/javascript" src="bitcoin-js/wallet.js"></script>
-	<script type="text/javascript" src="bitcoin-js/txdb.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/wallet.js"></script>
+	<script type="text/javascript" src="js/bitcoin-js/txdb.js"></script>
 	
 	
-	<script type="text/javascript" src="jquery-qrcode/jquery.qrcode.js"></script>
-	<script type="text/javascript" src="jquery-qrcode/qrcode.js"></script>
+	<script type="text/javascript" src="js/jquery-qrcode/jquery.qrcode.js"></script>
+	<script type="text/javascript" src="js/jquery-qrcode/qrcode.js"></script>
 
 	<link rel="stylesheet" href="style.css" />
 
@@ -264,6 +264,37 @@
 			
 		return PrivateKeyBase58;
 		}
+		
+		
+	/* NXT Address Generation - Convert from Java to JavaScript
+	
+	// Find Curve25519 JavaScript implementation
+	
+	static byte[] getPublicKey(String secretPhrase)
+		{		
+		try
+			{			
+			byte[] publicKey = new byte[32];
+			Curve25519.keygen(publicKey, null, MessageDigest.getInstance("SHA-256").digest(secretPhrase.getBytes("UTF-8")));
+			
+			return publicKey;
+			
+			}
+		catch (Exception e) 
+			{			
+			return null;			
+			}
+		}
+		
+	static long getId(byte[] publicKey) throws Exception
+		{		
+		byte[] publicKeyHash = MessageDigest.getInstance("SHA-256").digest(publicKey);
+		BigInteger bigInteger = new BigInteger(1, new byte[] {publicKeyHash[7], publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], publicKeyHash[0]});
+		return bigInteger.longValue();
+		}
+		
+	*/
+	
 	</script>
 </head>
 
@@ -398,7 +429,6 @@ $().ready(function ()
 		$("#private-key-submit").click();
 		});
 		
-
 	var SampleKey = 'KzeoBK2VnJYHYWqpG9sKEXnxLupouDb97RSAQeazYVWjd2tPKv1A';
 	$('#private-key-input').val(SampleKey);
 	
