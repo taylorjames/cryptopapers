@@ -47,7 +47,7 @@ body{
 
 #header{
 	width:100%;
-	background:url('images/dark-pattern.png');
+	background:url('../images/dark-pattern.png');
 	border-bottom:2px solid #000;
 	border-top:2px solid #000;
 }
@@ -60,7 +60,6 @@ body{
 }
 
 #page.wrapper .inner{
-	background-color: #f4f4f4;
 }
 
  .wrapper .inner{
@@ -83,13 +82,14 @@ body{
 }
 
 .coin-setup label.left-label {
-	width: 300px;
+	width: 22%;
 	text-align: right;
 	display: block;
 	height: 40px;
 	float: left;
 	padding-right: 12px;
 	padding-top: 7px;
+	clear:left;
 }
 .coin-setup > div,
 .coin-setup > .key-import > div {
@@ -101,8 +101,7 @@ body{
 
 input[type=text]{
 	height:30px;
-	margin-bottom:20px;
-	margin-left:10px;
+	margin:0px;
 }
 
 input[type=button]{
@@ -120,71 +119,99 @@ input[type=button]{
 {
 	width: 500px;
 	background-color: #EEEEEE;
+	display:block;
+	float:left;
+}
+
+
+#private-key-compressed{
+	width:45px;
+	float:left;
 }
 
 #private-key-input
 {
 	width: 500px;
-	margin-bottom: 30px;
 }
-#private-key-submit
+
+#private-key-submit{
+	margin-left:22%;
+}
+
+input[type=button]
 {
-	margin-left: 441px;
+	display:block;
 	width: 200px;
+	height:30px;
+	color: #333333;
+	background-color:#0da3da;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	font-size:0.875rem;
+	border: 1px solid #333333;
+    border-radius: 3px;
+    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+    background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    line-height:3px;
+
+}
+
+.print-buttons input[type=button]{
+	margin:auto;
 }
 
 .coin-setup
 {
-
-
-	padding: 30px;
+	padding-top: 30px;
 }
 
-.key-import
+.key-import, .key-details
 {
-	border: 1px solid;
-	padding: 10px;
+	
+	padding: 40px 0px 40px 0px;
 	border-radius: 10px;
 	background-color: #ececec;
+	width:75%;
+	margin-bottom:40px;
+	overflow:auto;
 
 }
-.key-details
-{
-	display: none;
-	margin-top: 20px;
-	border: 1px solid;
-	padding: 10px;
-	border-radius: 10px;
-	background-color: #ececec;
+
+.key-details{
+	display:none;
 }
+
 
 .menu {
 	background-color: #dddddd;
+
 }
 
 .menu ul {
-	background: #d0d0d0;
-
-	padding: 10px;
+	padding: 0px 10px 0px 10px;
 	margin: auto;
-	max-width: 1030px;
+	max-width: 1050px;
 	text-align: left;
+	overflow:auto;
 }
 
 .menu ul li {
 	display: inline;
-	padding: 10px;
-	font-weight: bold;
-	font-size: 18px;
+	margin: 10px 15px 0px 15px;
+	font-size: 14px;
+	height: 35px;
+	display: block;
 	cursor: pointer;
+	float: left;
 }
 .menu ul li.disabled {
 	color: gray;
 	cursor: default;
 }
 .menu ul li.active {
-	background-color: #cccccc;
-	border-bottom: 2px solid black;
+	border-bottom: 2px solid #0da3da;
+	color:#000;
+	text-shadow:0px 0px 3px #fff;
 }
 
 .coin-wallet
@@ -207,7 +234,11 @@ input[type=button]{
 {
 	margin-left: 160px;
 }
-	
+
+input#compress-decompress-button{
+	float:left;
+	margin-left:10px;
+}
 .coin-wallets
 {
 	background-color: white;
@@ -300,38 +331,64 @@ input[type=button]{
 
 .btc .coin-wallet
 {
-	background-image: url('images/PNG/BTC_Front_small.png');
+	background-image: url('../images/PNG/BTC_Front_small.png');
 	background-repeat: none;
 }
 
 .back.btc .coin-wallet
 {
-	background-image: url('images/PNG/BTC_Back_small.png');
+	background-image: url('../images/PNG/BTC_Back_small.png');
 	background-repeat: none;
 }
 
 .ltc .coin-wallet
 {
-	background-image: url('images/PNG/LTC_Front_small.png');
+	background-image: url('../images/PNG/LTC_Front_small.png');
 	background-repeat: none;
 	background-origin: padding-box;
 }
 
 .back.ltc .coin-wallet
 {
-	background-image: url('images/PNG/LTC_Back_small.png');
+	background-image: url('../images/PNG/LTC_Back_small.png');
 	background-repeat: none;
 	background-origin: padding-box;
 }
 
 .nmc .coin-wallet
 {
-	background-image: url('images/PNG/NMC_Front_small.png');
+	background-image: url('../images/PNG/NMC_Front_small.png');
 	background-repeat: none;
 }
 
 .back.nmc .coin-wallet
 {
-	background-image: url('images/PNG/NMC_Back_small.png');
+	background-image: url('../images/PNG/NMC_Back_small.png');
 	background-repeat: none;
+}
+
+.switch-toggle{
+	width:70%;
+	float:left;
+}
+
+.switch-toggle.switch-2{
+	max-width:200px;
+}
+
+.switch-toggle.switch-5{
+	max-width:500px;
+}
+
+:focus {
+	outline: 0;
+}
+
+label::-moz-focus-inner { 
+  border: 0; 
+}
+
+a:hover, a:active, a:focus {
+  outline:0;
+  border:none;
 }

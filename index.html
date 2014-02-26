@@ -3,6 +3,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<title>BitCoin Wallet Creator</title>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
@@ -40,7 +41,12 @@
 	
 	<script type="text/javascript" src="crypto-papers.js"></script>
 
-	<link rel="stylesheet" href="style.css" />
+	
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/foundation.css" />
+	<link rel="stylesheet" href="css/toggle-switch.css" />
+	<link rel="stylesheet" href="css/style.css" />
+	
 
 	<style></style>
 
@@ -227,10 +233,30 @@ $().ready(function ()
 		<div class="section coin-setup">
 			<div class="key-import">
 				<div class="coin-type">
+
 					<label class="left-label">Coin:</label>
+					<div class="switch-toggle switch-5 switch-candy">
+						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
+						<label for="coin-btc">Bitcoin</label>
+
+						<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
+						<label for="coin-ltc">Litecoin</label>
+
+						<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
+						<label for="coin-nmc">Namecoin</label>
+
+						<input type="radio" name="key-type" value="ppc" id="coin-ppc" disabled /> 
+						<label for="coin-ppc">PeerCoin</label>
+
+						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
+						<label for="coin-nxt">NXT</label>
+
+						<a></a>
+					</div>
+					<!-- <label class="left-label">Coin:</label>
 					
 					<span class="coin-type-radio">
-						<input type="radio" name="key-type" value="btc" id="coin-btc"  checked /> 
+						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
 						<label for="coin-btc">Bitcoin</label>
 					</span>
 					
@@ -252,7 +278,7 @@ $().ready(function ()
 					<span class="coin-type-radio">
 						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
 						<label for="coin-nxt">NXT</label>
-					</span>
+					</span> -->
 				</div>
 				
 				<div class="private-key"> 
@@ -262,7 +288,18 @@ $().ready(function ()
 				
 				
 				<div class="backup">
+
 					<label class="left-label">Backup:</label>
+					<div class="switch-toggle switch-2 switch-candy ">
+						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+						<label for="wallet-backup-yes">Yes</label>
+
+						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
+						<label for="wallet-backup-no">No</label> 
+
+						<a></a>
+					</div>
+					<!-- <label class="left-label">Backup:</label>
 					
 					<span class="wallet-backup-radio">
 						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
@@ -272,7 +309,7 @@ $().ready(function ()
 					<span class="wallet-backup-radio">
 						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
 						<label for="wallet-backup-no">No</label> 
-					</span>
+					</span> -->
 				</div>
 				
 				<input type="button" id="private-key-submit" class="large-button" value="Create" />
@@ -306,7 +343,7 @@ $().ready(function ()
 			
 			<div class="print-buttons">
 				<input type="button" id="print-button" class="large-button" value="Print" />
-				
+				<br />
 				<input type="button" id="toggle-back-front" class="large-button" value="Back / Front" />
 			</div>
 			
