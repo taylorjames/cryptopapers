@@ -1,0 +1,178 @@
+
+@media print 
+{
+	.coin-setup
+	{
+		display: none;
+	}
+	body
+	{
+		margin: 0px;
+		padding: 0px;
+	}
+}
+
+#private-key-wif,
+#private-key-hex,
+#public-key-hex,
+#public-address,
+#public-key-checksum,
+#public-key-address-checksum,
+#public-key-hash160,
+#coin-address-verify,
+#private-key-checksum
+{
+	width: 500px;
+	background-color: #EEEEEE;
+}
+
+#private-key-input
+{
+	width: 500px;
+	margin-bottom: 30px;
+}
+
+.coin-setup
+{
+}
+
+.key-details
+{
+	margin-top: 20px;
+}
+
+
+.coin-wallet
+{
+	width: 1050px;
+	height: 299px;
+
+	margin-top: 24px;
+	margin-bottom: 24px;
+	margin-left: 25px;
+	margin-right: 25px;
+}
+
+	
+.coin-wallet-1
+{
+}
+
+.coin-wallet-2
+{
+	margin-top: 155px;
+}
+
+.coin-wallet-left
+{
+	float: left;
+	width: 345px;
+	text-align: center;
+	margin-left: 6px;
+	margin-top: 9px;
+}
+
+.coin-wallet-right
+{
+	float: right;
+	width: 213px;
+	text-align: center;
+	padding-top: 45px;
+	padding-right: 4px;
+
+}
+
+.coin-wallet-address
+{
+	font-size: 12pt;
+	color: white;
+}
+
+.coin-wallet-address-qr
+{
+	margin-top: 74px;
+	margin-left: 19px;
+	margin-bottom: 63px;
+	text-align: left;
+}
+.coin-wallet-address-qr canvas
+{
+	width: 103px;
+	height: 103px;
+}
+
+.coin-wallet-private-key
+{
+	font-size: 10pt;
+	color: white;
+}
+
+.coin-wallet-private-key-qr
+{
+	margin-top: 21px;
+	margin-bottom: 18px;
+}
+.coin-wallet-private-key-qr canvas
+{
+	width: 132px;
+	height: 132px;
+}
+
+.back .coin-wallet
+{
+	width: 1100px;
+	height: 361px;
+	
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;	
+}
+
+.back .coin-wallet-2
+{
+	margin-top: 95px;
+}
+
+.back .coin-wallet-left, 
+.back .coin-wallet-right
+{
+	display: none;
+} 
+
+.btc .coin-wallet
+{
+	background-image: url('images/PNG/BTC_Front_small.png');
+	background-repeat: none;
+}
+
+.back.btc .coin-wallet
+{
+	background-image: url('images/PNG/BTC_Back_small.png');
+	background-repeat: none;
+}
+
+.ltc .coin-wallet
+{
+	background-image: url('images/PNG/LTC_Front_small.png');
+	background-repeat: none;
+	background-origin: padding-box;
+}
+
+.back.ltc .coin-wallet
+{
+	background-image: url('images/PNG/LTC_Back_small.png');
+	background-repeat: none;
+	background-origin: padding-box;
+}
+
+.nmc .coin-wallet
+{
+	background-image: url('images/PNG/NMC_Front_small.png');
+	background-repeat: none;
+}
+
+.back.nmc .coin-wallet
+{
+	background-image: url('images/PNG/NMC_Back_small.png');
+	background-repeat: none;
+}
