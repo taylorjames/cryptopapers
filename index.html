@@ -82,7 +82,7 @@ $().ready(function ()
 		
 		if (collected_points == total_points)
 			{
-			$('#private-key-generate').removeAttr('disabled');
+			$('.generate-button').removeAttr('disabled');
 			}
 	});
 	
@@ -255,7 +255,7 @@ $().ready(function ()
 		
 	});
 	
-	$('#private-key-generate').click(function() {
+	$('.generate-button').click(function() {
         
 		var bytes = sr.getBytes(32);
 		//var bytes = Crypto.util.randomBytes(32);
@@ -353,7 +353,7 @@ $().ready(function ()
 					
 					<div>
 					<input type="text" id="private-key-input" />					
-					<input type="button" id="private-key-generate" class="button" value="Generate" disabled />
+					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 					</div>
 				</div>
 				
@@ -434,7 +434,7 @@ $().ready(function ()
 
 							<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
 							<label for="wallet-backup-no">One</label> 
-
+					
 							<a></a>
 						</div>
 						<!-- <label class="left-label">Backup:</label>
@@ -449,6 +449,8 @@ $().ready(function ()
 							<label for="wallet-backup-no">No</label> 
 						</span> -->
 					</div>
+
+					<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
 
 					<input type="button" id="print-button" class="large-button" value="Print" />
 					<br />

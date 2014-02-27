@@ -9,13 +9,13 @@ sr.pool = null;
 sr.poolSize = 256;
 sr.pptr = 0;
 
-sr.pointsCaptureMax = 300;
+sr.pointsCaptureMax = 100000; // Dont stop!
 sr.pointsRequired = 300;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();
 
 
-// Mix in the curre	nt time (w/milliseconds) into the pool
+// Mix in the current time (w/milliseconds) into the pool
 // NOTE: this method should be called from body click/keypress event handlers to increase entropy
 sr.seedTime = function () {
 	sr.seedInt(new Date().getTime());
