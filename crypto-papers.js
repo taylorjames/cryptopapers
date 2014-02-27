@@ -1,7 +1,7 @@
 
 function GetDefaultCompress(CoinType)
 	{
-	if (CoinType == 'nmc')
+	if (CoinType == 'nmc' || CoinType == 'ppc')
 		return false;
 	else
 		return true;
@@ -144,6 +144,8 @@ function GetAddressPrefixHex(CoinType)
 		return '30';
 	if (CoinType == 'nmc')
 		return '34';
+	if (CoinType == 'ppc')
+		return '37';
 	}
 	
 function GetVersionHex(CoinType)
