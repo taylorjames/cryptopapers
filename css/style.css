@@ -105,9 +105,6 @@ input[type=text]{
 	margin:0px;
 }
 
-input[type=button]{
-}
-
 #private-key-wif,
 #private-key-hex,
 #public-key-hex,
@@ -144,9 +141,9 @@ input[type=button]
 	display:block;
 	width: 200px;
 	height:30px;
-	color: #333333;
+	color: white;
 	background-color:#0da3da;
-	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
 	font-size:0.875rem;
 	border: 1px solid #333333;
     border-radius: 3px;
@@ -254,7 +251,7 @@ input#compress-decompress-button{
 .coin-wallet-left
 {
 	float: left;
-	width: 345px;
+	width: 331px;
 	text-align: center;
 	margin-left: 6px;
 	margin-top: 9px;
@@ -278,9 +275,9 @@ input#compress-decompress-button{
 
 .coin-wallet-address-qr
 {
-	margin-top: 74px;
+	margin-top: 77px;
 	margin-left: 19px;
-	margin-bottom: 63px;
+	margin-bottom: 68px;
 	text-align: left;
 }
 .coin-wallet-address-qr canvas
@@ -297,8 +294,8 @@ input#compress-decompress-button{
 
 .coin-wallet-private-key-qr
 {
-	margin-top: 21px;
-	margin-bottom: 18px;
+	margin-top: 25px;
+	margin-bottom: 21px;
 }
 .coin-wallet-private-key-qr canvas
 {

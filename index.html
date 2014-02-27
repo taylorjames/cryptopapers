@@ -215,14 +215,24 @@ $().ready(function ()
 		
 		var section = $(this).attr('section');
 		
-		$('.wrapper .inner > .section').hide();
-		$('.wrapper .inner > .section.' + section).fadeIn();
+		$('.wrapper .inner > .section').each(function() {
+			$(this).fadeOut();
+		});
+		
+		setTimeout(function() {
+			$('.wrapper .inner > .section.' + section).fadeIn();
+		}, 400);
+		
 		});
 	
 	var SampleKey = 'KzeoBK2VnJYHYWqpG9sKEXnxLupouDb97RSAQeazYVWjd2tPKv1A';
 	$('#private-key-input').val(SampleKey);
 	
-	$('.menu li')[2].click();
+	// Show the active page, hide the others
+	var section = $('.menu li.active').attr('section');
+	$('.wrapper .inner > .section').hide();
+	$('.wrapper .inner > .section.' + section).show();
+			
 //	$('#private-key-submit').click();
 	});
 </script>
@@ -237,7 +247,7 @@ $().ready(function ()
 	<ul>
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
-		<li section="coin-setup" class="active menu-key-import">Key Import</li>
+		<li section="coin-setup" class="active menu-key-import active">Key Import</li>
 		<li section="coin-generation" class="inactive disabled">Key Generation</li>
 		<li section="coin-wallets" class="inactive menu-key-print">Print</li>		
 	</ul>

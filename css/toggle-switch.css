@@ -185,8 +185,10 @@
       -moz-transition: color 0.2s ease-out;
       transition: color 0.2s ease-out; }
     .switch-candy input:checked + label {
+	/*
       color: #333333;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5); }
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	  */ }
     .switch-candy a {
       border: 1px solid #333333;
       background-color: #0da3da;
