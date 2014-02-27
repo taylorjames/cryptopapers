@@ -85,6 +85,8 @@ $().ready(function ()
 		if (collected_points == total_points && !HasPrivateKey)
 			{
 			$('.generate-button').removeAttr('disabled').addClass('enabled');
+			$('ul#steps-menu li#print.step').removeClass('disabled');
+
 			if (AutoGenerateWhenEntropyPoolFills)
 				{
 				$('#private-key-generate').click();
@@ -250,11 +252,14 @@ $().ready(function ()
 		{
 		if ($(this).hasClass('disabled'))
 			return;
-			
-		$('.menu li.active').removeClass('active');
-		$(this).addClass('active');
 		
 		var section = $(this).attr('section');
+
+		if(section != 'coin-wallets')$('.menu li.active').removeClass('active');
+
+		$(this).addClass('active');
+		
+		
 		
 		$('.wrapper .inner > .section').each(function() {
 			$(this).fadeOut();
@@ -303,11 +308,16 @@ $().ready(function ()
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
 		<li section="coin-setup" class="active menu-key-import active">Wallet Setup</li>
-		<li section="coin-wallets" class="inactive menu-key-print">Print</li>
 	</ul>
 </div>
 
 <form id="form1">
+
+<ul id="steps-menu" class="menu">
+	<li id="generate" class="step active" section="coin-setup">1. Generate Wallet Data</li>
+	<li id="print" class="step disabled" section="coin-wallets">2. Print Wallet</li>
+</ul>
+
 <div id="page" class="wrapper">
 	<div class="inner">
 		<div class="section about-crypto-papers"></div>
