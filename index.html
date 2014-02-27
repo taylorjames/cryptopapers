@@ -4,7 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
-	<title>BitCoin Wallet Creator</title>
+	<title>CryptoPapers - Wallet Creator</title>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	<script type="text/javascript" src="js/big-integer.js"></script>
@@ -243,14 +243,20 @@ $().ready(function ()
 		{
 		var Zoom = $('input[name=wallet-zoom]:checked').val();
 		
-		$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');
-		$('.coin-wallet').addClass('zoom-' + Zoom);
+		$('.coin-wallet').animate({zoom: Zoom + '%'}, 300);
+		
+		setTimeout(301, function() {
+			$('.coin-wallet').css('zoom', '');
+			$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');		
+			$('.coin-wallet').addClass('zoom-' + Zoom);
+		});
+		
 		});
 
 		
 	$('.menu li').click(function() 
 		{
-		if ($(this).hasClass('disabled'))
+		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
 			return;
 		
 		var section = $(this).attr('section');
