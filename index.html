@@ -82,7 +82,7 @@ $().ready(function ()
 		
 		if (collected_points == total_points)
 			{
-			$('.generate-button').removeAttr('disabled');
+			$('.generate-button').removeAttr('disabled').addClass('enabled');
 			}
 	});
 	
@@ -301,8 +301,8 @@ $().ready(function ()
 		<div class="section coin-setup">
 			<div class="key-import">
 				<div class="coin-type">
-					<label class="left-label">Coin:</label>
-					<div class="switch-toggle switch-5 switch-candy">
+					<label class="left-label">Coin</label>
+					<div class="switch-toggle coins switch-5 switch-candy right">
 						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
 						<label for="coin-btc">Bitcoin</label>
 
@@ -349,18 +349,16 @@ $().ready(function ()
 				</div>
 				
 				<div class="private-key"> 
-					<label class="left-label">Input Private Key:</label>
-					
 					<div>
-					<input type="text" id="private-key-input" />					
-					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+					<input type="button" id="private-key-generate" class="button generate-button" value="Generate Private Key" disabled />
+					<input type="text" id="private-key-input" />
 					</div>
 				</div>
 				
 				
 				
 				
-				<input type="button" id="private-key-submit" class="large-button" value="Create" />
+				<input type="button" id="private-key-submit" class="large-button" value="Create Wallet" />
 			
 			</div>			
 			<div class="random-info">
