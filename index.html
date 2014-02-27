@@ -85,7 +85,7 @@ $().ready(function ()
 		if (collected_points == total_points && !HasPrivateKey)
 			{
 			$('.generate-button').removeAttr('disabled').addClass('enabled');
-			$('ul#steps-menu li#print.step').removeClass('disabled');
+			$('ul#coin-setup-menu li#print.step').removeClass('disabled');
 
 			if (AutoGenerateWhenEntropyPoolFills)
 				{
@@ -254,18 +254,37 @@ $().ready(function ()
 		});
 
 		
-	$('.menu li').click(function() 
+	$('#coin-setup-menu.menu li').click(function() 
 		{
 		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
 			return;
 		
 		var section = $(this).attr('section');
 
-		if(section != 'coin-wallets')$('.menu li.active').removeClass('active');
+		$('#coin-setup-menu.menu li.active').removeClass('active');
+
+		$('.coin-setup .sub-section').each(function() {
+			$(this).fadeOut();
+		});
+		
+		$(this).addClass('active');		
+		
+		$('.coin-setup .sub-section.' + section).fadeIn();		
+		});
+		
+	$('#main-menu.menu li').click(function() 
+		{
+		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
+			return;
+		
+		var section = $(this).attr('section');
+
+		if (section != 'coin-wallets')
+			{
+			$('.menu li.active').removeClass('active');
+			}
 
 		$(this).addClass('active');
-		
-		
 		
 		$('.wrapper .inner > .section').each(function() {
 			$(this).fadeOut();
@@ -296,8 +315,14 @@ $().ready(function ()
 	
 	// Show the active page, hide the others
 	var section = $('.menu li.active').attr('section');
+	var subsection = $('#coin-setup-menu li.active').attr('section');
 	$('.wrapper .inner > .section').hide();
 	$('.wrapper .inner > .section.' + section).show();
+	Log(subsection);
+	$('.sub-section').hide();
+	Log(subsection);
+	$('.sub-section.' + subsection).show();
+	Log(subsection);
 			
 //	$('#private-key-submit').click();
 	});
@@ -309,7 +334,7 @@ $().ready(function ()
 	</div>
 </div>
 
-<div class="menu">
+<div id="main-menu" class="menu">
 	<ul>
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
@@ -319,77 +344,72 @@ $().ready(function ()
 
 <form id="form1">
 
-<ul id="steps-menu" class="menu">
-	<li id="generate" class="step active" section="coin-setup">1. Generate Wallet Data</li>
-	<li id="print" class="step disabled" section="coin-wallets">2. Print Wallet</li>
-</ul>
 
 <div id="page" class="wrapper">
 	<div class="inner">
 		<div class="section about-crypto-papers"></div>
 		<div class="section security"></div>
-		<div class="section coin-generation">
-		</div>
 		<div class="section coin-setup">
-			<div class="key-import">
-				<div class="coin-type">
-					<label class="left-label">Coin:</label>
-					<div class="switch-toggle switch-5 coins switch-candy">
-						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
-						<label for="coin-btc">Bitcoin</label>
+			<ul id="coin-setup-menu" class="menu">
+				<li id="generate" class="step active" section="coin-setup-keys">1. Generate Wallet Data</li>
+				<li id="print" class="step disabled" section="coin-setup-print">2. Print Wallet</li>
+			</ul>
+			<div class="sub-section coin-setup-keys">
+				<div class="key-import">
+					<div class="coin-type">
+						<label class="left-label">Coin:</label>
+						<div class="switch-toggle switch-5 coins switch-candy">
+							<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
+							<label for="coin-btc">Bitcoin</label>
 
-						<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
-						<label for="coin-ltc">Litecoin</label>
+							<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
+							<label for="coin-ltc">Litecoin</label>
 
-						<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
-						<label for="coin-nmc">Namecoin</label>
+							<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
+							<label for="coin-nmc">Namecoin</label>
 
-						<input type="radio" name="key-type" value="ppc" id="coin-ppc" /> 
-						<label for="coin-ppc">PeerCoin</label>
+							<input type="radio" name="key-type" value="ppc" id="coin-ppc" /> 
+							<label for="coin-ppc">PeerCoin</label>
 
-						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
-						<label for="coin-nxt">NXT</label>
+							<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
+							<label for="coin-nxt">NXT</label>
 
-						<a></a>
+							<a></a>
+						</div>
 					</div>
-				</div>
+					
+					<div class="private-key"> 
+						<div>
+						<input type="text" id="private-key-input" />					
+						<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+						</div>
+					</div>	
+					
+					<input type="button" id="private-key-submit" class="large-button" value="Create" />
 				
-				<div class="private-key"> 
-					<div>
-					<input type="text" id="private-key-input" />					
-					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+				</div>			
+				<div class="random-info">
+					<div class="rng-status">
+						<label>RNG Pool Status: 
+							<span class="rng-status-text"></span>
+						</label>
+						<div class="pool-status-bar">
+							<div class="pool-status-complete" style="width:0%"></div>
+						</div>
 					</div>
+					
+					<label>RNG Pool Data:</label>
+					<textarea id="random-pool" readonly></textarea>
 				</div>
-				
-				
-				
-				
-				<input type="button" id="private-key-submit" class="large-button" value="Create" />
-			
-			</div>			
-			<div class="random-info">
-			
-				<div class="rng-status">
-					<label>RNG Pool Status: 
-						<span class="rng-status-text"></span>
-					</label>
-					<div class="pool-status-bar">
-						<div class="pool-status-complete" style="width:0%"></div>
-					</div>
-				</div>
-				
-				<label>RNG Pool Data:</label>
-				<textarea id="random-pool" readonly></textarea>
-			</div>
-			<div class="key-details"> 
-				<span class="key-info-public-address">
-				<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
-				</span>
-				<br />
-				<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
-				<br />
-				<label class="left-label">Compression:</label>
-				<div class="switch-toggle compression switch-2 switch-candy ">
+				<div class="key-details"> 
+					<span class="key-info-public-address">
+					<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
+					</span>
+					<br />
+					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
+					<br />
+					<label class="left-label">Compression:</label>
+					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="Yes" id="compressed" checked />
 						<label for="compressed">Yes</label>
 
@@ -397,103 +417,107 @@ $().ready(function ()
 						<label for="decompressed">No</label> 
 
 						<a></a>
-				</div>
-				<br />
-				<label class="left-label">Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
-				<br />
-				<label class="left-label">Private Key CheckSum:</label><input type="text" id="private-key-checksum" readonly />
-				<br />
-				<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
-				<br />			
-				<label class="left-label">Public Key Hash160:</label><input type="text" id="public-key-hash160" readonly />
-				<br />
-				<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
-				<br />		
-				<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" readonly />
-				
-			</div>			
-		</div>
-		<div class="section btc coin-wallets">
-			
-			<div id="print-settings">
-				<div class="print-buttons">
-
-					<label class="left-label">Print Face:</label>
-						<div class="switch-toggle switch-2 switch-candy ">
-							<input type="radio" name="print-face" value="Front" id="toggle-front" checked />
-							<label for="toggle-front">Front</label>
-
-							<input type="radio" name="print-face" value="Back" id="toggle-back" />
-							<label for="toggle-back">Back</label> 
-
-							<a></a>
 					</div>
-
-					<div class="backup">
-
-						<label class="left-label">Copies:</label>
-						<div class="switch-toggle switch-2 switch-candy ">
-							<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
-							<label for="wallet-backup-no">One</label> 
-							
-							<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-							<label for="wallet-backup-yes">Two</label>
-					
-							<a></a>
-						</div>
-						
-						<label class="left-label">Zoom:</label>
-						<div class="switch-toggle switch-5 switch-candy ">
-							
-							<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" />
-							<label for="wallet-zoom-90">0.90 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" />
-							<label for="wallet-zoom-95">0.95 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" checked />
-							<label for="wallet-zoom-100">1.00 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" />
-							<label for="wallet-zoom-105">1.05 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" />
-							<label for="wallet-zoom-110">1.10 X</label>
-					
-							<a></a>
-						</div>
-					</div>
-
-					<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
-
-					<input type="button" id="print-button" class="large-button" value="Print" />
 					<br />
-				</div>
+					<label class="left-label">Private Key Wallet Import Format (WIF):</label><input type="text" id="private-key-wif" readonly />
+					<br />
+					<label class="left-label">Private Key CheckSum:</label><input type="text" id="private-key-checksum" readonly />
+					<br />
+					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
+					<br />			
+					<label class="left-label">Public Key Hash160:</label><input type="text" id="public-key-hash160" readonly />
+					<br />
+					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
+					<br />		
+					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" readonly />
+					
+				</div>			
 			</div>
-			
-			<div class="coin-wallet coin-wallet-1 zoom-100">
-				<div class="coin-wallet-left">
-					<div class="coin-wallet-address top">&nbsp;</div>
-					<div class="coin-wallet-address-qr"></div>
-					<div class="coin-wallet-address bottom">&nbsp;</div>
+				
+			<div class="sub-section coin-setup-print">
+				<div class="btc coin-wallets">
+				
+					<div id="print-settings">
+						<div class="print-buttons">
+
+							<label class="left-label">Print Face:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="print-face" value="Front" id="toggle-front" checked />
+									<label for="toggle-front">Front</label>
+
+									<input type="radio" name="print-face" value="Back" id="toggle-back" />
+									<label for="toggle-back">Back</label> 
+
+									<a></a>
+							</div>
+
+							<div class="backup">
+
+								<label class="left-label">Copies:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
+									<label for="wallet-backup-no">One</label> 
+									
+									<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+									<label for="wallet-backup-yes">Two</label>
+							
+									<a></a>
+								</div>
+								
+								<label class="left-label">Zoom:</label>
+								<div class="switch-toggle switch-5 switch-candy ">
+									
+									<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" />
+									<label for="wallet-zoom-90">0.90 X</label>
+									
+									<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" />
+									<label for="wallet-zoom-95">0.95 X</label>
+									
+									<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" checked />
+									<label for="wallet-zoom-100">1.00 X</label>
+									
+									<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" />
+									<label for="wallet-zoom-105">1.05 X</label>
+									
+									<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" />
+									<label for="wallet-zoom-110">1.10 X</label>
+							
+									<a></a>
+								</div>
+							</div>
+
+							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
+
+							<input type="button" id="print-button" class="large-button" value="Print" />
+							<br />
+						</div>
+					</div>
+					
+					<div class="coin-wallet coin-wallet-1 zoom-100">
+						<div class="coin-wallet-left">
+							<div class="coin-wallet-address top">&nbsp;</div>
+							<div class="coin-wallet-address-qr"></div>
+							<div class="coin-wallet-address bottom">&nbsp;</div>
+						</div>
+						<div class="coin-wallet-right">
+							<div class="coin-wallet-private-key top">&nbsp;</div>
+							<div class="coin-wallet-private-key-qr"></div>
+							<div class="coin-wallet-private-key bottom">&nbsp;</div>
+						</div>
+					</div>
+					<div class="coin-wallet coin-wallet-2 zoom-100">
+						<div class="coin-wallet-left">
+							<div class="coin-wallet-address top">&nbsp;</div>
+							<div class="coin-wallet-address-qr"></div>
+							<div class="coin-wallet-address bottom">&nbsp;</div>
+						</div>
+						<div class="coin-wallet-right">
+							<div class="coin-wallet-private-key top">&nbsp;</div>
+							<div class="coin-wallet-private-key-qr"></div>
+							<div class="coin-wallet-private-key bottom">&nbsp;</div>
+						</div>		
+					</div>
 				</div>
-				<div class="coin-wallet-right">
-					<div class="coin-wallet-private-key top">&nbsp;</div>
-					<div class="coin-wallet-private-key-qr"></div>
-					<div class="coin-wallet-private-key bottom">&nbsp;</div>
-				</div>
-			</div>
-			<div class="coin-wallet coin-wallet-2 zoom-100">
-				<div class="coin-wallet-left">
-					<div class="coin-wallet-address top">&nbsp;</div>
-					<div class="coin-wallet-address-qr"></div>
-					<div class="coin-wallet-address bottom">&nbsp;</div>
-				</div>
-				<div class="coin-wallet-right">
-					<div class="coin-wallet-private-key top">&nbsp;</div>
-					<div class="coin-wallet-private-key-qr"></div>
-					<div class="coin-wallet-private-key bottom">&nbsp;</div>
-				</div>		
 			</div>
 		</div>
 	</div>

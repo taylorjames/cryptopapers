@@ -6,7 +6,9 @@
 	#header,
 	.coin-setup,
 	.print-buttons,
-	.menu
+	.menu,
+	#coin-setup-menu,
+	#coin-setup-menu li
 	{
 		display: none;
 	}
@@ -106,8 +108,11 @@ cursor: pointer;
 }
 
 
-.coin-type input{
 
+.coin-type
+{
+	min-height: 37px;
+	margin-bottom: 10px;
 }
 
 .coin-type .coin-type-radio,
@@ -124,7 +129,7 @@ label.left-label {
 	width: 10%;
 	text-align: left;
 	display: block;
-	height: 30px;
+	min-height: 30px;
 	float: left;
 	padding: 8px 13px 5px 17px;
 	clear: left;
@@ -226,7 +231,10 @@ input[type=button]
 	margin:auto;
 }
 
-.coin-setup, #print-settings
+.coin-setup, 
+#print-settings,
+.key-import,
+.random-info
 {
 	margin-top: 30px;
 }
@@ -340,7 +348,7 @@ input[type=button]
 	text-shadow:0px 0px 3px #fff;
 }
 
-ul#steps-menu.menu{
+ul#coin-setup-menu.menu{
 	width:100%;
 	max-width:1050px;
 	display:block;
@@ -350,12 +358,13 @@ ul#steps-menu.menu{
 	margin-top:30px;
 	background:transparent;
 }
-ul#steps-menu li{
+ul#coin-setup-menu li{
+
 	border-radius:10px;
 	padding:20px;
 	margin-right:20px;
 	height:40px;
-	display:block;
+	list-style-type: none;
 	float:left;
 	line-height:0px;
 	color: white;
@@ -369,7 +378,7 @@ ul#steps-menu li{
 	opacity:0.5;
 }
 
-ul#steps-menu li.disabled{
+ul#coin-setup-menu li.disabled{
 	background-color:#ececec;
 	opacity:1;
 	color:#888;
@@ -377,7 +386,7 @@ ul#steps-menu li.disabled{
 	border:1px solid #888;
 }
 
-ul#steps-menu li.active{
+ul#coin-setup-menu li.active{
 	opacity:1;
 }
 
@@ -601,4 +610,13 @@ label::-moz-focus-inner {
 a:hover, a:active, a:focus {
   outline:0;
   border:none;
+}
+
+.key-details .left-label
+{
+	width: 150px;
+}
+#print-settings .left-label
+{
+	width: 100px;
 }
