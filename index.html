@@ -60,6 +60,8 @@
 <script type="text/javascript">
 
 var Default_Compress = undefined;
+var AutoGenerateWhenEntropyPoolFills = true;
+var HasPrivateKey = false;
 
 $().ready(function () 
 	{	
@@ -80,14 +82,18 @@ $().ready(function ()
 			
 		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 		
-		if (collected_points == total_points)
+		if (collected_points == total_points && !HasPrivateKey)
 			{
-			$('.generate-button').removeAttr('disabled').addClass('enabled');
+			$('.generate-button').removeAttr('disabled');
+			if (AutoGenerateWhenEntropyPoolFills)
+				{
+				$('#private-key-generate').click();
+				}
 			}
 	});
 	
 	$("#private-key-submit").click(function() 
-		{
+		{		
 		$('#coin-address-verify').val('');
 		
 		var CoinType = $('input[name=key-type]:checked').val();
@@ -129,6 +135,8 @@ $().ready(function ()
 			Log("Unknown format: Size " + PrivKey.length);
 			return;
 			}
+			
+		HasPrivateKey = true;
 		
 		$('.key-details').fadeIn();
 		
@@ -228,6 +236,14 @@ $().ready(function ()
 			}
 
 		});
+		
+	$('input[name=wallet-zoom]').change(function()
+		{
+		var Zoom = $('input[name=wallet-zoom]:checked').val();
+		
+		$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');
+		$('.coin-wallet').addClass('zoom-' + Zoom);
+		});
 
 		
 	$('.menu li').click(function() 
@@ -301,8 +317,8 @@ $().ready(function ()
 		<div class="section coin-setup">
 			<div class="key-import">
 				<div class="coin-type">
-					<label class="left-label">Coin</label>
-					<div class="switch-toggle coins switch-5 switch-candy right">
+					<label class="left-label">Coin:</label>
+					<div class="switch-toggle switch-5 switch-candy">
 						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
 						<label for="coin-btc">Bitcoin</label>
 
@@ -312,7 +328,7 @@ $().ready(function ()
 						<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
 						<label for="coin-nmc">Namecoin</label>
 
-						<input type="radio" name="key-type" value="ppc" id="coin-ppc" disabled /> 
+						<input type="radio" name="key-type" value="ppc" id="coin-ppc" /> 
 						<label for="coin-ppc">PeerCoin</label>
 
 						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
@@ -320,45 +336,21 @@ $().ready(function ()
 
 						<a></a>
 					</div>
-					<!-- <label class="left-label">Coin:</label>
-					
-					<span class="coin-type-radio">
-						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
-						<label for="coin-btc">Bitcoin</label>
-					</span>
-					
-					<span class="coin-type-radio">
-						<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
-						<label for="coin-ltc">Litecoin</label>
-					</span>
-					
-					<span class="coin-type-radio">
-						<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
-						<label for="coin-nmc">Namecoin</label>
-					</span>
-					
-					<span class="coin-type-radio">
-						<input type="radio" name="key-type" value="ppc" id="coin-ppc" disabled /> 
-						<label for="coin-ppc">PeerCoin</label>
-					</span>
-					
-					<span class="coin-type-radio">
-						<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
-						<label for="coin-nxt">NXT</label>
-					</span> -->
 				</div>
 				
 				<div class="private-key"> 
+					<label class="left-label">Input Private Key:</label>
+					
 					<div>
-					<input type="button" id="private-key-generate" class="button generate-button" value="Generate Private Key" disabled />
-					<input type="text" id="private-key-input" />
+					<input type="text" id="private-key-input" />					
+					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 					</div>
 				</div>
 				
 				
 				
 				
-				<input type="button" id="private-key-submit" class="large-button" value="Create Wallet" />
+				<input type="button" id="private-key-submit" class="large-button" value="Create" />
 			
 			</div>			
 			<div class="random-info">
@@ -427,25 +419,35 @@ $().ready(function ()
 
 						<label class="left-label">Copies:</label>
 						<div class="switch-toggle switch-2 switch-candy ">
-							<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-							<label for="wallet-backup-yes">Two</label>
-
 							<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
 							<label for="wallet-backup-no">One</label> 
+							
+							<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+							<label for="wallet-backup-yes">Two</label>
 					
 							<a></a>
 						</div>
-						<!-- <label class="left-label">Backup:</label>
 						
-						<span class="wallet-backup-radio">
-							<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-							<label for="wallet-backup-yes">Yes</label> 
-						</span>
-						
-						<span class="wallet-backup-radio">
-							<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
-							<label for="wallet-backup-no">No</label> 
-						</span> -->
+						<label class="left-label">Zoom:</label>
+						<div class="switch-toggle switch-5 switch-candy ">
+							
+							<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" />
+							<label for="wallet-zoom-90">0.90 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" />
+							<label for="wallet-zoom-95">0.95 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" checked />
+							<label for="wallet-zoom-100">1.00 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" />
+							<label for="wallet-zoom-105">1.05 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" />
+							<label for="wallet-zoom-110">1.10 X</label>
+					
+							<a></a>
+						</div>
 					</div>
 
 					<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
@@ -455,7 +457,7 @@ $().ready(function ()
 				</div>
 			</div>
 			
-			<div class="coin-wallet coin-wallet-1">
+			<div class="coin-wallet coin-wallet-1 zoom-100">
 				<div class="coin-wallet-left">
 					<div class="coin-wallet-address top">&nbsp;</div>
 					<div class="coin-wallet-address-qr"></div>
@@ -467,7 +469,7 @@ $().ready(function ()
 					<div class="coin-wallet-private-key bottom">&nbsp;</div>
 				</div>
 			</div>
-			<div class="coin-wallet coin-wallet-2">
+			<div class="coin-wallet coin-wallet-2 zoom-100">
 				<div class="coin-wallet-left">
 					<div class="coin-wallet-address top">&nbsp;</div>
 					<div class="coin-wallet-address-qr"></div>
