@@ -82,7 +82,7 @@ body{
 	background-color: #eeeeee;
 }
 
-.coin-setup label.left-label {
+label.left-label {
 	width: 22%;
 	text-align: right;
 	display: block;
@@ -161,12 +161,12 @@ input[type=button]
 	margin:auto;
 }
 
-.coin-setup
+.coin-setup, .print-settings
 {
 	padding-top: 30px;
 }
 
-.key-import, .key-details
+.key-import, .key-details, .print-settings
 {
 	
 	padding: 40px 0px 40px 0px;
@@ -231,9 +231,11 @@ input[type=button]
 	margin-top: 10px;
 	text-align: center;
 }
-.print-buttons .button
+#print-button
 {
-	margin-left: 160px;
+	float: left;
+clear: both;
+margin-left: 22%;
 }
 
 input#compress-decompress-button{

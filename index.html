@@ -170,9 +170,11 @@ $().ready(function ()
 		$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
 		});
 		
-	$('#toggle-back-front').click(function() 
+	$('input[name=print-face]').change(function() 
 		{
+		$('.coin-wallet').hide();
 		$('.coin-wallets').toggleClass('back');
+		$('.coin-wallet').fadeIn();
 		});
 		
 	$('#print-button').click(function() 
@@ -186,7 +188,22 @@ $().ready(function ()
 
 		$("#private-key-submit").click();
 		});
-		
+	
+	$('input[name=wallet-backup]').change(function()
+		{
+		var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
+				
+		if (Backup)
+			{
+			$('.coin-wallet-2').fadeIn();
+			}
+		else
+			{
+			$('.coin-wallet-2').fadeOut();
+			}
+
+		});
+
 		
 	$('.menu li').click(function() 
 		{
@@ -288,30 +305,7 @@ $().ready(function ()
 				</div>
 				
 				
-				<div class="backup">
-
-					<label class="left-label">Backup:</label>
-					<div class="switch-toggle switch-2 switch-candy ">
-						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-						<label for="wallet-backup-yes">Yes</label>
-
-						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
-						<label for="wallet-backup-no">No</label> 
-
-						<a></a>
-					</div>
-					<!-- <label class="left-label">Backup:</label>
-					
-					<span class="wallet-backup-radio">
-						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-						<label for="wallet-backup-yes">Yes</label> 
-					</span>
-					
-					<span class="wallet-backup-radio">
-						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
-						<label for="wallet-backup-no">No</label> 
-					</span> -->
-				</div>
+				
 				
 				<input type="button" id="private-key-submit" class="large-button" value="Create" />
 			
@@ -350,10 +344,46 @@ $().ready(function ()
 		<div class="section coin-generation"></div>
 		<div class="section btc coin-wallets">
 			
-			<div class="print-buttons">
+			<div class="print-buttons print-settings">
+
+				<label class="left-label">Print Face:</label>
+					<div class="switch-toggle switch-2 switch-candy ">
+						<input type="radio" name="print-face" value="Front" id="toggle-front" checked />
+						<label for="toggle-front">Front</label>
+
+						<input type="radio" name="print-face" value="Back" id="toggle-back" />
+						<label for="toggle-back">Back</label> 
+
+						<a></a>
+				</div>
+
+				<div class="backup">
+
+					<label class="left-label">Copies:</label>
+					<div class="switch-toggle switch-2 switch-candy ">
+						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+						<label for="wallet-backup-yes">Two</label>
+
+						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
+						<label for="wallet-backup-no">One</label> 
+
+						<a></a>
+					</div>
+					<!-- <label class="left-label">Backup:</label>
+					
+					<span class="wallet-backup-radio">
+						<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
+						<label for="wallet-backup-yes">Yes</label> 
+					</span>
+					
+					<span class="wallet-backup-radio">
+						<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
+						<label for="wallet-backup-no">No</label> 
+					</span> -->
+				</div>
+
 				<input type="button" id="print-button" class="large-button" value="Print" />
 				<br />
-				<input type="button" id="toggle-back-front" class="large-button" value="Back / Front" />
 			</div>
 			
 			<div class="coin-wallet coin-wallet-1">
