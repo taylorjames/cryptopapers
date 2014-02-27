@@ -23,9 +23,9 @@
 	{
 		background-color: white !important;
 	}
-	.coin-wallet
+	.coin-wallets
 	{
-		zoom: 1.0;
+		zoom: 1.00;
 	}
 	.coin-wallet.zoom-90
 	{
@@ -308,23 +308,23 @@ input[type=button]
 
 .coin-wallet.zoom-90
 {
-	zoom: 0.75;
+	zoom: 0.90;
 }
 .coin-wallet.zoom-95
 {
-	zoom: 0.80;
+	zoom: 0.95;
 }
 .coin-wallet.zoom-100
 {
-	zoom: 0.85;
+	zoom: 1.00;
 }
 .coin-wallet.zoom-105
 {
-	zoom: 0.90;
+	zoom: 1.05;
 }
 .coin-wallet.zoom-110
 {
-	zoom: 0.95;
+	zoom: 1.10;
 }
 
 #print-button

@@ -241,14 +241,20 @@ $().ready(function ()
 		{
 		var Zoom = $('input[name=wallet-zoom]:checked').val();
 		
-		$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');
-		$('.coin-wallet').addClass('zoom-' + Zoom);
+		$('.coin-wallet').animate({zoom: Zoom + '%'}, 300);
+		
+		setTimeout(301, function() {
+			$('.coin-wallet').css('zoom', '');
+			$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');		
+			$('.coin-wallet').addClass('zoom-' + Zoom);
+		});
+		
 		});
 
 		
 	$('.menu li').click(function() 
 		{
-		if ($(this).hasClass('disabled'))
+		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
 			return;
 			
 		$('.menu li.active').removeClass('active');
