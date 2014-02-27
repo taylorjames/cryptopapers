@@ -224,9 +224,19 @@ $().ready(function ()
 		}, 400);
 		
 		});
+		
+	$('.coin-type input[type=radio]').change(function() {
+		$('#private-key-submit').click();
+		
+	});
 	
-	var SampleKey = 'KzeoBK2VnJYHYWqpG9sKEXnxLupouDb97RSAQeazYVWjd2tPKv1A';
-	$('#private-key-input').val(SampleKey);
+	$('#private-key-generate').click(function() {
+        var bytes = Crypto.util.randomBytes(32);
+        $('#private-key-input').val(Crypto.util.bytesToHex(bytes));
+		
+		$('#private-key-submit').click();
+		
+	});
 	
 	// Show the active page, hide the others
 	var section = $('.menu li.active').attr('section');
@@ -247,9 +257,8 @@ $().ready(function ()
 	<ul>
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
-		<li section="coin-setup" class="active menu-key-import active">Key Import</li>
-		<li section="coin-generation" class="inactive disabled">Key Generation</li>
-		<li section="coin-wallets" class="inactive menu-key-print">Print</li>		
+		<li section="coin-setup" class="active menu-key-import active">Wallet Setup</li>
+		<li section="coin-wallets" class="inactive menu-key-print">Print</li>
 	</ul>
 </div>
 
@@ -258,6 +267,8 @@ $().ready(function ()
 	<div class="inner">
 		<div class="section about-crypto-papers"></div>
 		<div class="section security"></div>
+		<div class="section coin-generation">
+		</div>
 		<div class="section coin-setup">
 			<div class="key-import">
 				<div class="coin-type">
@@ -311,7 +322,11 @@ $().ready(function ()
 				
 				<div class="private-key"> 
 					<label class="left-label">Input Private Key:</label>
-					<input type="text" id="private-key-input" />
+					
+					<div>
+					<input type="text" id="private-key-input" />					
+					<input type="button" id="private-key-generate" class="button" value="Generate" />
+					</div>
 				</div>
 				
 				
@@ -322,6 +337,8 @@ $().ready(function ()
 			</div>			
 			
 			<div class="key-details"> 
+				<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
+				<br />
 				<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
 				<br />
 				<label class="left-label">Compression:</label>
@@ -345,13 +362,10 @@ $().ready(function ()
 				<br />
 				<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
 				<br />		
-				<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
-				<br />
 				<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" readonly />
 				
 			</div>			
 		</div>
-		<div class="section coin-generation"></div>
 		<div class="section btc coin-wallets">
 			
 			<div id="print-settings">

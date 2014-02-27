@@ -121,6 +121,10 @@ input[type=text]{
 	float:left;
 }
 
+#private-key-generate {
+	display: inline;
+	width: 100px;
+}
 
 #private-key-compressed{
 	width:45px;
@@ -129,7 +133,9 @@ input[type=text]{
 
 #private-key-input
 {
+	display: inline;
 	width: 500px;
+	font-size: 12px;
 }
 
 #private-key-submit{
