@@ -121,9 +121,14 @@ input[type=text]{
 #private-key-checksum
 {
 	width: 500px;
-	background-color: #EEEEEE;
 	display:block;
 	float:left;
+}
+
+input[readonly],
+textarea[readonly]
+{
+	background-color: #EEEEEE;
 }
 
 #private-key-generate {

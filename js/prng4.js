@@ -1,4 +1,6 @@
 // --- static methods ---
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
+
 var sr = window.SecureRandom = function () { };
 
 sr.i = 0;
@@ -191,14 +193,12 @@ sr.mouse_move = function(ev)
 		{
 		var timeStamp = new Date().getTime();
 		
-		if (ev && (timeStamp - sr.lastCaptureTime) > 10)
+		if (ev && (timeStamp - sr.lastCaptureTime) > MINIMUM_CAPTURE_TIME_DIFFERENCE)
 			{
 			sr.seedTime();
 			var seed = ev.clientX * ev.clientY;
 			sr.seedInt16(seed);
-			
-			Log(seed);
-			
+						
 			sr.pointsCaptured++;
 			sr.lastCaptureTime = new Date().getTime();
 			}
