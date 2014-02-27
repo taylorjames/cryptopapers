@@ -39,6 +39,8 @@
 	<script type="text/javascript" src="js/jquery-qrcode/jquery.qrcode.js"></script>
 	<script type="text/javascript" src="js/jquery-qrcode/qrcode.js"></script>
 	
+	<script type="text/javascript" src="js/prng4.js"></script>
+	
 	<script type="text/javascript" src="crypto-papers.js"></script>
 
 	
@@ -60,7 +62,30 @@
 var Default_Compress = undefined;
 
 $().ready(function () 
-	{		
+	{	
+	$('body').mousemove(function(ev) {
+		sr.mouse_move(ev);
+		
+		$('#random-pool').val(Crypto.util.bytesToHex(sr.pool));
+		
+		var collected_points = sr.pointsCaptured;
+		var total_points = sr.pointsRequired;
+		
+		var percent = Math.round(collected_points / total_points * 100);
+		
+		$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
+		
+		if (percent > 100)
+			percent = 100;
+			
+		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
+		
+		if (collected_points == total_points)
+			{
+			$('#private-key-generate').removeAttr('disabled');
+			}
+	});
+	
 	$("#private-key-submit").click(function() 
 		{
 		$('#coin-address-verify').val('');
@@ -231,8 +256,12 @@ $().ready(function ()
 	});
 	
 	$('#private-key-generate').click(function() {
-        var bytes = Crypto.util.randomBytes(32);
-        $('#private-key-input').val(Crypto.util.bytesToHex(bytes));
+        
+		var bytes = sr.getBytes(32);
+		//var bytes = Crypto.util.randomBytes(32);
+        
+		
+		$('#private-key-input').val(Crypto.util.bytesToHex(bytes));
 		
 		$('#private-key-submit').click();
 		
@@ -272,7 +301,6 @@ $().ready(function ()
 		<div class="section coin-setup">
 			<div class="key-import">
 				<div class="coin-type">
-
 					<label class="left-label">Coin:</label>
 					<div class="switch-toggle switch-5 switch-candy">
 						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
@@ -325,7 +353,7 @@ $().ready(function ()
 					
 					<div>
 					<input type="text" id="private-key-input" />					
-					<input type="button" id="private-key-generate" class="button" value="Generate" />
+					<input type="button" id="private-key-generate" class="button" value="Generate" disabled />
 					</div>
 				</div>
 				
@@ -335,9 +363,24 @@ $().ready(function ()
 				<input type="button" id="private-key-submit" class="large-button" value="Create" />
 			
 			</div>			
+			<div class="random-info">
 			
+				<div class="rng-status">
+					<label>RNG Pool Status: 
+						<span class="rng-status-text"></span>
+					</label>
+					<div class="pool-status-bar">
+						<div class="pool-status-complete" style="width:0%"></div>
+					</div>
+				</div>
+				
+				<label>RNG Pool Data:</label>
+				<textarea id="random-pool"></textarea>
+			</div>
 			<div class="key-details"> 
+				<span class="key-info-public-address">
 				<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
+				</span>
 				<br />
 				<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
 				<br />

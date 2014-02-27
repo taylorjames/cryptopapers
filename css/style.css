@@ -30,6 +30,11 @@ body{
 	padding:0px;
 }
 
+.bold
+{
+font-weight: bold;
+}
+
 .large-button {
 	font-size: 27px;
 	padding: 16px;
@@ -169,7 +174,7 @@ input[type=button]
 	margin-top: 30px;
 }
 
-.key-import, .key-details, .print-buttons
+.key-import, .key-details, .print-buttons, .random-info
 {
 	
 	padding: 40px 0px 40px 0px;
@@ -180,11 +185,49 @@ input[type=button]
 	overflow:auto;
 
 }
+.key-import
+{
+	float: left;
+}
+.random-info
+{
+	float: right;
+	width: 250px;
+	padding:5px;
+}
+#random-pool
+{
+	height: 200px;
+	font-size: 10px;
+	width: 235px;
+}
 
 .key-details{
 	display:none;
 }
 
+.pool-status-bar
+{
+	height: 15px;
+	width: 97%;
+	margin: auto;
+	background-color: red;
+}
+.pool-status-complete
+{
+	height: 15px;
+	background-color: green;
+}
+
+.key-info-public-address label
+{
+	font-weight: bold;
+}
+.key-info-public-address input
+{
+	font-size: 18px;
+	font-weight: bold;
+}
 
 .menu {
 	background-color: #dddddd;
