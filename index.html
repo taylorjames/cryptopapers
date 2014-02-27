@@ -84,7 +84,7 @@ $().ready(function ()
 		
 		if (collected_points == total_points && !HasPrivateKey)
 			{
-			$('.generate-button').removeAttr('disabled');
+			$('.generate-button').removeAttr('disabled').addClass('enabled');
 			if (AutoGenerateWhenEntropyPoolFills)
 				{
 				$('#private-key-generate').click();
@@ -318,7 +318,7 @@ $().ready(function ()
 			<div class="key-import">
 				<div class="coin-type">
 					<label class="left-label">Coin:</label>
-					<div class="switch-toggle switch-5 switch-candy">
+					<div class="switch-toggle switch-5 coins switch-candy">
 						<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
 						<label for="coin-btc">Bitcoin</label>
 
@@ -339,8 +339,6 @@ $().ready(function ()
 				</div>
 				
 				<div class="private-key"> 
-					<label class="left-label">Input Private Key:</label>
-					
 					<div>
 					<input type="text" id="private-key-input" />					
 					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
