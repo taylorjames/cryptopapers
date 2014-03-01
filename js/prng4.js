@@ -9,7 +9,7 @@ sr.pool = null;
 sr.poolSize = 256;
 sr.pptr = 0;
 
-sr.pointsCaptureMax = 50; // Only 50 for testing. Use at least 300!
+sr.pointsCaptureMax = 50000; // Only 50 for testing. Use at least 300!
 sr.pointsRequired = 50;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();

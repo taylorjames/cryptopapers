@@ -72,27 +72,32 @@ function GetEncoded(pt, Compressed)
 	return enc;
 	}
 
-function GetPublicKey(PrivateKeyHex, Compressed)
+function GetPublicKey(PrivateKeyBytes, Compressed)
 	{
-	var curve = getSECCurveByName("secp256k1") //found in bitcoin-js/src/jsbn/sec.js
+	var PublicKeyHex = Crypto.util.bytesToHex(GetPublicKeyBytes(PrivateKeyBytes, Compressed));
 
-	//convert our random array or private key to a Big Integer
-	var privateKeyBN = BigInteger.fromByteArrayUnsigned(Crypto.util.hexToBytes(PrivateKeyHex));
-
-	var curvePt = curve.getG().multiply(privateKeyBN);
-
-	var PublicKeyBytes = GetEncoded(curvePt, Compressed)
-	
-	var PublicKeyHex = Crypto.util.bytesToHex(PublicKeyBytes);
-
-	Log("Public Key: " + PublicKeyHex);
+	//Log("Public Key: " + PublicKeyHex);
 	
 	return PublicKeyHex;
 	}
 	
-function GetAddressFromKey(CoinType, PrivKeyHex, Compressed)
+function GetPublicKeyBytes(PrivateKeyBytes, Compressed)
 	{
-	var PublicKeyHex = GetPublicKey(PrivKeyHex, Compressed);
+	var curve = getSECCurveByName("secp256k1") //found in bitcoin-js/src/jsbn/sec.js
+
+	//convert our random array or private key to a Big Integer
+	var privateKeyBN = BigInteger.fromByteArrayUnsigned(PrivateKeyBytes);
+
+	var curvePt = curve.getG().multiply(privateKeyBN);
+
+	var PublicKeyBytes = GetEncoded(curvePt, Compressed);
+	
+	return PublicKeyBytes;
+	}
+	
+function GetAddressFromKey(CoinType, PrivateKeyBytes, Compressed)
+	{
+	var PublicKeyHex = GetPublicKey(PrivateKeyBytes, Compressed);
 	
 	return GetAddress(CoinType, PublicKeyHex);
 	}
@@ -101,9 +106,14 @@ function GetAddress(CoinType, PublicKeyHex)
 	{
 	var PublicKeyBytes = Crypto.util.hexToBytes(PublicKeyHex);
 	
+	return GetAddressFromBytes(CoinType, PublicKeyBytes);
+	}
+	
+function GetAddressFromBytes(CoinType, PublicKeyBytes)
+	{	
 	var KeyHash160 = GetKeyHash160(PublicKeyBytes);
 	
-	Log("Key Hash160: " + KeyHash160);
+	//Log("Key Hash160: " + KeyHash160);
 			
 	var version = Crypto.util.hexToBytes(GetAddressPrefixHex(CoinType));
 	var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
@@ -115,11 +125,10 @@ function GetAddress(CoinType, PublicKeyHex)
 	
 	$('#public-key-address-checksum').val(CheckSum);
 	
-	Log("CheckSum: " + CheckSum);
+	//Log("CheckSum: " + CheckSum);
 	
 	var UnencodedAddress = GetAddressPrefixHex(CoinType) + KeyHash160 + CheckSum;
-	
-	
+
 	var Address = Bitcoin.Base58.encode(Crypto.util.hexToBytes(UnencodedAddress));
 	
 	return Address;
@@ -167,11 +176,11 @@ function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
 	
 	var PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexExt));
 	
-	Log("Private Key SHA 1: " + PrivateKeyHexHash);
+	//Log("Private Key SHA 1: " + PrivateKeyHexHash);
 	
 	PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexHash));
 	
-	Log("Private Key SHA 2: " + PrivateKeyHexHash);
+	//Log("Private Key SHA 2: " + PrivateKeyHexHash);
 	
 	var CheckSum = PrivateKeyHexHash.substr(0, 8);
 	

@@ -523,14 +523,11 @@ margin-top: 5px;
 }
 
 ul#coin-setup-menu.menu{
-	width:100%;
-	max-width:1050px;
-	display:block;
-	overflow:auto;
-	clear:both;
-	margin:auto;
-	margin-top:30px;
-	background:transparent;
+	width: 368px;
+	display: block;
+	overflow: auto;
+	background: transparent;
+	float: left;
 }
 
 ul#coin-setup-menu li{
@@ -802,6 +799,25 @@ a:hover, a:active, a:focus {
 
 .donate-keys .donate-key
 {
+}
+.donate-reminder
+{
+	float: right;
+	cursor: pointer;
+	width: 631px;
+	font-size: 13px;
+	text-align: right;
+	background-color: #f2f2f2;
+	border-radius: 5px;
+	border: 1px solid #ddd;
+	padding: 7px;
+	margin-right: 17px;
+	margin-top: -16px;
+}
+.donate-reminder img
+{
+	margin-left: 10px;
+	float: right;
 }
 
 .donate-keys .donate-key .coin
