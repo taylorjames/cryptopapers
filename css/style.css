@@ -141,16 +141,6 @@ cursor: pointer;
 .coin-type.new{
 }
 
-.choose-coin{
-	display:block;
-	float:left;
-	width:120px;
-	margin-top:25px;
-	border-radius:5px;
-	clear:left;
-	line-height:10px;
-}
-
 .coins-grid-wrapper{
 	height:auto;
 	overflow:auto;
@@ -413,6 +403,13 @@ input[type=button]
 	margin-bottom:40px;
 	overflow:auto;
 
+}
+.choose-coin
+{
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	margin: 0px 5px 5px 5px;
 }
 .key-import
 {
