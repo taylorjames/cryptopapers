@@ -56,6 +56,19 @@ body{
 	padding:0px;
 }
 
+#dark-box{
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	min-height:4000px;
+	position:absolute;
+	background-color:#000;
+	z-index:9999;
+	opacity:0.6;
+	display:none;
+}
+
 .bold
 {
 font-weight: bold;
@@ -124,6 +137,102 @@ cursor: pointer;
 	background-color: #eeeeee;
 }
 
+.coin-type.new{
+}
+
+a.choose-coin{
+	display:block;
+	float:left;
+	width:120px;
+	margin-top:25px;
+	border-radius:5px;
+	clear:left;
+	line-height:10px;
+}
+
+div.coins-grid-wrapper{
+	width:400px;
+	height:auto;
+	overflow:auto;
+	background-color:#fff;
+	border-radius:10px;
+	padding:20px;
+	position:absolute;
+	z-index:10000;
+	top:300px;
+	left:50%;
+	margin-left:-200px;
+	display:none;
+}
+
+div.coins-grid-wrapper .coin{
+	display:block;
+	width:120px;
+	height:140px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	float:left;
+	padding:115px 10px 0px 10px;
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+
+	border:1px solid #fff;
+}
+
+div.current-coin{
+	display:block;
+	width:120px;
+	height:140px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	padding:10px 10px 0px 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+	background-color:#fff;
+	float:left;
+}
+
+div.current-coin em{
+	display:inline-block;
+	width:100%;
+	text-align:center;
+	padding-top:5px;
+}
+div.coins-grid-wrapper .coin:hover, div.coins-grid-wrapper .coin.active{
+	background-color:#eee;
+}
+
+
+
+div.coins-grid-wrapper .coin em{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+}
+
+.coin.btc-coin{
+	background-image:url('../images/coin-icons/btc-logo.png');
+}
+
+.coin.ltc-coin{
+	background-image:url('../images/coin-icons/ltc-logo.png');
+}
+
+.coin.nmc-coin{
+	background-image:url('../images/coin-icons/nmc-logo.png');
+}
+
+.coin.nxt-coin{
+	background-image:url('../images/coin-icons/nxt-logo.png');
+}
+
+.coin.ppc-coin{
+	background-image:url('../images/coin-icons/ppc-logo.png');
+}
 
 label.left-label {
 	width: 10%;
@@ -147,6 +256,7 @@ label.left-label {
 }
 
 #form1{
+	overflow:auto;
 }
 
 input[type=text]{
@@ -248,7 +358,6 @@ input[type=button]
 	width:66.6%;
 	margin-bottom:40px;
 	overflow:auto;
-
 
 }
 .key-import
@@ -425,8 +534,7 @@ ul#coin-setup-menu li.active{
 #print-button
 {
 	float: left;
-clear: both;
-margin-left: 22%;
+	clear: both;
 }
 
 input#compress-decompress-button{
@@ -580,7 +688,7 @@ input#compress-decompress-button{
 }
 
 .switch-toggle.coins{
-	width:90%;
+	width:100%;
 }
 
 .switch-toggle.right{

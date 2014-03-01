@@ -98,7 +98,7 @@ $().ready(function ()
 		{		
 		$('#coin-address-verify').val('');
 		
-		var CoinType = $('input[name=key-type]:checked').val();
+		var CoinType = $('div.coin.active').attr('data');
 		
 		Log("Coin Type: " + CoinType);
 		
@@ -326,6 +326,10 @@ $().ready(function ()
 			
 //	$('#private-key-submit').click();
 	});
+	
+
+	
+
 </script>
 
 <div id="header" class="wrapper">
@@ -356,8 +360,22 @@ $().ready(function ()
 			</ul>
 			<div class="sub-section coin-setup-keys">
 				<div class="key-import">
-					<div class="coin-type">
-						<label class="left-label">Coin:</label>
+					<div class="coin-type new">
+						
+						<div class="current-coin"><img src="" /><em></em></div>
+						<a class="button choose-coin">Change Coin</a>
+						<div class="clearfix"></div>
+						<div class="coins-grid-wrapper box-padding">
+							<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
+							<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
+							<div class="coin nxt-coin" data="nxt"><em>Nxt</em></div>
+							<div class="coin nmc-coin" data="nmc"><em>Namecoin</em></div>
+							<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+						</div>
+
+					</div>
+					<div class="clearfix"></div>
+					<!-- <div class="coin-type">
 						<div class="switch-toggle switch-5 coins switch-candy">
 							<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
 							<label for="coin-btc">Bitcoin</label>
@@ -376,7 +394,7 @@ $().ready(function ()
 
 							<a></a>
 						</div>
-					</div>
+					</div> -->
 					
 					<div class="private-key"> 
 						<div>
@@ -523,5 +541,41 @@ $().ready(function ()
 	</div>
 </div>
 </form>
+<div id="dark-box"></div>
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	//set start coin image
+	function setCurrentCoin(){
+		coinName = $('.coins-grid-wrapper .coin.active').attr('data');
+		coinSrc = 'images/coin-icons/' + coinName + '-logo.png';
+		$('div.current-coin img').attr('src', coinSrc);
+
+		//set start coin label
+		coinTxt = $('.coins-grid-wrapper .coin.active em').html();
+		$('div.current-coin em').html(coinTxt);
+	}
+	//change coin click
+	$('a.choose-coin').click(function(e){
+		e.preventDefault();
+		$('#dark-box').fadeIn();
+		$('.coins-grid-wrapper').fadeIn();
+	})
+
+	//new coin click
+	$('.coins-grid-wrapper .coin').click(function(){
+		$('div.coin.active').removeClass('active');
+		$(this).addClass('active');
+		setCurrentCoin();
+		$('.coins-grid-wrapper').fadeOut();
+		$('#dark-box').fadeOut();
+		$("#private-key-submit").click();
+	})
+
+	setCurrentCoin();
+})
+
+</script>
 </body>
 </html>
