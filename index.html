@@ -7,6 +7,9 @@
 	<title>CryptoPapers - Wallet Creator</title>
 
 	<script type="text/javascript" src="js/jquery.js"></script>
+	
+	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
+	
 	<script type="text/javascript" src="js/big-integer.js"></script>
 	
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
@@ -361,10 +364,11 @@ $().ready(function ()
 			<div class="sub-section coin-setup-keys">
 				<div class="key-import">
 					<div class="coin-type new">
-						
+						<!--
 						<div class="current-coin"><img src="" /><em></em></div>
 						<a class="button choose-coin">Change Coin</a>
 						<div class="clearfix"></div>
+						-->
 						<div class="coins-grid-wrapper box-padding">
 							<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
 							<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
@@ -546,8 +550,34 @@ $().ready(function ()
 
 $(document).ready(function(){
 
+	//change coin click
+	$('.coins-grid-wrapper .coin').click(function(e)
+		{
+		if ($('.coins-grid-wrapper').hasClass('selecting'))
+			{
+			$('.coins-grid-wrapper .coin.active').removeClass('active');
+			$(this).addClass('active');
+			
+			$('.coins-grid-wrapper').animate({width: '120px', height: '140px'}, 300, function() 
+				{
+				$('.coins-grid-wrapper').removeClass('selecting');
+				});
+			}
+		else
+			{
+			$('.coins-grid-wrapper').addClass('selecting');
+			
+			$('.coins-grid-wrapper').animateAuto('both', 300);
+			}
+		});	
+	
+/*
+	e.preventDefault();
+	$('#dark-box').fadeIn();
+	$('.coins-grid-wrapper').fadeIn();
+	
 	//set start coin image
-	function setCurrentCoin(){
+	function setCurrentCoin() {
 		coinName = $('.coins-grid-wrapper .coin.active').attr('data');
 		coinSrc = 'images/coin-icons/' + coinName + '-logo.png';
 		$('div.current-coin img').attr('src', coinSrc);
@@ -556,13 +586,7 @@ $(document).ready(function(){
 		coinTxt = $('.coins-grid-wrapper .coin.active em').html();
 		$('div.current-coin em').html(coinTxt);
 	}
-	//change coin click
-	$('a.choose-coin').click(function(e){
-		e.preventDefault();
-		$('#dark-box').fadeIn();
-		$('.coins-grid-wrapper').fadeIn();
-	})
-
+	
 	//new coin click
 	$('.coins-grid-wrapper .coin').click(function(){
 		$('div.coin.active').removeClass('active');
@@ -574,6 +598,7 @@ $(document).ready(function(){
 	})
 
 	setCurrentCoin();
+	*/
 })
 
 </script>
