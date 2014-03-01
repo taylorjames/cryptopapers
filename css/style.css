@@ -314,7 +314,7 @@ cursor: pointer;
 
 label.left-label {
 	width: 10%;
-	text-align: left;
+	text-align: right;
 	display: block;
 	min-height: 30px;
 	float: left;
@@ -328,6 +328,19 @@ label.left-label {
 	border-right: none;
 	color: #8c8c8c;
 }
+.random-info .left-label
+{	
+	margin-top: 10px;
+	width: 115px;
+	padding: 5px;
+}
+.random-info .rng-keep-collecting
+{
+	margin-top: 10px;
+	margin-bottom: 10px;
+	max-width: 158px !important;
+}
+
 .coin-setup > div,
 .coin-setup > .key-import > div {
 	min-height: 50px
@@ -496,10 +509,6 @@ input[type=button]
 	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
     background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-}
-
-.random-info label{
-	padding:20px 0px 0px 3px;
 }
 
 .random-info label:first-child{
@@ -825,7 +834,8 @@ a:hover, a:active, a:focus {
 
 .key-details .left-label
 {
-	width: 150px;
+	width: 155px;
+	font-size: 12px;
 }
 #print-settings .left-label
 {
@@ -953,6 +963,10 @@ body.dark-theme textarea
 body.dark-theme input[type=text].reaconly,
 body.dark-theme textarea.reaconly
 {
+}
+body.dark-theme label
+{
+	color: white;
 }
 body.dark-theme label.left-label
 {
