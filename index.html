@@ -316,6 +316,35 @@ $().ready(function ()
 		
 	});
 	
+
+	$('.coins-grid-wrapper .coin:not(.disabled)').click(function(e)
+		{
+		if ($('.coins-grid-wrapper').hasClass('selecting'))
+			{
+			$('.coins-grid-wrapper .coin.active').removeClass('active');
+			$('.coins-grid-wrapper .coin-grid-row.active').removeClass('active');
+			
+			$(this).parent().addClass('active');
+			$(this).addClass('active');
+			
+			$('.coin-grid-row:not(.active)').animate({ height: '0px'}, 300);
+			$('.coins-grid-wrapper .coin:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+				{
+				$('.coins-grid-wrapper').removeClass('selecting');
+				});
+			
+			$("#private-key-submit").click();
+			}
+		else
+			{
+			$('.coins-grid-wrapper').addClass('selecting');
+			
+			$('.coin-grid-row').animate({ height: '140px'}, 300);
+			
+			$('.coins-grid-wrapper .coin:not(.active)').css('width', '0px').css('height', '0px').animate({width: '120px', height: '140px'}, 300);
+			}
+		});	
+		
 	// Show the active page, hide the others
 	var section = $('.menu li.active').attr('section');
 	var subsection = $('#coin-setup-menu li.active').attr('section');
@@ -364,11 +393,6 @@ $().ready(function ()
 			<div class="sub-section coin-setup-keys">
 				<div class="key-import">
 					<div class="coin-type new">
-						<!--
-						<div class="current-coin"><img src="" /><em></em></div>
-						<a class="button choose-coin">Change Coin</a>
-						<div class="clearfix"></div>
-						-->
 						<div class="choose-coin">Choose Coin:</div>
 						<div class="coins-grid-wrapper box-padding">
 							<div class="coin-grid-row">
@@ -402,26 +426,6 @@ $().ready(function ()
 						</div>
 					</div>
 					<div class="clearfix"></div>
-					<!-- <div class="coin-type">
-						<div class="switch-toggle switch-5 coins switch-candy">
-							<input id="coin-btc" type="radio" name="key-type" value="btc"   checked /> 
-							<label for="coin-btc">Bitcoin</label>
-
-							<input type="radio" name="key-type" value="ltc" id="coin-ltc" />
-							<label for="coin-ltc">Litecoin</label>
-
-							<input type="radio" name="key-type" value="nmc" id="coin-nmc" /> 
-							<label for="coin-nmc">Namecoin</label>
-
-							<input type="radio" name="key-type" value="ppc" id="coin-ppc" /> 
-							<label for="coin-ppc">PeerCoin</label>
-
-							<input type="radio" name="key-type" value="nxt" id="coin-nxt" disabled /> 
-							<label for="coin-nxt">NXT</label>
-
-							<a></a>
-						</div>
-					</div> -->
 					
 					<div class="private-key"> 
 						<div>
@@ -568,77 +572,5 @@ $().ready(function ()
 	</div>
 </div>
 </form>
-<div id="dark-box"></div>
-<script type="text/javascript">
-
-$(document).ready(function(){
-
-	//change coin click
-	$('.coins-grid-wrapper .coin:not(.disabled)').click(function(e)
-		{
-		if ($('.coins-grid-wrapper').hasClass('selecting'))
-			{
-			$('.coins-grid-wrapper .coin.active').removeClass('active');
-			$('.coins-grid-wrapper .coin-grid-row.active').removeClass('active');
-			
-			$(this).parent().addClass('active');
-			$(this).addClass('active');
-			
-			$('.coin-grid-row:not(.active)').animate({ height: '0px'}, 300);
-			$('.coins-grid-wrapper .coin:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
-				{
-				$('.coins-grid-wrapper').removeClass('selecting');
-				});
-			
-			$("#private-key-submit").click();
-			/*
-			$('.coins-grid-wrapper').animate({width: '120px', height: '140px'}, 300, function() 
-				{
-				$('.coins-grid-wrapper').removeClass('selecting');
-				});
-			*/
-			}
-		else
-			{
-			$('.coins-grid-wrapper').addClass('selecting');
-			
-			$('.coin-grid-row').animate({ height: '140px'}, 300);
-			
-			$('.coins-grid-wrapper .coin:not(.active)').css('width', '0px').css('height', '0px').animate({width: '120px', height: '140px'}, 300);
-			//$('.coins-grid-wrapper').animateAuto('both', 300);
-			}
-		});	
-	
-/*
-	e.preventDefault();
-	$('#dark-box').fadeIn();
-	$('.coins-grid-wrapper').fadeIn();
-	
-	//set start coin image
-	function setCurrentCoin() {
-		coinName = $('.coins-grid-wrapper .coin.active').attr('data');
-		coinSrc = 'images/coin-icons/' + coinName + '-logo.png';
-		$('div.current-coin img').attr('src', coinSrc);
-
-		//set start coin label
-		coinTxt = $('.coins-grid-wrapper .coin.active em').html();
-		$('div.current-coin em').html(coinTxt);
-	}
-	
-	//new coin click
-	$('.coins-grid-wrapper .coin').click(function(){
-		$('div.coin.active').removeClass('active');
-		$(this).addClass('active');
-		setCurrentCoin();
-		$('.coins-grid-wrapper').fadeOut();
-		$('#dark-box').fadeOut();
-		$("#private-key-submit").click();
-	})
-
-	setCurrentCoin();
-	*/
-})
-
-</script>
 </body>
 </html>
