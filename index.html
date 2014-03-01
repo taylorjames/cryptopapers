@@ -59,7 +59,7 @@
 	
 	</script>
 </head>
-<body>
+<body class="dark-theme">
 <script type="text/javascript">
 
 var Default_Compress = undefined;
@@ -395,6 +395,7 @@ $().ready(function ()
 		
 	$('#print-button').click(function() 
 		{
+		$('.coin-wallet').attr('style', '');
 		window.print();
 		});
 		
@@ -420,6 +421,12 @@ $().ready(function ()
 
 		});
 		
+	$('input[name=theme]').change(function() {
+		if ($(this).val() == "Yes")
+			$('body').removeClass('dark-theme');
+		else
+			$('body').addClass('dark-theme');
+	});
 	$('input[name=wallet-zoom]').change(function()
 		{
 		var Zoom = $('input[name=wallet-zoom]:checked').val();
@@ -554,13 +561,23 @@ $().ready(function ()
 
 </script>
 
-<div id="header" class="wrapper">
+<div id="header" class="wrapper no-print">
 	<div class="inner">
 		<a href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		
+		<div class="switch-toggle theme switch-2 switch-candy ">
+			<input type="radio" name="theme" value="Yes" id="compressed"  />
+			<label for="compressed">+</label>
+
+			<input type="radio" name="theme" value="No" id="decompressed" checked />
+			<label for="decompressed">-</label> 
+
+			<a></a>
+		</div>
 	</div>
 </div>
 
-<div id="main-menu" class="menu">
+<div id="main-menu" class="menu no-print">
 	<ul>
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
@@ -574,8 +591,8 @@ $().ready(function ()
 
 <div id="page" class="wrapper">
 	<div class="inner">
-		<div class="section about-crypto-papers"></div>
-		<div class="section security"></div>
+		<div class="section about-crypto-papers no-print"></div>
+		<div class="section security no-print"></div>
 		<div class="section coin-setup">
 			<span class="donate-reminder">
 				<img src="images/up-arrow.png" alt="" title="" />
@@ -583,11 +600,11 @@ $().ready(function ()
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
 				Thanks, and stay safe!
 			</span>
-			<ul id="coin-setup-menu" class="menu">
+			<ul id="coin-setup-menu" class="menu no-print">
 				<li id="generate" class="step active" section="coin-setup-keys">1. Generate Wallet Data</li>
 				<li id="print" class="step disabled" section="coin-setup-print">2. Print Wallet</li>
 			</ul>
-			<div class="sub-section coin-setup-keys">
+			<div class="sub-section coin-setup-keys no-print">
 				<div class="key-import round-block">
 					<h3>Private Key</h3>
 					<div class="coin-type new">
@@ -623,7 +640,6 @@ $().ready(function ()
 							</div>
 						</div>
 					</div>
-					<div class="clearfix"></div>
 					
 					<div class="private-key"> 
 						<div>
@@ -685,7 +701,7 @@ $().ready(function ()
 			<div class="sub-section coin-setup-print">
 				<div class="btc coin-wallets">
 				
-					<div id="print-settings">
+					<div id="print-settings" class="no-print">
 						<div class="print-buttons round-block">
 							<h3>Page Setup</h3>
 
@@ -769,7 +785,7 @@ $().ready(function ()
 				</div>
 			</div>
 		</div>
-		<div class="section donate">
+		<div class="section donate no-print">
 			<div class="donate-keys round-block">
 				<h3>Donate</h3>
 				<div class="donate-key">
