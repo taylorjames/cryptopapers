@@ -375,6 +375,7 @@ $().ready(function ()
 		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
 		<li section="security" class="menu-key-security disabled">Security</li>
 		<li section="coin-setup" class="active menu-key-import active">Wallet Setup</li>
+		<li section="donate" class="menu-key-donate right">Donate</li>
 	</ul>
 </div>
 
@@ -391,7 +392,8 @@ $().ready(function ()
 				<li id="print" class="step disabled" section="coin-setup-print">2. Print Wallet</li>
 			</ul>
 			<div class="sub-section coin-setup-keys">
-				<div class="key-import">
+				<div class="key-import round-block">
+					<h3>Private Key</h3>
 					<div class="coin-type new">
 						<div class="choose-coin">Choose Coin:</div>
 						<div class="coins-grid-wrapper box-padding">
@@ -437,7 +439,8 @@ $().ready(function ()
 					<input type="button" id="private-key-submit" class="large-button" value="Create" />
 				
 				</div>			
-				<div class="random-info">
+				<div class="random-info round-block">
+					<h3>RNG Entropy</h3>
 					<div class="rng-status">
 						<label>RNG Pool Status: 
 							<span class="rng-status-text"></span>
@@ -450,7 +453,8 @@ $().ready(function ()
 					<label>RNG Pool Data:</label>
 					<textarea id="random-pool" readonly></textarea>
 				</div>
-				<div class="key-details"> 
+				<div class="key-details round-block"> 
+					<h3>Key Details</h3>
 					<span class="key-info-public-address">
 					<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
 					</span>
@@ -482,12 +486,12 @@ $().ready(function ()
 					
 				</div>			
 			</div>
-				
 			<div class="sub-section coin-setup-print">
 				<div class="btc coin-wallets">
 				
 					<div id="print-settings">
-						<div class="print-buttons">
+						<div class="print-buttons round-block">
+							<h3>Page Setup</h3>
 
 							<label class="left-label">Print Face:</label>
 								<div class="switch-toggle switch-2 switch-candy ">
@@ -565,6 +569,31 @@ $().ready(function ()
 							<div class="coin-wallet-private-key-qr"></div>
 							<div class="coin-wallet-private-key bottom">&nbsp;</div>
 						</div>		
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section donate">
+			<div class="donate-keys round-block">
+				<h3>Donate</h3>
+				<div class="donate-key">
+					<div class="coin btc-coin">
+						<div class="donate-address">1btcbtcbtcbtcbtcbtcbtcbtcbtcbtcbtc</div>
+					</div>
+				</div>
+				<div class="donate-key">
+					<div class="coin ltc-coin">
+						<div class="donate-address">Lltcltcltcltcltcltcltcltcltcltcltc</div>
+					</div>
+				</div>
+				<div class="donate-key">
+					<div class="coin nmc-coin">
+						<div class="donate-address">Nnmcnmcnmcnmcnmcnmcnmcnmcnmcnmcnmc</div>
+					</div>
+				</div>
+				<div class="donate-key">
+					<div class="coin ppc-coin">
+						<div class="donate-address">Pppcppcppcppcppcppcppcppcppcppcppc</div>
 					</div>
 				</div>
 			</div>
