@@ -126,6 +126,7 @@ cursor: pointer;
 {
 	min-height: 37px;
 	margin-bottom: 10px;
+	background-color: #eee;
 }
 
 .coin-type .coin-type-radio,
@@ -140,7 +141,7 @@ cursor: pointer;
 .coin-type.new{
 }
 
-a.choose-coin{
+.choose-coin{
 	display:block;
 	float:left;
 	width:120px;
@@ -150,17 +151,25 @@ a.choose-coin{
 	line-height:10px;
 }
 
-div.coins-grid-wrapper{
+.coins-grid-wrapper{
 	height:auto;
 	overflow:auto;
 	border-radius:10px;
 	z-index:10000;
+	max-width: 660px;
+}
+.coin-grid-row{
+	display: block;
+	width: 100%;
+	height: 0px;
 	
-	width:120px;
-	height:140px;
+	background-color: #eee;
+}
+.coins-grid-wrapper.selecting .coin-grid-row{
+	height: 140px
 }
 
-div.coins-grid-wrapper .coin{
+.coins-grid-wrapper .coin{
 	display:none;
 	width:120px;
 	height:140px;
@@ -177,15 +186,17 @@ div.coins-grid-wrapper .coin{
 	border:1px solid #fff;
 }
 
-div.coins-grid-wrapper .coin.active{
+.coins-grid-wrapper .coin.active{
 	display: block;
 }
 	
-div.coins-grid-wrapper.selecting .coin{
+.coins-grid-wrapper.selecting .coin{
 	display: block;
+	background-color:#eee;
+	z-index: 1000;
 }
 
-div.current-coin{
+.current-coin{
 	display:block;
 	width:120px;
 	height:140px;
@@ -199,7 +210,7 @@ div.current-coin{
 	float:left;
 }
 
-div.current-coin em{
+.current-coin em{
 
 	font-weight: bold;
 	width: 100%;
@@ -207,13 +218,23 @@ div.current-coin em{
 	display: inline-block;
 	text-align: center;
 }
-div.coins-grid-wrapper .coin:hover, div.coins-grid-wrapper .coin.active{
+.coins-grid-wrapper .coin:hover, 
+.coins-grid-wrapper .coin.active{
 	background-color:#ddd;
+}
+.coins-grid-wrapper.selecting{
+	width: 100%;
+	overflow: visible;
+	height: 140px;
+	float: left;
+	position: relative;
+	background-color:#eee;
+	margin-bottom: 10px;
 }
 
 
 
-div.coins-grid-wrapper .coin em{
+.coins-grid-wrapper .coin em{
 	background-color: #ccc;
 	width:100%;
 	display:inline-block;
@@ -239,13 +260,33 @@ div.coins-grid-wrapper .coin em{
 .coin.nxt-coin{
 	background-image:url('../images/coin-icons/nxt-logo.png');
 }
+.coin.nem-coin{
+	background-image:url('../images/coin-icons/nem-logo.png');
+}
 
 .coin.ppc-coin{
 	background-image:url('../images/coin-icons/ppc-logo.png');
 }
+.coin.disabled {
+	-webkit-filter: grayscale(100%);
+	cursor: default !important;
+}
+.coming-soon{
+
+	position: relative;
+	top: -32px;
+	float: inherit;
+	-webkit-transform: rotate(-10deg);
+	-moz-transform: rotate(-10deg);
+	
+	height: 0px;
+	font-weight: bolder;
+	text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+	font-size: 15px;
+}
 
 label.left-label {
-	width: 10%;
+	width: 10%;
 	text-align: left;
 	display: block;
 	min-height: 30px;
@@ -256,7 +297,7 @@ label.left-label {
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
 	background-color: #fff;
-	border: 1px solid #999;
+	border: 1px solid #999;
 	border-right: none;
 	color: #8c8c8c;
 }
@@ -359,7 +400,10 @@ input[type=button]
 	margin-top: 30px;
 }
 
-.key-import, .key-details, .print-buttons, .random-info
+.key-import, 
+.key-details, 
+.print-buttons, 
+.random-info
 {
 	
 	padding: 40px 20px 40px 20px;
@@ -373,6 +417,7 @@ input[type=button]
 .key-import
 {
 	float: left;
+	overflow: visible;
 }
 .random-info
 {

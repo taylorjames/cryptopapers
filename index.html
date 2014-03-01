@@ -370,13 +370,35 @@ $().ready(function ()
 						<div class="clearfix"></div>
 						-->
 						<div class="coins-grid-wrapper box-padding">
-							<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
-							<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
-							<div class="coin nxt-coin" data="nxt"><em>Nxt</em></div>
-							<div class="coin nmc-coin" data="nmc"><em>Namecoin</em></div>
-							<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin-grid-row">
+								<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
+								<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
+								<div class="coin nxt-coin disabled" data="nxt"><span class="coming-soon">COMING SOON</span><em>NXT</em></div>
+								<div class="coin nem-coin disabled" data="nem"><span class="coming-soon">COMING SOON</span><em>NEM</em></div>
+								<div class="coin nmc-coin" data="nmc"><em>Namecoin</em></div>
+							</div>
+							<div class="coin-grid-row">
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+							</div>
+							<div class="coin-grid-row">
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+							</div>
+							<div class="coin-grid-row">
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
+							</div>
 						</div>
-
 					</div>
 					<div class="clearfix"></div>
 					<!-- <div class="coin-type">
@@ -551,23 +573,38 @@ $().ready(function ()
 $(document).ready(function(){
 
 	//change coin click
-	$('.coins-grid-wrapper .coin').click(function(e)
+	$('.coins-grid-wrapper .coin:not(.disabled)').click(function(e)
 		{
 		if ($('.coins-grid-wrapper').hasClass('selecting'))
 			{
 			$('.coins-grid-wrapper .coin.active').removeClass('active');
+			$('.coins-grid-wrapper .coin-grid-row.active').removeClass('active');
+			
+			$(this).parent().addClass('active');
 			$(this).addClass('active');
 			
+			$('.coin-grid-row:not(.active)').animate({ height: '0px'}, 300);
+			$('.coins-grid-wrapper .coin:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+				{
+				$('.coins-grid-wrapper').removeClass('selecting');
+				});
+			
+			$("#private-key-submit").click();
+			/*
 			$('.coins-grid-wrapper').animate({width: '120px', height: '140px'}, 300, function() 
 				{
 				$('.coins-grid-wrapper').removeClass('selecting');
 				});
+			*/
 			}
 		else
 			{
 			$('.coins-grid-wrapper').addClass('selecting');
 			
-			$('.coins-grid-wrapper').animateAuto('both', 300);
+			$('.coin-grid-row').animate({ height: '140px'}, 300);
+			
+			$('.coins-grid-wrapper .coin:not(.active)').css('width', '0px').css('height', '0px').animate({width: '120px', height: '140px'}, 300);
+			//$('.coins-grid-wrapper').animateAuto('both', 300);
 			}
 		});	
 	
