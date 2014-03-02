@@ -428,7 +428,7 @@ function InitPage()
 			$(this).fadeOut(300);
 		});
 		
-		$(this).addClass('active');		
+		$(this).addClass('active');		r
 		
 		setTimeout(function()
 			{

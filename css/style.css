@@ -223,12 +223,14 @@ cursor: pointer;
 	background-color: #eee;
 	display: block;
 	float: left;
+	position:absolute;
+	z-inxed:100000;
 }
 
 #coin-key{
 	float: left;
 	width: 80%;
-	margin-left: 3%;
+	margin-left: 19%;
 }
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
@@ -283,7 +285,7 @@ cursor: pointer;
 	
 .coins-grid-wrapper.selecting .coin{
 	display: block;
-	background-color:#eee;
+	background-color:#fff;
 	z-index: 1000;
 }
 
@@ -312,22 +314,21 @@ cursor: pointer;
 }
 .coins-grid-wrapper .coin:hover, 
 .coins-grid-wrapper .coin.active{
-	background-color:#ddd;
+	background-color:#eee;
 }
 .coins-grid-wrapper.selecting{
 	width: 100%;
 	overflow: visible;
-	height: 140px;
 	float: left;
 	position: relative;
 	background-color:#eee;
 	margin-bottom: 10px;
+	box-shadow:0px 5px 10px rgba(0, 0, 0, 0.3);
 }
 
 
 
 .coins-grid-wrapper .coin em{
-	background-color: #ccc;
 	width:100%;
 	display:inline-block;
 	text-align:center;
@@ -443,8 +444,13 @@ textarea[readonly]
 }
 
 #private-key-generate {
-	display: inline;
+	display: block;
 	width: 28%;
+	float: left;
+	height:40px;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-right:none;
 }
 
 #private-key-generate[disabled]{
@@ -466,11 +472,24 @@ textarea[readonly]
 #private-key-input
 {
 	display: inline;
-	width: 70%;
+	width: 72%;
 	font-size: 12px;
-	float:right;
-	border-radius: 3px;
+	height:40px;
+	float:left;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
 	border: 1px solid #999;
+	border-left:none;
+}
+
+#private-key-submit{
+	margin-left: 19%;
+	margin-top: 6px;
+	float: left;
+	width: 250px;
+	height: 72px;
+	font-size: 18px;
+	font-family: museo300;
 }
 
 .button{
