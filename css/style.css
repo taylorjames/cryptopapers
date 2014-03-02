@@ -732,6 +732,8 @@ ul#coin-setup-menu li.active{
 	margin-bottom: 24px;
 	margin-left: 25px;
 	margin-right: 25px;
+	
+	position: relative;
 }
 
 .coin-wallet.zoom-90
@@ -1229,11 +1231,37 @@ content: "Zero Trust";
 .security-risks h3
 {
 	font-size: 22px;
+	text-shadow: 3px 3px 2px #888;
 }
 
 .security-risks h4
 {
 	font-size: 18px;
+}
+.zero-trust-wallet-seal
+{
+display: none;
+background: url('../images/zero-trust-seal-small.png');
+width: 100px;
+height: 100px;
+position: absolute;
+top: 150px;
+left: 200px;
+}
+.zero-trust .zero-trust-wallet-seal
+{
+display: block;
+}
+.zero-trust-seal
+{
+display: none;
+background: url('../images/zero-trust-seal.png');
+float: right;
+width: 218px;
+height: 202px;
+background-repeat: no-repeat;
+background-color: #eee;
+		
 }
 
 .security-risks .risk
@@ -1315,6 +1343,11 @@ background-color: #888888;
 	background-color: #00AD00;
 	color: white;	
 }
+.security-risks .risk.safe .risk-fix
+{
+display: none;
+}
+
 .security-test
 {
 	padding-bottom: 0px;

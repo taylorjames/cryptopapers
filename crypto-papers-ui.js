@@ -60,13 +60,15 @@ function UpdateSecurityTrust()
 	$('.risk').removeClass('safe').addClass('at-risk');
 	$('.trust-item').removeClass('trust-level-fully').removeClass('trust-level-some').removeClass('trust-level-zero');
 	
+	var ZeroTrust = true;
+	
 	
 	// -- Infections --
 	if (!Security_IsOnline)
 		{
 		$('#risk-infection-online').addClass('safe');
 		
-		if (Security_OfflinePermanent)
+		if (Security_OfflinePermanent || Security_LiveCD)
 			{
 			$('#risk-infection-offline').addClass('safe');
 			
@@ -75,11 +77,13 @@ function UpdateSecurityTrust()
 		else
 			{
 			$('.trust-bugs').addClass('trust-level-some');
+			ZeroTrust = false;
 			}
 		}
 	else
 		{
 		$('.trust-bugs').addClass('trust-level-fully');
+		ZeroTrust = false;
 		}
 		
 	// -- Network --
@@ -92,6 +96,7 @@ function UpdateSecurityTrust()
 	else
 		{
 		$('.trust-your-network').addClass('trust-level-fully');
+		ZeroTrust = false;
 		}
 		
 		
@@ -109,11 +114,13 @@ function UpdateSecurityTrust()
 		else
 			{
 			$('.trust-your-printer').addClass('trust-level-some');
+			ZeroTrust = false;
 			}
 		}
 	else
 		{
 		$('.trust-your-printer').addClass('trust-level-fully');
+		ZeroTrust = false;
 		}
 		
 	// -- Browser --
@@ -130,11 +137,13 @@ function UpdateSecurityTrust()
 		else
 			{
 			$('.trust-your-browser').addClass('trust-level-some');
+			ZeroTrust = false;
 			}
 		}
 	else
 		{
 		$('.trust-your-browser').addClass('trust-level-fully');
+		ZeroTrust = false;
 		}
 		
 	// -- OS --
@@ -151,11 +160,13 @@ function UpdateSecurityTrust()
 		else
 			{
 			$('.trust-your-os').addClass('trust-level-some');
+			ZeroTrust = false;
 			}
 		}
 	else
 		{
 		$('.trust-your-os').addClass('trust-level-fully');
+		ZeroTrust = false;
 		}
 		
 	// -- This Tool --
@@ -184,10 +195,25 @@ function UpdateSecurityTrust()
 	else if (!Security_IsOnline || Security_GenerateImport || Security_ManualVerify)
 		{
 		$('.trust-this-tool').addClass('trust-level-some');
+		ZeroTrust = false;
 		}
 	else
 		{
 		$('.trust-this-tool').addClass('trust-level-fully');
+		ZeroTrust = false;
+		}
+		
+	if (ZeroTrust && $('.zero-trust-seal').hasClass('hidden'))
+		{
+		$('.coin-wallet').addClass('zero-trust');
+		$('.zero-trust-seal').removeClass('hidden');
+		$('.zero-trust-seal').fadeIn();
+		}
+	else if (!ZeroTrust && !$('.zero-trust-seal').hasClass('hidden'))
+		{
+		$('.coin-wallet').removeClass('zero-trust');
+		$('.zero-trust-seal').fadeOut();
+		$('.zero-trust-seal').addClass('hidden');
 		}
 	
 	}
