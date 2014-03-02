@@ -9,7 +9,7 @@ sr.pool = null;
 sr.poolSize = 256;
 sr.pptr = 0;
 
-sr.pointsKeepCollecting = false;
+sr.pointsKeepCollecting = true;
 sr.pointsRequired = 10;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();
