@@ -187,7 +187,7 @@ font-weight: bold;
 
 .section.security .left-label
 {
-	width: 525px;
+	width: 630px;
 	text-align: left;
 	height: 50px;
 }
@@ -336,6 +336,7 @@ cursor: pointer;
 	font-style: normal;
 	font-weight: bolder;
 	padding-top: 2px;
+	background: #dddddd;
 }
 
 .coin.btc-coin{
@@ -397,7 +398,7 @@ label.left-label {
 .random-info .left-label
 {	
 	margin-top: 10px;
-	width: 115px;
+	width: 161px;
 	padding: 5px;
 }
 .random-info .rng-keep-collecting
@@ -446,11 +447,13 @@ textarea[readonly]
 #private-key-generate {
 	display: block;
 	width: 28%;
-	float: left;
-	height:40px;
-	border-top-right-radius: 0px;
-	border-bottom-right-radius: 0px;
-	border-right:none;
+	height: 40px;
+	border-right: none;
+	border-radius: 10px;
+	top: 23px;
+	left: 322px;
+	font-weight: bolder;
+	font-size: 20px;
 }
 
 #private-key-generate[disabled]{
@@ -474,12 +477,13 @@ textarea[readonly]
 	display: inline;
 	width: 72%;
 	font-size: 12px;
-	height:40px;
-	float:left;
-	border-top-right-radius: 3px;
-	border-bottom-right-radius: 3px;
+	height: 40px;
 	border: 1px solid #999;
-	border-left:none;
+	border-radius: 10px;
+	position: relative;
+	margin: auto;
+	left: 80px;
+	text-align: center;
 }
 
 #private-key-submit{
@@ -555,6 +559,7 @@ input[type=button]
 {
 	float: left;
 	overflow: visible;
+	min-height: 213px;
 }
 .random-info
 {
@@ -1233,7 +1238,7 @@ content: "Zero Trust";
 .security-risks .risk
 {
 	font-size: 14px;
-	width: 620px;
+	width: 728px;
 	color: #333333;
 	height: 85px;
 	border: 1px solid;

@@ -333,7 +333,7 @@ function GenerateVanity()
 		}
 
 	$('#private-key-input').val(Crypto.util.bytesToHex(PrivateBytes));
-	$('#private-key-submit').click();
+	$('#private-key-input').change();
 	}
 
 function GenerateAddress(display)
@@ -548,9 +548,9 @@ function InitPage()
 		$('.menu-key-donate').click();
 		});
 		
-	$("#private-key-submit").click(function() 
+	$('#private-key-input').change(function() 
 		{
-		var Address = GenerateAddress(true);
+		var Address = GenerateAddress(true);		
 		});
 		
 	$('input[name=print-face]').change(function() 
@@ -570,7 +570,7 @@ function InitPage()
 		{
 		Default_Compress = !Default_Compress;
 
-		$("#private-key-submit").click();
+		$('#private-key-input').change();
 		});
 	
 	$('input[name=wallet-backup]').change(function()
@@ -631,7 +631,7 @@ function InitPage()
 			$(this).fadeOut(300);
 		});
 		
-		$(this).addClass('active');		r
+		$(this).addClass('active');
 		
 		setTimeout(function()
 			{
@@ -665,7 +665,7 @@ function InitPage()
 		});
 		
 	$('.coin-type input[type=radio]').change(function() {
-		$('#private-key-submit').click();
+		$('#private-key-input').change();
 		
 	});
 	
@@ -678,10 +678,10 @@ function InitPage()
 			var hex = Crypto.util.bytesToHex(bytes);
 				
 			$('#private-key-input').val(hex);
-			$('#private-key-submit').click();
+			$('#private-key-input').change();
 			
 			$('#private-key-input').val(hex);
-			$('#private-key-submit').click();
+			$('#private-key-input').change();
 			}
 		else
 			{
@@ -710,7 +710,7 @@ function InitPage()
 				$('.coins-grid-wrapper').removeClass('selecting');
 				});
 			
-			$("#private-key-submit").click();
+			$('#private-key-input').change();
 			}
 		else
 			{
