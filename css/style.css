@@ -70,6 +70,7 @@
 	{
 		margin: 0px;
 		padding: 0px;
+		zoom: 0.85;
 	}
 	.inner
 	{
@@ -86,23 +87,23 @@
 	}
 	.coin-wallet.zoom-90
 	{
-		zoom: 0.80 !important;
+		zoom: 0.90 !important;
 	}
 	.coin-wallet.zoom-95
 	{
-		zoom: 0.85 !important;
+		zoom: 0.95 !important;
 	}
 	.coin-wallet.zoom-100
 	{
-		zoom: 0.90 !important;
+		zoom: 1.00 !important;
 	}
 	.coin-wallet.zoom-105
 	{
-		zoom: 0.95 !important;
+		zoom: 1.05 !important;
 	}
 	.coin-wallet.zoom-110
 	{
-		zoom: 1.00 !important;
+		zoom: 1.10 !important;
 	}
 	body
 	{
@@ -648,7 +649,7 @@ input[type=button]
 }
 .menu ul li.active {
 	background-color:#000;
-	background-color:rgba(0, 0, 0, 0.2);
+	background-color:rgba(0, 0, 0, 0.5);
 }
 .menu ul li.right {
 	float: right;

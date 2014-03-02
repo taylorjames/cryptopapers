@@ -3821,8 +3821,7 @@ blockquote, blockquote p {
   display: none !important; }
 
 @media print {
-  @page {
-    margin: 0.5cm; }
+  @page { }
 
   
   a, a:visited {
