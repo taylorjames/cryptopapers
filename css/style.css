@@ -214,11 +214,17 @@ cursor: pointer;
 
 .coin-type
 {
-	min-height: 37px;
 	margin-bottom: 10px;
 	background-color: #eee;
+	display: block;
+	float: left;
 }
 
+#coin-key{
+	float: left;
+	width: 80%;
+	margin-left: 3%;
+}
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
 	border: 1px solid;
@@ -990,7 +996,6 @@ body.dark-theme h3
 }
 body.dark-theme .menu
 {
-	background-color: #444444;
 	color: #dddddd;
 }
 body.dark-theme .menu li

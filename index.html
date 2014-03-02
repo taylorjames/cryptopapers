@@ -180,7 +180,6 @@ $().ready(function ()
 				<div class="key-import round-block">
 					<h3>Private Key</h3>
 					<div class="coin-type new">
-						<div class="choose-coin">Choose Coin:</div>
 						<div class="coins-grid-wrapper box-padding">
 							<div class="coin-grid-row">
 								<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
@@ -214,9 +213,9 @@ $().ready(function ()
 					</div>
 					
 					<div class="private-key"> 
-						<div>
-						<input type="text" id="private-key-input" />					
-						<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+						<div id="coin-key">
+							<input type="text" id="private-key-input" />		
+							<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 						</div>
 					</div>	
 					
