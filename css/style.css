@@ -1200,6 +1200,11 @@ text-shadow: 3px 3px 1px #333333;
 text-align: center;
 }
 
+.switch-candy a[disabled]
+{
+background-color: #888888;
+}
+
 .security-risks .risk.at-risk .risk-status:after
 {
 	content: 'At Risk';
@@ -1211,4 +1216,28 @@ text-align: center;
 	content: 'Safe';
 	background-color: #00AD00;
 	color: white;	
+}
+.security-test
+{
+	padding-bottom: 0px;
+	float: right;
+	width: 330px;
+}
+.security-test #js-test-refresh
+{
+	float: right;
+	width: 100px;
+	border-radius: 5px;
+}
+.security-test .js-test
+{
+	margin-bottom: 5px;
+}
+.security-test .enabled
+{
+color: #AD0000;
+}
+.security-test .disabled
+{
+color: #00AD00;
 }

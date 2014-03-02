@@ -134,10 +134,9 @@ $().ready(function ()
 			<div class="security-test round-block">
 				<h3>Environment</h3>
 				<div class="test-results">
-					<div>Internet:
-					</div>
-					<div>Cookies:
-					</div>
+					<div class="js-test">Internet: <span id="internet-status"></span></div>
+					<div class="js-test">Cookies: <span id="cookie-status"></span></div>
+					<input class="button" id="js-test-refresh" Value="Refresh" >
 				</div>
 			</div>
 			<div class="security-questions round-block">
@@ -162,6 +161,17 @@ $().ready(function ()
 					<input type="radio" name="security-offline-permanent" value="Yes" id="security-offline-permanent-yes"  />
 					<label for="security-offline-permanent-yes">Yes</label>
 					
+					<a></a>
+				</div>
+				
+				<label class="left-label">Is your printer a Network printer or is it connected directly?</label>
+				<div class="switch-toggle security-local-printer switch-2 switch-candy ">
+					<input type="radio" name="security-local-printer" value="No" id="security-local-printer-no" checked />
+					<label for="security-local-printer-no">Network</label> 
+					
+					<input type="radio" name="security-local-printer" value="Yes" id="security-local-printer-yes"  />
+					<label for="security-local-printer-yes">Direct</label>
+
 					<a></a>
 				</div>
 				
@@ -216,16 +226,16 @@ $().ready(function ()
 				<div class="risk-category">
 					<h3>Infections</h3>
 					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Rootkits</h4>
-					<div class="risk safe" id="risk-infection-online at-risk">
+					<div class="risk at-risk" id="risk-infection-online">
 						<div class="risk-status"></div>
 						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
 					<div class="risk at-risk" id="risk-infection-offline">
 						<div class="risk-status"></div>
-						<div class="risk-details">These actions could be stored on a hard drive while offline, to be broadcast later.</div>
+						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen, storing them on a hard drive while offline, to be broadcast later.</div>
 						<BR />
-						<div class="risk-fix">Take your computer offline, permanently</div>
+						<div class="risk-fix">Take your computer offline <u>permanently</u> OR switch to a Live CD / USB</div>
 					</div>
 				</div>
 				<div class="risk-category">
@@ -243,13 +253,13 @@ $().ready(function ()
 					<div class="risk at-risk" id="risk-printer-online-storage">
 						<div class="risk-status"></div>
 						<div class="risk-details">If your printer keeps a history of print jobs, they could be taken by anyone with network access to it.</div>
-						<div class="risk-fix">Connect your printer to your computer directly</div>
+						<div class="risk-fix">Connect your printer to your computer directly OR Ensure your printer does not save its history</div>
 					</div>
 					<div class="risk at-risk" id="risk-printer-offline-storage">
 						<div class="risk-status"></div>
 						<div class="risk-details">If your printer keeps a history of print jobs, once the printer is brought online, 
 						the print jobs could be taken by anyone with network access to it.</div>
-						<div class="risk-fix">Connect your printer to your computer directly, and never connect it to a network</div>
+						<div class="risk-fix">Connect your printer to your computer directly, and never connect it to a network OR Ensure your printer does not save its history</div>
 					</div>
 				</div>
 				<div class="risk-category">
@@ -264,7 +274,7 @@ $().ready(function ()
 						<div class="risk-status"></div>
 						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.
 						If you're offline, these addons could store a history and transmit them when you connect again.</div>
-						<div class="risk-fix">Take your computer offline, permanently</div>
+						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
 				<div class="risk-category">
@@ -279,7 +289,7 @@ $().ready(function ()
 						<div class="risk-status"></div>
 						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, recording your actions while offline, 
 						retrieving them when you connect again.</div>
-						<div class="risk-fix">Take your computer offline, permanently</div>
+						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
 				<div class="risk-category">
@@ -293,7 +303,7 @@ $().ready(function ()
 					<div class="risk at-risk" id="risk-this-tool-offline-cookies">
 						<div class="risk-status"></div>
 						<div class="risk-details">RNG pools or private keys could be stored as cookies, to be retrieved later by a website.</div>
-						<div class="risk-fix">Turn off cookies OR Take your computer offline, permanently</div>
+						<div class="risk-fix">Turn off cookies OR Take your computer offline <u>permanently</u></div>
 					</div>
 					<div class="risk at-risk" id="risk-this-tool-badrng">
 						<div class="risk-status"></div>

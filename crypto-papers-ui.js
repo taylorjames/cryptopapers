@@ -5,9 +5,193 @@ var HasPrivateKey = false;
 var Vanity = '';
 var VanityCaseSensitive = true;
 
-var Security_Online;
-var Security_Cookies;
+var Security_IsOnline = true;
+var Security_Cookies = true;
 
+var Security_LiveCD = false
+var Security_OfflinePermanent = false;
+var Security_LocalPrinter = false;
+var Security_OfflinePrinter = false;
+var Security_PrinterHistory = false;
+var Security_GenerateImport = false;
+var Security_ManualVerify = false;
+
+function TestEnvironment()
+	{
+	Security_IsOnline = false; // navigator.onLine;
+	Security_Cookies = navigator.cookieEnabled;
+	
+    if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled)
+		{ 
+		try
+			{
+			document.cookie= "testcookie";
+			Security_Cookies = (document.cookie.indexOf("testcookie") != -1) ? true : false;
+			}
+		catch(ex)
+			{
+			Security_Cookies = false;
+			}
+		}
+	
+	if (Security_IsOnline)
+		{
+		$('.security-offline-permanent input, .security-offline-permanent a').attr('disabled', '');
+		$('.security-offline-printer input, .security-offline-printer a').attr('disabled', '');
+		$('#internet-status').removeClass('disabled').addClass('enabled').html('Online');
+		}
+	else
+		{
+		$('.security-offline-permanent input, .security-offline-permanent a').removeAttr('disabled');
+		$('.security-offline-printer input, .security-offline-printer a').removeAttr('disabled');
+		$('#internet-status').removeClass('enabled').addClass('disabled').html('Offline');
+		}
+		
+	if (Security_Cookies)
+		$('#cookie-status').removeClass('disabled').addClass('enabled').html('Enabled');
+	else
+		$('#cookie-status').removeClass('enabled').addClass('disabled').html('Disabled');
+		
+	UpdateSecurityTrust();
+	}
+	
+function UpdateSecurityTrust()
+	{
+	$('.risk').removeClass('safe').addClass('at-risk');
+	$('.trust-item').removeClass('trust-level-fully').removeClass('trust-level-some').removeClass('trust-level-zero');
+	
+	
+	// -- Infections --
+	if (!Security_IsOnline)
+		{
+		$('#risk-infection-online').addClass('safe');
+		
+		if (Security_OfflinePermanent)
+			{
+			$('#risk-infection-offline').addClass('safe');
+			
+			$('.trust-bugs').addClass('trust-level-zero');
+			}	
+		else
+			{
+			$('.trust-bugs').addClass('trust-level-some');
+			}
+		}
+	else
+		{
+		$('.trust-bugs').addClass('trust-level-fully');
+		}
+		
+	// -- Network --
+	if (Security_LocalPrinter)
+		{
+		$('#risk-network-printer').addClass('safe');
+		
+		$('.trust-your-network').addClass('trust-level-zero');
+		}
+	else
+		{
+		$('.trust-your-network').addClass('trust-level-fully');
+		}
+		
+		
+	// -- Printer --
+	if (Security_LocalPrinter || Security_PrinterHistory)
+		{
+		$('#risk-printer-online-storage').addClass('safe');
+		
+		if (Security_OfflinePrinter || Security_PrinterHistory)
+			{
+			$('#risk-printer-offline-storage').addClass('safe');
+			
+			$('.trust-your-printer').addClass('trust-level-zero');
+			}
+		else
+			{
+			$('.trust-your-printer').addClass('trust-level-some');
+			}
+		}
+	else
+		{
+		$('.trust-your-printer').addClass('trust-level-fully');
+		}
+		
+	// -- Browser --
+	if (!Security_IsOnline)
+		{
+		$('#risk-browser-addons-online').addClass('safe');
+		
+		if (Security_OfflinePermanent)
+			{
+			$('#risk-browser-addons-offline').addClass('safe');
+			
+			$('.trust-your-browser').addClass('trust-level-zero');
+			}
+		else
+			{
+			$('.trust-your-browser').addClass('trust-level-some');
+			}
+		}
+	else
+		{
+		$('.trust-your-browser').addClass('trust-level-fully');
+		}
+		
+	// -- OS --
+	if (!Security_IsOnline)
+		{
+		$('#risk-os-online').addClass('safe');
+		
+		if (Security_OfflinePermanent)
+			{
+			$('#risk-os-offline').addClass('safe');
+			
+			$('.trust-your-os').addClass('trust-level-zero');
+			}
+		else
+			{
+			$('.trust-your-os').addClass('trust-level-some');
+			}
+		}
+	else
+		{
+		$('.trust-your-os').addClass('trust-level-fully');
+		}
+		
+	// -- This Tool --
+	if (!Security_IsOnline)
+		{
+		$('#risk-this-tool-online').addClass('safe');
+		
+		if (!Security_Cookies || Security_OfflinePermanent)
+			{
+			$('#risk-this-tool-offline-cookies').addClass('safe');
+			}
+		}
+	if (Security_GenerateImport)
+		{
+		$('#risk-this-tool-badrng').addClass('safe');
+		}
+	if (Security_ManualVerify)
+		{
+		$('#risk-this-tool-badcodes').addClass('safe');
+		}
+		
+	if (!Security_IsOnline && (!Security_Cookies || Security_OfflinePermanent) && Security_GenerateImport && Security_ManualVerify)
+		{
+		$('.trust-this-tool').addClass('trust-level-zero');
+		}
+	else if (!Security_IsOnline || Security_GenerateImport || Security_ManualVerify)
+		{
+		$('.trust-this-tool').addClass('trust-level-some');
+		}
+	else
+		{
+		$('.trust-this-tool').addClass('trust-level-fully');
+		}
+	
+	}
+	
 function TestTheory()
 	{
 	/*
@@ -283,27 +467,6 @@ function GenerateAddress(display)
 	
 	return Address;
 	}
-
-
-	
-function TestEnvironment()
-	{
-	Security_Online = navigator.onLine;
-	Security_Cookies = navigator.cookieEnabled;
-	
-    if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled)
-		{ 
-		try
-			{
-			document.cookie="testcookie";
-			Security_Cookies = (document.cookie.indexOf("testcookie") != -1) ? true : false;
-			}
-		catch(ex)
-			{
-			Security_Cookies = false;
-			}
-		}
-	}
 	
 function InitPage()
 	{
@@ -340,6 +503,46 @@ function InitPage()
 			}
 	});
 	
+	$('#js-test-refresh').click(function() 
+		{
+		TestEnvironment();
+		});
+	$('input[name=security-live-cd]').change(function() 
+		{
+		Security_LiveCD = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-offline-permanent]').change(function() 
+		{
+		Security_OfflinePermanent = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-local-printer]').change(function() 
+		{
+		Security_LocalPrinter = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-offline-printer]').change(function() 
+		{
+		Security_OfflinePrinter = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-printer-history]').change(function() 
+		{
+		Security_PrinterHistory = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-generate-import]').change(function() 
+		{
+		Security_GenerateImport = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});
+	$('input[name=security-manual-verify]').change(function() 
+		{
+		Security_ManualVerify = $(this).val() == "Yes";
+		UpdateSecurityTrust();
+		});	
+		
 	$(".donate-reminder").click(function() 
 		{
 		$('.menu-key-donate').click();
