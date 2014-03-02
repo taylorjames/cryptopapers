@@ -111,6 +111,11 @@ $().ready(function ()
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
+				<div class="trust-item trust-your-printer trust-level-some">
+					<em>Your Printer</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
 				<div class="trust-item trust-your-browser trust-level-some">
 					<em>Your Browser</em>
 					<div class="trust-image"></div>
@@ -139,7 +144,18 @@ $().ready(function ()
 			<div class="security-questions round-block">
 				<h3>Questions</h3>
 				
-				<label class="left-label">Will this machine be kept offline permanently?</label>
+				<label class="left-label">Are you running this from a Linux Live CD or Live USB?</label>
+				<div class="switch-toggle security-live-cd switch-2 switch-candy ">
+					<input type="radio" name="security-live-cd" value="No" id="security-live-cd-no" checked />
+					<label for="security-live-cd-no">No</label> 
+					
+					<input type="radio" name="security-live-cd" value="Yes" id="security-live-cd-yes"  />
+					<label for="security-live-cd-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">Will this machine ALWAYS be disconnected from any network?</label>
 				<div class="switch-toggle security-offline-permanent switch-2 switch-candy ">
 					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked />
 					<label for="security-offline-permanent-no">No</label> 
@@ -160,8 +176,139 @@ $().ready(function ()
 
 					<a></a>
 				</div>
+				
+				<label class="left-label">Do you know for a fact that your printer keeps no internal print history?</label>
+				<div class="switch-toggle security-printer-history switch-2 switch-candy ">
+					<input type="radio" name="security-printer-history" value="No" id="security-printer-history-no" checked />
+					<label for="security-printer-history-no">No</label> 
+					
+					<input type="radio" name="security-printer-history" value="Yes" id="security-printer-history-yes"  />
+					<label for="security-printer-history-yes">Yes</label>
+
+					<a></a>
+				</div>
+				
+				<label class="left-label">Will you be generating keys using this tool or importing them manually?</label>
+				<div class="switch-toggle security-generate-import switch-2 switch-candy ">
+					<input type="radio" name="security-generate-import" value="No" id="security-generate-import-no" checked />
+					<label for="security-generate-import-no">Generate</label> 
+					
+					<input type="radio" name="security-generate-import" value="Yes" id="security-generate-import-yes"  />
+					<label for="security-generate-import-yes">Import</label>
+
+					<a></a>
+				</div>
+				
+				<label class="left-label">Using an offline QR scanner, do you plan to verify that QR codes on the wallets match and are valid?</label>
+				<div class="switch-toggle security-manual-verify switch-2 switch-candy ">
+					<input type="radio" name="security-manual-verify" value="No" id="security-manual-verify-no" checked />
+					<label for="security-manual-verify-no">No</label> 
+					
+					<input type="radio" name="security-manual-verify" value="Yes" id="security-manual-verify-yes"  />
+					<label for="security-manual-verify-yes">Yes</label>
+
+					<a></a>
+				</div>
+				
 			</div>
-			
+			<div class="security-risks round-block">
+				<h3>Risks - Detailed</h3>
+				
+				<div class="risk-category">
+					<h3>Infections</h3>
+					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Rootkits</h4>
+					<div class="risk safe" id="risk-infection-online at-risk">
+						<div class="risk-status"></div>
+						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen.</div>
+						<div class="risk-fix">Take your computer offline</div>
+					</div>
+					<div class="risk at-risk" id="risk-infection-offline">
+						<div class="risk-status"></div>
+						<div class="risk-details">These actions could be stored on a hard drive while offline, to be broadcast later.</div>
+						<BR />
+						<div class="risk-fix">Take your computer offline, permanently</div>
+					</div>
+				</div>
+				<div class="risk-category">
+					<h3>Your Network</h3>
+					<h4>Infected network nodes, Network intruders</h4>
+					<div class="risk at-risk" id="risk-network-printer">
+						<div class="risk-status"></div>
+						<div class="risk-details">An infected network device or a network intruder could intercept print jobs as they are sent.</div>
+						<div class="risk-fix">Connect your printer to your computer directly</div>
+					</div>
+				</div>
+				<div class="risk-category">
+					<h3>Your Printer</h3>
+					<h4>Printer history</h4>
+					<div class="risk at-risk" id="risk-printer-online-storage">
+						<div class="risk-status"></div>
+						<div class="risk-details">If your printer keeps a history of print jobs, they could be taken by anyone with network access to it.</div>
+						<div class="risk-fix">Connect your printer to your computer directly</div>
+					</div>
+					<div class="risk at-risk" id="risk-printer-offline-storage">
+						<div class="risk-status"></div>
+						<div class="risk-details">If your printer keeps a history of print jobs, once the printer is brought online, 
+						the print jobs could be taken by anyone with network access to it.</div>
+						<div class="risk-fix">Connect your printer to your computer directly, and never connect it to a network</div>
+					</div>
+				</div>
+				<div class="risk-category">
+					<h3>Your Browser</h3>
+					<h4>Malicious plugins, Addons, Extensions</h4>
+					<div class="risk at-risk" id="risk-browser-addons-online">
+						<div class="risk-status"></div>
+						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.</div>
+						<div class="risk-fix">Take your computer offline</div>
+					</div>
+					<div class="risk at-risk" id="risk-browser-addons-offline">
+						<div class="risk-status"></div>
+						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.
+						If you're offline, these addons could store a history and transmit them when you connect again.</div>
+						<div class="risk-fix">Take your computer offline, permanently</div>
+					</div>
+				</div>
+				<div class="risk-category">
+					<h3>Your OS</h3>
+					<h4>OS & 3rd party software vulnerabilities, Logs, Reporting</h4>
+					<div class="risk at-risk" id="risk-os-online">
+						<div class="risk-status"></div>
+						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, giving them full access to your screen.</div>
+						<div class="risk-fix">Take your computer offline</div>
+					</div>
+					<div class="risk at-risk" id="risk-os-offline">
+						<div class="risk-status"></div>
+						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, recording your actions while offline, 
+						retrieving them when you connect again.</div>
+						<div class="risk-fix">Take your computer offline, permanently</div>
+					</div>
+				</div>
+				<div class="risk-category">
+					<h3>This Tool</h3>
+					<h4>*If this tool were malicious</h4>
+					<div class="risk at-risk" id="risk-this-tool-online">
+						<div class="risk-status"></div>
+						<div class="risk-details">RNG pools or private keys could be broadcasted to an external server.</div>
+						<div class="risk-fix">Take your computer offline</div>
+					</div>
+					<div class="risk at-risk" id="risk-this-tool-offline-cookies">
+						<div class="risk-status"></div>
+						<div class="risk-details">RNG pools or private keys could be stored as cookies, to be retrieved later by a website.</div>
+						<div class="risk-fix">Turn off cookies OR Take your computer offline, permanently</div>
+					</div>
+					<div class="risk at-risk" id="risk-this-tool-badrng">
+						<div class="risk-status"></div>
+						<div class="risk-details">The RNG pool generation process could be simulated or flawed, and this tool could be producing known or predictable keys.</div>
+						<div class="risk-fix">Import your own Private keys generated from a trusted source (QT Wallet)</div>
+					</div>
+					<div class="risk at-risk" id="risk-this-tool-badcodes">
+						<div class="risk-status"></div>
+						<div class="risk-details">Addresses and QR codes could be on the printouts could be incorrect.</div>
+						<div class="risk-fix">Manuall verify that this application produces the valid QR codes and addresses</div>
+					</div>
+				</div>
+				
+			</div>
 		</div>
 		<div class="section coin-setup">
 			<span class="donate-reminder">
@@ -235,11 +382,11 @@ $().ready(function ()
 					
 					<label class="left-label">Keep Collecting:</label>
 					<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
-						<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect"  />
-						<label for="rng-collect">Yes</label>
-
 						<input type="radio" name="rng-keep-collecting" value="No" id="rng-no-collect" checked />
 						<label for="rng-no-collect">No</label> 
+						
+						<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect"  />
+						<label for="rng-collect">Yes</label>
 
 						<a></a>
 					</div>

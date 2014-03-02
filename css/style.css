@@ -189,11 +189,16 @@ font-weight: bold;
 {
 	width: 525px;
 	text-align: left;
-	
+	height: 50px;
 }
 .security-questions .switch-toggle
 {
 	width: 130px;
+	height: 50px;
+}
+.security-questions .switch-toggle label
+{
+	padding-top: 10px;
 }
 
 .switch-toggle label
@@ -989,7 +994,8 @@ body.dark-theme .round-block
     box-shadow: 0 5px 5px rgba(255, 255, 255, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 	
 }
-body.dark-theme h3
+body.dark-theme h3,
+body.dark-theme h4
 {
 	color: white;
 	text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
@@ -1067,9 +1073,37 @@ body.dark-theme .trust-items .trust-item em
 {
 background-color: #666666;
 }
+body.dark-theme .security-risks .risk
+{
+	color: #dddddd;
+	background-color: #333333;
+	border-color: #888888;
+}
+body.dark-theme  .security-risks .risk:after
+{
+	background-color: #666666;	
+}
+body.dark-theme .security-risks .risk.at-risk:after
+{
+	background-color: #AD0000;
+}
+body.dark-theme .security-risks  .risk-category
+{
+	background-color: #222222;
+	border-color: #888888;
+}
+body.dark-theme .security-risks .risk.safe .risk-status:after
+{
+	background-color: #00AD00;
+}
+body.dark-theme .security-risks .risk-fix
+{
+	background: #444444;
+}
 
 .trust-items
 {
+	width: 830px;
 }
 
 .trust-items .trust-item
@@ -1129,6 +1163,11 @@ background-color: #666666;
 {
 	background-image: url('../images/security-this-tool.png');
 }
+.trust-items .trust-item.trust-your-printer .trust-image
+{
+	background-image: url('../images/security-printer.png');
+}
+
 .trust-items .security-level
 {
 	width: 100%;
@@ -1160,4 +1199,89 @@ background-color: #000000;
 .trust-level-zero .security-level:before
 {
 content: "Zero Trust";
+}
+
+.security-risks h3
+{
+	font-size: 22px;
+}
+
+.security-risks h4
+{
+	font-size: 18px;
+}
+
+.security-risks .risk
+{
+	font-size: 14px;
+	width: 620px;
+	color: #333333;
+	height: 85px;
+	border: 1px solid;
+	border-top-left-radius: 10px;
+	background-color: #cccccc;
+	margin-bottom: 10px;
+	border-bottom-left-radius: 10px;
+}
+.security-risks  .risk-category
+{
+	background-color: #dddddd;
+	padding: 8px;
+	margin-top: 13px;
+	border-radius: 10px;
+	border: 1px solid #888888;
+}
+.security-risks .risk .risk-details
+{
+	width: 542px;
+	float: left;
+	padding: 5px;
+}
+
+.security-risks .risk-fix
+{
+	float: left;
+	margin-top: 10px;
+	background: #aaaaaa;
+	border-radius: 5px;
+	max-width: 520px;
+	padding: 5px;
+	margin-left: 5px;
+}
+.security-risks .risk-fix:before
+{
+	font-weight: bold;
+	content: "How to fix: ";
+}
+
+.security-risks .risk .risk-status:after
+{
+display: block;
+padding-top: 37px;
+height: 86px;
+border-top-right-radius: 10px;
+border-bottom-right-radius: 10px;
+padding-left: 18px;
+width: 86px;
+padding-right: 10px;
+float: right;
+margin-top: -1px;
+font-size: 16px;
+margin-right: -11px;
+font-weight: bold;
+text-shadow: 3px 3px 1px #333333;
+text-align: center;
+}
+
+.security-risks .risk.at-risk .risk-status:after
+{
+	content: 'At Risk';
+	background-color: #AD0000;
+	color: white;	
+}
+.security-risks .risk.safe .risk-status:after
+{
+	content: 'Safe';
+	background-color: #00AD00;
+	color: white;	
 }
