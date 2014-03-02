@@ -385,6 +385,7 @@ function InitPage()
 
 		});
 		
+	$('body').removeClass('dark-theme');
 	$('input[name=theme]').change(function() {
 		if ($(this).val() == "Yes")
 			$('body').removeClass('dark-theme');
@@ -414,6 +415,10 @@ function InitPage()
 		{
 		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
 			return;
+
+		if($(this).hasClass('one'))$('#coin-setup-menu a').animate({'margin-left' : '0px'}, 400, function(){});
+		if($(this).hasClass('two'))$('#coin-setup-menu a').animate({'margin-left' : '220px'}, 400, function(){});
+		if($(this).hasClass('three'))$('#coin-setup-menu a').animate({'margin-left' : '459px'}, 400, function(){});
 		
 		var section = $(this).attr('section');
 

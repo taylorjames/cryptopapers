@@ -1,4 +1,46 @@
 
+@font-face {
+    font-family: 'museo300';
+    src: url('fonts/museo_300-webfont.eot');
+    src: url('fonts/museo_300-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/museo_300-webfont.woff') format('woff'),
+         url('fonts/museo_300-webfont.ttf') format('truetype'),
+         url('fonts/museo_300-webfont.svg#museo300') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'museo500';
+    src: url('fonts/museo_500-webfont.eot');
+    src: url('fonts/museo_500-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/museo_500-webfont.woff') format('woff'),
+         url('fonts/museo_500-webfont.ttf') format('truetype'),
+         url('fonts/museo_500-webfont.svg#museo500') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'museo700';
+    src: url('fonts/museo_700-webfont.eot');
+    src: url('fonts/museo_700-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/museo_700-webfont.woff') format('woff'),
+         url('fonts/museo_700-webfont.ttf') format('truetype'),
+         url('fonts/museo_700-webfont.svg#museo700') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 @media print
 {
 	@page {size: landscape}
@@ -31,7 +73,7 @@
 	}
 	.inner
 	{
-		max-width: 1050px !important;
+		max-width: 1220px !important;
 	}
 	#page.wrapper .inner
 	{
@@ -131,16 +173,16 @@ font-weight: bold;
 .switch-toggle.theme
 {
 	float: right;
-	margin-top: -42px;
 	width: 75px;
 }
 
 #logo{
 	margin: auto;
 	display: block;
-	width:400px;
-	padding-top: 40px;
-	padding-bottom: 30px;
+	width:350px;
+	float:left;
+	margin-top:10px;
+	margin-bottom:10px;
 }
 
 .section.security .left-label
@@ -163,8 +205,9 @@ cursor: pointer;
 }
 
  .wrapper .inner{
-	max-width:1050px;
+	max-width:1220px;
 	margin:auto;
+	overflow:auto;
 }
 
 
@@ -541,47 +584,71 @@ input[type=button]
 *************/
 
 .menu {
-	background-color: #dddddd;
+	background-color: transparent;
 
 }
 
 .menu ul {
 	padding: 0px 10px 0px 10px;
-	margin: auto;
-	max-width: 1050px;
 	text-align: left;
 	overflow:auto;
+	float:left;
 }
 
 .menu ul li {
-	display: inline;
-	margin: 10px 15px 0px 15px;
+
+	color:#ececec;
+	display: inline-block;
 	font-size: 16px;
-	height: 35px;
-	display: block;
 	cursor: pointer;
+	padding:10px 20px 10px 20px;
+	border-radius:3px;
 	float: left;
 	font-weight: bold;
+	font-family:museo300;
 }
 .menu ul li.disabled {
 	color: gray;
 	cursor: default;
 }
 .menu ul li.active {
-	border-bottom: 2px solid #0da3da;
-	color:#000;
-	text-shadow: 3px 3px 0 rgba(0, 0, 0, .3);
+	background-color:#000;
+	background-color:rgba(0, 0, 0, 0.2);
 }
 .menu ul li.right {
 	float: right;
 }
 .menu ul li.menu-key-donate {
-font-size: 20px;
-margin-top: 5px;
+	font-size: 18px;
+	margin-top: 0px;
+	border:1px solid #ececec;
+	border-radius:3px;
+	margin-left:40px;
+}
+
+#main-menu{
+	float:right;
+	margin-top:40px;
+}
+
+#coin-setup-menu{
+	position:relative;
+	margin:0px;
+	margin-bottom:20px;
+}
+
+#coin-setup-menu a{
+	display:block;
+	width:200px;
+	height:40px;
+	left:0;
+	top:0;
+	background-color:#0d76ae;
+	border-radius:10px;
 }
 
 ul#coin-setup-menu.menu{
-	width: 368px;
+	width: 100%;
 	display: block;
 	overflow: auto;
 	background: transparent;
@@ -591,33 +658,33 @@ ul#coin-setup-menu.menu{
 ul#coin-setup-menu li{
 
 	border-radius:10px;
+	font-family:museo300;
 	padding:20px;
 	margin-right:20px;
 	height:40px;
 	list-style-type: none;
 	float:left;
 	line-height:0px;
-	color: white;
-	background-color: #0da3da;
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
-	font-size: 0.875rem;
-	border: 1px solid #333333;
-	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-	background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-	opacity:0.5;
+	color: #555;
+	font-size: 14px;
+	cursor:pointer;
+	width:220px;
+	text-align:center;
+	margin-left:-10px;
+	
 }
 
 ul#coin-setup-menu li.disabled{
-	background-color:#ececec;
-	opacity:1;
-	color:#888;
-	text-shadow:none;
-	border:1px solid #888;
+
 }
 
 ul#coin-setup-menu li.active{
-	opacity:1;
+	color:#fff;
+}
+
+#lights{
+	margin-top:45px;
+	margin-right:100px;
 }
 
 .coin-wallet
@@ -874,6 +941,7 @@ a:hover, a:active, a:focus {
 	padding: 7px;
 	margin-right: 17px;
 	margin-top: -16px;
+	display:none;
 }
 .donate-reminder img
 {
