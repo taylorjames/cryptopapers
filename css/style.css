@@ -1255,12 +1255,10 @@ display: block;
 .zero-trust-seal
 {
 display: none;
-background: url('../images/zero-trust-seal.png');
 float: right;
-width: 218px;
-height: 202px;
-background-repeat: no-repeat;
-background-color: #eee;
+width: 275px;
+margin-top: -15px;
+margin-right: 33px;
 		
 }
 
