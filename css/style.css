@@ -143,6 +143,17 @@ font-weight: bold;
 	padding-bottom: 30px;
 }
 
+.section.security .left-label
+{
+	width: 525px;
+	text-align: left;
+	
+}
+.security-questions .switch-toggle
+{
+	width: 130px;
+}
+
 .switch-toggle label
 {
 cursor: pointer;
@@ -973,4 +984,107 @@ body.dark-theme label.left-label
 	background-color: #555555;
 	border-color: #888888;
 	color: white;
+}
+body.dark-theme .trust-items .trust-item
+{
+	background-color: #555555;
+	border-color: #888888;
+}
+body.dark-theme .trust-items .trust-item em
+{
+background-color: #666666;
+}
+
+.trust-items
+{
+}
+
+.trust-items .trust-item
+{
+	float: left;
+	margin: 5px;
+	background-color: #ddd;
+	border-radius: 10px;
+	text-align: center;
+	width: 120px;
+	border: 1px solid;
+}
+
+.trust-items .trust-item em
+{
+	background-color: #cccccc;
+	text-decoration: none !important;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	font-style: normal;
+	padding: 3px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	width: 100%;
+	display: inline-block !important;
+}
+
+.trust-items .trust-item .trust-image
+{
+	width: 75px;
+	height: 85px;
+	margin: auto;
+	background-repeat: no-repeat;
+}
+
+.trust-items .trust-item.trust-bugs .trust-image
+{
+	background-image: url('../images/security-bug.png');
+}
+
+.trust-items .trust-item.trust-your-os .trust-image
+{
+	background-image: url('../images/security-os.png');
+}
+
+.trust-items .trust-item.trust-your-browser .trust-image
+{
+	background-image: url('../images/security-browser.png');
+}
+
+.trust-items .trust-item.trust-your-network .trust-image
+{
+	background-image: url('../images/security-network.png');
+}
+
+.trust-items .trust-item.trust-this-tool .trust-image
+{
+	background-image: url('../images/security-this-tool.png');
+}
+.trust-items .security-level
+{
+	width: 100%;
+	color: white;
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	padding: 3px;
+}
+.trust-level-fully .security-level
+{
+background-color: #cc0000;
+}
+.trust-level-fully .security-level:before
+{
+content: "Full Trust";
+}
+.trust-level-some .security-level
+{
+background-color: #CC6A00;
+}
+.trust-level-some .security-level:before
+{
+content: "Some Trust";
+}
+.trust-level-zero .security-level
+{
+background-color: #000000;
+}
+.trust-level-zero .security-level:before
+{
+content: "Zero Trust";
 }

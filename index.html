@@ -5,6 +5,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<title>CryptoPapers - Wallet Creator</title>
+	
+	<link rel="shortcut icon" href="images/logo_shield.ico" type="image/x-icon">	
 
 	<script type="text/javascript" src="js/jquery.js"></script>
 	
@@ -48,17 +50,10 @@
 	<script type="text/javascript" src="crypto-papers-ui.js"></script>
 
 	
-	<link rel="stylesheet" href="css/normalize.css" />
-	<link rel="stylesheet" href="css/foundation.css" />
-	<link rel="stylesheet" href="css/toggle-switch.css" />
-	<link rel="stylesheet" href="css/style.css" />
-	
-
-	<style></style>
-
-	<script>
-	
-	</script>
+	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="css/foundation.css" />
+	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
+	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
 <body class="dark-theme">
 <script type="text/javascript">
@@ -88,9 +83,9 @@ $().ready(function ()
 
 <div id="main-menu" class="menu no-print">
 	<ul>
-		<li section="about-crypto-papers" class="menu-key-import disabled">About</li>
-		<li section="security" class="menu-key-security disabled">Security</li>
-		<li section="coin-setup" class="active menu-key-import active">Wallet Setup</li>
+		<li section="how-to" class="menu-key-how-to disabled">How To</li>
+		<li section="security" class="menu-key-security active">Security</li>
+		<li section="coin-setup" class="menu-key-import">Wallet Setup</li>
 		<li section="donate" class="menu-key-donate right">Donate</li>
 	</ul>
 </div>
@@ -100,8 +95,73 @@ $().ready(function ()
 
 <div id="page" class="wrapper">
 	<div class="inner">
-		<div class="section about-crypto-papers no-print"></div>
-		<div class="section security no-print"></div>
+		<div class="section how-to no-print">
+		</div>
+		<div class="section security no-print">
+			<div class="trust-items round-block">
+				<h3>Trust</h3>
+				<div class="trust-item trust-bugs trust-level-fully">
+					<em>Infections</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
+				<div class="trust-item trust-your-network trust-level-some">
+					<em>Your Network</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
+				<div class="trust-item trust-your-browser trust-level-some">
+					<em>Your Browser</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
+				<div class="trust-item trust-your-os trust-level-zero">
+					<em>Your OS</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
+				<div class="trust-item trust-this-tool trust-level-zero">
+					<em>This Tool</em>
+					<div class="trust-image"></div>
+					<div class='security-level'></div>
+				</div>
+			</div>
+			<div class="security-test round-block">
+				<h3>Environment</h3>
+				<div class="test-results">
+					<div>Internet:
+					</div>
+					<div>Cookies:
+					</div>
+				</div>
+			</div>
+			<div class="security-questions round-block">
+				<h3>Questions</h3>
+				
+				<label class="left-label">Will this machine be kept offline permanently?</label>
+				<div class="switch-toggle security-offline-permanent switch-2 switch-candy ">
+					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked />
+					<label for="security-offline-permanent-no">No</label> 
+					
+					<input type="radio" name="security-offline-permanent" value="Yes" id="security-offline-permanent-yes"  />
+					<label for="security-offline-permanent-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">Will your printer always be kept offline?</label>
+				<div class="switch-toggle security-offline-printer switch-2 switch-candy ">
+					<input type="radio" name="security-offline-printer" value="No" id="security-offline-printer-no" checked />
+					<label for="security-offline-printer-no">No</label> 
+					
+					<input type="radio" name="security-offline-printer" value="Yes" id="security-offline-printer-yes"  />
+					<label for="security-offline-printer-yes">Yes</label>
+
+					<a></a>
+				</div>
+			</div>
+			
+		</div>
 		<div class="section coin-setup">
 			<span class="donate-reminder">
 				<img src="images/up-arrow.png" alt="" title="" />
