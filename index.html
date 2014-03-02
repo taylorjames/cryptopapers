@@ -67,21 +67,8 @@ $().ready(function ()
 
 <div id="header" class="wrapper no-print">
 	<div class="inner">
-		<a href="" title="" /><img id="logo" src="images/logo.png"/></a>
-		
-		<div class="switch-toggle theme switch-2 switch-candy ">
-			<input type="radio" name="theme" value="Yes" id="lights-on"  />
-			<label for="lights-on">+</label>
-
-			<input type="radio" name="theme" value="No" id="lights-off" checked />
-			<label for="lights-off">-</label> 
-
-			<a></a>
-		</div>
-	</div>
-</div>
-
-<div id="main-menu" class="menu no-print">
+		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		<div id="main-menu" class="menu no-print">
 	<ul>
 		<li section="how-to" class="menu-key-how-to disabled">How To</li>
 		<li section="security" class="menu-key-security active">Security</li>
@@ -89,6 +76,20 @@ $().ready(function ()
 		<li section="donate" class="menu-key-donate right">Donate</li>
 	</ul>
 </div>
+		
+		<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
+			<input type="radio" name="theme" value="Yes" id="lights-on" checked/>
+			<label for="lights-on">+</label>
+
+			<input type="radio" name="theme" value="No" id="lights-off" />
+			<label for="lights-off">-</label> 
+
+			<a></a>
+		</div>
+	</div>
+</div>
+
+
 
 <form id="form1">
 
@@ -327,14 +328,15 @@ $().ready(function ()
 				Thanks, and stay safe!
 			</span>
 			<ul id="coin-setup-menu" class="menu no-print">
-				<li id="generate" class="step active" section="coin-setup-keys">1. Generate Wallet Data</li>
-				<li id="print" class="step disabled" section="coin-setup-print">2. Print Wallet</li>
+				<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Key Generation</li>
+				<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
+				<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
+				<a></a>
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
 				<div class="key-import round-block">
 					<h3>Private Key</h3>
 					<div class="coin-type new">
-						<div class="choose-coin">Choose Coin:</div>
 						<div class="coins-grid-wrapper box-padding">
 							<div class="coin-grid-row">
 								<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
@@ -368,13 +370,14 @@ $().ready(function ()
 					</div>
 					
 					<div class="private-key"> 
-						<div>
-						<input type="text" id="private-key-input" />					
-						<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+						<div id="coin-key">	
+							<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
+
+							<input type="text" id="private-key-input" />	
 						</div>
 					</div>	
 					
-					<input type="button" id="private-key-submit" class="large-button" value="Create" />
+					<input type="button" id="private-key-submit" class="large-button" value="Step 2" />
 				
 				</div>			
 				<div class="random-info round-block">
