@@ -342,43 +342,43 @@ $().ready(function ()
 				<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
 				<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
 				<a></a>
+				
+				<div class="coin-type selector-grid no-print" rowheight="150px">
+					<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+						<div class="coin-grid-row selector-grid-row">
+							<div class="coin selector ltc-coin" data="ltc"><em>Litecoin</em></div>
+							<div class="coin selector nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
+							<div class="coin selector nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
+							<div class="coin selector nmc-coin" data="nmc"><em>Namecoin</em></div>
+							<div class="coin selector btc-coin active" data="btc"><em>Bitcoin</em></div>
+						</div>
+						<div class="coin-grid-row selector-grid-row">
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+						</div>
+						<div class="coin-grid-row selector-grid-row">
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+						</div>
+						<div class="coin-grid-row selector-grid-row">
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+						</div>
+					</div>
+				</div>
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
 				<div class="key-import round-block">
-					<h3>Private Key</h3>
-					<div class="coin-type selector-grid">
-						<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-							<div class="coin-grid-row selector-grid-row">
-								<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
-								<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
-								<div class="coin nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
-								<div class="coin nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
-								<div class="coin nmc-coin" data="nmc"><em>Namecoin</em></div>
-							</div>
-							<div class="coin-grid-row selector-grid-row">
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-							</div>
-							<div class="coin-grid-row selector-grid-row">
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-							</div>
-							<div class="coin-grid-row selector-grid-row">
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
-							</div>
-						</div>
-					</div>
-					
+					<h3>Private Key</h3>					
 					<div class="private-key"> 
 						<div id="coin-key">	
 
@@ -477,48 +477,67 @@ $().ready(function ()
 								<a></a>
 							</div>
 							
-							<label class="left-label">Zoom:</label>
-							<div class="switch-toggle switch-5 switch-candy ">
-								
-								<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
-								<label for="wallet-zoom-90">0.90 X</label>
-								
-								<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
-								<label for="wallet-zoom-95">0.95 X</label>
-								
-								<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
-								<label for="wallet-zoom-100">1.00 X</label>
-								
-								<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
-								<label for="wallet-zoom-105">1.05 X</label>
-								
-								<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
-								<label for="wallet-zoom-110">1.10 X</label>
-						
-								<a></a>
-							</div>
+						</div>
 							
-							<label class="left-label">Frame:</label>
-							<div class="switch-toggle wallet-frame switch-4 switch-candy ">
-								<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
-								<label for="wallet-frame-1">1</label> 
-								
-								<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
-								<label for="wallet-frame-2">2</label>
-								
-								<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
-								<label for="wallet-frame-3">3</label>
-								
-								<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
-								<label for="wallet-frame-4">4</label>
+						<label class="left-label">Zoom:</label>
+						<div class="switch-toggle switch-5 switch-candy ">
+							
+							<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
+							<label for="wallet-zoom-90">0.90 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
+							<label for="wallet-zoom-95">0.95 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
+							<label for="wallet-zoom-100">1.00 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
+							<label for="wallet-zoom-105">1.05 X</label>
+							
+							<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
+							<label for="wallet-zoom-110">1.10 X</label>
+					
+							<a></a>
+						</div>
 						
-								<a></a>
+						<label class="left-label">Frame:</label>
+						<div class="switch-toggle wallet-frame switch-4 switch-candy ">
+							<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
+							<label for="wallet-frame-1">1</label> 
+							
+							<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
+							<label for="wallet-frame-2">2</label>
+							
+							<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
+							<label for="wallet-frame-3">3</label>
+							
+							<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
+							<label for="wallet-frame-4">4</label>
+					
+							<a></a>
+						</div>
+						
+						<label class="left-label design-label">Design:</label>
+						<div class="design-type selector-grid" rowheight="110px">
+							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+								<div class="design-grid-row selector-grid-row">
+									<div class="design selector fractal fractal-1-design active" data="fractal-1"></div>
+									<div class="design selector fractal fractal-2-design" data="fractal-2"></div>
+									<div class="design selector fractal fractal-3-design" data="fractal-3"></div>
+									<div class="design selector fractal fractal-4-design" data="fractal-4"></div>
+								</div>
+								<div class="design-grid-row selector-grid-row">
+									<div class="design selector fractal fractal-5-design" data="fractal-5"></div>
+									<div class="design selector fractal fractal-6-design" data="fractal-6"></div>
+									<div class="design selector fractal fractal-7-design" data="fractal-7"></div>
+									<div class="design selector fractal fractal-8-design" data="fractal-8"></div>
+								</div>
 							</div>
 						</div>
 
 						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
 
-						<input type="button" id="print-button" class="large-button" value="Print" />
+						<input type="button" id="print-button" class="large-button right" value="Print" />
 						<br />
 					</div>
 					<div class="print-encryption round-block hide">
@@ -531,7 +550,7 @@ $().ready(function ()
 					</div>
 				</div>
 				
-				<div class="btc coin-wallets frame-1">
+				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>

@@ -54,7 +54,8 @@
 	li,
 	a,
 	.coin-type,
-	.left-label
+	.left-label,
+	.preload
 	{
 		display: none !important;
 	}
@@ -80,16 +81,31 @@
 	{
 		background-color: white !important;
 	}
+	.coin-setup-print,
+	.coin-setup,
+	.wrapper,
+	form,
+	body
+	{
+		margin: 0px !important;
+		padding: 0px !important;
+	}
 	.coin-wallets
 	{
+		float: left !important;
 		background-color: white !important;
 		zoom: 1.00 !important;
 		height: auto !important;
-		border: none;
+		border: none !important;
 		max-width: auto !important;
 		padding: 0px !important;
-		margin-bottom: 0px  !important;
+		margin-bottom: 0px !important;
 		background-color: none !important;
+		margin-top:  0px !important;
+	}
+	.coin-wallets.back
+	{
+		float: right !important;
 	}
 	.coin-wallet.zoom-90
 	{
@@ -214,6 +230,7 @@ cursor: pointer;
 }
 
 #page.wrapper .inner{
+	min-height: 600px;
 }
 
  .wrapper .inner{
@@ -229,9 +246,10 @@ cursor: pointer;
 	margin-bottom: 10px;
 	background-color: #eee;
 	display: block;
-	float: left;
-	position:absolute;
-	z-index:100000;
+	position: absolute;
+	top: -25px;
+	z-index: 100000;
+	right: 17px;
 }
 
 #coin-key{
@@ -247,29 +265,58 @@ cursor: pointer;
 	margin: 3px;
 	background-color: #eeeeee;
 }
-
-.coins-grid-wrapper{
-	height:auto;
-	overflow:auto;
-	border-radius:10px;
+.selector-grid-wrapper
+{
 	z-index:10000;
 	max-width: 660px;
 }
-.coin-grid-row{
+.selector-grid-row{
 	display: block;
 	width: 100%;
 	height: 0px;
 	
 	background-color: #eee;
 }
-.coins-grid-wrapper.selecting .coin-grid-row{
-	height: 140px
+
+.coin-type .selector-grid-wrapper.selecting .selector-grid-row{
+	height: 150px;
 }
 
+.coins-grid-wrapper{
+	height:auto;
+	overflow:visible;
+	border-radius:10px;
+}
+.coin-grid-row{
+
+}
+.coins-grid-wrapper.selecting .coin-grid-row{
+	height: 150px;
+}
+
+.design-grid-wrapper .design
+{
+	display:none;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	float:left;
+	padding:115px 0px 0px 0px;
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+
+	border:1px solid #fff;
+}
 .coins-grid-wrapper .coin{
 	display:none;
-	width:120px;
-	height:140px;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	float:left;
@@ -283,11 +330,11 @@ cursor: pointer;
 	border:1px solid #fff;
 }
 
-.coins-grid-wrapper .coin.active{
+.selector-grid-wrapper .selector.active{
 	display: block;
 }
 	
-.coins-grid-wrapper.selecting .coin{
+.selector-grid-wrapper.selecting .selector{
 	display: block;
 	background-color:#fff;
 	z-index: 1000;
@@ -296,7 +343,7 @@ cursor: pointer;
 .current-coin{
 	display:block;
 	width:120px;
-	height:140px;
+	height:150px;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	padding:10px 10px 0px 10px;
@@ -315,6 +362,7 @@ cursor: pointer;
 	display: inline-block;
 	text-align: center;
 	border-radius: 5px;
+	height: 25px;
 }
 .coins-grid-wrapper .coin:hover, 
 .coins-grid-wrapper .coin.active{
@@ -727,7 +775,6 @@ input[type=button]
 ul#coin-setup-menu.menu{
 	width: 100%;
 	display: block;
-	overflow: auto;
 	background: transparent;
 	float: left;
 }
@@ -810,6 +857,11 @@ input#compress-decompress-button{
 	margin-left:10px;
 }
 
+#coin-setup-menu
+{
+position: relative;
+overflow: visible;
+}
 .coin-wallets
 {
 zoom: 50%;
@@ -820,6 +872,7 @@ padding: 15px;
 margin-bottom: 50px;
 background-color: #ddd;
 min-height: 854px;
+margin-top: 134px;
 }
 
 .coin-wallets .coin-logo
@@ -862,14 +915,14 @@ min-height: 854px;
 	top: 40px;
 	z-index: 3;
 }
-
 .coin-wallet-1
 {
+
 }
 
 .coin-wallet-2
 {
-	margin-top: 100px;
+	margin-top: 90px;
 }
 
 .coin-wallet-left
@@ -952,7 +1005,7 @@ min-height: 854px;
 
 .back .coin-wallet-2
 {
-	margin-top: 95px;
+	margin-top: 90px;
 }
 
 .back .coin-wallet-left, 
@@ -961,9 +1014,45 @@ min-height: 854px;
 	display: none;
 } 
 
-.coin-wallet
+.fractal-1 .coin-wallet,
+.selector.fractal-1-design
+{
+background-image: url('../images/PNG/Fractal1.png');
+}
+.fractal-2 .coin-wallet,
+.selector.fractal-2-design
 {
 background-image: url('../images/PNG/Fractal2.png');
+}
+.fractal-3 .coin-wallet,
+.selector.fractal-3-design
+{
+background-image: url('../images/PNG/Fractal3.png');
+}
+.fractal-4 .coin-wallet,
+.selector.fractal-4-design
+{
+background-image: url('../images/PNG/Fractal4.png');
+}
+.fractal-5 .coin-wallet,
+.selector.fractal-5-design
+{
+background-image: url('../images/PNG/Fractal5.png');
+}
+.fractal-6 .coin-wallet,
+.selector.fractal-6-design
+{
+background-image: url('../images/PNG/Fractal6.png');
+}
+.fractal-7 .coin-wallet,
+.selector.fractal-7-design
+{
+background-image: url('../images/PNG/Fractal7.png');
+}
+.fractal-8 .coin-wallet,
+.selector.fractal-8-design
+{
+background-image: url('../images/PNG/Fractal8.png');
 }
 
 .frame-1 .coin-wallet .wallet-frame
@@ -1110,6 +1199,7 @@ a:hover, a:active, a:focus {
 {
 float: left;
 width: 586px;
+position: relative;
 }
 #print-settings .left-label
 {
@@ -1118,6 +1208,7 @@ width: 586px;
 #print-settings .print-buttons
 {
 width: 100%;
+padding-right: 10px;
 }
 
 .donate-keys
@@ -1548,3 +1639,53 @@ color: #AD0000;
 {
 color: #00AD00;
 }
+
+.design-type
+{
+max-width: 440px;
+display: block;
+float: left;
+background: #ddd;
+margin-bottom: 20px;
+border-radius: 10px;
+position: absolute;
+min-height: 110px;
+top: 206px;
+left: 128px;
+}
+.design-label
+{
+margin-bottom: 93px;
+}
+
+.design-type .selector-grid-row
+{
+background: none;
+}
+
+.design.selector
+{
+width: 100px;
+height: 100px;
+border-radius: 10px;
+float: left;
+margin:5px;
+display: none;
+}
+.design.selector.active
+{
+border: 5px solid;
+}
+.design.selector.fractal
+{
+	background-position-x: 100px;
+}
+
+#preload-01 { background: url('../images/PNG/Fractal1.png') no-repeat -9999px -9999px; }
+#preload-02 { background: url('../images/PNG/Fractal2.png') no-repeat -9999px -9999px; }
+#preload-03 { background: url('../images/PNG/Fractal3.png') no-repeat -9999px -9999px; }
+#preload-04 { background: url('../images/PNG/Fractal4.png') no-repeat -9999px -9999px; }
+#preload-05 { background: url('../images/PNG/Fractal5.png') no-repeat -9999px -9999px; }
+#preload-06 { background: url('../images/PNG/Fractal6.png') no-repeat -9999px -9999px; }
+#preload-07 { background: url('../images/PNG/Fractal7.png') no-repeat -9999px -9999px; }
+#preload-08 { background: url('../images/PNG/Fractal8.png') no-repeat -9999px -9999px; }

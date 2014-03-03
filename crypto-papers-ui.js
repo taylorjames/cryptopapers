@@ -707,12 +707,7 @@ function InitPage()
 		var val = $('input[name=wallet-frame]:checked').val();
 		$('.coin-wallets').addClass(val);
 	});
-	
-	$('.coin-type input[type=radio]').change(function() {
-		$('#private-key-input').change();
 		
-	});
-	
 	$('.generate-button').click(function() {
         
 		if (Vanity == null || Vanity.length == 0)
@@ -732,37 +727,47 @@ function InitPage()
 			var AddressStart = '-----';
 			
 			setTimeout(GenerateVanity, 100);
-			setTimeout(GenerateVanity, 101);
 			}
 		
 	});
 	
+	$('.design.selector').click(function() {
+		$('.coin-wallets').removeClass('fractal-1').removeClass('fractal-2').removeClass('fractal-3').removeClass('fractal-4')
+		.removeClass('fractal-5').removeClass('fractal-6').removeClass('fractal-7').removeClass('fractal-8');
+		
+		$('.coin-wallets').addClass($(this).attr('data'));
+	})
+	
 
-	$('.coins-grid-wrapper .coin:not(.disabled)').click(function(e)
+	$('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 		{
-		if ($('.coins-grid-wrapper').hasClass('selecting'))
+		var ParentRow = $(this).parents('.selector-grid-row');
+		var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
+		var ParentGrid = $(this).parents('.selector-grid');
+		
+		if (ParentGridWrapper.hasClass('selecting'))
 			{
-			$('.coins-grid-wrapper .coin.active').removeClass('active');
-			$('.coins-grid-wrapper .coin-grid-row.active').removeClass('active');
+			ParentGridWrapper.find('.selector.active').removeClass('active');
+			ParentGridWrapper.find('.selector-grid-row.active').removeClass('active');
 			
 			$(this).parent().addClass('active');
 			$(this).addClass('active');
 			
-			$('.coin-grid-row:not(.active)').animate({ height: '0px'}, 300);
-			$('.coins-grid-wrapper .coin:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+			ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
 				{
-				$('.coins-grid-wrapper').removeClass('selecting');
+				ParentGridWrapper.removeClass('selecting');
 				});
 			
 			$('#private-key-input').change();
 			}
 		else
 			{
-			$('.coins-grid-wrapper').addClass('selecting');
+			ParentGridWrapper.addClass('selecting');
 			
-			$('.coin-grid-row').animate({ height: '140px'}, 300);
+			ParentRow.animate({ height: ParentGrid.attr('rowheight')}, 300);
 			
-			$('.coins-grid-wrapper .coin:not(.active)').css('width', '0px').css('height', '0px').animate({width: '120px', height: '140px'}, 300);
+			ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300);
 			}
 		});	
 	
