@@ -1,6 +1,6 @@
 
 var Default_Compress = undefined;
-var AutoGenerateWhenEntropyPoolFills = true;
+var AutoGenerateWhenEntropyPoolFills = false;
 var HasPrivateKey = false;
 var Vanity = '';
 var VanityCaseSensitive = true;
@@ -18,7 +18,7 @@ var Security_ManualVerify = false;
 
 function TestEnvironment()
 	{
-	Security_IsOnline = false; // navigator.onLine;
+	Security_IsOnline = navigator.onLine;
 	Security_Cookies = navigator.cookieEnabled;
 	
     if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled)
@@ -38,12 +38,21 @@ function TestEnvironment()
 		{
 		$('.security-offline-permanent input, .security-offline-permanent a').attr('disabled', '');
 		$('.security-offline-printer input, .security-offline-printer a').attr('disabled', '');
+		
+		$('#security-local-printer-no').click();
+		$('.security-local-printer input, .security-local-printer a').attr('disabled', '');
+		
 		$('#internet-status').removeClass('disabled').addClass('enabled').html('Online');
 		}
 	else
 		{
 		$('.security-offline-permanent input, .security-offline-permanent a').removeAttr('disabled');
 		$('.security-offline-printer input, .security-offline-printer a').removeAttr('disabled');
+		
+		$('.security-local-printer input, .security-local-printer a').removeAttr('disabled');
+		$('#security-local-printer-yes').click();
+		
+		
 		$('#internet-status').removeClass('enabled').addClass('disabled').html('Offline');
 		}
 		
@@ -520,7 +529,6 @@ function InitPage()
 		if (collected_points == total_points && !HasPrivateKey)
 			{
 			$('.generate-button').removeAttr('disabled').addClass('enabled');
-			$('ul#coin-setup-menu li#print.step').removeClass('disabled');
 
 			if (AutoGenerateWhenEntropyPoolFills)
 				{
@@ -576,14 +584,18 @@ function InitPage()
 		
 	$('#private-key-input').change(function() 
 		{
-		var Address = GenerateAddress(true);		
+		var Address = GenerateAddress(true);	
+
+		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+		$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
 		});
 		
 	$('input[name=print-face]').change(function() 
 		{
-		$('.coin-wallet').hide();
-		$('.coin-wallets').toggleClass('back');
-		$('.coin-wallet').fadeIn();
+		$('.coin-wallets').fadeOut(300, function() {
+			$('.coin-wallets').toggleClass('back');
+			$('.coin-wallets').fadeIn(300);
+			});
 		});
 		
 	$('#print-button').click(function() 
@@ -613,8 +625,7 @@ function InitPage()
 			}
 
 		});
-		
-	$('body').removeClass('dark-theme');
+			
 	$('input[name=theme]').change(function() {
 		if ($(this).val() == "Yes")
 			$('body').removeClass('dark-theme');
@@ -690,6 +701,13 @@ function InitPage()
 		
 		});
 		
+	$('input[name=wallet-frame]').change(function() {
+	
+		$('.coin-wallets').removeClass('frame-1').removeClass('frame-2').removeClass('frame-3').removeClass('frame-4');
+		var val = $('input[name=wallet-frame]:checked').val();
+		$('.coin-wallets').addClass(val);
+	});
+	
 	$('.coin-type input[type=radio]').change(function() {
 		$('#private-key-input').change();
 		
@@ -706,8 +724,8 @@ function InitPage()
 			$('#private-key-input').val(hex);
 			$('#private-key-input').change();
 			
-			$('#private-key-input').val(hex);
-			$('#private-key-input').change();
+			$('#security-generate-import-no').click();
+			
 			}
 		else
 			{
@@ -747,7 +765,8 @@ function InitPage()
 			$('.coins-grid-wrapper .coin:not(.active)').css('width', '0px').css('height', '0px').animate({width: '120px', height: '140px'}, 300);
 			}
 		});	
-		
+	
+	
 	// Show the active page, hide the others
 	var section = $('.menu li.active').attr('section');
 	var subsection = $('#coin-setup-menu li.active').attr('section');
@@ -757,4 +776,13 @@ function InitPage()
 	$('.sub-section.' + subsection).show();
 	
 	TestEnvironment();
+	
+	if (!Security_IsOnline)
+		{
+		$('#lights-off').click();
+		}
+	else
+		{
+		$('#lights-on').click();
+		}
 	}

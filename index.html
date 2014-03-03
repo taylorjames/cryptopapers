@@ -55,11 +55,17 @@
 	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 </head>
-<body class="dark-theme">
+<body class="">
 <script type="text/javascript">
 
+// Disable all browsers from remembering input status
+$('input').attr('autocomplete', 'off');
+	
 $().ready(function () 
 	{
+	// Disable all browsers from remembering input status
+	$('input').attr('autocomplete', 'off');
+	
 	InitPage();
 	});
 
@@ -69,19 +75,23 @@ $().ready(function ()
 	<div class="inner">
 		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
 		<div id="main-menu" class="menu no-print">
-	<ul>
-		<li section="how-to" class="menu-key-how-to disabled">How To</li>
-		<li section="security" class="menu-key-security active">Security</li>
-		<li section="coin-setup" class="menu-key-import">Wallet Setup</li>
-		<li section="donate" class="menu-key-donate right">Donate</li>
-	</ul>
-</div>
+			<ul>
+				<li section="how-to" class="menu-key-how-to disabled">How To</li>
+				<li section="security" class="menu-key-security active">Security</li>
+				<li section="coin-setup" class="menu-key-import">Wallet Setup</li>
+				<li section="donate" class="menu-key-donate right">Donate</li>
+			</ul>
+		</div>
+		
+		<div class="zero-trust-seal hidden">
+			
+		</div>
 		
 		<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
-			<input type="radio" name="theme" value="Yes" id="lights-on" checked/>
+			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
 			<label for="lights-on">+</label>
 
-			<input type="radio" name="theme" value="No" id="lights-off" />
+			<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
 			<label for="lights-off">-</label> 
 
 			<a></a>
@@ -99,8 +109,6 @@ $().ready(function ()
 		<div class="section how-to no-print">
 		</div>
 		<div class="section security no-print">
-			<img class="zero-trust-seal hidden" src="images/zero-trust.png">
-			
 			<div class="trust-items round-block">
 				<h3>Trust</h3>
 				<div class="trust-item trust-bugs trust-level-fully">
@@ -139,7 +147,7 @@ $().ready(function ()
 				<div class="test-results">
 					<div class="js-test">Internet: <span id="internet-status"></span></div>
 					<div class="js-test">Cookies: <span id="cookie-status"></span></div>
-					<input class="button" id="js-test-refresh" Value="Refresh" >
+					<input class="button" id="js-test-refresh" Value="Refresh" autocomplete="off" >
 				</div>
 			</div>
 			<div class="security-questions round-block">
@@ -147,10 +155,10 @@ $().ready(function ()
 				<h4>Answer these questions honestly to understand your level of risk:</h4>
 				<label class="left-label">Are you running this from a Linux Live CD or Live USB?</label>
 				<div class="switch-toggle security-live-cd switch-2 switch-candy ">
-					<input type="radio" name="security-live-cd" value="No" id="security-live-cd-no" checked />
+					<input type="radio" name="security-live-cd" value="No" id="security-live-cd-no" checked autocomplete="off" />
 					<label for="security-live-cd-no">No</label> 
 					
-					<input type="radio" name="security-live-cd" value="Yes" id="security-live-cd-yes"  />
+					<input type="radio" name="security-live-cd" value="Yes" id="security-live-cd-yes" autocomplete="off"  />
 					<label for="security-live-cd-yes">Yes</label>
 					
 					<a></a>
@@ -158,10 +166,10 @@ $().ready(function ()
 				
 				<label class="left-label">Will this machine ALWAYS be disconnected from any network?</label>
 				<div class="switch-toggle security-offline-permanent switch-2 switch-candy ">
-					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked />
+					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked  autocomplete="off"/>
 					<label for="security-offline-permanent-no">No</label> 
 					
-					<input type="radio" name="security-offline-permanent" value="Yes" id="security-offline-permanent-yes"  />
+					<input type="radio" name="security-offline-permanent" value="Yes" id="security-offline-permanent-yes" autocomplete="off"  />
 					<label for="security-offline-permanent-yes">Yes</label>
 					
 					<a></a>
@@ -169,10 +177,10 @@ $().ready(function ()
 				
 				<label class="left-label">Is your printer a Network printer or is it connected directly?</label>
 				<div class="switch-toggle security-local-printer switch-2 switch-candy ">
-					<input type="radio" name="security-local-printer" value="No" id="security-local-printer-no" checked />
+					<input type="radio" name="security-local-printer" value="No" id="security-local-printer-no" checked autocomplete="off" />
 					<label for="security-local-printer-no">Network</label> 
 					
-					<input type="radio" name="security-local-printer" value="Yes" id="security-local-printer-yes"  />
+					<input type="radio" name="security-local-printer" value="Yes" id="security-local-printer-yes" autocomplete="off"  />
 					<label for="security-local-printer-yes">Direct</label>
 
 					<a></a>
@@ -180,10 +188,10 @@ $().ready(function ()
 				
 				<label class="left-label">Will your printer always be kept offline?</label>
 				<div class="switch-toggle security-offline-printer switch-2 switch-candy ">
-					<input type="radio" name="security-offline-printer" value="No" id="security-offline-printer-no" checked />
+					<input type="radio" name="security-offline-printer" value="No" id="security-offline-printer-no" checked autocomplete="off" />
 					<label for="security-offline-printer-no">No</label> 
 					
-					<input type="radio" name="security-offline-printer" value="Yes" id="security-offline-printer-yes"  />
+					<input type="radio" name="security-offline-printer" value="Yes" id="security-offline-printer-yes" autocomplete="off"  />
 					<label for="security-offline-printer-yes">Yes</label>
 
 					<a></a>
@@ -191,10 +199,10 @@ $().ready(function ()
 				
 				<label class="left-label">Do you know for a fact that your printer keeps no internal print history?</label>
 				<div class="switch-toggle security-printer-history switch-2 switch-candy ">
-					<input type="radio" name="security-printer-history" value="No" id="security-printer-history-no" checked />
+					<input type="radio" name="security-printer-history" value="No" id="security-printer-history-no" checked autocomplete="off" />
 					<label for="security-printer-history-no">No</label> 
 					
-					<input type="radio" name="security-printer-history" value="Yes" id="security-printer-history-yes"  />
+					<input type="radio" name="security-printer-history" value="Yes" id="security-printer-history-yes" autocomplete="off" />
 					<label for="security-printer-history-yes">Yes</label>
 
 					<a></a>
@@ -202,10 +210,10 @@ $().ready(function ()
 				
 				<label class="left-label">Will you be generating keys using this tool or importing them manually?</label>
 				<div class="switch-toggle security-generate-import switch-2 switch-candy ">
-					<input type="radio" name="security-generate-import" value="No" id="security-generate-import-no" checked />
+					<input type="radio" name="security-generate-import" value="No" id="security-generate-import-no" checked autocomplete="off" />
 					<label for="security-generate-import-no">Generate</label> 
 					
-					<input type="radio" name="security-generate-import" value="Yes" id="security-generate-import-yes"  />
+					<input type="radio" name="security-generate-import" value="Yes" id="security-generate-import-yes" autocomplete="off" />
 					<label for="security-generate-import-yes">Import</label>
 
 					<a></a>
@@ -213,10 +221,10 @@ $().ready(function ()
 				
 				<label class="left-label">Using an offline QR scanner, do you plan to verify that QR codes on the wallets match and are valid?</label>
 				<div class="switch-toggle security-manual-verify switch-2 switch-candy ">
-					<input type="radio" name="security-manual-verify" value="No" id="security-manual-verify-no" checked />
+					<input type="radio" name="security-manual-verify" value="No" id="security-manual-verify-no" checked autocomplete="off" />
 					<label for="security-manual-verify-no">No</label> 
 					
-					<input type="radio" name="security-manual-verify" value="Yes" id="security-manual-verify-yes"  />
+					<input type="radio" name="security-manual-verify" value="Yes" id="security-manual-verify-yes" autocomplete="off" />
 					<label for="security-manual-verify-yes">Yes</label>
 
 					<a></a>
@@ -338,30 +346,30 @@ $().ready(function ()
 			<div class="sub-section coin-setup-keys no-print">
 				<div class="key-import round-block">
 					<h3>Private Key</h3>
-					<div class="coin-type new">
-						<div class="coins-grid-wrapper box-padding">
-							<div class="coin-grid-row">
+					<div class="coin-type selector-grid">
+						<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+							<div class="coin-grid-row selector-grid-row">
 								<div class="coin btc-coin active" data="btc"><em>Bitcoin</em></div>
 								<div class="coin ltc-coin" data="ltc"><em>Litecoin</em></div>
 								<div class="coin nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
 								<div class="coin nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
 								<div class="coin nmc-coin" data="nmc"><em>Namecoin</em></div>
 							</div>
-							<div class="coin-grid-row">
+							<div class="coin-grid-row selector-grid-row">
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 							</div>
-							<div class="coin-grid-row">
+							<div class="coin-grid-row selector-grid-row">
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 							</div>
-							<div class="coin-grid-row">
+							<div class="coin-grid-row selector-grid-row">
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
 								<div class="coin ppc-coin" data="ppc"><em>Peercoin</em></div>
@@ -374,7 +382,7 @@ $().ready(function ()
 					<div class="private-key"> 
 						<div id="coin-key">	
 
-							<input type="text" id="private-key-input" />	
+							<input type="text" id="private-key-input" autocomplete="off" />	
 						</div>
 					</div>	
 					
@@ -394,10 +402,10 @@ $().ready(function ()
 					
 					<label class="left-label">Keep Collecting:</label>
 					<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
-						<input type="radio" name="rng-keep-collecting" value="No" id="rng-no-collect" />
+						<input type="radio" name="rng-keep-collecting" value="No" id="rng-no-collect" autocomplete="off" />
 						<label for="rng-no-collect">No</label> 
 						
-						<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect" checked />
+						<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect" autocomplete="off" checked />
 						<label for="rng-collect">Yes</label>
 
 						<a></a>
@@ -409,121 +417,154 @@ $().ready(function ()
 				<div class="key-details round-block"> 
 					<h3>Key Details</h3>
 					<span class="key-info-public-address">
-					<label class="left-label">Public Address:</label><input type="text" id="public-address" readonly />
+					<label class="left-label">Public Address:</label><input type="text" id="public-address" autocomplete="off" readonly />
 					</span>
 					<br />
-					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" readonly />
+					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" autocomplete="off" readonly />
 					<br />
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
-						<input type="radio" name="compression" value="No" id="decompressed" />
+						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
 						<label for="decompressed">No</label> 
 						
-						<input type="radio" name="compression" value="Yes" id="compressed" checked />
+						<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
 						<label for="compressed">Yes</label>
 
 						<a></a>
 					</div>
 					<br />
-					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" readonly />
+					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
-					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" readonly />
+					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" autocomplete="off" readonly />
 					<br />
-					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" readonly />
+					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" autocomplete="off" readonly />
 					<br />			
-					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" readonly />
+					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
-					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" readonly />
+					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
-					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" readonly />
+					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					
 				</div>			
 			</div>
 			<div class="sub-section coin-setup-print">
-				<div class="btc coin-wallets">
-				
-					<div id="print-settings" class="no-print">
-						<div class="print-buttons round-block">
-							<h3>Page Setup</h3>
+			
+				<div id="print-settings" class="no-print">
+					<div class="print-buttons round-block">
+						<h3>Page Setup</h3>
 
-							<label class="left-label">Print Face:</label>
-								<div class="switch-toggle switch-2 switch-candy ">
-									<input type="radio" name="print-face" value="Front" id="toggle-front" checked />
-									<label for="toggle-front">Front</label>
+						<label class="left-label">Print Face:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
+								<label for="toggle-front">Front</label>
 
-									<input type="radio" name="print-face" value="Back" id="toggle-back" />
-									<label for="toggle-back">Back</label> 
+								<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
+								<label for="toggle-back">Back</label> 
 
-									<a></a>
-							</div>
+								<a></a>
+						</div>
 
-							<div class="backup">
+						<div class="backup">
 
-								<label class="left-label">Copies:</label>
-								<div class="switch-toggle switch-2 switch-candy ">
-									<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" />
-									<label for="wallet-backup-no">One</label> 
-									
-									<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" checked />
-									<label for="wallet-backup-yes">Two</label>
-							
-									<a></a>
-								</div>
+							<label class="left-label">Copies:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
+								<label for="wallet-backup-no">One</label> 
 								
-								<label class="left-label">Zoom:</label>
-								<div class="switch-toggle switch-5 switch-candy ">
-									
-									<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" />
-									<label for="wallet-zoom-90">0.90 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" />
-									<label for="wallet-zoom-95">0.95 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" checked />
-									<label for="wallet-zoom-100">1.00 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" />
-									<label for="wallet-zoom-105">1.05 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" />
-									<label for="wallet-zoom-110">1.10 X</label>
-							
-									<a></a>
-								</div>
+								<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
+								<label for="wallet-backup-yes">Two</label>
+						
+								<a></a>
 							</div>
-
-							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
-
-							<input type="button" id="print-button" class="large-button" value="Print" />
-							<br />
+							
+							<label class="left-label">Zoom:</label>
+							<div class="switch-toggle switch-5 switch-candy ">
+								
+								<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
+								<label for="wallet-zoom-90">0.90 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
+								<label for="wallet-zoom-95">0.95 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
+								<label for="wallet-zoom-100">1.00 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
+								<label for="wallet-zoom-105">1.05 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
+								<label for="wallet-zoom-110">1.10 X</label>
+						
+								<a></a>
+							</div>
+							
+							<label class="left-label">Frame:</label>
+							<div class="switch-toggle wallet-frame switch-4 switch-candy ">
+								<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
+								<label for="wallet-frame-1">1</label> 
+								
+								<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
+								<label for="wallet-frame-2">2</label>
+								
+								<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
+								<label for="wallet-frame-3">3</label>
+								
+								<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
+								<label for="wallet-frame-4">4</label>
+						
+								<a></a>
+							</div>
 						</div>
+
+						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
+
+						<input type="button" id="print-button" class="large-button" value="Print" />
+						<br />
 					</div>
-					
+					<div class="print-encryption round-block hide">
+						<h3>Encryption</h3>
+						
+						<label class="left-label">BIP38 Encryption key:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
+						
+						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" />
+						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" />
+					</div>
+				</div>
+				
+				<div class="btc coin-wallets frame-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
-						<div class="zero-trust-wallet-seal"></div>
-						<div class="coin-wallet-left">
-							<div class="coin-wallet-address top">&nbsp;</div>
-							<div class="coin-wallet-address-qr"></div>
-							<div class="coin-wallet-address bottom">&nbsp;</div>
-						</div>
-						<div class="coin-wallet-right">
-							<div class="coin-wallet-private-key top">&nbsp;</div>
-							<div class="coin-wallet-private-key-qr"></div>
-							<div class="coin-wallet-private-key bottom">&nbsp;</div>
+						<div class="wallet-frame">
+							<div class="zero-trust-wallet-seal"></div>
+							<div class="coin-logo coin-name"></div>
+							<div class="coin-logo coin-logo-2 hide"></div>
+							<div class="coin-wallet-left">
+								<div class="coin-wallet-address top">&nbsp;</div>
+								<div class="coin-wallet-address-qr"></div>
+								<div class="coin-wallet-address bottom">&nbsp;</div>
+							</div>
+							<div class="coin-wallet-right">
+								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key bottom">&nbsp;</div>
+							</div>
 						</div>
 					</div>
 					<div class="coin-wallet coin-wallet-2 zoom-100">
-						<div class="zero-trust-wallet-seal"></div>
-						<div class="coin-wallet-left">
-							<div class="coin-wallet-address top">&nbsp;</div>
-							<div class="coin-wallet-address-qr"></div>
-							<div class="coin-wallet-address bottom">&nbsp;</div>
+						<div class="wallet-frame">
+							<div class="zero-trust-wallet-seal"></div>
+							<div class="coin-logo coin-name"></div>
+							<div class="coin-logo coin-logo-2 hide"></div>
+							<div class="coin-wallet-left">
+								<div class="coin-wallet-address top">&nbsp;</div>
+								<div class="coin-wallet-address-qr"></div>
+								<div class="coin-wallet-address bottom">&nbsp;</div>
+							</div>
+							<div class="coin-wallet-right">
+								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key bottom">&nbsp;</div>
+							</div>		
 						</div>
-						<div class="coin-wallet-right">
-							<div class="coin-wallet-private-key top">&nbsp;</div>
-							<div class="coin-wallet-private-key-qr"></div>
-							<div class="coin-wallet-private-key bottom">&nbsp;</div>
-						</div>		
 					</div>
 				</div>
 			</div>
