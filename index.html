@@ -441,7 +441,7 @@ $().ready(function ()
 				</div>			
 			</div>
 			<div class="sub-section coin-setup-print">
-				<div class="btc coin-wallets">
+				<div class="btc coin-wallets frame-1">
 				
 					<div id="print-settings" class="no-print">
 						<div class="print-buttons round-block">
@@ -491,6 +491,17 @@ $().ready(function ()
 							
 									<a></a>
 								</div>
+								
+								<label class="left-label">Frame:</label>
+								<div class="switch-toggle wallet-frame switch-2 switch-candy ">
+									<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" checked/>
+									<label for="wallet-frame-1">1</label> 
+									
+									<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2"  />
+									<label for="wallet-frame-2">2</label>
+							
+									<a></a>
+								</div>
 							</div>
 
 							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
@@ -501,30 +512,36 @@ $().ready(function ()
 					</div>
 					
 					<div class="coin-wallet coin-wallet-1 zoom-100">
-						<div class="zero-trust-wallet-seal"></div>
-						<div class="coin-wallet-left">
-							<div class="coin-wallet-address top">&nbsp;</div>
-							<div class="coin-wallet-address-qr"></div>
-							<div class="coin-wallet-address bottom">&nbsp;</div>
-						</div>
-						<div class="coin-wallet-right">
-							<div class="coin-wallet-private-key top">&nbsp;</div>
-							<div class="coin-wallet-private-key-qr"></div>
-							<div class="coin-wallet-private-key bottom">&nbsp;</div>
+						<div class="wallet-frame">
+							<div class="zero-trust-wallet-seal"></div>
+							<div class="coin-logo coin-name"></div>
+							<div class="coin-wallet-left">
+								<div class="coin-wallet-address top">&nbsp;</div>
+								<div class="coin-wallet-address-qr"></div>
+								<div class="coin-wallet-address bottom">&nbsp;</div>
+							</div>
+							<div class="coin-wallet-right">
+								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key bottom">&nbsp;</div>
+							</div>
 						</div>
 					</div>
 					<div class="coin-wallet coin-wallet-2 zoom-100">
-						<div class="zero-trust-wallet-seal"></div>
-						<div class="coin-wallet-left">
-							<div class="coin-wallet-address top">&nbsp;</div>
-							<div class="coin-wallet-address-qr"></div>
-							<div class="coin-wallet-address bottom">&nbsp;</div>
+						<div class="wallet-frame">
+							<div class="zero-trust-wallet-seal"></div>
+							<div class="coin-logo coin-name"></div>
+							<div class="coin-wallet-left">
+								<div class="coin-wallet-address top">&nbsp;</div>
+								<div class="coin-wallet-address-qr"></div>
+								<div class="coin-wallet-address bottom">&nbsp;</div>
+							</div>
+							<div class="coin-wallet-right">
+								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key bottom">&nbsp;</div>
+							</div>		
 						</div>
-						<div class="coin-wallet-right">
-							<div class="coin-wallet-private-key top">&nbsp;</div>
-							<div class="coin-wallet-private-key-qr"></div>
-							<div class="coin-wallet-private-key bottom">&nbsp;</div>
-						</div>		
 					</div>
 				</div>
 			</div>

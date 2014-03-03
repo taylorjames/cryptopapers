@@ -690,6 +690,13 @@ function InitPage()
 		
 		});
 		
+	$('input[name=wallet-frame]').change(function() {
+	
+		$('.coin-wallets').removeClass('frame-1').removeClass('frame-2');
+		var val = $('input[name=wallet-frame]:checked').val();
+		$('.coin-wallets').addClass(val);
+	});
+	
 	$('.coin-type input[type=radio]').change(function() {
 		$('#private-key-input').change();
 		
