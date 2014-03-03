@@ -83,7 +83,13 @@
 	.coin-wallets
 	{
 		background-color: white !important;
-		zoom: 1.00;
+		zoom: 1.00 !important;
+		height: auto !important;
+		border: none;
+		max-width: auto !important;
+		padding: 0px !important;
+		margin-bottom: 0px  !important;
+		background-color: none !important;
 	}
 	.coin-wallet.zoom-90
 	{
@@ -806,9 +812,13 @@ input#compress-decompress-button{
 
 .coin-wallets
 {
-/*	
-background-color: white;
-*/
+zoom: 50%;
+border: 1px dashed;
+border-radius: 16px;
+float: right;
+padding: 15px;
+margin-bottom: 50px;
+background-color: #ddd;
 }
 
 .coin-wallets .coin-logo
@@ -847,7 +857,9 @@ background-color: white;
 .coin-wallets.back .zero-trust-wallet-seal
 {
 	top: 40px;
-	left: 500px;
+	left: 500px;	
+	top: 40px;
+	z-index: 3;
 }
 
 .coin-wallet-1
@@ -1044,6 +1056,10 @@ background-image: url('../images/PNG/Fractal2.png');
 	height: 190px;
 	opacity: 0.90;
 }
+.frame-4 .coin-wallets.back .zero-trust-wallet-seal
+	{
+	left: 700px;
+	}
 
 
 .switch-toggle{
@@ -1088,6 +1104,11 @@ a:hover, a:active, a:focus {
 {
 	width: 155px;
 	font-size: 12px;
+}
+#print-settings
+{
+float: left;
+width: 635px;
 }
 #print-settings .left-label
 {

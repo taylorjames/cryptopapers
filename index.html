@@ -448,90 +448,90 @@ $().ready(function ()
 				</div>			
 			</div>
 			<div class="sub-section coin-setup-print">
-				<div class="btc coin-wallets frame-1">
-				
-					<div id="print-settings" class="no-print">
-						<div class="print-buttons round-block">
-							<h3>Page Setup</h3>
+			
+				<div id="print-settings" class="no-print">
+					<div class="print-buttons round-block">
+						<h3>Page Setup</h3>
 
-							<label class="left-label">Print Face:</label>
-								<div class="switch-toggle switch-2 switch-candy ">
-									<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
-									<label for="toggle-front">Front</label>
+						<label class="left-label">Print Face:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
+								<label for="toggle-front">Front</label>
 
-									<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
-									<label for="toggle-back">Back</label> 
+								<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
+								<label for="toggle-back">Back</label> 
 
-									<a></a>
-							</div>
-
-							<div class="backup">
-
-								<label class="left-label">Copies:</label>
-								<div class="switch-toggle switch-2 switch-candy ">
-									<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
-									<label for="wallet-backup-no">One</label> 
-									
-									<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
-									<label for="wallet-backup-yes">Two</label>
-							
-									<a></a>
-								</div>
-								
-								<label class="left-label">Zoom:</label>
-								<div class="switch-toggle switch-5 switch-candy ">
-									
-									<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
-									<label for="wallet-zoom-90">0.90 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
-									<label for="wallet-zoom-95">0.95 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
-									<label for="wallet-zoom-100">1.00 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
-									<label for="wallet-zoom-105">1.05 X</label>
-									
-									<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
-									<label for="wallet-zoom-110">1.10 X</label>
-							
-									<a></a>
-								</div>
-								
-								<label class="left-label">Frame:</label>
-								<div class="switch-toggle wallet-frame switch-4 switch-candy ">
-									<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
-									<label for="wallet-frame-1">1</label> 
-									
-									<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
-									<label for="wallet-frame-2">2</label>
-									
-									<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
-									<label for="wallet-frame-3">3</label>
-									
-									<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
-									<label for="wallet-frame-4">4</label>
-							
-									<a></a>
-								</div>
-							</div>
-
-							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
-
-							<input type="button" id="print-button" class="large-button" value="Print" />
-							<br />
+								<a></a>
 						</div>
-						<div class="print-encryption round-block hide">
-							<h3>Encryption</h3>
+
+						<div class="backup">
+
+							<label class="left-label">Copies:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
+								<label for="wallet-backup-no">One</label> 
+								
+								<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
+								<label for="wallet-backup-yes">Two</label>
+						
+								<a></a>
+							</div>
 							
-							<label class="left-label">BIP38 Encryption key:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
+							<label class="left-label">Zoom:</label>
+							<div class="switch-toggle switch-5 switch-candy ">
+								
+								<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
+								<label for="wallet-zoom-90">0.90 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
+								<label for="wallet-zoom-95">0.95 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
+								<label for="wallet-zoom-100">1.00 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
+								<label for="wallet-zoom-105">1.05 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
+								<label for="wallet-zoom-110">1.10 X</label>
+						
+								<a></a>
+							</div>
 							
-							<input type="button" id="encrypt-button" class="large-button" value="Encrypt" />
-							<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" />
+							<label class="left-label">Frame:</label>
+							<div class="switch-toggle wallet-frame switch-4 switch-candy ">
+								<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
+								<label for="wallet-frame-1">1</label> 
+								
+								<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
+								<label for="wallet-frame-2">2</label>
+								
+								<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
+								<label for="wallet-frame-3">3</label>
+								
+								<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
+								<label for="wallet-frame-4">4</label>
+						
+								<a></a>
+							</div>
 						</div>
+
+						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
+
+						<input type="button" id="print-button" class="large-button" value="Print" />
+						<br />
 					</div>
-					
+					<div class="print-encryption round-block hide">
+						<h3>Encryption</h3>
+						
+						<label class="left-label">BIP38 Encryption key:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
+						
+						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" />
+						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" />
+					</div>
+				</div>
+				
+				<div class="btc coin-wallets frame-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>

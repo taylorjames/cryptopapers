@@ -592,9 +592,10 @@ function InitPage()
 		
 	$('input[name=print-face]').change(function() 
 		{
-		$('.coin-wallet').hide();
-		$('.coin-wallets').toggleClass('back');
-		$('.coin-wallet').fadeIn();
+		$('.coin-wallets').fadeOut(function() {
+			$('.coin-wallets').toggleClass('back');
+			$('.coin-wallets').fadeIn();
+			});
 		});
 		
 	$('#print-button').click(function() 
