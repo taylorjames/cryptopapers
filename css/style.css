@@ -819,6 +819,7 @@ float: right;
 padding: 15px;
 margin-bottom: 50px;
 background-color: #ddd;
+min-height: 854px;
 }
 
 .coin-wallets .coin-logo
@@ -1108,11 +1109,15 @@ a:hover, a:active, a:focus {
 #print-settings
 {
 float: left;
-width: 635px;
+width: 586px;
 }
 #print-settings .left-label
 {
 	width: 105px;
+}
+#print-settings .print-buttons
+{
+width: 100%;
 }
 
 .donate-keys
