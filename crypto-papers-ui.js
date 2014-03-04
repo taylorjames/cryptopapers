@@ -25,6 +25,7 @@ var BackgroundCategories = [
 	'bricks',
 	'camo',
 	'cash',
+	'coin',
 	'fire',
 	'flower',
 	'food',
@@ -52,6 +53,7 @@ var Backgrounds =
 	'bricks': 12,
 	'camo': 2,
 	'cash': 2,
+	'coin': 6,
 	'fire': 4,
 	'flower': 11,
 	'food': 7,
@@ -60,7 +62,7 @@ var Backgrounds =
 	'holiday': 6,
 	'love': 4,
 	'metal': 10,
-	'misc': 16,
+	'misc': 17,
 	'music': 1,
 	'paper': 2,
 	'plants': 14,
@@ -835,6 +837,7 @@ function InitPage()
 		var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
 		var ParentGrid = $(this).parents('.selector-grid');
 		var Fade = ParentGrid.attr('fade') == 'true';
+		var Scroll = ParentGrid.attr('scroll') == 'true';
 		
 		if (ParentGridWrapper.hasClass('selecting'))
 			{
@@ -850,6 +853,7 @@ function InitPage()
 				ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
 					ParentGridWrapper.removeClass('selecting');
 					ParentGrid.removeClass('selecting');
+					
 					});
 				}
 			else
@@ -859,6 +863,7 @@ function InitPage()
 					{
 					ParentGridWrapper.removeClass('selecting');
 					ParentGrid.removeClass('selecting');
+					
 					});
 				}
 			$('#private-key-input').change();
@@ -871,7 +876,21 @@ function InitPage()
 			if (Fade)
 				{
 				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').fadeIn(300);
+				ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
+					if (Scroll)
+						{
+						var Obj = $(this);
+						
+					
+						var Position = Obj.offset().top;
+						
+						Log(Position);
+						$('html, body').animate({
+							scrollTop: Position
+						}, 300);
+						Scroll = false;
+						}
+				});
 				}
 			else
 				{
@@ -879,10 +898,25 @@ function InitPage()
 			//	ParentRow.animate({ height: }, 300);
 				
 				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300);
+				ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300, function() {
+				
+					if (Scroll)
+						{
+						var Obj = $(this);
+						
+						var Position = Obj.offset().top;
+						
+						Log(Position);
+						$('html, body').animate({
+							scrollTop: Position
+						}, 300);
+						Scroll = false;
+						}
+				});
 				
 				}
 			}
+		
 		});	
 	
 	

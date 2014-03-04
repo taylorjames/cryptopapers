@@ -788,6 +788,11 @@ background-image: url('../images/wallet-backgrounds/Misc-15.jpg');
 {
 background-image: url('../images/wallet-backgrounds/Misc-16.jpg');
 }
+.misc-17 .coin-wallet,
+.selector.misc-17-design
+{
+background-image: url('../images/wallet-backgrounds/Misc-17.jpg');
+}
 
 
 
