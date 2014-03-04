@@ -67,7 +67,7 @@ var Backgrounds =
 	'rocks-sand': 6,
 	'sky': 7,
 	'stars': 3,
-	'tech': 7,
+	'tech': 3,
 	'texture': 21,
 	'tiles': 7,
 	'water': 16,

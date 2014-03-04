@@ -250,7 +250,6 @@ cursor: pointer;
  .wrapper .inner{
 	max-width:1170px;
 	margin:auto;
-	overflow:auto;
 }
 
 
@@ -1492,7 +1491,7 @@ background: #ddd;
 margin-bottom: 20px;
 border-radius: 10px;
 position: absolute;
-min-height: 110px;
+min-height: 67px;
 top: 206px;
 left: 128px;
 z-index: 10;
@@ -1520,7 +1519,8 @@ border-bottom: 2px solid;
 .design-type.selecting
 {
 top: 0px;
-left: 0px;
+left: 15px;
+padding: 10px;
 }
 
 .design-label
@@ -1535,13 +1535,13 @@ background: none;
 
 .design.selector
 {
-width: 100px;
-height: 100px;
+width: 207px;
+height: 67px;
 border-radius: 10px;
 float: left;
-margin:5px;
+margin: 5px;
 display: none;
-background-size: 310%;
+background-size: 100%;
 }
 .design.selector.active
 {
