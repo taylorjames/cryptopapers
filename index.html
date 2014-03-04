@@ -53,7 +53,10 @@
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/foundation.css" />
 	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
+	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
+	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
+	<link rel="stylesheet" type="text/css" href="css/style-backgrounds.css" />
 </head>
 <body class="">
 <script type="text/javascript">
@@ -74,6 +77,40 @@ $().ready(function ()
 <div id="header" class="wrapper no-print">
 	<div class="inner">
 		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		
+		<div class="coin-type selector-grid no-print" rowheight="140px">
+			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+				<div class="coin-grid-row selector-grid-row">
+					<div class="coin selector ltc-coin" data="ltc"><em>Litecoin</em></div>
+					<div class="coin selector nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
+					<div class="coin selector nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
+					<div class="coin selector nmc-coin" data="nmc"><em>Namecoin</em></div>
+					<div class="coin selector btc-coin active" data="btc"><em>Bitcoin</em></div>
+				</div>
+				<div class="coin-grid-row selector-grid-row">
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+				</div>
+				<div class="coin-grid-row selector-grid-row">
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+				</div>
+				<div class="coin-grid-row selector-grid-row">
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+				</div>
+			</div>
+		</div>
+		
 		<div id="main-menu" class="menu no-print">
 			<ul>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
@@ -96,6 +133,7 @@ $().ready(function ()
 
 			<a></a>
 		</div>
+		
 	</div>
 </div>
 
@@ -343,38 +381,6 @@ $().ready(function ()
 				<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
 				<a></a>
 				
-				<div class="coin-type selector-grid no-print" rowheight="150px">
-					<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-						<div class="coin-grid-row selector-grid-row">
-							<div class="coin selector ltc-coin" data="ltc"><em>Litecoin</em></div>
-							<div class="coin selector nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
-							<div class="coin selector nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
-							<div class="coin selector nmc-coin" data="nmc"><em>Namecoin</em></div>
-							<div class="coin selector btc-coin active" data="btc"><em>Bitcoin</em></div>
-						</div>
-						<div class="coin-grid-row selector-grid-row">
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-						</div>
-						<div class="coin-grid-row selector-grid-row">
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-						</div>
-						<div class="coin-grid-row selector-grid-row">
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-							<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-						</div>
-					</div>
-				</div>
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
 				<div class="key-import round-block">
@@ -518,23 +524,19 @@ $().ready(function ()
 						</div>
 						
 						<label class="left-label design-label">Design:</label>
-						<div class="design-type selector-grid" rowheight="110px">
+						<div class="design-type selector-grid" fade="true" rowheight="110px">
 							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-								<div class="design-grid-row selector-grid-row">
-									<div class="design selector fractal fractal-1-design active" data="fractal-1"></div>
-									<div class="design selector fractal fractal-2-design" data="fractal-2"></div>
-									<div class="design selector fractal fractal-3-design" data="fractal-3"></div>
-									<div class="design selector fractal fractal-4-design" data="fractal-4"></div>
-								</div>
-								<div class="design-grid-row selector-grid-row">
-									<div class="design selector fractal fractal-5-design" data="fractal-5"></div>
-									<div class="design selector fractal fractal-6-design" data="fractal-6"></div>
-									<div class="design selector fractal fractal-7-design" data="fractal-7"></div>
-									<div class="design selector fractal fractal-8-design" data="fractal-8"></div>
-								</div>
+								<!-- Dynamically filled -->
 							</div>
 						</div>
-
+						
+						<!--
+						<label class="left-label design-label">Custom:</label>
+						<div class="design-type-custom" >
+							<input type="file" id="custom-design">
+						</div>
+						-->
+						
 						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
 
 						<input type="button" id="print-button" class="large-button right" value="Print" />

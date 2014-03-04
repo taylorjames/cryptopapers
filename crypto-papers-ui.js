@@ -16,6 +16,74 @@ var Security_PrinterHistory = false;
 var Security_GenerateImport = false;
 var Security_ManualVerify = false;
 
+var AllBGs = undefined;
+
+var DefaultBG = 'fractal-1';
+
+var BackgroundCategories = [
+	'abstract',
+	'bricks',
+	'camo',
+	'cash',
+	'fire',
+	'flower',
+	'food',
+	'fractal',
+	'glass',
+	'holiday',
+	'love',
+	'metal',
+	'misc',
+	'music',
+	'paper',
+	'plants',
+	'rocks-sand',
+	'sky',
+	'stars',
+	'tech',
+	'texture',
+	'tiles',
+	'water',
+	'wood'];
+	
+var Backgrounds = 
+	{	
+	'abstract': 54,
+	'bricks': 12,
+	'camo': 2,
+	'cash': 2,
+	'fire': 4,
+	'flower': 11,
+	'food': 7,
+	'fractal': 13,
+	'glass': 2,
+	'holiday': 6,
+	'love': 4,
+	'metal': 10,
+	'misc': 16,
+	'music': 1,
+	'paper': 2,
+	'plants': 14,
+	'rocks-sand': 6,
+	'sky': 7,
+	'stars': 3,
+	'tech': 7,
+	'texture': 21,
+	'tiles': 7,
+	'water': 16,
+	'wood': 20
+	}
+
+function BGString(Category, Number)
+	{	
+	var Out = "";
+	for (var i = 0; i < Number; i++)
+	{ 
+	Out += Category + "-" + (i+1) + " ";
+	}
+	
+	return Out;	
+	}
 function TestEnvironment()
 	{
 	Security_IsOnline = navigator.onLine;
@@ -505,6 +573,8 @@ function GenerateAddress(display)
 	
 function InitPage()
 	{
+	AddBackgrounds();
+	
 	$('body').mousemove(function(ev) {
 		sr.mouse_move(ev);
 		
@@ -703,8 +773,10 @@ function InitPage()
 		
 	$('input[name=wallet-frame]').change(function() {
 	
-		$('.coin-wallets').removeClass('frame-1').removeClass('frame-2').removeClass('frame-3').removeClass('frame-4');
+		$('.coin-wallets').removeClass(BGString('frame', 4));
+		
 		var val = $('input[name=wallet-frame]:checked').val();
+		
 		$('.coin-wallets').addClass(val);
 	});
 		
@@ -731,12 +803,30 @@ function InitPage()
 		
 	});
 	
+	$('.coin.selector').mouseup(function() {	
+	});
+	
 	$('.design.selector').click(function() {
-		$('.coin-wallets').removeClass('fractal-1').removeClass('fractal-2').removeClass('fractal-3').removeClass('fractal-4')
-		.removeClass('fractal-5').removeClass('fractal-6').removeClass('fractal-7').removeClass('fractal-8');
+		
+		$('.coin-wallets').removeClass(AllBGs);
 		
 		$('.coin-wallets').addClass($(this).attr('data'));
 	})
+	$('#custom-design').change(function(evt) {
+		Log(evt);
+		Log(evt.target);
+		Log(evt.target.files);
+		Log(evt.target.files[0]);
+		
+		var fr = new FileReader();
+		var	filecontent = fr.readAsArrayBuffer(evt.target.files[0]);
+		var binary = window.btoa(filecontent);
+		
+		Log(filecontent);
+		Log(binary);
+		
+	//	$('.coin-wallet').css('background-image', 'url("' + '' + '")');
+	});
 	
 
 	$('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
@@ -744,6 +834,7 @@ function InitPage()
 		var ParentRow = $(this).parents('.selector-grid-row');
 		var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
 		var ParentGrid = $(this).parents('.selector-grid');
+		var Fade = ParentGrid.attr('fade') == 'true';
 		
 		if (ParentGridWrapper.hasClass('selecting'))
 			{
@@ -753,21 +844,44 @@ function InitPage()
 			$(this).parent().addClass('active');
 			$(this).addClass('active');
 			
-			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
-			ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+			if (Fade)
 				{
-				ParentGridWrapper.removeClass('selecting');
-				});
-			
+				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+				ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
+					ParentGridWrapper.removeClass('selecting');
+					ParentGrid.removeClass('selecting');
+					});
+				}
+			else
+				{
+				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+				ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+					{
+					ParentGridWrapper.removeClass('selecting');
+					ParentGrid.removeClass('selecting');
+					});
+				}
 			$('#private-key-input').change();
 			}
 		else
 			{
+			ParentGrid.addClass('selecting');
 			ParentGridWrapper.addClass('selecting');
 			
-			ParentRow.animate({ height: ParentGrid.attr('rowheight')}, 300);
+			if (Fade)
+				{
+				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
+				ParentGridWrapper.find('.selector:not(.active)').fadeIn(300);
+				}
+			else
+				{
 			
-			ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300);
+			//	ParentRow.animate({ height: }, 300);
+				
+				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
+				ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300);
+				
+				}
 			}
 		});	
 	
@@ -782,6 +896,8 @@ function InitPage()
 	
 	TestEnvironment();
 	
+	
+	
 	if (!Security_IsOnline)
 		{
 		$('#lights-off').click();
@@ -790,4 +906,54 @@ function InitPage()
 		{
 		$('#lights-on').click();
 		}
+		
+	setTimeout(function()
+		{
+		AllBGs = '';
+		
+		for (var i = 0; i < BackgroundCategories.length; i++)
+			{
+			AllBGs += BGString(BackgroundCategories[i], Backgrounds[BackgroundCategories[i]]); 
+			}
+		
+		AllBGs = AllBGs.substr(0, AllBGs.length-1);
+		}, 100);
+	}
+
+function AddBackgrounds()
+	{
+	var cols = 9;
+	var designs = '';
+	
+	for (var i = 0; i < BackgroundCategories.length; i++)
+		{
+		var Category = BackgroundCategories[i];
+		
+		designs += '<div class="design-grid-row selector-grid-row">';
+		
+			
+		designs += '<div class="design-grid-row-header ' + Category + '">' + Category + '</div>';
+			
+		var CategoryCount = Backgrounds[BackgroundCategories[i]];
+		
+		for (var j = 0; j < CategoryCount; j++)
+			{
+			var BGString = Category + '-' + (j+1);
+			
+			var Active = (BGString == DefaultBG) ? ' active' : '';
+			
+			designs += '<div class="design selector ' + BGString + '-design' + Active+ '" data=' + BGString + '></div>';
+			
+			if (j != 0 && j % 10 == 0 && j < CategoryCount)
+				{
+				designs += '</div>';
+				designs += '<div class="design-grid-row selector-grid-row">';
+				}
+			}
+		
+		
+		designs += '</div>';
+		}
+	
+	$('.designs-grid-wrapper').html(designs);
 	}
