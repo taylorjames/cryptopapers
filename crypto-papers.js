@@ -79,7 +79,6 @@ var CoinTypes = new Array();
 
 for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	{
-	Log(CoinInfo[Object.keys(CoinInfo)[i]].name);
 	CoinTypes[i] = CoinInfo[Object.keys(CoinInfo)[i]].name;
 	AllCoinTypes += CoinInfo[Object.keys(CoinInfo)[i]].name;
 	

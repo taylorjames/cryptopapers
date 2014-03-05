@@ -497,6 +497,41 @@ content: 'Auroracoin';
 content: 'Mastercoin';
 }
 
+.coin-wallet-write-area
+{
+display: none;
+height: 200px;
+width: 331px;
+background: white;
+top: 44px;
+position: relative;
+left: 703px;
+border-radius: 13px;
+opacity: 0.86;
+text-align: center;
+}
+
+.frame-4 .coin-wallet-write-area {
+	float: left;
+	left: 483px;
+}
+.back .coin-wallet-write-area
+{
+display: block;
+}
+.coin-wallet-write-area h1
+{
+font-size: 30px;
+margin-bottom: 0px;
+font-weight: bold;
+}
+.coin-wallet-write-area h2
+{
+font-size: 15px;
+font-weight: bold;
+float: left;
+width: 50%;
+}
 
 .coin.disabled {
 	-webkit-filter: grayscale(100%);
@@ -977,7 +1012,8 @@ margin-top: 0px;
 {
 	color: white;
 	background-color: rgba(0,0,0,0.7);
-	padding: 5px;
+	padding: 7px;
+	border-radius: 25px;
 }
 .coin-wallets.back .coin-logo
 {
