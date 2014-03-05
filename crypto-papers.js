@@ -1,7 +1,33 @@
 
+var OverrideAddressPrefix = undefined;
+	
+function GetAddressPrefixHex(CoinType)
+	{
+	if (OverrideAddressPrefix != undefined)
+		return OverrideAddressPrefix;
+		
+	if (CoinType == 'btc')
+		return '00';
+	if (CoinType == 'msc')
+		return '00';
+	if (CoinType == 'xpm')
+		return '17';
+	if (CoinType == 'aur')
+		return '17';
+	if (CoinType == 'ltc')
+		return '30';
+	if (CoinType == 'nmc')
+		return '34';
+	if (CoinType == 'ppc')
+		return '37';
+	
+	if (CoinType == 'doge')
+		return '1E';
+	}
+	
 function GetDefaultCompress(CoinType)
 	{
-	if (CoinType == 'nmc' || CoinType == 'ppc')
+	if (CoinType == 'nmc' || CoinType == 'ppc' || CoinType == 'doge')
 		return false;
 	else
 		return true;
@@ -19,6 +45,37 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	var payload = res[1];
 	var Compressed = (payload.length > 32);
 	return Compressed;
+	}
+	
+
+//Log(FigureOutCoinPrefix('', ''));
+
+function FigureOutCoinPrefix(PrivateKeyWIF, Address)
+	{
+	var Out = '';
+	
+	for (var i = 0; i < 256; i++)
+		{
+		var Prefix = (i).toString(16);
+		
+		if (Prefix.length == 1)
+			Prefix = "0" + Prefix;
+			
+		OverrideAddressPrefix = Prefix;
+		
+		var TestAddress = GetAddressFromKeyWIF('btc', PrivateKeyWIF, false);
+		var TestAddress2 = GetAddressFromKeyWIF('btc', PrivateKeyWIF, true);
+		
+		OverrideAddressPrefix = undefined;
+		
+		if (TestAddress == Address || TestAddress2 == Address)
+			{
+			Out += 'Coin Version Prefix (HEX): ' + Prefix + (TestAddress2 == Address ? ' Compressed' : '') + '\r\n';
+			return Out;
+			}
+		}
+	
+	return Out;
 	}
 	
 function ParseBase58PrivateKey(PrivateKeyHex)
@@ -95,6 +152,19 @@ function GetPublicKeyBytes(PrivateKeyBytes, Compressed)
 	return PublicKeyBytes;
 	}
 	
+
+
+function GetAddressFromKeyWIF(CoinType, PrivateKeyWIF, Compressed)
+	{
+	return GetAddressFromKeyHex(CoinType, PrivateKeyWIFToHex(PrivateKeyWIF), Compressed);
+	}
+
+	
+function GetAddressFromKeyHex(CoinType, PrivateKeyHex, Compressed)
+	{
+	return GetAddressFromKey(CoinType, Crypto.util.hexToBytes(PrivateKeyHex), Compressed);
+	}
+	
 function GetAddressFromKey(CoinType, PrivateKeyBytes, Compressed)
 	{
 	var PublicKeyHex = GetPublicKey(PrivateKeyBytes, Compressed);
@@ -145,21 +215,16 @@ function GetCheckSum(KeyHashBytes)
 	return DoubleSHA.substr(0, 8);
 	}
 	
-function GetAddressPrefixHex(CoinType)
-	{
-	if (CoinType == 'btc')
-		return '00';
-	if (CoinType == 'ltc')
-		return '30';
-	if (CoinType == 'nmc')
-		return '34';
-	if (CoinType == 'ppc')
-		return '37';
-	}
-	
 function GetVersionHex(CoinType)
 	{
-	return '80';
+	//The private key prefix byte is always public key version plus 128
+	
+	var AddressPrefix = GetAddressPrefixHex(CoinType);
+	
+	var AddressPrefixInt = parseInt('0x' + AddressPrefix);
+	AddressPrefixInt += 128;
+	
+	return AddressPrefixInt.toString(16);
 	}
 	
 function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)

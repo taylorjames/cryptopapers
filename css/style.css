@@ -458,6 +458,45 @@ content: 'NEM';
 content: 'Peercoin';
 }
 
+.coin-wallets.doge .coin-logo,
+.coin.doge-coin{
+	background-image:url('../images/coin-icons/doge-logo.png');
+}
+.doge .coin-name:after
+{
+content: 'Dogecoin';
+}
+
+
+.coin-wallets.xpm .coin-logo,
+.coin.xpm-coin{
+	background-image:url('../images/coin-icons/xpm-logo.png');
+}
+.xpm .coin-name:after
+{
+content: 'Primecoin';
+}
+
+
+.coin-wallets.aur .coin-logo,
+.coin.aur-coin{
+	background-image:url('../images/coin-icons/aur-logo.png');
+}
+.aur .coin-name:after
+{
+content: 'Auroracoin';
+}
+
+
+.coin-wallets.msc .coin-logo,
+.coin.msc-coin{
+	background-image:url('../images/coin-icons/msc-logo.png');
+}
+.msc .coin-name:after
+{
+content: 'Mastercoin';
+}
+
 
 .coin.disabled {
 	-webkit-filter: grayscale(100%);
@@ -1449,7 +1488,7 @@ left: 410px;
 	margin-top: 10px;
 	background: #aaaaaa;
 	border-radius: 5px;
-	max-width: 520px;
+	max-width: 586px;
 	padding: 5px;
 	margin-left: 5px;
 }

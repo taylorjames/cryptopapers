@@ -555,7 +555,7 @@ function GenerateAddress(display)
 			$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
 			}	
 			
-		$('.coin-wallets').removeClass('btc').removeClass('ltc').removeClass('nmc').removeClass('ppc').removeClass('nxt');
+		$('.coin-wallets').removeClass('btc ltc nmc ppc nxt nem doge xpm aur');
 		$('.coin-wallets').addClass(CoinType);
 
 		$('.coin-wallet-address').html(Address);
@@ -953,6 +953,9 @@ function InitPage()
     $( "#hue-slider" ).slider({
 		min: -180,
 		max: 180,
+		// Which is better?
+		//min: 0,
+		//max: 360,
 		value: 0,
 		step: 10,
 		slide: function( event, ui ) {
