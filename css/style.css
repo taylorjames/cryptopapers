@@ -54,7 +54,8 @@
 	li,
 	a,
 	.coin-type,
-	.left-label
+	.left-label,
+	.preload
 	{
 		display: none !important;
 	}
@@ -80,16 +81,31 @@
 	{
 		background-color: white !important;
 	}
+	.coin-setup-print,
+	.coin-setup,
+	.wrapper,
+	form,
+	body
+	{
+		margin: 0px !important;
+		padding: 0px !important;
+	}
 	.coin-wallets
 	{
+		float: left !important;
 		background-color: white !important;
 		zoom: 1.00 !important;
 		height: auto !important;
-		border: none;
+		border: none !important;
 		max-width: auto !important;
 		padding: 0px !important;
-		margin-bottom: 0px  !important;
+		margin-bottom: 0px !important;
 		background-color: none !important;
+		margin-top:  0px !important;
+	}
+	.coin-wallets.back
+	{
+		float: right !important;
 	}
 	.coin-wallet.zoom-90
 	{
@@ -175,6 +191,20 @@ font-weight: bold;
 	background:url('../images/dark-pattern.png');
 	border-bottom:2px solid #000;
 	border-top:2px solid #000;
+	overflow: visible;
+	position: relative;
+	height: 119px;
+	overflow-y: visible;
+	margin-bottom: 23px;
+}
+#header .inner
+{
+	position: relative;
+	overflow-y: visible;
+	overflow: visible;
+	height: 117px;
+	padding-right: 165px;
+	margin-bottom: 53px;
 }
 
 .switch-toggle.theme
@@ -194,7 +224,7 @@ font-weight: bold;
 
 .section.security .left-label
 {
-	width: 630px;
+	width: 600px;
 	text-align: left;
 	height: 50px;
 }
@@ -214,24 +244,25 @@ cursor: pointer;
 }
 
 #page.wrapper .inner{
+	min-height: 600px;
 }
 
  .wrapper .inner{
-	max-width:1220px;
+	max-width:1170px;
 	margin:auto;
-	overflow:auto;
 }
 
 
 
 .coin-type
 {
-	margin-bottom: 10px;
-	background-color: #eee;
-	display: block;
-	float: left;
-	position:absolute;
-	z-index:100000;
+
+background-color: #eee;
+z-index: 100000;
+min-height: 140px;
+min-width: 100px;
+position: absolute;
+right: 50px;
 }
 
 #coin-key{
@@ -247,29 +278,58 @@ cursor: pointer;
 	margin: 3px;
 	background-color: #eeeeee;
 }
-
-.coins-grid-wrapper{
-	height:auto;
-	overflow:auto;
-	border-radius:10px;
+.selector-grid-wrapper
+{
 	z-index:10000;
-	max-width: 660px;
+	max-width: 1102px;
 }
-.coin-grid-row{
+.selector-grid-row{
 	display: block;
 	width: 100%;
 	height: 0px;
 	
 	background-color: #eee;
 }
-.coins-grid-wrapper.selecting .coin-grid-row{
-	height: 140px
+
+.coin-type .selector-grid-wrapper.selecting .selector-grid-row{
+	height: 140px;
 }
 
+.coins-grid-wrapper{
+	height:auto;
+	overflow:visible;
+	border-radius:10px;
+}
+.coin-grid-row{
+
+}
+.coins-grid-wrapper.selecting .coin-grid-row{
+	height: 140px;
+}
+
+.design-grid-wrapper .design
+{
+	display:none;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	float:left;
+	padding:115px 0px 0px 0px;
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+
+	border:1px solid #fff;
+}
 .coins-grid-wrapper .coin{
 	display:none;
-	width:120px;
-	height:140px;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	float:left;
@@ -283,11 +343,11 @@ cursor: pointer;
 	border:1px solid #fff;
 }
 
-.coins-grid-wrapper .coin.active{
+.selector-grid-wrapper .selector.active{
 	display: block;
 }
 	
-.coins-grid-wrapper.selecting .coin{
+.selector-grid-wrapper.selecting .selector{
 	display: block;
 	background-color:#fff;
 	z-index: 1000;
@@ -315,6 +375,7 @@ cursor: pointer;
 	display: inline-block;
 	text-align: center;
 	border-radius: 5px;
+	height: 25px;
 }
 .coins-grid-wrapper .coin:hover, 
 .coins-grid-wrapper .coin.active{
@@ -413,7 +474,7 @@ content: 'Peercoin';
 	height: 0px;
 	font-weight: bolder;
 	text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
-	font-size: 15px;
+	font-size: 13px;
 }
 
 label.left-label {
@@ -435,7 +496,7 @@ label.left-label {
 .random-info .left-label
 {	
 	margin-top: 10px;
-	width: 161px;
+	width: 146px;
 	padding: 5px;
 }
 .random-info .rng-keep-collecting
@@ -727,7 +788,6 @@ input[type=button]
 ul#coin-setup-menu.menu{
 	width: 100%;
 	display: block;
-	overflow: auto;
 	background: transparent;
 	float: left;
 }
@@ -763,7 +823,6 @@ ul#coin-setup-menu li.active{
 
 #lights{
 	margin-top:45px;
-	margin-right:100px;
 }
 
 .coin-wallet
@@ -810,6 +869,11 @@ input#compress-decompress-button{
 	margin-left:10px;
 }
 
+#coin-setup-menu
+{
+position: relative;
+overflow: visible;
+}
 .coin-wallets
 {
 zoom: 50%;
@@ -820,6 +884,7 @@ padding: 15px;
 margin-bottom: 50px;
 background-color: #ddd;
 min-height: 854px;
+margin-top: 0px;
 }
 
 .coin-wallets .coin-logo
@@ -862,14 +927,14 @@ min-height: 854px;
 	top: 40px;
 	z-index: 3;
 }
-
 .coin-wallet-1
 {
+
 }
 
 .coin-wallet-2
 {
-	margin-top: 100px;
+	margin-top: 90px;
 }
 
 .coin-wallet-left
@@ -952,7 +1017,7 @@ min-height: 854px;
 
 .back .coin-wallet-2
 {
-	margin-top: 95px;
+	margin-top: 90px;
 }
 
 .back .coin-wallet-left, 
@@ -961,49 +1026,47 @@ min-height: 854px;
 	display: none;
 } 
 
-.coin-wallet
-{
-background-image: url('../images/PNG/Fractal2.png');
-}
+
+
 
 .frame-1 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame1.png');
+	background-image: url('../images/wallet-frames/Frame1.png');
 }
 
 .frame-1.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame1_Back.png');
+	background-image: url('../images/wallet-frames/Frame1_Back.png');
 }
 
 .frame-2 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame2.png');
+	background-image: url('../images/wallet-frames/Frame2.png');
 }
 
 .frame-2.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame2_Back.png');
+	background-image: url('../images/wallet-frames/Frame2_Back.png');
 }
 
 .frame-3 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame3.png');
+	background-image: url('../images/wallet-frames/Frame3.png');
 }
 
 .frame-3.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame3_Back.png');
+	background-image: url('../images/wallet-frames/Frame3_Back.png');
 }
 
 .frame-4 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame4.png');
+	background-image: url('../images/wallet-frames/Frame4.png');
 }
 
 .frame-4.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/PNG/Frame4_Back.png');
+	background-image: url('../images/wallet-frames/Frame4_Back.png');
 }
 
 .frame-4 .coin-wallet-right
@@ -1110,6 +1173,7 @@ a:hover, a:active, a:focus {
 {
 float: left;
 width: 586px;
+position: relative;
 }
 #print-settings .left-label
 {
@@ -1118,6 +1182,7 @@ width: 586px;
 #print-settings .print-buttons
 {
 width: 100%;
+padding-right: 10px;
 }
 
 .donate-keys
@@ -1166,137 +1231,6 @@ width: 100%;
 	text-align: center;
 	font-size: 37px;
 	padding-top: 20px;
-}
-
-body.dark-theme 
-{
-}
-body.dark-theme
-{
-	background-color: black;
-}
-body.dark-theme .round-block
-{
-	border-color: #555555;
-	background-color: #3b3b3b;
-	color: white;
-    box-shadow: 0 5px 5px rgba(255, 255, 255, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-	
-}
-body.dark-theme h3,
-body.dark-theme h4
-{
-	color: white;
-	text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
-}
-body.dark-theme .menu
-{
-	color: #dddddd;
-}
-body.dark-theme .menu li
-{
-	color: #dddddd;
-	border-color: #DADADA;
-}
-body.dark-theme .coin-type
-{
-	background-color: #444444;
-}
-body.dark-theme .coin-type .coin
-{
-	background-color: #333333;
-	border-color: #555555;
-}
-body.dark-theme .coin-type .coin em
-{
-	background-color: #222222;
-	border-radius: 5px;
-}
-body.dark-theme .coin-grid-row
-{
-	background-color: #444444;
-}
-body.dark-theme .donate-reminder
-{
-	border-color: #555555;
-	background-color: #444444;
-	color: #ffffff;
-}
-body.dark-theme .section.donate .coin .donate-address
-{
-	border-color: #555555;
-	background-color: #555555;
-	color: #ffffff;
-}
-body.dark-theme .menu ul li.disabled
-{
-	color: #888888;
-	background-color: #333333;
-}
-body.dark-theme input[type=text],
-body.dark-theme textarea
-{
-	background-color: #666666;
-	border-color: #888888;
-	color: white;
-}
-body.dark-theme input[type=text].reaconly,
-body.dark-theme textarea.reaconly
-{
-}
-body.dark-theme label
-{
-	color: white;
-}
-body.dark-theme label.left-label
-{
-	background-color: #555555;
-	border-color: #888888;
-	color: white;
-}
-body.dark-theme .trust-items .trust-item
-{
-	background-color: #555555;
-	border-color: #888888;
-}
-body.dark-theme .trust-items .trust-item em
-{
-background-color: #666666;
-}
-body.dark-theme .security-risks .risk
-{
-	color: #dddddd;
-	background-color: #333333;
-	border-color: #888888;
-}
-body.dark-theme  .security-risks .risk:after
-{
-	background-color: #666666;	
-}
-body.dark-theme .security-risks .risk.at-risk:after
-{
-	background-color: #AD0000;
-}
-body.dark-theme .security-risks  .risk-category
-{
-	background-color: #222222;
-	border-color: #888888;
-}
-body.dark-theme .security-risks .risk.safe .risk-status:after
-{
-	background-color: #00AD00;
-}
-body.dark-theme .security-risks .risk-fix
-{
-	background: #444444;
-}
-body.dark-theme ul#coin-setup-menu li
-{
-	color: white;
-}
-body.dark-theme ul#coin-setup-menu li.disabled
-{
-	color: #333;
 }
 
 .trust-items
@@ -1438,7 +1372,7 @@ left: 410px;
 .security-risks .risk
 {
 	font-size: 14px;
-	width: 728px;
+	width: 706px;
 	color: #333333;
 	height: 85px;
 	border: 1px solid;
@@ -1547,4 +1481,73 @@ color: #AD0000;
 .security-test .disabled
 {
 color: #00AD00;
+}
+
+.design-type
+{
+display: block;
+float: left;
+background: #ddd;
+margin-bottom: 20px;
+border-radius: 10px;
+position: absolute;
+min-height: 67px;
+top: 206px;
+left: 128px;
+z-index: 10;
+margin-right: -700px;
+}
+.design-grid-row-header
+{
+display:none;
+
+}
+.selecting .design-grid-row-header
+{
+display: block;
+text-transform: capitalize;
+font-size: 24px;
+margin-left: 7px;
+margin-top: 10px;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+width: 98%;
+height: 28px;
+float: left;
+clear: right;
+border-bottom: 2px solid;
+}
+.design-type.selecting
+{
+top: 0px;
+left: 15px;
+padding: 10px;
+}
+
+.design-label
+{
+margin-bottom: 93px;
+}
+
+.design-type .selector-grid-row
+{
+background: none;
+}
+
+.design.selector
+{
+width: 207px;
+height: 67px;
+border-radius: 10px;
+float: left;
+margin: 5px;
+display: none;
+background-size: 100%;
+}
+.design.selector.active
+{
+border: 5px solid;
+}
+.design.selector.fractal
+{
+	background-position-x: 100px;
 }
