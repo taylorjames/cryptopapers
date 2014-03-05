@@ -8,7 +8,8 @@
 	
 	<link rel="shortcut icon" href="images/logo_shield.ico" type="image/x-icon">	
 
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
 	
 	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
@@ -50,13 +51,16 @@
 	<script type="text/javascript" src="crypto-papers-ui.js"></script>
 
 	
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/foundation.css" />
 	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
+	<!--
 	<link rel="stylesheet" type="text/css" href="css/style-backgrounds.css" />
+	-->
 </head>
 <body class="">
 <script type="text/javascript">
@@ -88,24 +92,6 @@ $().ready(function ()
 					<div class="coin selector btc-coin active" data="btc"><em>Bitcoin</em></div>
 				</div>
 				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-				</div>
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-				</div>
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
 					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
 				</div>
 			</div>
@@ -530,6 +516,16 @@ $().ready(function ()
 							</div>
 						</div>
 						
+						<label class="left-label design-label">Color Shift:</label>
+						<!--
+						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+						-->
+						<span class="hue-shift-amount">0&deg;</span>
+						
+						<div id="hue-slider"></div>
+						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+						
 						<!--
 						<label class="left-label design-label">Custom:</label>
 						<div class="design-type-custom" >
@@ -554,6 +550,7 @@ $().ready(function ()
 				
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
+						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
@@ -571,6 +568,7 @@ $().ready(function ()
 						</div>
 					</div>
 					<div class="coin-wallet coin-wallet-2 zoom-100">
+						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>

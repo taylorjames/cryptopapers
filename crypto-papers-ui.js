@@ -49,7 +49,7 @@ var BackgroundCategories = [
 	
 var Backgrounds = 
 	{	
-	'abstract': 54,
+	'abstract': 53,
 	'bricks': 12,
 	'camo': 2,
 	'cash': 2,
@@ -57,7 +57,7 @@ var Backgrounds =
 	'fire': 4,
 	'flower': 11,
 	'food': 7,
-	'fractal': 13,
+	'fractal': 5,
 	'glass': 2,
 	'holiday': 6,
 	'love': 4,
@@ -809,11 +809,19 @@ function InitPage()
 	});
 	
 	$('.design.selector').click(function() {
+		$('.hue-shift-reset').click();
+		});
 		
-		$('.coin-wallets').removeClass(AllBGs);
+	$('.design.selector:not(.active)').click(function() {
 		
-		$('.coin-wallets').addClass($(this).attr('data'));
-	})
+		if ($(this).hasClass('active'))
+			return;
+			
+		SetDesign($(this).attr('data'));
+		
+		
+	});
+	
 	$('#custom-design').change(function(evt) {
 		Log(evt);
 		Log(evt.target);
@@ -918,7 +926,40 @@ function InitPage()
 			}
 		
 		});	
+	/*
+	$('.hue-shift-up').click(function () {
+		HueShift += HueShiftChange;
+		
+		if (HueShift > 180)
+			HueShift -= 360;
+			
+		ApplyHueShift();		
+	});
+	$('.hue-shift-down').click(function () {
+		HueShift -= HueShiftChange;
+		
+		if (HueShift < -180)
+			HueShift += 360;
+		
+		ApplyHueShift();
+	});	
+	*/
+	$('.hue-shift-reset').click(function () {
+		HueShift = 0;
+		$( "#hue-slider" ).slider('value',0);
+		ApplyHueShift();
+	});	
 	
+    $( "#hue-slider" ).slider({
+		min: -180,
+		max: 180,
+		value: 0,
+		step: 10,
+		slide: function( event, ui ) {
+			HueShift = ui.value;
+			ApplyHueShift();	
+		}
+		});
 	
 	// Show the active page, hide the others
 	var section = $('.menu li.active').attr('section');
@@ -928,9 +969,7 @@ function InitPage()
 	$('.sub-section').hide();
 	$('.sub-section.' + subsection).show();
 	
-	TestEnvironment();
-	
-	
+	TestEnvironment();	
 	
 	if (!Security_IsOnline)
 		{
@@ -940,6 +979,8 @@ function InitPage()
 		{
 		$('#lights-on').click();
 		}
+		
+	SetDesign(DefaultBG);
 		
 	setTimeout(function()
 		{
@@ -953,10 +994,36 @@ function InitPage()
 		AllBGs = AllBGs.substr(0, AllBGs.length-1);
 		}, 100);
 	}
+	
+var HueShift = 0;
+var HueShiftChange = 5;
+
+function SetDesign(Design)
+	{
+	setTimeout(function() {		
+		$('.coin-wallet').fadeOut(300, function() {
+			$('.coin-wallets').removeClass(AllBGs);
+			
+			$('.coin-wallets').addClass(Design);
+			
+			$('.coin-wallet .coin-wallet-background').attr('src', 'images/wallet-backgrounds/' + Design + '.jpg');
+			
+			$('.coin-wallet').fadeIn(300);
+			});
+		}, 500);
+	}
+function ApplyHueShift()
+	{
+	Log(HueShift);
+	
+	$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
+	$('.coin-wallet-background').css('filter', 'hue-rotate(' + HueShift + 'deg)');
+	$('.coin-wallet-background').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
+	}
 
 function AddBackgrounds()
 	{
-	var cols = 9;
+	var cols = 5;
 	var designs = '';
 	
 	for (var i = 0; i < BackgroundCategories.length; i++)
@@ -976,7 +1043,9 @@ function AddBackgrounds()
 			
 			var Active = (BGString == DefaultBG) ? ' active' : '';
 			
-			designs += '<div class="design selector ' + BGString + '-design' + Active+ '" data=' + BGString + '></div>';
+			designs += '<div class="design selector ' + BGString + '-design' + Active+ '" data=' + BGString + '>';
+			designs += '<img class="coin-wallet-background" src="images/wallet-backgrounds/' + BGString + '.jpg" />';
+			designs += '</div>';
 			
 			if (j != 0 && j % 10 == 0 && j < CategoryCount)
 				{
