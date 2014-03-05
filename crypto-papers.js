@@ -1,36 +1,105 @@
 
+
+var CoinInfo = {
+	'btc': {
+		name: 'btc',
+		fullname: 'Bitcoin',
+		addressversion: '00',
+		defaultcompress: true
+		},
+	'ltc': {
+		name: 'ltc',
+		fullname: 'Litecoin',
+		addressversion: '30',
+		defaultcompress: true
+	
+		},
+	'nmc': {
+		name: 'nmc',
+		fullname: 'Namecoin',
+		addressversion: '34',
+		defaultcompress: false
+	
+		},
+	'ppc': {
+		name: 'ppc',
+		fullname: 'Peercoin',
+		addressversion: '37',
+		defaultcompress: false
+	
+		},
+	'nxt': {
+		name: 'nxt',
+		fullname: 'NXT',
+		addressversion: '',
+		defaultcompress: true
+	
+		}, 
+	'nem': {
+		name: 'nem',
+		fullname: 'NEM',
+		addressversion: '',
+		defaultcompress: true
+	
+		}, 
+	'doge': {
+		name: 'doge',
+		fullname: 'Dogecoin',
+		addressversion: '1E',
+		defaultcompress: false
+	
+		},
+	'xpm': {
+		name: 'xpm',
+		fullname: 'Primecoin',
+		addressversion: '17',
+		defaultcompress: true
+	
+		},
+	'aur': {
+		name: 'aur',
+		fullname: 'Auroracoin',
+		addressversion: '17',
+		defaultcompress: true
+	
+		},
+	'msc': {
+		name: 'msc',
+		fullname: 'Bitcoin',
+		addressversion: '00',
+		defaultcompress: true
+		}
+	};
+
+
+	
+var AllCoinTypes = '';
+
+var CoinTypes = new Array();
+
+for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
+	{
+	Log(CoinInfo[Object.keys(CoinInfo)[i]].name);
+	CoinTypes[i] = CoinInfo[Object.keys(CoinInfo)[i]].name;
+	AllCoinTypes += CoinInfo[Object.keys(CoinInfo)[i]].name;
+	
+	if (i < Object.keys(CoinInfo).length - 1)
+		AllCoinTypes += ' ';
+	}
+
 var OverrideAddressPrefix = undefined;
 	
 function GetAddressPrefixHex(CoinType)
 	{
 	if (OverrideAddressPrefix != undefined)
 		return OverrideAddressPrefix;
-		
-	if (CoinType == 'btc')
-		return '00';
-	if (CoinType == 'msc')
-		return '00';
-	if (CoinType == 'xpm')
-		return '17';
-	if (CoinType == 'aur')
-		return '17';
-	if (CoinType == 'ltc')
-		return '30';
-	if (CoinType == 'nmc')
-		return '34';
-	if (CoinType == 'ppc')
-		return '37';
 	
-	if (CoinType == 'doge')
-		return '1E';
+	return CoinInfo[CoinType].addressversion;
 	}
 	
 function GetDefaultCompress(CoinType)
 	{
-	if (CoinType == 'nmc' || CoinType == 'ppc' || CoinType == 'doge')
-		return false;
-	else
-		return true;
+	return CoinInfo[CoinType].defaultcompress;	
 	}
 function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	{

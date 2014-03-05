@@ -555,7 +555,7 @@ function GenerateAddress(display)
 			$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
 			}	
 			
-		$('.coin-wallets').removeClass('btc ltc nmc ppc nxt nem doge xpm aur');
+		$('.coin-wallets').removeClass(AllCoinTypes);
 		$('.coin-wallets').addClass(CoinType);
 
 		$('.coin-wallet-address').html(Address);
