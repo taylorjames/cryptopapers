@@ -8,7 +8,8 @@
 	
 	<link rel="shortcut icon" href="images/logo_shield.ico" type="image/x-icon">	
 
-	<script type="text/javascript" src="js/jquery.js"></script>
+	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
 	
 	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
@@ -50,13 +51,16 @@
 	<script type="text/javascript" src="crypto-papers-ui.js"></script>
 
 	
+	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 	<link rel="stylesheet" type="text/css" href="css/foundation.css" />
 	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
+	<!--
 	<link rel="stylesheet" type="text/css" href="css/style-backgrounds.css" />
+	-->
 </head>
 <body class="">
 <script type="text/javascript">
@@ -89,24 +93,10 @@ $().ready(function ()
 				</div>
 				<div class="coin-grid-row selector-grid-row">
 					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-				</div>
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-				</div>
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
+					<div class="coin selector doge-coin" data="doge"><em>Dogecoin</em></div>
+					<div class="coin selector xpm-coin" data="xpm"><em>Primecoin</em></div>
+					<div class="coin selector aur-coin" data="aur"><em>Auroracoin</em></div>
+					<div class="coin selector msc-coin" data="msc"><em>Mastercoin</em></div>
 				</div>
 			</div>
 		</div>
@@ -267,7 +257,6 @@ $().ready(function ()
 
 					<a></a>
 				</div>
-				
 			</div>
 			<div class="security-risks round-block">
 				<h3>Risks - Detailed</h3>
@@ -343,7 +332,12 @@ $().ready(function ()
 				</div>
 				<div class="risk-category">
 					<h3>This Tool</h3>
-					<h4>*If this tool were malicious</h4>
+					<h4>
+					If this tool were malicious, or if you downloaded it from an unsafe source<br />
+					</h4>
+					<h5>
+					<b>(Only download this tool through <a target="_blank" href="http://CryptoPapers.com">CryptoPapers.com</a>)</b>
+					</h5>
 					<div class="risk at-risk" id="risk-this-tool-online">
 						<div class="risk-status"></div>
 						<div class="risk-details">RNG pools or private keys could be broadcasted to an external server.</div>
@@ -366,6 +360,10 @@ $().ready(function ()
 					</div>
 				</div>
 				
+				<div class="risk-contact-us">
+					If you believe there's a security risk has not been taken into consideration here, please let us know at:
+					<a href="mailto:info@CryptoPapers.com">info@CryptoPapers.com</a>
+				</div>
 			</div>
 		</div>
 		<div class="section coin-setup">
@@ -530,6 +528,16 @@ $().ready(function ()
 							</div>
 						</div>
 						
+						<label class="left-label design-label">Color Shift:</label>
+						<!--
+						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+						-->
+						<span class="hue-shift-amount">0&deg;</span>
+						
+						<div id="hue-slider"></div>
+						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+						
 						<!--
 						<label class="left-label design-label">Custom:</label>
 						<div class="design-type-custom" >
@@ -554,6 +562,7 @@ $().ready(function ()
 				
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
+						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
@@ -568,9 +577,15 @@ $().ready(function ()
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>
+							<div class="coin-wallet-write-area">
+								<h1>CryptoPapers.com</h1>
+								<h2>Amount</h2>
+								<h2>To</h2>
+							</div>
 						</div>
 					</div>
 					<div class="coin-wallet coin-wallet-2 zoom-100">
+						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
@@ -585,6 +600,11 @@ $().ready(function ()
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>		
+							<div class="coin-wallet-write-area">
+								<h1>CryptoPapers.com</h1>
+								<h2>Amount</h2>
+								<h2>To</h2>
+							</div>
 						</div>
 					</div>
 				</div>
