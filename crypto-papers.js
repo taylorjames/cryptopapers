@@ -116,7 +116,7 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	}
 	
 
-//Log(FigureOutCoinPrefix('', ''));
+// Log(FigureOutCoinPrefix('', ''));
 
 function FigureOutCoinPrefix(PrivateKeyWIF, Address)
 	{
@@ -367,11 +367,142 @@ function PrivateKeyWIFToHex(PrivateKeyWIF)
 	
 /* NXT Address Generation - Convert from Java to JavaScript
 
+//12237344381764262326
+Log(GetNXTAccountIdFromSecret('a'));
+
+
+function StringToUnicodeBytes(str)
+	{
+	var bytes = [];
+
+	for (var i = 0; i < str.length; ++i)
+		{
+		bytes.push(str.charCodeAt(i));
+		}
+
+	return bytes;
+	}
+	
+function StringToUTF8Bytes(str)
+	{
+	var utf8 = [];
+	for (var i=0; i < str.length; i++)
+		{
+		var charcode = str.charCodeAt(i);
+		if (charcode < 0x80) utf8.push(charcode);
+		else if (charcode < 0x800)
+			{
+			utf8.push(0xc0 | (charcode >> 6), 
+					  0x80 | (charcode & 0x3f));
+			}
+		else if (charcode < 0xd800 || charcode >= 0xe000)
+			{
+			utf8.push(0xe0 | (charcode >> 12), 
+					  0x80 | ((charcode>>6) & 0x3f), 
+					  0x80 | (charcode & 0x3f));
+			}
+		// surrogate pair
+		else
+			{
+			i++;
+			// UTF-16 encodes 0x10000-0x10FFFF by
+			// subtracting 0x10000 and splitting the
+			// 20 bits of 0x0-0xFFFFF into two halves
+			charcode = 0x10000 + (((charcode & 0x3ff)<<10)
+					  | (str.charCodeAt(i) & 0x3ff))
+			utf8.push(0xf0 | (charcode >>18), 
+					  0x80 | ((charcode>>12) & 0x3f), 
+					  0x80 | ((charcode>>6) & 0x3f), 
+					  0x80 | (charcode & 0x3f));
+			}
+		}
+	return utf8;
+	}
+	
+function stringToUint(string) {
+	charList = string.split('');
+	uintArray = [];
+for (var i = 0; i < charList.length; i++) {
+	uintArray.push(charList[i].charCodeAt(0));
+}
+	Log(uintArray);
+return new Uint8Array(uintArray);
+}
+
+function GetNXTAccountIdFromSecret(NXTSecretPhrase)
+	{
+	var PublicKeyBytes = GetNXTPublicKey(NXTSecretPhrase);
+	
+	return GetNXTAccountId(PublicKeyBytes)
+	}
+	
+function UByteShift(Bytes)
+	{
+	var BytesOut = [];
+
+	for (var i = 0; i < Bytes.length; i++)
+		{
+		var a = Bytes[i];
+		
+		if (a >= 128)
+			a -= 256;
+			
+		BytesOut.push(a);
+		}
+
+	return BytesOut;	
+	}
+	
+function GetNXTPublicKey(NXTSecretPhrase)
+	{
+	var SecretBytes = StringToUTF8Bytes(NXTSecretPhrase)
+	
+	var shaObj = new jsSHA(NXTSecretPhrase, "ASCII");
+	var test = bi2bytes(hex2bi(shaObj.getHash("SHA-256", "HEX")), 32).reverse();
+	  
+	Log(test);
+	Log(UByteShift(test));
+	
+	var SHABytes = Crypto.SHA256(SecretBytes, { asBytes: true });
+	var SHABytesShift = UByteShift(SHABytes);
+	
+	var Curve = curve25519(bi(Crypto.util.bytesToHex(SHABytesShift)));
+	var PublicKey = ed25519_publickey(Curve);
+	var PublicKeyShift = UByteShift(PublicKey);
+	
+	Log(NXTSecretPhrase);
+	Log(SecretBytes);
+	Log(SHABytes);
+	Log(SHABytesShift);
+	Log(Curve);
+	Log('pk ' + PublicKey);
+	Log('pkshift ' + PublicKeyShift);
+	
+	return PublicKeyShift;
+	}
+function GetNXTAccountId(PublicKeyBytes)
+	{		
+	var publicKeyHash = Crypto.SHA256(Crypto.util.bytesToHex(PublicKeyBytes), {asBytes: true});
+	Log(publicKeyHash);
+	var publicKeyHashReverse = [ publicKeyHash[7], 
+		publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], 
+		publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], 
+		publicKeyHash[0]];
+	Log(publicKeyHashReverse);
+	
+	var bigInteger = bi(publicKeyHashReverse);
+	
+	return bigInteger.longValue();
+	}
+
+*/
+
+/*
 // Find Curve25519 JavaScript implementation
 
-function GetNXTPublicKey(NXTSecretPhrase)
+static byte[] GetNXTPublicKey(NXTSecretPhrase)
 	{		
-	var PublicKey = new byte[32];
+	byte[] PublicKey = new byte[32];
 	Curve25519.keygen(publicKey, null, MessageDigest.getInstance("SHA-256").digest(secretPhrase.getBytes("UTF-8")));
 	
 	return publicKey;

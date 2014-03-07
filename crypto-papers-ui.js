@@ -775,11 +775,14 @@ function InitPage()
 		
 	$('input[name=wallet-frame]').change(function() {
 	
-		$('.coin-wallets').removeClass(BGString('frame', 4));
+		$('.coin-wallets').removeClass(BGString('frame', 5));
 		
 		var val = $('input[name=wallet-frame]:checked').val();
 		
 		$('.coin-wallets').addClass(val);
+		
+		$('.frame-5 .coin-wallet-address').lettering();
+		$('.frame-5 .coin-wallet-private-key').lettering();
 	});
 		
 	$('.generate-button').click(function() {
@@ -803,6 +806,9 @@ function InitPage()
 			setTimeout(GenerateVanity, 100);
 			}
 		
+		
+		$('.frame-5 .coin-wallet-address').lettering();
+		$('.frame-5 .coin-wallet-private-key').lettering();
 	});
 	
 	$('.coin.selector').mouseup(function() {	

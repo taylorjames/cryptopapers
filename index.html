@@ -10,6 +10,7 @@
 
 	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
+	<script type="text/javascript" src="js/jquery.lettering.js"></script>
 	
 	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
@@ -18,6 +19,11 @@
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
 
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/sha256.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha_dev.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha1.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha256.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha512.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/ripemd160.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/jsbn/prng4.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/jsbn/rng.js"></script>
@@ -47,8 +53,11 @@
 	
 	<script type="text/javascript" src="js/prng4.js"></script>
 	
+	<script type="text/javascript" src="js/ed25519.js"></script>
+	
 	<script type="text/javascript" src="crypto-papers.js"></script>
 	<script type="text/javascript" src="crypto-papers-ui.js"></script>
+	
 
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
@@ -505,7 +514,7 @@ $().ready(function ()
 						</div>
 						
 						<label class="left-label">Frame:</label>
-						<div class="switch-toggle wallet-frame switch-4 switch-candy ">
+						<div class="switch-toggle wallet-frame switch-5 switch-candy ">
 							<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
 							<label for="wallet-frame-1">1</label> 
 							
@@ -517,6 +526,9 @@ $().ready(function ()
 							
 							<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
 							<label for="wallet-frame-4">4</label>
+							
+							<input type="radio" name="wallet-frame" value="frame-5" id="wallet-frame-5" autocomplete="off"  />
+							<label for="wallet-frame-5">5</label>
 					
 							<a></a>
 						</div>
