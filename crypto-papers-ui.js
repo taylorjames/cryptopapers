@@ -21,7 +21,7 @@ var AllBGs = undefined;
 
 var DefaultCoin = 'btc';
 var DefaultBG = 'fractal-1';
-var DefaultFrame = 'Frame-1';
+var DefaultFrame = 'Frame-3';
 
 var BackgroundCategories = [
 	'abstract',

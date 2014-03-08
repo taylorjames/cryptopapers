@@ -527,7 +527,17 @@ content: 'Mintcoin';
 content: 'Counterparty';
 }
 
-
+.coin-type .coin
+{
+float: right;
+}
+.copyright
+{
+top: 93px;
+color: white;
+position: relative;
+left: -259px;
+}
 .coin-wallet-write-area
 {
 display: none;

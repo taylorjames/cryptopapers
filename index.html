@@ -1,5 +1,34 @@
 <!DOCTYPE HTML>
 
+<!--
+
+Copyright 2014 CryptoPapers
+
+This script written by CryptoPapers but some portions, namely the Random Number Generator and entropy collection, 
+were helped and inspired by:
+
+http://bitcoinpaperwallet.com by Canton Becker
+Donate: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
+
+and
+
+http://bitaddress.org by pointbiz
+Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
+
+
+Javascript libraries used:
+
+jquery-2.1.0																									http://code.jquery.com/jquery-2.1.0.js
+jquery-ui-1.10.4			For hue-shift slider													http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
+jquery.lettering				For text rotations on circular wallets							https://github.com/davatron5000/Lettering.js
+jquery-animate-auto		Custom script - animateAuto function for smooth visual effects
+crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
+bitcoinjs-lib					Bticoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
+jquery-qrcode				Generating QR codes													https://github.com/lrsjng/jQuery.qrcode
+prng4							Pseudorandom generator, entropy modified from 		http://bitcoinpaperwallet.com 		
+ed25519						Curve25519 implementation for NXT addresses			[find address]
+-->
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -19,11 +48,6 @@
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
 
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/sha256.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha_dev.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha1.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha256.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha512.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/crypto-js/ripemd160.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/jsbn/prng4.js"></script>
 	<script type="text/javascript" src="js/bitcoin-js/jsbn/rng.js"></script>
@@ -53,12 +77,17 @@
 	
 	<script type="text/javascript" src="js/prng4.js"></script>
 	
+	<!--
 	<script type="text/javascript" src="js/ed25519.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha_dev.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha1.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha256.js"></script>
+	<script type="text/javascript" src="js/jsSHA/sha512.js"></script>
+	-->
 	
 	<script type="text/javascript" src="crypto-papers.js"></script>
 	<script type="text/javascript" src="crypto-papers-ui.js"></script>
-	
-
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -67,21 +96,12 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
-	<!--
-	<link rel="stylesheet" type="text/css" href="css/style-backgrounds.css" />
-	-->
 </head>
 <body class="">
 <script type="text/javascript">
-
-// Disable all browsers from remembering input status
-$('input').attr('autocomplete', 'off');
 	
 $().ready(function () 
 	{
-	// Disable all browsers from remembering input status
-	$('input').attr('autocomplete', 'off');
-	
 	InitPage();
 	});
 
@@ -89,7 +109,9 @@ $().ready(function ()
 
 <div id="header" class="wrapper no-print">
 	<div class="inner">
+		
 		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		<span class="copyright">&copy; 2014</span>
 		
 		<div class="coin-type selector-grid no-print" rowheight="140px">
 			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
