@@ -19,6 +19,7 @@ var Security_ManualVerify = false;
 
 var AllBGs = undefined;
 
+var DefaultCoin = 'btc';
 var DefaultBG = 'fractal-1';
 var DefaultFrame = 'Frame-1';
 
@@ -524,6 +525,8 @@ function GenerateAddress(display)
 	
 	var CoinType = $('div.coin.active').attr('data');
 	
+	if (!CoinType)
+		return;
 	//if (display)
 	//	Log("Coin Type: " + CoinType);
 	
@@ -651,6 +654,8 @@ function GenerateAddress(display)
 	
 function InitPage()
 	{
+	AddDropdownCoins();
+	AddDonateCoins();
 	AddFrames();
 	AddBackgrounds();
 	
@@ -742,6 +747,8 @@ function InitPage()
 
 		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
 		$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+		
+		SetLettering();
 		});
 		
 	$('input[name=print-face]').change(function() 
@@ -1146,6 +1153,59 @@ function ApplyHueShift()
 	$('.coin-wallet-background').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
 	}
 
+function AddDropdownCoins()
+	{
+	var cols = 5;
+	var coins = '';
+	
+	for (var i = 0; i < Object.keys(CoinInfo).length; i++)
+		{
+		var CoinAbbreviation = CoinInfo[Object.keys(CoinInfo)[i]].name;
+		var CoinFullName = CoinInfo[Object.keys(CoinInfo)[i]].fullName;
+		var Enabled = CoinInfo[Object.keys(CoinInfo)[i]].enabled;
+		
+		var Disabled = (Enabled ? '' : ' disabled');
+		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
+		var Active = (CoinAbbreviation == DefaultCoin ? ' active' : '');
+		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:right;"' : '');
+		
+		
+		if (i == 0)
+			coins += '<div class="coin-grid-row selector-grid-row">';
+			
+		coins += '<div class="coin selector ' + CoinAbbreviation + '-coin' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' 
+		+ ComingSoon + '<em>' + CoinFullName + '</em></div>';
+				
+		if (i ==4 || i ==9 || i == 14 || i == 19)
+			{
+			coins += '</div>';
+			coins += '<div class="coin-grid-row selector-grid-row">';
+			}
+			
+		}
+			coins += '</div>';
+	
+	$('.coins-grid-wrapper').html(coins);
+	}
+	
+function AddDonateCoins()
+	{
+	var donate = '';
+	
+	for (var i = 0; i < Object.keys(CoinInfo).length; i++)
+		{
+		var CoinAbbreviation= CoinInfo[Object.keys(CoinInfo)[i]].name;
+				
+		donate += '<div class="donate-key">';
+		donate += '<div class="coin ' + CoinAbbreviation + '-coin">';
+		donate += '<div class="donate-address">' + CoinInfo[Object.keys(CoinInfo)[i]].donateAddress + '</div>';
+		donate += '</div>';				
+		donate += '</div>';
+		}
+	
+	$('.donate-coins-auto').html(donate);
+	}
+	
 function AddFrames()
 	{
 	var cols = 10;

@@ -3,71 +3,107 @@
 var CoinInfo = {
 	'btc': {
 		name: 'btc',
-		fullname: 'Bitcoin',
-		addressversion: '00',
-		defaultcompress: true
+		fullName: 'Bitcoin',
+		addressVersion: '00',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
 		},
 	'ltc': {
 		name: 'ltc',
-		fullname: 'Litecoin',
-		addressversion: '30',
-		defaultcompress: true
-	
-		},
-	'nmc': {
-		name: 'nmc',
-		fullname: 'Namecoin',
-		addressversion: '34',
-		defaultcompress: false
-	
+		fullName: 'Litecoin',
+		addressVersion: '30',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true	
 		},
 	'ppc': {
 		name: 'ppc',
-		fullname: 'Peercoin',
-		addressversion: '37',
-		defaultcompress: false
-	
+		fullName: 'Peercoin',
+		addressVersion: '37',
+		defaultCompress: false,
+		donateAddress: '',
+		enabled: true
+		},
+	'doge': {
+		name: 'doge',
+		fullName: 'Dogecoin',
+		addressVersion: '1E',
+		defaultCompress: false,
+		donateAddress: '',
+		enabled: true
+		},
+	'nmc': {
+		name: 'nmc',
+		fullName: 'Namecoin',
+		addressVersion: '34',
+		defaultCompress: false,
+		donateAddress: '',
+		enabled: true
 		},
 	'nxt': {
 		name: 'nxt',
-		fullname: 'NXT',
-		addressversion: '',
-		defaultcompress: true
-	
+		fullName: 'NXT',
+		addressVersion: '',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: false
 		}, 
 	'nem': {
 		name: 'nem',
-		fullname: 'NEM',
-		addressversion: '',
-		defaultcompress: true
-	
+		fullName: 'NEM',
+		addressVersion: '',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: false
 		}, 
-	'doge': {
-		name: 'doge',
-		fullname: 'Dogecoin',
-		addressversion: '1E',
-		defaultcompress: false
-	
+	'msc': {
+		name: 'msc',
+		fullName: 'Mastercoin',
+		addressVersion: '00',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
 		},
 	'xpm': {
 		name: 'xpm',
-		fullname: 'Primecoin',
-		addressversion: '17',
-		defaultcompress: true
-	
+		fullName: 'Primecoin',
+		addressVersion: '17',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
 		},
 	'aur': {
 		name: 'aur',
-		fullname: 'Auroracoin',
-		addressversion: '17',
-		defaultcompress: true
-	
+		fullName: 'Auroracoin',
+		addressVersion: '17',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
 		},
-	'msc': {
-		name: 'msc',
-		fullname: 'Bitcoin',
-		addressversion: '00',
-		defaultcompress: true
+	'vtc': {
+		name: 'vtc',
+		fullName: 'Vertcoin',
+		addressVersion: '47',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
+		},
+	'mint': {
+		name: 'mint',
+		fullName: 'Mintcoin',
+		addressVersion: '33',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
+		},
+	'xcp': {
+		name: 'xcp',
+		fullName: 'Counterparty',
+		addressVersion: '00',
+		defaultCompress: true,
+		donateAddress: '',
+		enabled: true
 		}
 	};
 
@@ -93,12 +129,12 @@ function GetAddressPrefixHex(CoinType)
 	if (OverrideAddressPrefix != undefined)
 		return OverrideAddressPrefix;
 	
-	return CoinInfo[CoinType].addressversion;
+	return CoinInfo[CoinType].addressVersion;
 	}
 	
 function GetDefaultCompress(CoinType)
 	{
-	return CoinInfo[CoinType].defaultcompress;	
+	return CoinInfo[CoinType].defaultCompress;	
 	}
 function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	{
@@ -116,7 +152,7 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	}
 	
 
-// Log(FigureOutCoinPrefix('', ''));
+//Log(FigureOutCoinPrefix('', ''));
 
 function FigureOutCoinPrefix(PrivateKeyWIF, Address)
 	{

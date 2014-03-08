@@ -160,3 +160,8 @@ body.dark-theme .selecting .frame-grid-row-header:hover
 {
 background-color: #444;
 }
+
+body.dark-theme .frame-instructions .frame-difficulty
+{
+	background: #222;
+}

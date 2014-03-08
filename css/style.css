@@ -499,6 +499,35 @@ content: 'Auroracoin';
 content: 'Mastercoin';
 }
 
+
+.coin-wallets.vtc .coin-logo,
+.coin.vtc-coin{
+	background-image:url('../images/coin-icons/vtc-logo.png');
+}
+.vtc .coin-name:after
+{
+content: 'Vertcoin';
+}
+
+.coin-wallets.mint .coin-logo,
+.coin.mint-coin{
+	background-image:url('../images/coin-icons/mint-logo.png');
+}
+.mint .coin-name:after
+{
+content: 'Mintcoin';
+}
+
+.coin-wallets.xcp .coin-logo,
+.coin.xcp-coin{
+	background-image:url('../images/coin-icons/xcp-logo.png');
+}
+.xcp .coin-name:after
+{
+content: 'Counterparty';
+}
+
+
 .coin-wallet-write-area
 {
 display: none;
