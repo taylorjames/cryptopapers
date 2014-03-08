@@ -1,6 +1,7 @@
 
 var Default_Compress = undefined;
-var AutoGenerateWhenEntropyPoolFills = false;
+var WhenEntropyPoolFills_AutoGenerateKeys = true;
+var WhenEntropyPoolFills_GoToPrint = true;
 var HasPrivateKey = false;
 var Vanity = '';
 var VanityCaseSensitive = true;
@@ -53,29 +54,72 @@ var WalletFrames = 6;
 
 var Frames = 
 	{
-	frame1: {
+	'Frame-1': {
 		Name: 'Coin Wallet',
-		Creator: 'CryptoPapers'
+		Creator: 'CryptoPapers',
+		Difficulty: 'Advanced',
+		Description: 'This stylish paper wallet folds into the shape of a coin!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address on the front and the large coin logo on the back display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the wallet.</li>' + 
+			'</ol>'
 	},
-	frame2: {
+	'Frame-2': {
 		Name: 'Coin Wallet Booklet',
-		Creator: 'CryptoPapers'
+		Creator: 'CryptoPapers',
+		Difficulty: 'Advanced',
+		Description: 'This wallet folds into a circular wallet booklet, with plenty of room for writing.',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address and large coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Using tape or holographic stickers, tape together the last three sections of the wallet, keeping the private key secure while allowing wallet to unfold to display written notes.</li>' + 
+			'</ol>'
 	},
-	frame3: {
+	'Frame-3': {
 		Name: 'Coin Slip',
-		Creator: 'CryptoPapers'
+		Creator: 'CryptoPapers',
+		Difficulty: 'Intermediate',
+		Description: 'This wallet is part slip, part coin!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address and large coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'</ol>'
 	},
-	frame4: {
+	'Frame-4': {
 		Name: 'Standard Wallet V2',
-		Creator: 'CryptoPapers'
+		Creator: 'CryptoPapers',
+		Difficulty: 'Intermediate',
+		Description: 'Simple yet attractive twist on the classic wallet.',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the vertical dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Fold the remaining flaps downward, fully enclosing the private key.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'</ol>'
 	},
-	frame5: {
-		Name: 'bitcoinpaperwallet.com Variation',
-		Creator: 'Canton Becker bitcoinpaperwallet.com [donate]'
+	'Frame-5': {
+		Name: 'BitcoinPaperWallet.com Variation',
+		Creator: 'Canton Becker',
+		Difficulty: 'Beginner',
+		Description: 'Donate BTC: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'</ol>'
 	},
-	frame6: {
+	'Frame-6': {
 		Name: 'Standard Wallet',
-		Creator: 'Whoever invented the rectangle'
+		Creator: 'Whoever invented the rectangle',
+		Difficulty: 'Beginner',
+		Description: 'This wallet frame is great if you hate cutting things out!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'</ol>'
 	}
 	};
 	
@@ -635,9 +679,14 @@ function InitPage()
 			{
 			$('.generate-button').removeAttr('disabled').addClass('enabled');
 
-			if (AutoGenerateWhenEntropyPoolFills)
+			if (WhenEntropyPoolFills_AutoGenerateKeys)
 				{
 				$('#private-key-generate').click();
+				
+				if (WhenEntropyPoolFills_GoToPrint)
+					{
+					$('#coin-setup-menu #print').click();
+					}
 				}
 			}
 	});
@@ -1074,6 +1123,12 @@ function SetFrame(Frame)
 	$('.coin-wallets').removeClass(BGString('frame', Object.keys(Frames).length));
 
 	$('.coin-wallets').addClass(Frame.toLowerCase());
+	
+	$('.frame-instructions .frame-name').html(Frames[Frame].Name);
+	$('.frame-instructions .frame-creator').html(Frames[Frame].Creator);
+	$('.frame-instructions .frame-description').html(Frames[Frame].Description);
+	$('.frame-instructions .frame-difficulty').html(Frames[Frame].Difficulty);
+	$('.frame-instructions .frame-detail-instructions').html(Frames[Frame].Instructions);
 	}
 	
 function SetLettering()

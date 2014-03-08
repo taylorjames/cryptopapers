@@ -142,7 +142,21 @@ body.dark-theme  .design-type
 {
 	background: #333;
 }
-body.dark-theme  .design-type .design
+body.dark-theme .design-type .design
 {
 	border-color: #ccc;
+}
+
+body.dark-theme .frame-instructions .frame-description
+{
+	background-color: #222;
+}
+body.dark-theme .frame-type, 
+body.dark-theme .design-type
+{
+	background-color: #222;
+}
+body.dark-theme .selecting .frame-grid-row-header:hover
+{
+background-color: #444;
 }

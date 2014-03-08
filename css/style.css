@@ -993,15 +993,21 @@ overflow: visible;
 }
 .coin-wallets
 {
-zoom: 100%;
+zoom: 65%;
 border: 1px dashed;
 border-radius: 16px;
-float: right;
+float: left;
 padding: 15px;
 margin-bottom: 50px;
 background-color: #ddd;
 min-height: 854px;
 margin-top: 0px;
+}
+.frame-instructions
+{
+float: right;
+width: 36%;
+padding: 10px;
 }
 
 .coin-wallets .coin-logo
@@ -1310,7 +1316,7 @@ position: absolute;
 }
 .frame-1.back .coin-logo {
 display: block;
-left: 44px;
+left: 331px;
 }
 
 .frame-2 .coin-wallet-write-area {
@@ -1586,6 +1592,7 @@ position: relative;
 width: 49%;
 float: left;
 padding-right: 10px;
+height: 304px;
 }
 #print-settings .print-buttons
 {
@@ -2001,6 +2008,7 @@ background-size: 100%;
 {
 background-color: black;
 float: right;
+border-radius: 10px;
 }
 .design.selector
 {
@@ -2011,3 +2019,60 @@ float: right;
 {
 	background-position-x: 100px;
 }
+
+.frame-instructions .frame-name
+{
+	font-size: 22px;
+	text-decoration: underline;
+	margin-bottom: 24px;
+}
+.frame-instructions .frame-creator:before
+{
+	font-size: 18px;
+	content: 'Created By: ';
+	font-style: italic;
+	font-weight: normal;
+}
+.frame-instructions .frame-creator
+{
+	font-size: 18px;
+	font-style: italic;
+	font-weight: bold;
+}
+.frame-instructions .frame-description
+{
+	font-size: 15px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	background-color: #ddd;
+	border-radius: 5px;
+	padding: 10px;
+}
+.frame-instructions .frame-detail-instructions:before
+{
+	content: 'How to make this wallet: ';
+}
+
+.frame-instructions .frame-difficulty:before
+{
+	content: 'Difficulty: ';
+}
+.frame-instructions .frame-difficulty
+{
+	margin: 5px;
+	float: right;
+	background: #ccc;
+	padding: 5px;
+	border-radius: 5px;
+}
+
+.frame-instructions .frame-detail-instructions
+{
+	font-size: 15px;
+}
+
+.frame-instructions .frame-detail-instructions ol
+{
+	margin-top: 10px;
+}
+
