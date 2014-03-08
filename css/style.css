@@ -351,6 +351,9 @@ right: 50px;
 	background-color:#fff;
 	z-index: 1000;
 }
+.selector-grid-wrapper.selecting .frame.selector{
+	background-color:black;
+}
 
 .current-coin{
 	display:block;
@@ -730,7 +733,14 @@ input[type=button]
 {
 	margin-top: 30px;
 }
-
+.round-block.print-appearance
+{
+float: right;
+width: 48%;
+position: relative;
+overflow: visible;
+padding-bottom: 10px;
+}
 .key-details,
 .print-buttons
 {
@@ -968,6 +978,7 @@ ul#coin-setup-menu li.active{
 {
 	float: left;
 	clear: both;
+	margin-top: 10px;
 }
 
 input#compress-decompress-button{
@@ -982,7 +993,7 @@ overflow: visible;
 }
 .coin-wallets
 {
-zoom: 50%;
+zoom: 100%;
 border: 1px dashed;
 border-radius: 16px;
 float: right;
@@ -1105,8 +1116,8 @@ margin-top: 0px;
 .hue-shift-amount
 {
 	position: absolute;
-	top: 300px;
-	left: 279px;
+	top: 221px;
+	left: 270px;
 }
 .hue-shift-reset
 {
@@ -1152,127 +1163,176 @@ margin-left: 20px !important;
 
 .frame-1 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame1.png');
+	background-image: url('../images/wallet-frames/Frame-1.png');
 }
 
 .frame-1.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame1_Back.png');
+	background-image: url('../images/wallet-frames/Frame-1-Back.png');
 }
 
 .frame-2 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame2.png');
+	background-image: url('../images/wallet-frames/Frame-2.png');
 }
 
 .frame-2.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame2_Back.png');
+	background-image: url('../images/wallet-frames/Frame-2-Back.png');
 }
 
 .frame-3 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame3.png');
+	background-image: url('../images/wallet-frames/Frame-3.png');
 }
 
 .frame-3.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame3_Back.png');
+	background-image: url('../images/wallet-frames/Frame-3Back.png');
 }
 
 .frame-4 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame4.png');
+	background-image: url('../images/wallet-frames/Frame-4.png');
 }
 
 .frame-4.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame4_Back.png');
+	background-image: url('../images/wallet-frames/Frame-4-Back.png');
 }
 
 .frame-5 .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame5.png');
+	background-image: url('../images/wallet-frames/Frame-5.png');
 }
 
 .frame-5.back .coin-wallet .wallet-frame
 {
-	background-image: url('../images/wallet-frames/Frame5_Back.png');
+	background-image: url('../images/wallet-frames/Frame-5-Back.png');
 }
 
-.frame-5 .coin-wallet-left {
+.frame-6 .coin-wallet .wallet-frame
+{
+	background-image: url('../images/wallet-frames/Frame-6.png');
 }
-.frame-5 .coin-wallet-right {
+
+.frame-6.back .coin-wallet .wallet-frame
+{
+	background-image: url('../images/wallet-frames/Frame-6-Back.png');
+}
+
+.frame-2 .coin-wallet-left
+{
+}
+.frame-2 .coin-wallet-right
+{
 margin-right: 293px;
 }
 
 
-.frame-5 .coin-wallet-address-qr{
+.frame-2 .coin-wallet-address-qr
+{
 margin-left: 88px;
 }
-.frame-5 .coin-wallet-address{
+.frame-1 .coin-wallet-address,
+.frame-2 .coin-wallet-address
+{
 background: none;
 }
-.frame-5 .coin-wallet-private-key{
+.frame-1 .coin-wallet-private-key,
+.frame-2 .coin-wallet-private-key
+{
 background: none;
 }
-.frame-5 .coin-wallet-address span{
-	font: 16px Monaco, MonoSpace;
-	height: 135px;
+.frame-1 .coin-wallet-address span,
+.frame-2 .coin-wallet-address span
+{
+	font: 16px;
+	height: 131px;
 	position: absolute;
 	width: 20px;
 	left: 158px;
-	top: 35px;
+	top: 38px;
 	transform-origin: bottom center;
 	-webkit-transform-origin: bottom center;
 	text-shadow: 4px 1px 4px rgba(0,0,0,0.5);
 	font-weight: bold;
 }
-.frame-5 .coin-wallet-private-key span{
-	font: 10px Monaco, MonoSpace;
-	height: 113px;
+.frame-1 .coin-wallet-private-key span,
+.frame-2 .coin-wallet-private-key span
+{
+	font: 14px;
+	height: 109px;
 	position: absolute;
 	width: 20px;
 	left: 659px;
-	top: 54px;
+	top: 58px;
 	transform-origin: bottom center;
 	-webkit-transform-origin: bottom center;
 	text-shadow: 4px 1px 4px rgba(0,0,0,0.5);
 	font-weight: bold;
 }
-.frame-5 .coin-wallet-private-key-qr canvas{
+.frame-1 .coin-wallet-private-key span{
+left: 406px;
+}
+.frame-1 .coin-wallet-private-key-qr canvas,
+.frame-2 .coin-wallet-private-key-qr canvas{
 padding: 7px;
 border-radius: 10px;
 background-color: white;
 }
+.frame-1 .coin-wallet-address-qr {
+margin-left: 87px;
+}
 
-.frame-5 .coin-logo {
+.frame-2 .coin-logo {
 left: 807px;
 background-size: 100%;
 width: 235px;
 height: 235px;
 top: 57px;
 }
-.frame-5.back .coin-logo {
+.frame-1 .coin-logo {
+display: none;
+}
+.frame-1.back .coin-logo,
+.frame-2.back .coin-logo {
 left: 807px;
 background-size: 100%;
 width: 235px;
 height: 235px;
 top: 57px;
 }
-.frame-5 .coin-logo:after {
+.frame-2 .coin-logo:after {
 top: 5px;
 left: -683px;
 position: absolute;
 }
+.frame-1.back .coin-logo {
+display: block;
+left: 44px;
+}
 
-.frame-5 .coin-wallet-write-area {
+.frame-2 .coin-wallet-write-area {
 top: 18px;
 left: 534px;
 border-radius: 120px;
 width: 231px;
 height: 233px;
 }
+.frame-1 .coin-wallet-write-area{
+display: none;
+}
+
+
+.frame-1 .coin-wallet-left {
+width: 242px;
+}
+.frame-1 .coin-wallet-right {
+margin-right: 551px;
+}
+
+
 .coin-wallet-write-area h1{
 }
 
@@ -1354,40 +1414,68 @@ height: 233px;
 .bottom .char38 { transform: rotate(275deg);-webkit-transform: rotate(275deg); }
 .bottom .char39 { transform: rotate(280deg);-webkit-transform: rotate(280deg); }
 
-.frame-5 .coin-wallet-private-key.bottom .char1 { transform: rotate(40deg); -webkit-transform: rotate(40deg); }
-.frame-5 .coin-wallet-private-key.bottom .char2 { transform: rotate(45deg); -webkit-transform: rotate(45deg); }
-.frame-5 .coin-wallet-private-key.bottom .char3 { transform: rotate(50deg); -webkit-transform: rotate(50deg); }
-.frame-5 .coin-wallet-private-key.bottom .char4 { transform: rotate(55deg); -webkit-transform: rotate(55deg); }
-.frame-5 .coin-wallet-private-key.bottom .char5 { transform: rotate(60deg); -webkit-transform: rotate(60deg); }
-.frame-5 .coin-wallet-private-key.bottom .char6 { transform: rotate(65deg); -webkit-transform: rotate(65deg); }
-.frame-5 .coin-wallet-private-key.bottom .char7 { transform: rotate(70deg); -webkit-transform: rotate(70deg); }
-.frame-5 .coin-wallet-private-key.bottom .char8 { transform: rotate(75deg); -webkit-transform: rotate(75deg); }
-.frame-5 .coin-wallet-private-key.bottom .char9 { transform: rotate(80deg); -webkit-transform: rotate(80deg); }
-.frame-5 .coin-wallet-private-key.bottom .char10 { transform: rotate(85deg); -webkit-transform: rotate(85deg); }
-.frame-5 .coin-wallet-private-key.bottom .char11{ transform: rotate(90deg); -webkit-transform: rotate(90deg); }
-.frame-5 .coin-wallet-private-key.bottom .char12 { transform: rotate(95deg); -webkit-transform: rotate(95deg); }
-.frame-5 .coin-wallet-private-key.bottom .char13 { transform: rotate(100deg); -webkit-transform: rotate(100deg); }
-.frame-5 .coin-wallet-private-key.bottom .char14 { transform: rotate(105deg); -webkit-transform: rotate(105deg); }
-.frame-5 .coin-wallet-private-key.bottom .char15 { transform: rotate(110deg); -webkit-transform: rotate(110deg); }
-.frame-5 .coin-wallet-private-key.bottom .char16 { transform: rotate(115deg); -webkit-transform: rotate(115deg); }
-.frame-5 .coin-wallet-private-key.bottom .char17 { transform: rotate(120deg); -webkit-transform: rotate(120deg); }
-.frame-5 .coin-wallet-private-key.bottom .char18 { transform: rotate(125deg); -webkit-transform: rotate(125deg); }
-.frame-5 .coin-wallet-private-key.bottom .char19 { transform: rotate(130deg); -webkit-transform: rotate(130deg); }
-.frame-5 .coin-wallet-private-key.bottom .char20 { transform: rotate(135deg); -webkit-transform: rotate(135deg); }
-.frame-5 .coin-wallet-private-key.bottom .char21 { transform: rotate(140deg); -webkit-transform: rotate(140deg); }
-.frame-5 .coin-wallet-private-key.bottom .char22 { transform: rotate(145deg); -webkit-transform: rotate(145deg); }
-.frame-5 .coin-wallet-private-key.bottom .char23 { transform: rotate(150deg); -webkit-transform: rotate(150deg); }
-.frame-5 .coin-wallet-private-key.bottom .char24 { transform: rotate(155deg); -webkit-transform: rotate(155deg); }
-.frame-5 .coin-wallet-private-key.bottom .char25 { transform: rotate(160deg); -webkit-transform: rotate(160deg); }
-.frame-5 .coin-wallet-private-key.bottom .char26 { transform: rotate(165deg); -webkit-transform: rotate(165deg); }
-.frame-5 .coin-wallet-private-key.bottom .char27 { transform: rotate(170deg); -webkit-transform: rotate(170deg); }
+.frame-1 .coin-wallet-private-key.bottom .char1 { transform: rotate(40deg); -webkit-transform: rotate(40deg); }
+.frame-1 .coin-wallet-private-key.bottom .char2 { transform: rotate(45deg); -webkit-transform: rotate(45deg); }
+.frame-1 .coin-wallet-private-key.bottom .char3 { transform: rotate(50deg); -webkit-transform: rotate(50deg); }
+.frame-1 .coin-wallet-private-key.bottom .char4 { transform: rotate(55deg); -webkit-transform: rotate(55deg); }
+.frame-1 .coin-wallet-private-key.bottom .char5 { transform: rotate(60deg); -webkit-transform: rotate(60deg); }
+.frame-1 .coin-wallet-private-key.bottom .char6 { transform: rotate(65deg); -webkit-transform: rotate(65deg); }
+.frame-1 .coin-wallet-private-key.bottom .char7 { transform: rotate(70deg); -webkit-transform: rotate(70deg); }
+.frame-1 .coin-wallet-private-key.bottom .char8 { transform: rotate(75deg); -webkit-transform: rotate(75deg); }
+.frame-1 .coin-wallet-private-key.bottom .char9 { transform: rotate(80deg); -webkit-transform: rotate(80deg); }
+.frame-1 .coin-wallet-private-key.bottom .char10 { transform: rotate(85deg); -webkit-transform: rotate(85deg); }
+.frame-1 .coin-wallet-private-key.bottom .char11{ transform: rotate(90deg); -webkit-transform: rotate(90deg); }
+.frame-1 .coin-wallet-private-key.bottom .char12 { transform: rotate(95deg); -webkit-transform: rotate(95deg); }
+.frame-1 .coin-wallet-private-key.bottom .char13 { transform: rotate(100deg); -webkit-transform: rotate(100deg); }
+.frame-1 .coin-wallet-private-key.bottom .char14 { transform: rotate(105deg); -webkit-transform: rotate(105deg); }
+.frame-1 .coin-wallet-private-key.bottom .char15 { transform: rotate(110deg); -webkit-transform: rotate(110deg); }
+.frame-1 .coin-wallet-private-key.bottom .char16 { transform: rotate(115deg); -webkit-transform: rotate(115deg); }
+.frame-1 .coin-wallet-private-key.bottom .char17 { transform: rotate(120deg); -webkit-transform: rotate(120deg); }
+.frame-1 .coin-wallet-private-key.bottom .char18 { transform: rotate(125deg); -webkit-transform: rotate(125deg); }
+.frame-1 .coin-wallet-private-key.bottom .char19 { transform: rotate(130deg); -webkit-transform: rotate(130deg); }
+.frame-1 .coin-wallet-private-key.bottom .char20 { transform: rotate(135deg); -webkit-transform: rotate(135deg); }
+.frame-1 .coin-wallet-private-key.bottom .char21 { transform: rotate(140deg); -webkit-transform: rotate(140deg); }
+.frame-1 .coin-wallet-private-key.bottom .char22 { transform: rotate(145deg); -webkit-transform: rotate(145deg); }
+.frame-1 .coin-wallet-private-key.bottom .char23 { transform: rotate(150deg); -webkit-transform: rotate(150deg); }
+.frame-1 .coin-wallet-private-key.bottom .char24 { transform: rotate(155deg); -webkit-transform: rotate(155deg); }
+.frame-1 .coin-wallet-private-key.bottom .char25 { transform: rotate(160deg); -webkit-transform: rotate(160deg); }
+.frame-1 .coin-wallet-private-key.bottom .char26 { transform: rotate(165deg); -webkit-transform: rotate(165deg); }
+.frame-1 .coin-wallet-private-key.bottom .char27 { transform: rotate(170deg); -webkit-transform: rotate(170deg); }
 
-.frame-4 .coin-wallet-right
+.frame-2 .coin-wallet-private-key.bottom .char1 { transform: rotate(40deg); -webkit-transform: rotate(40deg); }
+.frame-2 .coin-wallet-private-key.bottom .char2 { transform: rotate(45deg); -webkit-transform: rotate(45deg); }
+.frame-2 .coin-wallet-private-key.bottom .char3 { transform: rotate(50deg); -webkit-transform: rotate(50deg); }
+.frame-2 .coin-wallet-private-key.bottom .char4 { transform: rotate(55deg); -webkit-transform: rotate(55deg); }
+.frame-2 .coin-wallet-private-key.bottom .char5 { transform: rotate(60deg); -webkit-transform: rotate(60deg); }
+.frame-2 .coin-wallet-private-key.bottom .char6 { transform: rotate(65deg); -webkit-transform: rotate(65deg); }
+.frame-2 .coin-wallet-private-key.bottom .char7 { transform: rotate(70deg); -webkit-transform: rotate(70deg); }
+.frame-2 .coin-wallet-private-key.bottom .char8 { transform: rotate(75deg); -webkit-transform: rotate(75deg); }
+.frame-2 .coin-wallet-private-key.bottom .char9 { transform: rotate(80deg); -webkit-transform: rotate(80deg); }
+.frame-2 .coin-wallet-private-key.bottom .char10 { transform: rotate(85deg); -webkit-transform: rotate(85deg); }
+.frame-2 .coin-wallet-private-key.bottom .char11{ transform: rotate(90deg); -webkit-transform: rotate(90deg); }
+.frame-2 .coin-wallet-private-key.bottom .char12 { transform: rotate(95deg); -webkit-transform: rotate(95deg); }
+.frame-2 .coin-wallet-private-key.bottom .char13 { transform: rotate(100deg); -webkit-transform: rotate(100deg); }
+.frame-2 .coin-wallet-private-key.bottom .char14 { transform: rotate(105deg); -webkit-transform: rotate(105deg); }
+.frame-2 .coin-wallet-private-key.bottom .char15 { transform: rotate(110deg); -webkit-transform: rotate(110deg); }
+.frame-2 .coin-wallet-private-key.bottom .char16 { transform: rotate(115deg); -webkit-transform: rotate(115deg); }
+.frame-2 .coin-wallet-private-key.bottom .char17 { transform: rotate(120deg); -webkit-transform: rotate(120deg); }
+.frame-2 .coin-wallet-private-key.bottom .char18 { transform: rotate(125deg); -webkit-transform: rotate(125deg); }
+.frame-2 .coin-wallet-private-key.bottom .char19 { transform: rotate(130deg); -webkit-transform: rotate(130deg); }
+.frame-2 .coin-wallet-private-key.bottom .char20 { transform: rotate(135deg); -webkit-transform: rotate(135deg); }
+.frame-2 .coin-wallet-private-key.bottom .char21 { transform: rotate(140deg); -webkit-transform: rotate(140deg); }
+.frame-2 .coin-wallet-private-key.bottom .char22 { transform: rotate(145deg); -webkit-transform: rotate(145deg); }
+.frame-2 .coin-wallet-private-key.bottom .char23 { transform: rotate(150deg); -webkit-transform: rotate(150deg); }
+.frame-2 .coin-wallet-private-key.bottom .char24 { transform: rotate(155deg); -webkit-transform: rotate(155deg); }
+.frame-2 .coin-wallet-private-key.bottom .char25 { transform: rotate(160deg); -webkit-transform: rotate(160deg); }
+.frame-2 .coin-wallet-private-key.bottom .char26 { transform: rotate(165deg); -webkit-transform: rotate(165deg); }
+.frame-2 .coin-wallet-private-key.bottom .char27 { transform: rotate(170deg); -webkit-transform: rotate(170deg); }
+
+.frame-3 .coin-wallet-right
 {
 	display: none;
 }
 
-.frame-4.back .coin-wallet-right
+.frame-3.back .coin-wallet-right
 {
 	display: block;
 	float: left;
@@ -1396,24 +1484,24 @@ height: 233px;
 	left: 60px;
 	position: relative;
 }
-.frame-4.back .coin-wallet-right canvas
+.frame-3.back .coin-wallet-right canvas
 {
 	width: 100px;
 	height: 100px;
 }
-.frame-4.back .coin-wallet-private-key-qr
+.frame-3.back .coin-wallet-private-key-qr
 {
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
-.frame-4.back .coin-wallet-private-key
+.frame-3.back .coin-wallet-private-key
 {
 	font-size: 10px;
 	margin-right: 48px;
 	right: 0px;
 	position: relative;
 }
-.frame-4.back .coin-logo {
+.frame-3.back .coin-logo {
 
 	top: 75px;
 	left: 498px;
@@ -1421,7 +1509,7 @@ height: 233px;
 	width: 220px;
 	height: 220px;
 }
-.frame-4 .coin-logo-2
+.frame-3 .coin-logo-2
 {
 	background-size: 100%;
 	width: 220px;
@@ -1434,7 +1522,7 @@ height: 233px;
 	height: 190px;
 	opacity: 0.90;
 }
-.frame-4 .coin-wallets.back .zero-trust-wallet-seal
+.frame-3 .coin-wallets.back .zero-trust-wallet-seal
 	{
 	left: 700px;
 	}
@@ -1486,7 +1574,7 @@ a:hover, a:active, a:focus {
 #print-settings
 {
 float: left;
-width: 586px;
+width: 100%;
 position: relative;
 }
 #print-settings .left-label
@@ -1495,8 +1583,14 @@ position: relative;
 }
 #print-settings .print-buttons
 {
-width: 100%;
+width: 49%;
+float: left;
 padding-right: 10px;
+}
+#print-settings .print-buttons
+{
+float: left;
+width: 50%;
 }
 
 .donate-keys
@@ -1797,6 +1891,7 @@ color: #AD0000;
 color: #00AD00;
 }
 
+.frame-type,
 .design-type
 {
 display: block;
@@ -1806,16 +1901,23 @@ margin-bottom: 20px;
 border-radius: 10px;
 position: absolute;
 min-height: 67px;
-top: 206px;
+top: 53px;
 left: 128px;
 z-index: 10;
 margin-right: -700px;
 }
+
+
+.design-type
+{
+top: 138px;
+}
+.frame-grid-row-header,
 .design-grid-row-header
 {
 display:none;
-
 }
+.selecting .frame-grid-row-header,
 .selecting .design-grid-row-header
 {
 display: block;
@@ -1830,23 +1932,61 @@ float: left;
 clear: right;
 border-bottom: 2px solid;
 }
+.selecting .frame-grid-row-header
+{
+height: 63px;
+padding-top: 18px;
+text-align: center;
+border-top: 2px solid;
+margin-top: 6px;
+width:400px;
+}
+.selecting .frame-grid-row-header:hover
+{
+background-color: #ccc;
+}
+
+.frame-type.selecting,
 .design-type.selecting
 {
+z-index: 11;
 top: 0px;
 left: 15px;
 padding: 10px;
+position: absolute;
+}
+.design-type.selecting
+{
+left: -600px;
+}
+.frame-type.selecting
+{
+top: 40px;
+left: -291px;
 }
 
+.frame-label,
 .design-label
 {
 margin-bottom: 93px;
 }
+.color-shift-label
+{
+margin-top: 0px;
+}
+.design-label
+{
+margin-top: 47px;
+margin-bottom: 74px;
+}
 
+.frame-type .selector-grid-row,
 .design-type .selector-grid-row
 {
 background: none;
 }
 
+.frame.selector,
 .design.selector
 {
 width: 207px;
@@ -1856,6 +1996,14 @@ float: left;
 margin: 5px;
 display: none;
 background-size: 100%;
+}
+.frame.selector
+{
+background-color: black;
+float: right;
+}
+.design.selector
+{
 }
 .design.selector.active
 }

@@ -113,8 +113,8 @@ $().ready(function ()
 		<div id="main-menu" class="menu no-print">
 			<ul>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
-				<li section="security" class="menu-key-security active">Security</li>
-				<li section="coin-setup" class="menu-key-import">Wallet Setup</li>
+				<li section="security" class="menu-key-security">Security</li>
+				<li section="coin-setup" class="menu-key-import active">Wallet Setup</li>
 				<li section="donate" class="menu-key-donate right">Donate</li>
 			</ul>
 		</div>
@@ -513,43 +513,6 @@ $().ready(function ()
 							<a></a>
 						</div>
 						
-						<label class="left-label">Frame:</label>
-						<div class="switch-toggle wallet-frame switch-5 switch-candy ">
-							<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
-							<label for="wallet-frame-1">1</label> 
-							
-							<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
-							<label for="wallet-frame-2">2</label>
-							
-							<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
-							<label for="wallet-frame-3">3</label>
-							
-							<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
-							<label for="wallet-frame-4">4</label>
-							
-							<input type="radio" name="wallet-frame" value="frame-5" id="wallet-frame-5" autocomplete="off"  />
-							<label for="wallet-frame-5">5</label>
-					
-							<a></a>
-						</div>
-						
-						<label class="left-label design-label">Design:</label>
-						<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
-							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
-						</div>
-						
-						<label class="left-label design-label">Color Shift:</label>
-						<!--
-						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-						-->
-						<span class="hue-shift-amount">0&deg;</span>
-						
-						<div id="hue-slider"></div>
-						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
-						
 						<!--
 						<label class="left-label design-label">Custom:</label>
 						<div class="design-type-custom" >
@@ -562,6 +525,35 @@ $().ready(function ()
 						<input type="button" id="print-button" class="large-button right" value="Print" />
 						<br />
 					</div>
+					
+					<div class="print-appearance round-block">
+						<h3>Appearance</h3>
+						
+						<label class="left-label">Frame:</label>
+						<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
+							<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
+								<!-- Dynamically filled -->
+							</div>
+						</div>
+						
+						<label class="left-label design-label">Design:</label>
+						<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
+							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+								<!-- Dynamically filled -->
+							</div>
+						</div>
+						
+						<label class="left-label color-shift-label">Color Shift:</label>
+						<!--
+						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+						-->
+						<span class="hue-shift-amount">0&deg;</span>
+						
+						<div id="hue-slider"></div>
+						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+					</div>
+					
 					<div class="print-encryption round-block hide">
 						<h3>Encryption</h3>
 						

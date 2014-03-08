@@ -19,6 +19,7 @@ var Security_ManualVerify = false;
 var AllBGs = undefined;
 
 var DefaultBG = 'fractal-1';
+var DefaultFrame = 'Frame-1';
 
 var BackgroundCategories = [
 	'abstract',
@@ -47,6 +48,37 @@ var BackgroundCategories = [
 	'water',
 	'wood'];
 	
+
+var WalletFrames = 6;
+
+var Frames = 
+	{
+	frame1: {
+		Name: 'Coin Wallet',
+		Creator: 'CryptoPapers'
+	},
+	frame2: {
+		Name: 'Coin Wallet Booklet',
+		Creator: 'CryptoPapers'
+	},
+	frame3: {
+		Name: 'Coin Slip',
+		Creator: 'CryptoPapers'
+	},
+	frame4: {
+		Name: 'Standard Wallet V2',
+		Creator: 'CryptoPapers'
+	},
+	frame5: {
+		Name: 'bitcoinpaperwallet.com Variation',
+		Creator: 'Canton Becker bitcoinpaperwallet.com [donate]'
+	},
+	frame6: {
+		Name: 'Standard Wallet',
+		Creator: 'Whoever invented the rectangle'
+	}
+	};
+	
 var Backgrounds = 
 	{	
 	'abstract': 53,
@@ -74,7 +106,7 @@ var Backgrounds =
 	'tiles': 7,
 	'water': 16,
 	'wood': 20
-	}
+	};
 
 function BGString(Category, Number)
 	{	
@@ -448,8 +480,8 @@ function GenerateAddress(display)
 	
 	var CoinType = $('div.coin.active').attr('data');
 	
-	if (display)
-		Log("Coin Type: " + CoinType);
+	//if (display)
+	//	Log("Coin Type: " + CoinType);
 	
 	if (Default_Compress == undefined)
 		{
@@ -497,9 +529,9 @@ function GenerateAddress(display)
 		$('#private-key-wif').val(PrivKeyWIF);
 		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
 		
-		Log("Private Key Hex: " + PrivKeyHex);
-		Log("Private Key WIF: " + PrivKeyWIF);
-		Log("Compressed: " + Compressed);
+		//Log("Private Key Hex: " + PrivKeyHex);
+		//Log("Private Key WIF: " + PrivKeyWIF);
+		//Log("Compressed: " + Compressed);
 		}
 	
 	var PubKeyHex;
@@ -522,7 +554,7 @@ function GenerateAddress(display)
 		$('#public-key-hex').val(PubKeyHex);
 		$('#public-address').val(Address);
 	
-		Log("Public Address: " + Address);
+		//Log("Public Address: " + Address);
 		
 		$('.coin-wallet-address').html(Address);
 		$('.coin-wallet-address-qr').qrcode(Address);
@@ -575,6 +607,7 @@ function GenerateAddress(display)
 	
 function InitPage()
 	{
+	AddFrames();
 	AddBackgrounds();
 	
 	$('body').mousemove(function(ev) {
@@ -773,16 +806,27 @@ function InitPage()
 		
 		});
 		
-	$('input[name=wallet-frame]').change(function() {
+	$('.frame-grid-row-header').click(function() {
+		$(this).parent().find('.frame.selector').click();
+	});
 	
-		$('.coin-wallets').removeClass(BGString('frame', 5));
+	$('.frame.selector').click(function() {
+		if (!$('.frame-type').hasClass('selecting'))
+			return;
+			
+		var val = $(this).attr('data');
 		
-		var val = $('input[name=wallet-frame]:checked').val();
-		
-		$('.coin-wallets').addClass(val);
-		
-		$('.frame-5 .coin-wallet-address').lettering();
-		$('.frame-5 .coin-wallet-private-key').lettering();
+		if (val)
+			{
+			$('.coin-wallets').fadeOut(300, function()
+				{			
+				SetFrame(val);
+				
+				$('.coin-wallets').fadeIn(300);
+				
+				SetLettering();
+				});
+			}
 	});
 		
 	$('.generate-button').click(function() {
@@ -807,8 +851,7 @@ function InitPage()
 			}
 		
 		
-		$('.frame-5 .coin-wallet-address').lettering();
-		$('.frame-5 .coin-wallet-private-key').lettering();
+		SetLettering();
 	});
 	
 	$('.coin.selector').mouseup(function() {	
@@ -816,6 +859,8 @@ function InitPage()
 	
 	$('.design.selector').click(function() {
 		$('.hue-shift-reset').click();
+		
+		SetLettering();
 		});
 		
 	$('.design.selector:not(.active)').click(function() {
@@ -898,7 +943,6 @@ function InitPage()
 					
 						var Position = Obj.offset().top;
 						
-						Log(Position);
 						$('html, body').animate({
 							scrollTop: Position
 						}, 300);
@@ -920,7 +964,6 @@ function InitPage()
 						
 						var Position = Obj.offset().top;
 						
-						Log(Position);
 						$('html, body').animate({
 							scrollTop: Position
 						}, 300);
@@ -988,7 +1031,8 @@ function InitPage()
 		{
 		$('#lights-on').click();
 		}
-		
+	
+	SetFrame(DefaultFrame);
 	SetDesign(DefaultBG);
 		
 	setTimeout(function()
@@ -1017,19 +1061,70 @@ function SetDesign(Design)
 			
 			$('.coin-wallet .coin-wallet-background').attr('src', 'images/wallet-backgrounds/' + Design + '.jpg');
 			
+			SetLettering();
+	
 			$('.coin-wallet').fadeIn(300);
 			});
 		}, 500);
+		
 	}
-function ApplyHueShift()
-	{
-	Log(HueShift);
 	
+function SetFrame(Frame)
+	{
+	$('.coin-wallets').removeClass(BGString('frame', Object.keys(Frames).length));
+
+	$('.coin-wallets').addClass(Frame.toLowerCase());
+	}
+	
+function SetLettering()
+	{
+	$('.frame-1 .coin-wallet-address').lettering();
+	$('.frame-1 .coin-wallet-private-key').lettering();
+	$('.frame-2 .coin-wallet-address').lettering();
+	$('.frame-2 .coin-wallet-private-key').lettering();
+	}
+
+function ApplyHueShift()
+	{	
 	$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
 	$('.coin-wallet-background').css('filter', 'hue-rotate(' + HueShift + 'deg)');
 	$('.coin-wallet-background').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
 	}
 
+function AddFrames()
+	{
+	var cols = 10;
+	var frames = '';
+	
+	for (var i = 0; i < Object.keys(Frames).length; i++)
+		{
+		var Frame = "Frame-" + (i+1);
+		var FrameName = Frames[Object.keys(Frames)[i]].Name;
+				
+		frames += '<div class="frame-grid-row selector-grid-row">';
+		
+			
+		frames += '<div class="frame-grid-row-header ' + Frame + '">' + FrameName + '</div>';
+			
+		
+		var Active = (Frame == DefaultFrame) ? ' active' : '';
+		
+		frames += '<div class="frame selector ' + Frame + '-frame' + Active+ '" data=' + Frame + '>';
+		frames += '<img class="coin-wallet-frame" src="images/wallet-frames/' + Frame + '.png" />';
+		frames += '</div>';
+		
+		if (i != 0 && i % cols == 0 && i < CategoryCount)
+			{
+			frames += '</div>';
+			frames += '<div class="frame-grid-row selector-grid-row">';
+			}
+		
+		
+		frames += '</div>';
+		}
+	
+	$('.frame-grid-wrapper').html(frames);
+	}
 function AddBackgrounds()
 	{
 	var cols = 5;

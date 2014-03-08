@@ -1,3 +1,18 @@
+/*
+
+This script written by CryptoPapers but was helped and inspired by:
+
+http://bitcoinpaperwallet.com by Canton Becker
+Donate: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
+
+http://bitaddress.org by pointbiz
+Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
+
+
+*/
+
+
+
 // --- static methods ---
 var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
 
