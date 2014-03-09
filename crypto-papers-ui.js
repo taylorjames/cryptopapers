@@ -21,7 +21,7 @@ var AllBGs = undefined;
 
 var DefaultCoin = 'btc';
 var DefaultBG = 'fractal-1';
-var DefaultFrame = 'Frame-3';
+var DefaultFrame = 'Frame-4';
 
 var BackgroundCategories = [
 	'abstract',
@@ -89,6 +89,28 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-4': {
+		Name: 'Credit Card Wallet',
+		Creator: 'CryptoPapers',
+		Difficulty: 'Beginner',
+		Description: 'This wallet frame is great if you hate cutting things out!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap.</li>' + 
+			'</ol>'
+	},
+	'Frame-5': {
+		Name: 'Rounded Credit Card Wallet',
+		Creator: 'CryptoPapers',
+		Difficulty: 'Beginner',
+		Description: 'This wallet frame is great if you hate cutting things out!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Fold along the dotted lines so that the private key is hidden behind the public key. The small flap should be showing on the front</li>' +
+			'<li>Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap.</li>' + 
+			'</ol>'
+	},
+	'Frame-6': {
 		Name: 'Standard Wallet V2',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Intermediate',
@@ -100,7 +122,7 @@ var Frames =
 			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	},
-	'Frame-5': {
+	'Frame-7': {
 		Name: 'BitcoinPaperWallet.com Variation',
 		Creator: 'Canton Becker',
 		Difficulty: 'Beginner',
@@ -111,7 +133,7 @@ var Frames =
 			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	},
-	'Frame-6': {
+	'Frame-8': {
 		Name: 'Standard Wallet',
 		Creator: 'Whoever invented the rectangle',
 		Difficulty: 'Beginner',
