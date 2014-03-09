@@ -37,7 +37,7 @@ ed25519						Curve25519 implementation for NXT addresses			[find address]
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<title>CryptoPapers - Wallet Creator</title>
 	
-	<link rel="shortcut icon" href="images/logo_shield.ico" type="image/x-icon">	
+	<link rel="shortcut icon" href="images/cp-logo.ico" type="image/x-icon">	
 
 	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
@@ -158,39 +158,77 @@ $().ready(function ()
 		<div class="section how-to no-print">
 		</div>
 		<div class="section security no-print">
-			<div class="trust-items round-block">
+			<div class="trust-items round-block help-section">
 				<h3>Trust</h3>
+				<div class="help-bubble">
+					<span>
+					The road to being 100% secure is twice as long as the road to 99%.
+					<br>
+					This tool is for those of you who want to go that extra mile.
+					<br><br>
+					How much trust are you placing in your environment?
+					<br><br>
+					I'm just going to give it to you straight - there are MANY risks to your private keys that exist. 
+					If you're willing to assume that your computer and network are clean and that this tool is not evil, 
+					feel free to skip this section and continue on to Wallet Setup.
+					<br><br>				
+					<b>Full Trust</b>: You are fully trusting this element to not be spying on you or collecting key data
+					<br>
+					<b>Some Trust</b>: You are partially trusting this element to not be spying on you or collecting key data. 
+					Some vulnerabilities have been protected against, but others exist.
+					<br>
+					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your keys to be taken.
+					<br><br>
+					Click an item below to see detailed risk information.
+					<br><br><br>
+					</span>
+				</div>
+				
 				<div class="trust-item trust-bugs trust-level-fully">
 					<em>Infections</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-network trust-level-some">
+				
+				<div class="trust-item trust-your-network trust-level-fully">
 					<em>Your Network</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-printer trust-level-some">
+				
+				<div class="trust-item trust-your-printer trust-level-fully">
 					<em>Your Printer</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-browser trust-level-some">
+				
+				<div class="trust-item trust-your-browser trust-level-fully">
 					<em>Your Browser</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-os trust-level-zero">
+				
+				<div class="trust-item trust-your-os trust-level-fully">
 					<em>Your OS</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-this-tool trust-level-zero">
+				
+				<div class="trust-item trust-this-tool trust-level-fully">
 					<em>This Tool</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					The best thing you can do for your security would be to run this tool on an offline computer and printer.
+					<br>
+					If you can't dedicate a machine to be offline permanently, a Linux Live CD or Live USB is the next best thing.
+					</span>
+				</div>
 			</div>
+			
 			<div class="security-test round-block">
 				<h3>Environment</h3>
 				<div class="test-results">
@@ -199,7 +237,8 @@ $().ready(function ()
 					<input class="button" id="js-test-refresh" Value="Refresh" autocomplete="off" >
 				</div>
 			</div>
-			<div class="security-questions round-block">
+			
+			<div class="security-questions round-block help-section">
 				<h3>Questions</h3>
 				<h4>Answer these questions honestly to understand your level of risk:</h4>
 				<label class="left-label">Are you running this from a Linux Live CD or Live USB?</label>
@@ -213,6 +252,14 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some root-kits and viruses can capture your screen while offline, and send them out later.
+					<br>
+					If you want to be completely assured your coins are safe, this extra precaution is needed.
+					</span>
+				</div>
+				
 				<label class="left-label">Will this machine ALWAYS be disconnected from any network?</label>
 				<div class="switch-toggle security-offline-permanent switch-2 switch-candy ">
 					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked  autocomplete="off"/>
@@ -222,6 +269,14 @@ $().ready(function ()
 					<label for="security-offline-permanent-yes">Yes</label>
 					
 					<a></a>
+				</div>
+			
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some root-kits and viruses can capture your screen while offline, and send them out later.
+					<br>
+					To be completely assured your coins are safe, this extra precaution is needed.
+					</span>
 				</div>
 				
 				<label class="left-label">Is your printer a Network printer or is it connected directly?</label>
@@ -235,6 +290,14 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Are you connected to a wired or wireless network? Either could have unwanted guests or software that's listening for print jobs.
+					<br>
+					To be completely assured your coins are safe, use an offline printer.
+					</span>
+				</div>
+				
 				<label class="left-label">Will your printer always be kept offline?</label>
 				<div class="switch-toggle security-offline-printer switch-2 switch-candy ">
 					<input type="radio" name="security-offline-printer" value="No" id="security-offline-printer-no" checked autocomplete="off" />
@@ -244,6 +307,14 @@ $().ready(function ()
 					<label for="security-offline-printer-yes">Yes</label>
 
 					<a></a>
+				</div>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some printers keep a history of print jobs that can be retrieved by network devices at any time.
+					<br>
+					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
+					</span>
 				</div>
 				
 				<label class="left-label">Do you know for a fact that your printer keeps no internal print history?</label>
@@ -257,6 +328,18 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					This tool could be flawed or malicious; this is nearly guaranteed if you downloaded it from an unsafe source. 
+					<br><br>
+					*** As this is Beta software, to be completely sure that your coins are safe,
+					it's strongly recommended that you verify the keys by importing them into a secure wallet
+					<br><br>
+					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
+					<br><br><br>
+					</span>
+				</div>
+				
 				<label class="left-label">Will you be generating keys using this tool or importing them manually?</label>
 				<div class="switch-toggle security-generate-import switch-2 switch-candy ">
 					<input type="radio" name="security-generate-import" value="No" id="security-generate-import-no" checked autocomplete="off" />
@@ -266,6 +349,27 @@ $().ready(function ()
 					<label for="security-generate-import-yes">Import</label>
 
 					<a></a>
+				</div>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					If you downloaded this tool from us, it's extremely unlikely this would be a problem. 
+					<br>
+					The Address and QR Code generation has been thoroughly tested.
+					<br><br>
+					However, if you didn't download this from us, or you don't trust this software;
+					<br><br>
+					Validate keys using other trusted sources: 
+					<br>
+					<a href="http://bitaddress.org" target="_blank">bitaddress.org</a> 
+					<br>
+					<a href="http://bitcoinpaperwallet.com" target="_blank">bitcoinpaperwallet.com</a>
+					<br>
+					<a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+					<br><br>
+					To be completely assured your coins are safe, use a QR scanner to verify the private keys and addresses all match up.
+					<br><br>
+					</span>
 				</div>
 				
 				<label class="left-label">Using an offline QR scanner, do you plan to verify that QR codes on the wallets match and are valid?</label>
@@ -282,14 +386,15 @@ $().ready(function ()
 			<div class="security-risks round-block">
 				<h3>Risks - Detailed</h3>
 				
-				<div class="risk-category">
+				<div class="risk-category bugs">
 					<h3>Infections</h3>
-					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Rootkits</h4>
+					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Root-kits</h4>
 					<div class="risk at-risk" id="risk-infection-online">
 						<div class="risk-status"></div>
 						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-infection-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen, storing them on a hard drive while offline, to be broadcast later.</div>
@@ -297,7 +402,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u> OR switch to a Live CD / USB</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-network">
 					<h3>Your Network</h3>
 					<h4>Infected network nodes, Network intruders</h4>
 					<div class="risk at-risk" id="risk-network-printer">
@@ -306,7 +411,7 @@ $().ready(function ()
 						<div class="risk-fix">Connect your printer to your computer directly</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-printer">
 					<h3>Your Printer</h3>
 					<h4>Printer history</h4>
 					<div class="risk at-risk" id="risk-printer-online-storage">
@@ -314,6 +419,7 @@ $().ready(function ()
 						<div class="risk-details">If your printer keeps a history of print jobs, they could be taken by anyone with network access to it.</div>
 						<div class="risk-fix">Connect your printer to your computer directly OR Ensure your printer does not save its history</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-printer-offline-storage">
 						<div class="risk-status"></div>
 						<div class="risk-details">If your printer keeps a history of print jobs, once the printer is brought online, 
@@ -321,7 +427,7 @@ $().ready(function ()
 						<div class="risk-fix">Connect your printer to your computer directly, and never connect it to a network OR Ensure your printer does not save its history</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-browser">
 					<h3>Your Browser</h3>
 					<h4>Malicious plugins, Addons, Extensions</h4>
 					<div class="risk at-risk" id="risk-browser-addons-online">
@@ -329,6 +435,7 @@ $().ready(function ()
 						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-browser-addons-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.
@@ -336,7 +443,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-os">
 					<h3>Your OS</h3>
 					<h4>OS & 3rd party software vulnerabilities, Logs, Reporting</h4>
 					<div class="risk at-risk" id="risk-os-online">
@@ -344,6 +451,7 @@ $().ready(function ()
 						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, giving them full access to your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-os-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, recording your actions while offline, 
@@ -351,7 +459,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category this-tool">
 					<h3>This Tool</h3>
 					<h4>
 					If this tool were malicious, or if you downloaded it from an unsafe source<br />
@@ -364,20 +472,23 @@ $().ready(function ()
 						<div class="risk-details">RNG pools or private keys could be broadcasted to an external server.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-offline-cookies">
 						<div class="risk-status"></div>
 						<div class="risk-details">RNG pools or private keys could be stored as cookies, to be retrieved later by a website.</div>
 						<div class="risk-fix">Turn off cookies OR Take your computer offline <u>permanently</u></div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-badrng">
 						<div class="risk-status"></div>
 						<div class="risk-details">The RNG pool generation process could be simulated or flawed, and this tool could be producing known or predictable keys.</div>
 						<div class="risk-fix">Import your own Private keys generated from a trusted source (QT Wallet)</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-badcodes">
 						<div class="risk-status"></div>
-						<div class="risk-details">Addresses and QR codes could be on the printouts could be incorrect.</div>
-						<div class="risk-fix">Manuall verify that this application produces the valid QR codes and addresses</div>
+						<div class="risk-details">Addresses and QR codes on the printouts could be incorrect, causing you to send to the wrong location.</div>
+						<div class="risk-fix">Manually verify that this application produces the valid QR codes and addresses.</div>
 					</div>
 				</div>
 				
@@ -402,8 +513,20 @@ $().ready(function ()
 				
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
-				<div class="key-import round-block">
-					<h3>Private Key</h3>					
+				<div class="key-import round-block help-section">
+					<h3>Private Key</h3>		
+					<h4>Import / Generate</h4>
+					<div class="help-bubble" style="float:left;">
+						<span>
+						A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
+						<br><br>
+						Paste a private key exported from your coin wallet software into the box below 
+						or click on Generate to generate a new private key from the Random Number Generator pool.
+						<br><br>
+						(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed are all supported)
+						<br><br>
+						</span>
+					</div>			
 					<div class="private-key"> 
 						<div id="coin-key">	
 
@@ -414,8 +537,21 @@ $().ready(function ()
 					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 				
 				</div>			
-				<div class="random-info round-block">
+				<div class="random-info round-block help-section">
 					<h3>RNG Entropy</h3>
+					<img src="images/check.png" class="entropy-satisfied">
+					<div class="help-bubble" style="float:left;">
+						<span>
+						Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
+						<br><br>
+						'Entropy' is random or semi-random, unpredictable data. 
+						This tool's RNG uses system, time, and browser data to fill the pool initially, then adds at least <b><span class="rng-point-count"></span></b> coordinates
+						of mouse movement to that. 
+						<br>
+						The keys produced by this tool aren't predictable in any way.
+						<br><br><br><br><br><br><br><br><br>
+						</span>
+					</div>	
 					<div class="rng-status">
 						<label>RNG Pool Status: 
 							<span class="rng-status-text"></span>
@@ -424,6 +560,7 @@ $().ready(function ()
 							<div class="pool-status-complete" style="width:0%"></div>
 						</div>
 					</div>
+					
 					
 					<label class="left-label">Keep Collecting:</label>
 					<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
@@ -436,17 +573,44 @@ $().ready(function ()
 						<a></a>
 					</div>
 					
+					<div class="help-bubble" style="float:left;">
+						<span>
+							This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.
+						<br>
+						<br>
+						<br>
+						</span>
+					</div>	
+					
 					<label>RNG Pool Data:</label>
 					<textarea id="random-pool" readonly></textarea>
 				</div>
-				<div class="key-details round-block"> 
+				<div class="key-details round-block help-section"> 
 					<h3>Key Details</h3>
+					<div class="help-bubble" style="float:left;">
+						<span>
+						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+						<br>
+						</span>
+					</div>	
 					<span class="key-info-public-address">
 					<label class="left-label">Public Address:</label><input type="text" id="public-address" autocomplete="off" readonly />
 					</span>
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						[Explain address compression]
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
@@ -458,16 +622,62 @@ $().ready(function ()
 						<a></a>
 					</div>
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Private Key in Wallet Import Format (WIF). 
+						<br>
+						This is the format most wallet software will export to, and is the format it will import from.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Private Key Checksum, which is included in the Private Key WIF.
+						<br>
+						This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Public Key, which is derived from the public key. The public key
+						<br>
+						Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" autocomplete="off" readonly />
-					<br />			
+					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
+						<br>
+						Every address's Hash160 is known.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						The Address Checksum is derived from the Public Key and is used to create the Public Address.
+						<br>
+						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This wallet address has been verified by bitcoin-js.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					
 				</div>			
@@ -475,9 +685,19 @@ $().ready(function ()
 			<div class="sub-section coin-setup-print">
 			
 				<div id="print-settings" class="no-print">
-					<div class="print-buttons round-block">
+					<div class="print-buttons round-block help-section">
 						<h3>Page Setup</h3>
 
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Switch between printing the front and back side of the page.
+							<br><br>
+							Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
+							back is printed on the right side and with the right orientation.
+							<br><br><br>
+							</span>
+						</div>	
+						
 						<label class="left-label">Print Face:</label>
 							<div class="switch-toggle switch-2 switch-candy ">
 								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
@@ -489,6 +709,13 @@ $().ready(function ()
 								<a></a>
 						</div>
 
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Include a second copy of the wallet on the paper, to use as a backup.
+							<br><br>
+							</span>
+						</div>	
+						
 						<div class="backup">
 
 							<label class="left-label">Copies:</label>
@@ -504,6 +731,13 @@ $().ready(function ()
 							
 						</div>
 							
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Use zoom to correct for printer differences and get the wallet to print properly.
+							<br><br>
+							</span>
+						</div>	
+						
 						<label class="left-label">Zoom:</label>
 						<div class="switch-toggle switch-5 switch-candy ">
 							
@@ -532,13 +766,13 @@ $().ready(function ()
 						</div>
 						-->
 						
-						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
 
 						<input type="button" id="print-button" class="large-button right" value="Print" />
+						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
 						<br />
 					</div>
 					
-					<div class="print-appearance round-block">
+					<div class="print-appearance round-block help-section">
 						<h3>Appearance</h3>
 						
 						<label class="left-label">Frame:</label>
@@ -554,6 +788,15 @@ $().ready(function ()
 								<!-- Dynamically filled -->
 							</div>
 						</div>
+						
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Color shift the wallet background
+							<br><br>
+							*Only supported by Chrome
+							<br>
+							</span>
+						</div>	
 						
 						<label class="left-label color-shift-label">Color Shift:</label>
 						<!--

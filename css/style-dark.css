@@ -165,3 +165,11 @@ body.dark-theme .frame-instructions .frame-difficulty
 {
 	background: #222;
 }
+
+
+body.dark-theme .help-bubble
+{
+background-color: #000022;
+border-color: #222244;
+color: #dddddd;
+}

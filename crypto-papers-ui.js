@@ -1,7 +1,7 @@
 
 var Default_Compress = undefined;
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
-var WhenEntropyPoolFills_GoToPrint = true;
+var WhenEntropyPoolFills_GoToPrint = false;
 var HasPrivateKey = false;
 var Vanity = '';
 var VanityCaseSensitive = true;
@@ -63,7 +63,7 @@ var Frames =
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address on the front and the large coin logo on the back display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the wallet.</li>' + 
+			'<li><b>Three Tape Spots:</b> Apply tape or holographic stickers along the top and bottom as well as the side of the wallet to prevent peeking.</li>' + 
 			'</ol>'
 	},
 	'Frame-2': {
@@ -74,7 +74,7 @@ var Frames =
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and large coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Using tape or holographic stickers, tape together the last three sections of the wallet, keeping the private key secure while allowing wallet to unfold to display written notes.</li>' + 
+			'<li><b>Two Tape Spots:</b> Using tape or holographic stickers, tape together the last three sections of the wallet by taping the top and bottom, keeping the private key secure while allowing wallet to unfold to display written notes.</li>' + 
 			'</ol>'
 	},
 	'Frame-3': {
@@ -85,29 +85,29 @@ var Frames =
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and large coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	},
 	'Frame-4': {
 		Name: 'Credit Card Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Beginner',
-		Description: 'This wallet frame is great if you hate cutting things out!',
+		Description: 'This wallet is exactly the size of a credit card!',
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap to prevent peeking.</li>' + 
 			'</ol>'
 	},
 	'Frame-5': {
 		Name: 'Rounded Credit Card Wallet',
 		Creator: 'CryptoPapers',
-		Difficulty: 'Beginner',
-		Description: 'This wallet frame is great if you hate cutting things out!',
+		Difficulty: 'Intermediate',
+		Description: 'Credit Card Wallet too boring? This one has some curves...',
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the private key is hidden behind the public key. The small flap should be showing on the front</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the wallet, making sure to cover the small flap to prevent peeking.</li>' + 
 			'</ol>'
 	},
 	'Frame-6': {
@@ -119,7 +119,7 @@ var Frames =
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the vertical dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
 			'<li>Fold the remaining flaps downward, fully enclosing the private key.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	},
 	'Frame-7': {
@@ -130,7 +130,7 @@ var Frames =
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	},
 	'Frame-8': {
@@ -141,7 +141,7 @@ var Frames =
 		Instructions: '<ol>' + 
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
 			'</ol>'
 	}
 	};
@@ -702,21 +702,29 @@ function InitPage()
 			
 		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 		
-		if (collected_points == total_points && !HasPrivateKey)
+		
+		if (collected_points == total_points)
 			{
-			$('.generate-button').removeAttr('disabled').addClass('enabled');
-
-			if (WhenEntropyPoolFills_AutoGenerateKeys)
+			$('.entropy-satisfied').fadeIn(300);
+			
+			if (!HasPrivateKey)
 				{
-				$('#private-key-generate').click();
+				$('.generate-button').removeAttr('disabled').addClass('enabled');
 				
-				if (WhenEntropyPoolFills_GoToPrint)
+				if (WhenEntropyPoolFills_AutoGenerateKeys)
 					{
-					$('#coin-setup-menu #print').click();
+					$('#private-key-generate').click();
+					
+					if (WhenEntropyPoolFills_GoToPrint)
+						{
+						$('#coin-setup-menu #print').click();
+						}
 					}
 				}
 			}
 	});
+	
+	$('.rng-point-count').html(sr.pointsRequired);
 	
 	$('#js-test-refresh').click(function() 
 		{
@@ -967,6 +975,68 @@ function InitPage()
 	//	$('.coin-wallet').css('background-image', 'url("' + '' + '")');
 	});
 	
+	$('.trust-bugs').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.bugs").offset().top
+		}, 300);
+		});
+	$('.trust-your-network').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.your-network").offset().top
+		}, 300);
+		});
+	$('.trust-your-printer').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.your-printer").offset().top
+		}, 300);
+		});
+	$('.trust-your-browser').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.your-browser").offset().top
+		}, 300);
+		});
+	$('.trust-your-os').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.your-os").offset().top
+		}, 300);
+		});
+	$('.trust-this-tool').click(function()
+		{
+		$('html, body').animate({
+			scrollTop: $(".risk-category.this-tool").offset().top
+		}, 300);
+		});
+	
+	$('.help-section').each(function(section)
+		{
+		$(this).prepend('<div class="help-toggle"></div>');
+		});
+		
+	$('.help-toggle').click(function() 
+		{
+		if ($(this).parent().hasClass('help-active'))
+			{
+			$(this).animate({opacity: '0.5'});
+			$(this).parent().find('.help-bubble').animate({height: '0px'}, 300 , function() 
+				{
+				if ($(this).parent().removeClass('help-active'));
+				});
+			}
+		else
+			{
+			$(this).animate({opacity: '1'});
+			if ($(this).parent().addClass('help-active'));
+			
+			$(this).parent().find('.help-bubble').animateAuto('height', 300, function() 
+				{
+				});
+			}
+		});
 
 	$('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 		{
