@@ -57,7 +57,7 @@ var CoinInfo = {
 		name: 'nxt',
 		fullName: 'NXT',
 		addressVersion: '',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: '',
 		enabled: false
 		}, 
@@ -65,7 +65,7 @@ var CoinInfo = {
 		name: 'nem',
 		fullName: 'NEM',
 		addressVersion: '',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: '',
 		enabled: false
 		}, 
@@ -73,7 +73,7 @@ var CoinInfo = {
 		name: 'msc',
 		fullName: 'Mastercoin',
 		addressVersion: '00',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
 		enabled: true
 		},
@@ -81,7 +81,7 @@ var CoinInfo = {
 		name: 'xpm',
 		fullName: 'Primecoin',
 		addressVersion: '17',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'Aw44AFgoGm4KC5FgVyqbgrMZXKEdZ6iwhJ',
 		enabled: true
 		},
@@ -89,7 +89,7 @@ var CoinInfo = {
 		name: 'aur',
 		fullName: 'Auroracoin',
 		addressVersion: '17',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'AScmXdw1AEPoutgmMp9vHGMxev8L2bwEMX',
 		enabled: true
 		},
@@ -97,7 +97,7 @@ var CoinInfo = {
 		name: 'vtc',
 		fullName: 'Vertcoin',
 		addressVersion: '47',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'VcQEG8NKd5C3HjBdYcnepsEA7H5yFtQXbv',
 		enabled: true
 		},
@@ -105,7 +105,7 @@ var CoinInfo = {
 		name: 'mint',
 		fullName: 'Mintcoin',
 		addressVersion: '33',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'MbFhQX7b6DbuzFmiSYv1MxJpgs9jjH2Hah',
 		enabled: true
 		},
@@ -121,7 +121,7 @@ var CoinInfo = {
 		name: 'ftc',
 		fullName: 'Feathercoin',
 		addressVersion: '0e',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: '6nCuFhvyWCYibjVT2JjfTftFymzwXvghs6',
 		enabled: true
 		},
@@ -129,7 +129,7 @@ var CoinInfo = {
 		name: 'pts',
 		fullName: 'ProtoShares',
 		addressVersion: '38',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'PgzC3bGqcHfMG5uPS8rMLovfeogSVMP7bC',
 		enabled: true
 		},
@@ -137,11 +137,98 @@ var CoinInfo = {
 		name: 'qrk',
 		fullName: 'Quark',
 		addressVersion: '3a',
-		defaultCompress: true,
+		defaultCompress: false,
 		donateAddress: 'QVfQ1osZ2eb6txBZUyWzK4UEupCKpDZQB4',
 		enabled: true
-		}
-		
+		},
+	'cgb': {
+		name: 'cgb',
+		fullName: 'Cryptogenic',
+		addressVersion: '0b',
+		defaultCompress: false,
+		donateAddress: '5gfHt9pbZFhM4C7bRUQV42fUugerpXtyvf',
+		enabled: true
+		},
+	'dtc': {
+		name: 'dtc',
+		fullName: 'Datacoin',
+		addressVersion: '1e',
+		defaultCompress: false,
+		donateAddress: 'D6Pk6fWVBEVRB4WH93XeQfEubnGnAPSTzZ',
+		enabled: true
+		},
+	'dvc': {
+		name: 'dvc',
+		fullName: 'Devcoin',
+		addressVersion: '00',
+		defaultCompress: false,
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		enabled: true
+		},
+	'dgc': {
+		name: 'dgc',
+		fullName: 'Digitalcoin',
+		addressVersion: '1e',
+		defaultCompress: false,
+		donateAddress: 'DAFAosyZjS9KjXJtBN23TnEuSLExCWWjyg',
+		enabled: true
+		},
+	'ifc': {
+		name: 'ifc',
+		fullName: 'Infinitecoin',
+		addressVersion: '66',
+		defaultCompress: false,
+		donateAddress: 'iGMBJRSY4yHaQ8k2aHBQd3qDoYnFn7hjDg',
+		enabled: true
+		},
+	'ixc': {
+		name: 'ixc',
+		fullName: 'Ixcoin',
+		addressVersion: '8a',
+		defaultCompress: false,
+		donateAddress: 'xvygH7smhtT8N5h8apXsAf3YUTjbDd8e5w',
+		enabled: true
+		},
+	'mmc': {
+		name: 'mmc',
+		fullName: 'Memorycoin',
+		addressVersion: '32',
+		defaultCompress: false,
+		donateAddress: 'ML4rdNofSU4NDuLG5SetAmpowMcUh18NJJ',
+		enabled: true
+		},
+	'nvc': {
+		name: 'nvc',
+		fullName: 'Novacoin',
+		addressVersion: '08',
+		defaultCompress: false,
+		donateAddress: '4JLDcmKUqniXFETijMfwPa299ysprqgri7',
+		enabled: true
+		},
+	'trc': {
+		name: 'trc',
+		fullName: 'Terracoin',
+		addressVersion: '00',
+		defaultCompress: false,
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		enabled: true
+		},
+	'wdc': {
+		name: 'wdc',
+		fullName: 'Worldcoin',
+		addressVersion: '49',
+		defaultCompress: false,
+		donateAddress: 'WmZcammKRsLEAwYyeofZGUQSTkinbmTavx',
+		enabled: true
+		},
+	'zet': {
+		name: 'zet',
+		fullName: 'Zetacoin',
+		addressVersion: '50',
+		defaultCompress: false,
+		donateAddress: 'ZPr2d8DDmRaVFyXRrbfcQjapsat3QpeMry',
+		enabled: true
+		},
 	};
 	
 var AllCoinTypes = '';
@@ -306,11 +393,11 @@ function GenerateAddress(display)
 		
 	if (display)
 		{
+		$('#public-key-hex').val(PubKeyHex);
+		$('#public-address').val(Address);
+		
 		$('.coin-wallet').fadeOut(300, function() 
-			{
-			$('#public-key-hex').val(PubKeyHex);
-			$('#public-address').val(Address);
-			
+			{			
 			$('.coin-wallet-address').html(Address);
 			$('.coin-wallet-address-qr').qrcode(Address);
 		
@@ -318,7 +405,6 @@ function GenerateAddress(display)
 			
 			var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
 			var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
-			
 			
 			var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
 					

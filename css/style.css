@@ -554,7 +554,115 @@ content: 'ProtoShares';
 content: 'Quark';
 }
 
+.coin-wallets.cgb .coin-logo,
+.coin.cgb-coin{
+	background-image:url('../images/coin-icons/cgb-logo.png');
+}
+.cgb .coin-name:after
+{
+content: 'Cryptogenic';
+}
 
+.coin-wallets.dtc .coin-logo,
+.coin.dtc-coin{
+	background-image:url('../images/coin-icons/dtc-logo.png');
+}
+.dtc .coin-name:after
+{
+content: 'Datacoin';
+}
+
+.coin-wallets.dvc .coin-logo,
+.coin.dvc-coin{
+	background-image:url('../images/coin-icons/dvc-logo.png');
+}
+.dvc .coin-name:after
+{
+content: 'Devcoin';
+}
+
+.coin-wallets.dgc .coin-logo,
+.coin.dgc-coin{
+	background-image:url('../images/coin-icons/dgc-logo.png');
+}
+.dgc .coin-name:after
+{
+content: 'Digitalcoin';
+}
+
+.coin-wallets.ifc .coin-logo,
+.coin.ifc-coin{
+	background-image:url('../images/coin-icons/ifc-logo.png');
+}
+.ifc .coin-name:after
+{
+content: 'Infinitecoin';
+}
+
+.coin-wallets.ixc .coin-logo,
+.coin.ixc-coin{
+	background-image:url('../images/coin-icons/ixc-logo.png');
+}
+.ixc .coin-name:after
+{
+content: 'Ixcoin';
+}
+
+.coin-wallets.mmc .coin-logo,
+.coin.mmc-coin{
+	background-image:url('../images/coin-icons/mmc-logo.png');
+}
+.mmc .coin-name:after
+{
+content: 'Memorycoin';
+}
+
+.coin-wallets.nvc .coin-logo,
+.coin.nvc-coin{
+	background-image:url('../images/coin-icons/nvc-logo.png');
+}
+.nvc .coin-name:after
+{
+content: 'Novacoin';
+}
+
+.coin-wallets.trc .coin-logo,
+.coin.trc-coin{
+	background-image:url('../images/coin-icons/trc-logo.png');
+}
+.trc .coin-name:after
+{
+content: 'Terracoin';
+}
+
+.coin-wallets.wdc .coin-logo,
+.coin.wdc-coin{
+	background-image:url('../images/coin-icons/wdc-logo.png');
+}
+.wdc .coin-name:after
+{
+content: 'Worldcoin';
+}
+
+.coin-wallets.zet .coin-logo,
+.coin.zet-coin{
+	background-image:url('../images/coin-icons/zet-logo.png');
+}
+.zet .coin-name:after
+{
+content: 'Zetacoin';
+}
+
+
+
+.key-details .coin
+{
+float: left;
+width: 45px;
+height: 45px;
+background-size: 100%;
+margin-right: 10px;
+}
 .coin-type .coin
 {
 float: right;
@@ -1425,6 +1533,7 @@ margin-top: 10px;
 	background-repeat: no-repeat;
 	padding-left: 125px;
 	margin-bottom: 15px;
+	background-size: 100px;
 }
 .donate-keys .donate-key .coin .donate-address
 {

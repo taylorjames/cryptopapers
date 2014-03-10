@@ -231,7 +231,7 @@ function InitSelectorGrid()
 
 function AddDropdownCoins()
 	{
-	var cols = 5;
+	var cols = 7;
 	var coins = '';
 	
 	for (var i = 0; i < Object.keys(CoinInfo).length; i++)
@@ -253,7 +253,7 @@ function AddDropdownCoins()
 		coins += '<div class="coin selector ' + CoinAbbreviation + '-coin' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' 
 		+ ComingSoon + Tests + '<em>' + CoinFullName + '</em></div>';
 				
-		if (i ==4 || i ==9 || i == 14 || i == 19)
+		if ((i+1) % cols == 0)
 			{
 			coins += '</div>';
 			coins += '<div class="coin-grid-row selector-grid-row">';
@@ -266,10 +266,18 @@ function AddDropdownCoins()
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
 		{
-		if ($(this).attr('data') == CurrentCoinType)
-			return;
+		var NewCoinType = $(this).attr('data');
+		var CurrentCoinType_Persist = CurrentCoinType;
 		
-		CurrentCoinType = $(this).attr('data');
+		if (NewCoinType == CurrentCoinType)
+			return;			
+		
+		$('.changing-coin').fadeOut(300, function() { 
+			$('.changing-coin').removeClass(CurrentCoinType_Persist + '-coin').addClass(NewCoinType + '-coin');
+			$('.changing-coin').fadeIn(300)
+			})
+		
+		CurrentCoinType = NewCoinType;
 		
 		$('#private-key-input').change();
 		});
