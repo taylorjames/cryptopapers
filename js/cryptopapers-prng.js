@@ -8,9 +8,12 @@ Donate: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
 http://bitaddress.org by pointbiz
 Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 
+
 */
 
 
+var WhenEntropyPoolFills_AutoGenerateKeys = true;
+var WhenEntropyPoolFills_GoToPrint = false;
 
 var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
 
@@ -23,10 +26,60 @@ sr.poolSize = 256;
 sr.pptr = 0;
 
 sr.pointsKeepCollecting = true;
-sr.pointsRequired = 10 // 400;
+sr.pointsRequired = 50 //  400;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();
 
+
+function InitRNG() 
+	{
+	$('.rng-point-count').html(sr.pointsRequired);
+	
+	$('body').mousemove(function(ev)
+		{
+		sr.mouse_move(ev);
+		
+		$('#random-pool').val(Crypto.util.bytesToHex(sr.pool));
+		
+		var collected_points = sr.pointsCaptured;
+		var total_points = sr.pointsRequired;
+		
+		var percent = Math.round(collected_points / total_points * 100);
+		
+		if (percent > 100)
+			percent = 100;
+		
+		if (collected_points > total_points)
+			collected_points = total_points;
+			
+		$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
+		
+			
+		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
+		
+		
+		if (collected_points == total_points)
+			{
+			$('.entropy-satisfied').fadeIn(300);
+			$('.rng-move-mouse').animate({padding: '0', height: '0'}, 300);
+			
+			if (!HasPrivateKey)
+				{
+				$('.generate-button').removeAttr('disabled').addClass('enabled');
+				
+				if (WhenEntropyPoolFills_AutoGenerateKeys)
+					{
+					$('#private-key-generate').click();
+					
+					if (WhenEntropyPoolFills_GoToPrint)
+						{
+						$('#coin-setup-menu #print').click();
+						}
+					}
+				}
+			}
+		});
+	}
 
 // Mix in the current time (w/milliseconds) into the pool
 // NOTE: this method should be called from body click/keypress event handlers to increase entropy

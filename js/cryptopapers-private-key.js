@@ -1,4 +1,16 @@
+ /*
 
+All crucial code and private key handling is done in this file along with prng4.js, which handles the RNG pool.
+Changes to this file should be rare and should be heavily scrutinized. 
+
+The majority of changes to this file should be the addition of new coin types.
+
+*/
+
+var Default_Compress = undefined;
+var HasPrivateKey = false;
+var DefaultCoin = 'btc';
+var CurrentCoinType = DefaultCoin;
 
 var CoinInfo = {
 	'btc': {
@@ -6,7 +18,7 @@ var CoinInfo = {
 		fullName: 'Bitcoin',
 		addressVersion: '00',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
 		enabled: true
 		},
 	'ltc': {
@@ -14,7 +26,7 @@ var CoinInfo = {
 		fullName: 'Litecoin',
 		addressVersion: '30',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: 'LapsL7RwrZqzXduiaVBrtLBibyroqujmvr',
 		enabled: true	
 		},
 	'ppc': {
@@ -22,7 +34,7 @@ var CoinInfo = {
 		fullName: 'Peercoin',
 		addressVersion: '37',
 		defaultCompress: false,
-		donateAddress: '',
+		donateAddress: 'P8r6T77etknGTKKNdB7amRWnEBno3mAxud',
 		enabled: true
 		},
 	'doge': {
@@ -30,7 +42,7 @@ var CoinInfo = {
 		fullName: 'Dogecoin',
 		addressVersion: '1E',
 		defaultCompress: false,
-		donateAddress: '',
+		donateAddress: 'DNwWMvq2V9DjbwDK1g8bouqBa23SV34QQ1',
 		enabled: true
 		},
 	'nmc': {
@@ -38,7 +50,7 @@ var CoinInfo = {
 		fullName: 'Namecoin',
 		addressVersion: '34',
 		defaultCompress: false,
-		donateAddress: '',
+		donateAddress: 'N5XHb3UH93WjZuq8XLmRpiM25J4d3djQYG',
 		enabled: true
 		},
 	'nxt': {
@@ -62,7 +74,7 @@ var CoinInfo = {
 		fullName: 'Mastercoin',
 		addressVersion: '00',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
 		enabled: true
 		},
 	'xpm': {
@@ -70,7 +82,7 @@ var CoinInfo = {
 		fullName: 'Primecoin',
 		addressVersion: '17',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: 'Aw44AFgoGm4KC5FgVyqbgrMZXKEdZ6iwhJ',
 		enabled: true
 		},
 	'aur': {
@@ -78,7 +90,7 @@ var CoinInfo = {
 		fullName: 'Auroracoin',
 		addressVersion: '17',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: 'AScmXdw1AEPoutgmMp9vHGMxev8L2bwEMX',
 		enabled: true
 		},
 	'vtc': {
@@ -86,7 +98,7 @@ var CoinInfo = {
 		fullName: 'Vertcoin',
 		addressVersion: '47',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: 'VcQEG8NKd5C3HjBdYcnepsEA7H5yFtQXbv',
 		enabled: true
 		},
 	'mint': {
@@ -94,7 +106,7 @@ var CoinInfo = {
 		fullName: 'Mintcoin',
 		addressVersion: '33',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: 'MbFhQX7b6DbuzFmiSYv1MxJpgs9jjH2Hah',
 		enabled: true
 		},
 	'xcp': {
@@ -102,12 +114,35 @@ var CoinInfo = {
 		fullName: 'Counterparty',
 		addressVersion: '00',
 		defaultCompress: true,
-		donateAddress: '',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		enabled: true
+		},
+	'ftc': {
+		name: 'ftc',
+		fullName: 'Feathercoin',
+		addressVersion: '0e',
+		defaultCompress: true,
+		donateAddress: '6nCuFhvyWCYibjVT2JjfTftFymzwXvghs6',
+		enabled: true
+		},
+	'pts': {
+		name: 'pts',
+		fullName: 'ProtoShares',
+		addressVersion: '38',
+		defaultCompress: true,
+		donateAddress: 'PgzC3bGqcHfMG5uPS8rMLovfeogSVMP7bC',
+		enabled: true
+		},
+	'qrk': {
+		name: 'qrk',
+		fullName: 'Quark',
+		addressVersion: '3a',
+		defaultCompress: true,
+		donateAddress: 'QVfQ1osZ2eb6txBZUyWzK4UEupCKpDZQB4',
 		enabled: true
 		}
+		
 	};
-
-
 	
 var AllCoinTypes = '';
 
@@ -121,7 +156,45 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	if (i < Object.keys(CoinInfo).length - 1)
 		AllCoinTypes += ' ';
 	}
+	
+ function InitPrivateKeyPage()
+	 {
+	$('.generate-button').click(function()
+		{
+		if (Vanity == null || Vanity.length == 0)
+			{
+			var bytes = sr.getBytes(32);
+			sr.seedTime();
+			var hex = Crypto.util.bytesToHex(bytes);
+				
+			$('#private-key-input').val(hex);
+			$('#private-key-input').change();
+			
+			$('#security-generate-import-no').click();
+			
+			}
+		else
+			{
+			var AddressStart = '-----';
+			
+			setTimeout(GenerateVanity, 100);
+			}
+		});
+	
+	$('#private-key-input').change(function() 
+		{
+		var Address = GenerateAddress(true);	
 
+		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+		$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+		
+		SetLettering();
+		});	 
+	 }
+	 
+	 
+
+// Only used for 'FigureOutCoinAddressVersion' function
 var OverrideAddressPrefix = undefined;
 	
 function GetAddressPrefixHex(CoinType)
@@ -132,10 +205,18 @@ function GetAddressPrefixHex(CoinType)
 	return CoinInfo[CoinType].addressVersion;
 	}
 	
+
+function Log(Text)
+	{
+	if (true) // LOG?
+		console.log(Text);
+	}
+	
 function GetDefaultCompress(CoinType)
 	{
 	return CoinInfo[CoinType].defaultCompress;	
 	}
+	
 function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	{
 	if (CoinType == 'nmc')
@@ -151,35 +232,137 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	return Compressed;
 	}
 	
-
-//Log(FigureOutCoinPrefix('', ''));
-
-function FigureOutCoinPrefix(PrivateKeyWIF, Address)
+function GenerateAddress(display)
 	{
-	var Out = '';
+	if (display)
+		$('#coin-address-verify').val('');
 	
-	for (var i = 0; i < 256; i++)
+	var CoinType = CurrentCoinType;
+	
+	if (!CoinType)
+		return;
+	
+	if (Default_Compress == undefined)
 		{
-		var Prefix = (i).toString(16);
-		
-		if (Prefix.length == 1)
-			Prefix = "0" + Prefix;
-			
-		OverrideAddressPrefix = Prefix;
-		
-		var TestAddress = GetAddressFromKeyWIF('btc', PrivateKeyWIF, false);
-		var TestAddress2 = GetAddressFromKeyWIF('btc', PrivateKeyWIF, true);
-		
-		OverrideAddressPrefix = undefined;
-		
-		if (TestAddress == Address || TestAddress2 == Address)
-			{
-			Out += 'Coin Version Prefix (HEX): ' + Prefix + (TestAddress2 == Address ? ' Compressed' : '') + '\r\n';
-			return Out;
-			}
+		Default_Compress = GetDefaultCompress(CoinType);
 		}
 	
-	return Out;
+	var Compressed = Default_Compress;
+	
+	var PrivKey = $("#private-key-input").val();
+	
+	var PrivKeyHex = '';
+	var PrivKeyWIF = '';
+	
+	if (PrivKey.length == 64)
+		{
+		PrivKeyHex = PrivKey;
+		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
+		}
+	else if (PrivKey.length == 51 || PrivKey.length == 52)
+		{
+		PrivKeyWIF = PrivKey;
+		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
+		PrivKeyHex = PrivateKeyWIFToHex(PrivKeyWIF);
+		
+		if (Compressed && !Default_Compress)
+			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, false);
+		if (!Compressed && Default_Compress)
+			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, true);
+			
+		Compressed = Default_Compress;
+		}
+	else
+		{
+		Log("Unknown format: Size " + PrivKey.length);
+		return;
+		}
+		
+	HasPrivateKey = true;
+	
+	if (display)
+		{
+		$('.key-details').fadeIn();
+		
+		$('#private-key-hex').val(PrivKeyHex);
+		$('#private-key-wif').val(PrivKeyWIF);
+		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
+		}
+	
+	var PubKeyHex;
+	var Address;
+	if (display)
+		{
+		var PubKeyHex = GetPublicKey(Crypto.util.hexToBytes(PrivKeyHex), Compressed);
+		
+		var Address = GetAddress(CoinType, PubKeyHex);
+		}
+	else
+		{
+		var PubKeyBytes = GetPublicKeyBytes(Crypto.util.hexToBytes(PrivKeyHex), Compressed);
+		
+		var Address = GetAddressFromBytes(CoinType, PubKeyBytes);
+		}
+		
+	if (display)
+		{
+		$('.coin-wallet').fadeOut(300, function() 
+			{
+			$('#public-key-hex').val(PubKeyHex);
+			$('#public-address').val(Address);
+			
+			$('.coin-wallet-address').html(Address);
+			$('.coin-wallet-address-qr').qrcode(Address);
+		
+			var split = Math.round(PrivKeyWIF.length/2);
+			
+			var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
+			var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
+			
+			
+			var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
+					
+			if (Backup)
+				{
+				$('.coin-wallet-2').css('display', 'block');
+				}
+			else
+				{
+				$('.coin-wallet-2').css('display', 'none');
+				}
+			
+			if (CoinType == 'btc')
+				{
+				// Verify
+				var VerifyAddressECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
+				VerifyAddressECKey.compressed = Compressed;
+				var VerifyAddress = VerifyAddressECKey.getBitcoinAddress().toString();
+				var Verified = (PrivKeyHex != '') && (Address == VerifyAddress);
+				
+				$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
+				}	
+				
+			$('.coin-wallets').removeClass(AllCoinTypes);
+			$('.coin-wallets').addClass(CoinType);
+
+			$('.coin-wallet-address').html(Address);
+			
+			$('.coin-wallet-address-qr').html('');
+			$('.coin-wallet-address-qr').qrcode(Address);
+			
+			$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+			$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
+			
+			$('.coin-wallet-private-key-qr').html('');
+			$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
+			
+			SetLettering();
+			
+			$('.coin-wallet').fadeIn(300);
+			});
+		}
+	
+	return Address;
 	}
 	
 function ParseBase58PrivateKey(PrivateKeyHex)
@@ -200,12 +383,6 @@ function ParseBase58PrivateKey(PrivateKeyHex)
 	var version = hash.shift();
 	
 	return [version, hash];
-	}
-
-function Log(Text)
-	{
-	if (true) // LOG?
-		console.log(Text);
 	}
 	
 function GetEncoded(pt, Compressed) 
@@ -236,8 +413,6 @@ function GetEncoded(pt, Compressed)
 function GetPublicKey(PrivateKeyBytes, Compressed)
 	{
 	var PublicKeyHex = Crypto.util.bytesToHex(GetPublicKeyBytes(PrivateKeyBytes, Compressed));
-
-	//Log("Public Key: " + PublicKeyHex);
 	
 	return PublicKeyHex;
 	}
@@ -255,21 +430,34 @@ function GetPublicKeyBytes(PrivateKeyBytes, Compressed)
 	
 	return PublicKeyBytes;
 	}
+
+function GetAddressFromKeyUnknown(CoinType, PrivateKey, Compressed)
+	{
+	if (PrivateKey.length == 64)
+		{
+		return GetAddressFromKeyHex(CoinType, PrivateKey, Compressed);
+		}
+	else if (PrivateKey.length == 51 || PrivateKey.length == 52)
+		{
+		return GetAddressFromKeyWIF(CoinType, PrivateKey, Compressed);
+		}
+	else
+		{
+		Log("Unknown format: Size " + PrivateKey.length);
+		}		
+	}
 	
-
-
 function GetAddressFromKeyWIF(CoinType, PrivateKeyWIF, Compressed)
 	{
 	return GetAddressFromKeyHex(CoinType, PrivateKeyWIFToHex(PrivateKeyWIF), Compressed);
 	}
-
 	
 function GetAddressFromKeyHex(CoinType, PrivateKeyHex, Compressed)
 	{
-	return GetAddressFromKey(CoinType, Crypto.util.hexToBytes(PrivateKeyHex), Compressed);
+	return GetAddressFromKeyBytes(CoinType, Crypto.util.hexToBytes(PrivateKeyHex), Compressed);
 	}
 	
-function GetAddressFromKey(CoinType, PrivateKeyBytes, Compressed)
+function GetAddressFromKeyBytes(CoinType, PrivateKeyBytes, Compressed)
 	{
 	var PublicKeyHex = GetPublicKey(PrivateKeyBytes, Compressed);
 	
@@ -286,8 +474,6 @@ function GetAddress(CoinType, PublicKeyHex)
 function GetAddressFromBytes(CoinType, PublicKeyBytes)
 	{	
 	var KeyHash160 = GetKeyHash160(PublicKeyBytes);
-	
-	//Log("Key Hash160: " + KeyHash160);
 			
 	var version = Crypto.util.hexToBytes(GetAddressPrefixHex(CoinType));
 	var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
@@ -298,8 +484,6 @@ function GetAddressFromBytes(CoinType, PublicKeyBytes)
 	var CheckSum = GetCheckSum(KeyHash160Bytes);
 	
 	$('#public-key-address-checksum').val(CheckSum);
-	
-	//Log("CheckSum: " + CheckSum);
 	
 	var UnencodedAddress = GetAddressPrefixHex(CoinType) + KeyHash160 + CheckSum;
 
@@ -345,11 +529,7 @@ function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
 	
 	var PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexExt));
 	
-	//Log("Private Key SHA 1: " + PrivateKeyHexHash);
-	
 	PrivateKeyHexHash = Crypto.SHA256(Crypto.util.hexToBytes(PrivateKeyHexHash));
-	
-	//Log("Private Key SHA 2: " + PrivateKeyHexHash);
 	
 	var CheckSum = PrivateKeyHexHash.substr(0, 8);
 	
@@ -360,26 +540,8 @@ function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
 	var PrivateKeyBase58 =  Bitcoin.Base58.encode(Crypto.util.hexToBytes(PrivateKeyHexExt));
 	
 	return PrivateKeyBase58;
-	/*
-	if (UseCompression)
-		{
-		var PrivKeyBytesCompressed = Crypto.util.hexToBytes(PrivKeyHex);
-		PrivKeyBytesCompressed.push(0x01);
-		
-		var privateKeyWIFCompressed = new Bitcoin.Address(PrivKeyBytesCompressed);
-		privateKeyWIFCompressed.version = 0x80;
-		privateKeyWIFCompressed = privateKeyWIFCompressed.toString();
-		
-		PrivKeyWIF = privateKeyWIFCompressed;
-		}
-	else
-		{
-		PrivKeyWIF = new Bitcoin.Address(Crypto.util.hexToBytes(PrivKeyHex));
-		PrivKeyWIF.version = 0x80; //0x80 = 128, https://en.bitcoin.it/wiki/List_of_address_prefixes
-		PrivKeyWIF = PrivKeyWIF.toString();
-		}
-	*/
 	}
+	
 function PrivateKeyWIFToHex(PrivateKeyWIF)
 	{
 	var PrivateKeyBase58 = Bitcoin.Base58.decode(PrivateKeyWIF);
@@ -400,155 +562,3 @@ function PrivateKeyWIFToHex(PrivateKeyWIF)
 	return PrivateKeyBase58;
 	}
 	
-	
-/* NXT Address Generation - Convert from Java to JavaScript
-
-//12237344381764262326
-Log(GetNXTAccountIdFromSecret('a'));
-
-
-function StringToUnicodeBytes(str)
-	{
-	var bytes = [];
-
-	for (var i = 0; i < str.length; ++i)
-		{
-		bytes.push(str.charCodeAt(i));
-		}
-
-	return bytes;
-	}
-	
-function StringToUTF8Bytes(str)
-	{
-	var utf8 = [];
-	for (var i=0; i < str.length; i++)
-		{
-		var charcode = str.charCodeAt(i);
-		if (charcode < 0x80) utf8.push(charcode);
-		else if (charcode < 0x800)
-			{
-			utf8.push(0xc0 | (charcode >> 6), 
-					  0x80 | (charcode & 0x3f));
-			}
-		else if (charcode < 0xd800 || charcode >= 0xe000)
-			{
-			utf8.push(0xe0 | (charcode >> 12), 
-					  0x80 | ((charcode>>6) & 0x3f), 
-					  0x80 | (charcode & 0x3f));
-			}
-		// surrogate pair
-		else
-			{
-			i++;
-			// UTF-16 encodes 0x10000-0x10FFFF by
-			// subtracting 0x10000 and splitting the
-			// 20 bits of 0x0-0xFFFFF into two halves
-			charcode = 0x10000 + (((charcode & 0x3ff)<<10)
-					  | (str.charCodeAt(i) & 0x3ff))
-			utf8.push(0xf0 | (charcode >>18), 
-					  0x80 | ((charcode>>12) & 0x3f), 
-					  0x80 | ((charcode>>6) & 0x3f), 
-					  0x80 | (charcode & 0x3f));
-			}
-		}
-	return utf8;
-	}
-	
-function stringToUint(string) {
-	charList = string.split('');
-	uintArray = [];
-for (var i = 0; i < charList.length; i++) {
-	uintArray.push(charList[i].charCodeAt(0));
-}
-	Log(uintArray);
-return new Uint8Array(uintArray);
-}
-
-function GetNXTAccountIdFromSecret(NXTSecretPhrase)
-	{
-	var PublicKeyBytes = GetNXTPublicKey(NXTSecretPhrase);
-	
-	return GetNXTAccountId(PublicKeyBytes)
-	}
-	
-function UByteShift(Bytes)
-	{
-	var BytesOut = [];
-
-	for (var i = 0; i < Bytes.length; i++)
-		{
-		var a = Bytes[i];
-		
-		if (a >= 128)
-			a -= 256;
-			
-		BytesOut.push(a);
-		}
-
-	return BytesOut;	
-	}
-	
-function GetNXTPublicKey(NXTSecretPhrase)
-	{
-	var SecretBytes = StringToUTF8Bytes(NXTSecretPhrase)
-	
-	var shaObj = new jsSHA(NXTSecretPhrase, "ASCII");
-	var test = bi2bytes(hex2bi(shaObj.getHash("SHA-256", "HEX")), 32).reverse();
-	  
-	Log(test);
-	Log(UByteShift(test));
-	
-	var SHABytes = Crypto.SHA256(SecretBytes, { asBytes: true });
-	var SHABytesShift = UByteShift(SHABytes);
-	
-	var Curve = curve25519(bi(Crypto.util.bytesToHex(SHABytesShift)));
-	var PublicKey = ed25519_publickey(Curve);
-	var PublicKeyShift = UByteShift(PublicKey);
-	
-	Log(NXTSecretPhrase);
-	Log(SecretBytes);
-	Log(SHABytes);
-	Log(SHABytesShift);
-	Log(Curve);
-	Log('pk ' + PublicKey);
-	Log('pkshift ' + PublicKeyShift);
-	
-	return PublicKeyShift;
-	}
-function GetNXTAccountId(PublicKeyBytes)
-	{		
-	var publicKeyHash = Crypto.SHA256(Crypto.util.bytesToHex(PublicKeyBytes), {asBytes: true});
-	Log(publicKeyHash);
-	var publicKeyHashReverse = [ publicKeyHash[7], 
-		publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], 
-		publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], 
-		publicKeyHash[0]];
-	Log(publicKeyHashReverse);
-	
-	var bigInteger = bi(publicKeyHashReverse);
-	
-	return bigInteger.longValue();
-	}
-
-*/
-
-/*
-// Find Curve25519 JavaScript implementation
-
-static byte[] GetNXTPublicKey(NXTSecretPhrase)
-	{		
-	byte[] PublicKey = new byte[32];
-	Curve25519.keygen(publicKey, null, MessageDigest.getInstance("SHA-256").digest(secretPhrase.getBytes("UTF-8")));
-	
-	return publicKey;
-	}
-	
-static long getId(byte[] publicKey) throws Exception
-	{		
-	byte[] publicKeyHash = MessageDigest.getInstance("SHA-256").digest(publicKey);
-	BigInteger bigInteger = new BigInteger(1, new byte[] {publicKeyHash[7], publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], publicKeyHash[0]});
-	return bigInteger.longValue();
-	}
-	
-*/

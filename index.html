@@ -4,10 +4,35 @@
 
 Copyright 2014 CryptoPapers
 
-If you 
+The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
+reused or distributed, modified or unmodified, without permission.
 
-This script written by CryptoPapers but some portions, namely the Random Number Generator and entropy collection, 
-were helped and inspired by:
+This tool, all styles and CryptoPapers libraries excluding external libraries were written by CryptoPapers.
+
+All images used in this tool have been released as Public Domain.
+
+----------------------------------------------------------------------------------------
+
+Crucial Resources:
+
+Generating a Bitcoin Address with JavaScript
+http://procbits.com/2013/08/27/generating-a-bitcoin-address-with-javascript
+
+Bitcoin, List of address prefixes
+https://en.bitcoin.it/wiki/List_of_address_prefixes
+
+Offline Wallet Creator, key generation and verification
+http://bitcoinpaperwallet.com
+
+Offline Wallet Creator, key generation and verification
+http://bitaddress.org
+
+Brainwallet, key generation verification
+http://brainwallet.org/
+
+----------------------------------------------------------------------------------------
+
+Portions of the Random Number Generator and entropy collection were helped and inspired by:
 
 http://bitcoinpaperwallet.com by Canton Becker
 Donate: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
@@ -17,18 +42,38 @@ and
 http://bitaddress.org by pointbiz
 Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 
+----------------------------------------------------------------------------------------
 
-Javascript libraries used:
+CryptoPapers libraries:
+
+cryptopapers-private-key		All methods that generate addresses and handle private keys are either here or in an external library.
+											Javascript UI for the Private Key page
+cryptopapers-test-cases		Javascript Test cases to verify key -> address generation
+cryptopapers-security			Javascript UI for the Security page
+cryptopapers-print				Javascript UI for the Print page
+cryptopapers-premium			Javascript functions for Premium content
+cryptopapers-ui						Javascript UI for the whole application
+
+cryptopapers-test					Test functions - not included in release
+
+jquery-animate-auto				Custom script: animateAuto function for smooth visual effects	
+
+----------------------------------------------------------------------------------------
+
+External libraries:
 
 jquery-2.1.0																									http://code.jquery.com/jquery-2.1.0.js
 jquery-ui-1.10.4			For hue-shift slider													http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
 jquery.lettering				For text rotations on circular wallets							https://github.com/davatron5000/Lettering.js
-jquery-animate-auto		Custom script - animateAuto function for smooth visual effects
-crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
-bitcoinjs-lib					Bticoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
 jquery-qrcode				Generating QR codes													https://github.com/lrsjng/jQuery.qrcode
-prng4							Pseudorandom generator, entropy modified from 		http://bitcoinpaperwallet.com 		
-ed25519						Curve25519 implementation for NXT addresses			[find address]
+
+crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
+bitcoinjs-lib					Bitcoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
+prng4							Pseudo-random generator, entropy modified from 	http://bitcoinpaperwallet.com, http://bitaddress.org
+
+ed25519						Curve25519 implementation for NXT addresses			http://www.flownet.com/ron/code/djbec.js
+jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
+
 -->
 
 <html>
@@ -39,57 +84,58 @@ ed25519						Curve25519 implementation for NXT addresses			[find address]
 	
 	<link rel="shortcut icon" href="images/cp-logo.ico" type="image/x-icon">	
 
-	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
-	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
-	<script type="text/javascript" src="js/jquery.lettering.js"></script>
+	<script type="text/javascript" src="include-js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="include-js/jquery-ui/jquery-ui-1.10.4.js"></script>
+	<script type="text/javascript" src="include-js/jquery.lettering.js"></script>
+
+	<script type="text/javascript" src="include-js/big-integer.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/crypto.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/sha256.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/ripemd160.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/prng4.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/rng.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/jsbn.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/jsbn2.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/ec.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/sec.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/events/eventemitter.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/bitcoin.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/util.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/base58.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/address.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/ecdsa.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/eckey.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/opcode.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/script.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/transaction.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/wallet.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/txdb.js"></script>
+	
+	<script type="text/javascript" src="include-js/jquery-qrcode/jquery.qrcode.js"></script>
+	<script type="text/javascript" src="include-js/jquery-qrcode/qrcode.js"></script>
+	
+	<!-- NXT Support
+	<script type="text/javascript" src="include-js/ed25519.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha_dev.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha1.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha256.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha512.js"></script>
+	-->	
 	
 	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
-	<script type="text/javascript" src="js/big-integer.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
+	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/sha256.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/ripemd160.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/prng4.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/rng.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn2.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/ec.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/sec.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/events/eventemitter.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/bitcoin.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/util.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/base58.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/address.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/ecdsa.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/eckey.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/opcode.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/script.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/transaction.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/wallet.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/txdb.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	
+	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	
-	<script type="text/javascript" src="js/jquery-qrcode/jquery.qrcode.js"></script>
-	<script type="text/javascript" src="js/jquery-qrcode/qrcode.js"></script>
-	
-	<script type="text/javascript" src="js/prng4.js"></script>
-	
-	<!--
-	<script type="text/javascript" src="js/ed25519.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha_dev.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha1.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha256.js"></script>
-	<script type="text/javascript" src="js/jsSHA/sha512.js"></script>
-	-->
-	
-	<script type="text/javascript" src="crypto-papers.js"></script>
-	<script type="text/javascript" src="crypto-papers-ui.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -97,8 +143,8 @@ ed25519						Curve25519 implementation for NXT addresses			[find address]
 	<link rel="stylesheet" type="text/css" href="css/toggle-switch.css" />
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
-	<link rel="stylesheet" type="text/css" href="css/style-test.css" />
 	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
+	<link rel="stylesheet" type="text/css" href="css/style-frames.css" />
 </head>
 <body class="">
 <script type="text/javascript">
@@ -177,7 +223,7 @@ $().ready(function ()
 					<b>Some Trust</b>: You are partially trusting this element to not be spying on you or collecting key data. 
 					Some vulnerabilities have been protected against, but others exist.
 					<br>
-					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your keys to be taken.
+					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your coins to be taken.
 					<br><br>
 					Click an item below to see detailed risk information.
 					<br><br><br>
@@ -220,13 +266,6 @@ $().ready(function ()
 					<div class='security-level'></div>
 				</div>
 				
-				<div class="help-bubble" style="float:left;">
-					<span>
-					The best thing you can do for your security would be to run this tool on an offline computer and printer.
-					<br>
-					If you can't dedicate a machine to be offline permanently, a Linux Live CD or Live USB is the next best thing.
-					</span>
-				</div>
 			</div>
 			
 			<div class="security-test round-block">
@@ -241,6 +280,16 @@ $().ready(function ()
 			<div class="security-questions round-block help-section">
 				<h3>Questions</h3>
 				<h4>Answer these questions honestly to understand your level of risk:</h4>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					The best thing you can do for your security would be to run this tool on an offline computer and printer.
+					<br>
+					If you can't dedicate a computer to be offline permanently, a Linux Live CD or Live USB is the next best thing.
+					<br><br>
+					</span>
+				</div>
+				
 				<label class="left-label">Are you running this from a Linux Live CD or Live USB?</label>
 				<div class="switch-toggle security-live-cd switch-2 switch-candy ">
 					<input type="radio" name="security-live-cd" value="No" id="security-live-cd-no" checked autocomplete="off" />
@@ -513,6 +562,12 @@ $().ready(function ()
 				
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
+				<div class="instructions rng-move-mouse">
+					The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement
+					in order to guarantee it will produce impossible-to-predict keys.
+					<br><br>
+					Simply move your mouse around the screen until it's collected enough data.
+				</div>
 				<div class="key-import round-block help-section">
 					<h3>Private Key</h3>		
 					<h4>Import / Generate</h4>
@@ -545,9 +600,10 @@ $().ready(function ()
 						Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
 						<br><br>
 						'Entropy' is random or semi-random, unpredictable data. 
+						<br>
 						This tool's RNG uses system, time, and browser data to fill the pool initially, then adds at least <b><span class="rng-point-count"></span></b> coordinates
 						of mouse movement to that. 
-						<br>
+						<br><br>
 						The keys produced by this tool aren't predictable in any way.
 						<br><br><br><br><br><br><br><br><br>
 						</span>
@@ -637,7 +693,7 @@ $().ready(function ()
 						This is the Private Key Checksum, which is included in the Private Key WIF.
 						<br>
 						This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
-						<br>
+						<br><br>
 						</span>
 					</div>	
 					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" autocomplete="off" readonly />
@@ -730,6 +786,28 @@ $().ready(function ()
 							</div>
 							
 						</div>
+						
+						<div class="help-bubble" style="float:left;">
+							<span>
+							For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
+							<br><br>
+							</span>
+						</div>	
+						
+						<div class="sample">
+
+							<label class="left-label">Sample Wallet:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
+								<label for="sample-wallet-no">No</label> 
+								
+								<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
+								<label for="sample-wallet-yes">Yes</label>
+						
+								<a></a>
+							</div>
+							
+						</div>
 							
 						<div class="help-bubble" style="float:left;">
 							<span>
@@ -789,24 +867,28 @@ $().ready(function ()
 							</div>
 						</div>
 						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Color shift the wallet background
-							<br><br>
-							*Only supported by Chrome
-							<br>
-							</span>
-						</div>	
 						
-						<label class="left-label color-shift-label">Color Shift:</label>
-						<!--
-						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-						-->
-						<span class="hue-shift-amount">0&deg;</span>
+						<div class="hue-shift hide premium">
 						
-						<div id="hue-slider"></div>
-						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Color shift the wallet background
+								<br><br>
+								*Only supported by Chrome
+								<br>
+								</span>
+							</div>	
+							
+							<label class="left-label color-shift-label">Color Shift:</label>
+							<!--
+							<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+							<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+							-->
+							<span class="hue-shift-amount">0&deg;</span>
+							
+							<div id="hue-slider"></div>
+							<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+						</div>
 					</div>
 					
 					<div class="print-encryption round-block hide">

@@ -1,5 +1,52 @@
 
 
+.frame-instructions {
+	.frame-name {
+		font-size: 22px;
+		text-decoration: underline;
+		margin-bottom: 24px;
+	}
+	.frame-creator {
+		font-size: 18px;
+		font-style: italic;
+		font-weight: bold;
+		&:before {
+			font-size: 18px;
+			content: 'Created By: ';
+			font-style: italic;
+			font-weight: normal;
+		}
+	}
+	.frame-description {
+		font-size: 15px;
+		margin-top: 10px;
+		margin-bottom: 10px;
+		background-color: #ddd;
+		border-radius: 5px;
+		padding: 10px;
+	}
+	.frame-detail-instructions {
+		font-size: 15px;
+		&:before {
+			content: 'How to make this wallet: ';
+		}
+		ol {
+			margin-top: 10px;
+		}
+	}
+	.frame-difficulty {
+		margin: 5px;
+		float: right;
+		background: #ccc;
+		padding: 5px;
+		border-radius: 5px;
+		&:before {
+			content: 'Difficulty: ';
+		}
+	}
+}
+
+
 .frame-1
 {
 	.coin-wallet
@@ -89,11 +136,11 @@
 		.coin-logo
 		{
 			display: block;
-			left: 331px;
+			left: 321px;
 			background-size: 100%;
 			width: 235px;
 			height: 235px;
-			top: 57px;
+			top: 53px;
 		}
 	}
 }
@@ -156,14 +203,6 @@
 			text-shadow: 4px 1px 4px rgba(0,0,0,0.5);
 			font-weight: bold;
 		}
-		.coin-wallet-write-area
-		{
-			top: 18px;
-			left: 534px;
-			border-radius: 120px;
-			width: 231px;
-			height: 233px;
-		}
 	}	
 	.coin-logo
 	{
@@ -190,6 +229,7 @@
 		}
 		.coin-logo
 		{
+			display: none;
 			left: 807px;
 			background-size: 100%;
 			width: 235px;
@@ -202,6 +242,14 @@
 				left: -683px;
 				position: absolute;
 			}
+		}
+		.coin-wallet-write-area
+		{
+			top: 67px;
+			left: 595px;
+			border-radius: 37px;
+			width: 430px;
+			height: 154px;
 		}
 	}
 }
@@ -217,6 +265,15 @@
 		.coin-wallet-right
 		{
 			display: none;
+		}
+		.coin-logo-2
+		{
+			display: block;
+			top: 83px;
+			left: 851px;
+			width: 185px;
+			height: 185px;
+			background-size: 100%;
 		}
 	}
 	
@@ -267,16 +324,7 @@
 		}
 		.coin-logo-2
 		{
-			background-size: 100%;
-			width: 220px;
-			height: 220px;
-
-			display: block;
-			top: 83px;
-			left: 852px;
-			width: 190px;
-			height: 190px;
-			opacity: 0.90;
+			display: none;
 		}
 	}
 }
@@ -344,8 +392,6 @@
 	}
 }
 
-
-
 .frame-5
 {
 	.coin-wallet
@@ -362,8 +408,8 @@
 		.coin-wallet-left
 		{
 			margin-top: 37px;
-			margin-left: 56px;
-			width: 370px;
+			margin-left: 68px;
+			width: 320px;
 		}
 		.coin-wallet-right
 		{
@@ -406,13 +452,12 @@
 		.coin-logo
 		{
 			top: 63px;
-			left: 195px;
+			left: 191px;
 			width: 231px;
 			height: 231px;
 		}
 	}
 }
-
 
 .frame-6
 {
@@ -437,7 +482,6 @@
 	}
 }
 
-
 .frame-7
 {
 	.coin-wallet
@@ -460,7 +504,6 @@
 		}
 	}
 }
-
 
 .frame-8
 {
@@ -485,51 +528,28 @@
 	}
 }
 
-.char-rotation (@i) when (@i > 0) {
+.char-rotate (@start, @increment, @i) when (@i > 0) {
     .char@{i} {
-		@start_degree: -95;
-		@degree_increment: 5;
-		@degree: @start_degree + @degree_increment * @i;
+		@degree: @start + @increment * @i;
+		
 		transform: rotate(e("@{degree}deg"));
 		-webkit-transform: rotate(e("@{degree}deg"));
     }
-    .char-rotation(@i - 1);
+    .char-rotate(@start, @increment, @i - 1);
 }
 
+.char-rotate(-95, 5, 36);
 
-.bottom-char-rotation (@i) when (@i > 0) {
-	.bottom .char@{i} {
-		@start_degree: 85;
-		@degree_increment: 5;
-		@degree: @start_degree + @degree_increment * @i;
-		transform: rotate(e("@{degree}deg"));
-		-webkit-transform: rotate(e("@{degree}deg"));
-	}
-
-	.bottom-char-rotation(@i - 1);
-}
-.bottom-char-rotation (0) {}
-
-
-.bottom-char-private-key-rotation (@i) when (@i > 0)
+.bottom
 {
-	.frame-1,
-	.frame-2
-	{
-		.coin-wallet-private-key.bottom .char@{i}
-		{
-			@start_degree: 35;
-			@degree_increment: 5;
-			@degree: @start_degree + @degree_increment * @i;
-			transform: rotate(e("@{degree}deg"));
-			-webkit-transform: rotate(e("@{degree}deg"));
-		}
-	}
-
-	.bottom-char-private-key-rotation(@i - 1);
+	.char-rotate(85, 5, 36);
 }
-.bottom-char-private-key-rotation (0) {}
-
-.char-rotation (36);
-.bottom-char-rotation (36);
-.bottom-char-private-key-rotation (27);
+	
+.frame-1,
+.frame-2
+{
+	.coin-wallet-private-key.bottom
+	{
+		.char-rotate(35, 5, 27);
+	}
+}

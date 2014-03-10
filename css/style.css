@@ -527,6 +527,34 @@ content: 'Mintcoin';
 content: 'Counterparty';
 }
 
+.coin-wallets.ftc .coin-logo,
+.coin.ftc-coin{
+	background-image:url('../images/coin-icons/ftc-logo.png');
+}
+.ftc .coin-name:after
+{
+content: 'Feathercoin';
+}
+
+.coin-wallets.pts .coin-logo,
+.coin.pts-coin{
+	background-image:url('../images/coin-icons/pts-logo.png');
+}
+.pts .coin-name:after
+{
+content: 'ProtoShares';
+}
+
+.coin-wallets.qrk .coin-logo,
+.coin.qrk-coin{
+	background-image:url('../images/coin-icons/qrk-logo.png');
+}
+.qrk .coin-name:after
+{
+content: 'Quark';
+}
+
+
 .coin-type .coin
 {
 float: right;
@@ -650,7 +678,7 @@ z-index: 0;
 {
 margin-left: 20px;
 float: left;
-width: 50%
+width: 46%
 }
 .design-type .active > .coin-wallet-background
 {
@@ -759,14 +787,14 @@ textarea[readonly]
 #private-key-input
 {
 	display: inline;
-	width: 72%;
+	width: 500px;
 	font-size: 12px;
 	height: 40px;
 	border: 1px solid #999;
 	border-radius: 10px;
 	position: relative;
 	margin: auto;
-	left: 80px;
+	left: 26px;
 	text-align: center;
 }
 
@@ -1307,7 +1335,7 @@ position: relative;
 }
 #print-settings .left-label
 {
-	width: 105px;
+	width: 132px;
 }
 #print-settings .print-buttons
 {
@@ -1320,6 +1348,38 @@ min-height: 304px;
 {
 float: left;
 width: 50%;
+}
+.sample .coin-wallet-address-qr:after
+{
+content: 'SAMPLE WALLET DO NOT USE';
+color: red;
+font-weight: bolder;
+font-size: 18px;
+position: absolute;
+width: 171px;
+text-align: center;
+text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+background: rgba(0,0,0,0.5);
+}
+.frame-1.sample .coin-wallet-address-qr:after,
+.frame-2.sample .coin-wallet-address-qr:after
+{
+margin-left: -138px;
+margin-top: -58px;
+}
+.frame-3.sample .coin-wallet-address-qr:after,
+.frame-4.sample .coin-wallet-address-qr:after,
+.frame-5.sample .coin-wallet-address-qr:after
+{
+margin-left: 10px;
+margin-top: 0px;
+}
+.frame-6.sample .coin-wallet-address-qr:after,
+.frame-7.sample .coin-wallet-address-qr:after,
+.frame-8.sample .coin-wallet-address-qr:after
+{
+margin-left: 18px;
+margin-top: -43px;
 }
 
 .donate-keys
@@ -1639,7 +1699,7 @@ border-radius: 10px;
 position: absolute;
 min-height: 67px;
 top: 53px;
-left: 128px;
+left: 155px;
 z-index: 10;
 margin-right: -700px;
 }
@@ -1699,7 +1759,7 @@ left: -600px;
 .frame-type.selecting
 {
 top: 40px;
-left: -291px;
+left: -263px;
 }
 
 .frame-label,
@@ -1721,6 +1781,26 @@ margin-bottom: 74px;
 .design-type .selector-grid-row
 {
 background: none;
+}
+
+.coin-setup-keys
+{
+	float: left;
+	width: 100%;
+	margin-top: 0px !important;
+}
+.instructions
+{
+	background-color: #ddd;
+	border-color: #ccc;
+	width: 100%;
+	box-shadow: 1px 1px 26px #000000;
+	margin-bottom: 23px;
+	padding: 10px;
+	color: #444;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 10px;
 }
 
 .frame.selector,
@@ -1749,60 +1829,3 @@ border-radius: 10px;
 {
 	background-position-x: 100px;
 }
-
-.frame-instructions .frame-name
-{
-	font-size: 22px;
-	text-decoration: underline;
-	margin-bottom: 24px;
-}
-.frame-instructions .frame-creator:before
-{
-	font-size: 18px;
-	content: 'Created By: ';
-	font-style: italic;
-	font-weight: normal;
-}
-.frame-instructions .frame-creator
-{
-	font-size: 18px;
-	font-style: italic;
-	font-weight: bold;
-}
-.frame-instructions .frame-description
-{
-	font-size: 15px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	background-color: #ddd;
-	border-radius: 5px;
-	padding: 10px;
-}
-.frame-instructions .frame-detail-instructions:before
-{
-	content: 'How to make this wallet: ';
-}
-
-.frame-instructions .frame-difficulty:before
-{
-	content: 'Difficulty: ';
-}
-.frame-instructions .frame-difficulty
-{
-	margin: 5px;
-	float: right;
-	background: #ccc;
-	padding: 5px;
-	border-radius: 5px;
-}
-
-.frame-instructions .frame-detail-instructions
-{
-	font-size: 15px;
-}
-
-.frame-instructions .frame-detail-instructions ol
-{
-	margin-top: 10px;
-}
-

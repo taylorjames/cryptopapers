@@ -1,3 +1,46 @@
+.frame-instructions .frame-name {
+  font-size: 22px;
+  text-decoration: underline;
+  margin-bottom: 24px;
+}
+.frame-instructions .frame-creator {
+  font-size: 18px;
+  font-style: italic;
+  font-weight: bold;
+}
+.frame-instructions .frame-creator:before {
+  font-size: 18px;
+  content: 'Created By: ';
+  font-style: italic;
+  font-weight: normal;
+}
+.frame-instructions .frame-description {
+  font-size: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ddd;
+  border-radius: 5px;
+  padding: 10px;
+}
+.frame-instructions .frame-detail-instructions {
+  font-size: 15px;
+}
+.frame-instructions .frame-detail-instructions:before {
+  content: 'How to make this wallet: ';
+}
+.frame-instructions .frame-detail-instructions ol {
+  margin-top: 10px;
+}
+.frame-instructions .frame-difficulty {
+  margin: 5px;
+  float: right;
+  background: #ccc;
+  padding: 5px;
+  border-radius: 5px;
+}
+.frame-instructions .frame-difficulty:before {
+  content: 'Difficulty: ';
+}
 .frame-1 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-1.png');
 }
@@ -54,11 +97,11 @@
 }
 .frame-1.back .coin-logo {
   display: block;
-  left: 331px;
+  left: 321px;
   background-size: 100%;
   width: 235px;
   height: 235px;
-  top: 57px;
+  top: 53px;
 }
 .frame-2 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-2.png');
@@ -102,13 +145,6 @@
   text-shadow: 4px 1px 4px rgba(0, 0, 0, 0.5);
   font-weight: bold;
 }
-.frame-2 .coin-wallet .coin-wallet-write-area {
-  top: 18px;
-  left: 534px;
-  border-radius: 120px;
-  width: 231px;
-  height: 233px;
-}
 .frame-2 .coin-logo {
   left: 807px;
   background-size: 100%;
@@ -123,6 +159,7 @@
   background-image: url('../images/wallet-frames/Frame-2-Back.png');
 }
 .frame-2.back .coin-logo {
+  display: none;
   left: 807px;
   background-size: 100%;
   width: 235px;
@@ -134,11 +171,26 @@
   left: -683px;
   position: absolute;
 }
+.frame-2.back .coin-wallet-write-area {
+  top: 67px;
+  left: 595px;
+  border-radius: 37px;
+  width: 430px;
+  height: 154px;
+}
 .frame-3 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-3.png');
 }
 .frame-3 .coin-wallet .coin-wallet-right {
   display: none;
+}
+.frame-3 .coin-wallet .coin-logo-2 {
+  display: block;
+  top: 83px;
+  left: 851px;
+  width: 185px;
+  height: 185px;
+  background-size: 100%;
 }
 .frame-3.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-3-Back.png');
@@ -173,15 +225,7 @@
   height: 220px;
 }
 .frame-3.back .coin-logo-2 {
-  background-size: 100%;
-  width: 220px;
-  height: 220px;
-  display: block;
-  top: 83px;
-  left: 852px;
-  width: 190px;
-  height: 190px;
-  opacity: 0.90;
+  display: none;
 }
 .frame-4 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-4.png');
@@ -229,8 +273,8 @@
 }
 .frame-5 .coin-wallet .coin-wallet-left {
   margin-top: 37px;
-  margin-left: 56px;
-  width: 370px;
+  margin-left: 68px;
+  width: 320px;
 }
 .frame-5 .coin-wallet .coin-wallet-right {
   margin-right: 401px;
@@ -258,7 +302,7 @@
 }
 .frame-5.back .coin-logo {
   top: 63px;
-  left: 195px;
+  left: 191px;
   width: 231px;
   height: 231px;
 }
