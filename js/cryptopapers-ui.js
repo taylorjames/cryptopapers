@@ -49,7 +49,7 @@ function InitHelp()
 		if ($(this).parent().hasClass('help-active'))
 			{
 			$(this).animate({opacity: '0.5'});
-			$(this).parent().find('.help-bubble').animate({height: '0px'}, 300 , function() 
+			$(this).parent().find('.help-bubble').animate({opacity: '0', height: '0px'}, 300 , function() 
 				{
 				if ($(this).parent().removeClass('help-active'));
 				});
@@ -59,7 +59,7 @@ function InitHelp()
 			$(this).animate({opacity: '1'});
 			if ($(this).parent().addClass('help-active'));
 			
-			$(this).parent().find('.help-bubble').animateAuto('height', 300, function() 
+			$(this).parent().find('.help-bubble').css('opacity','1').animateAuto('height', 300, function() 
 				{
 				});
 			}
@@ -128,6 +128,14 @@ function InitMenus()
 	
 function InitTheme()
 	{
+	$('input[name=theme]').change(function()
+		{
+		if ($(this).val() == "Yes")
+			$('body').removeClass('dark-theme');
+		else
+			$('body').addClass('dark-theme');
+		});
+		
 	if (!Security_IsOnline)
 		{
 		$('#lights-off').click();
@@ -136,6 +144,7 @@ function InitTheme()
 		{
 		$('#lights-on').click();
 		}
+		
 	}
 
 function InitSelectorGrid()

@@ -341,13 +341,18 @@ function GenerateAddress(display)
 	var PrivKeyHex = '';
 	var PrivKeyWIF = '';
 	
+		
 	if (PrivKey.length == 64)
 		{
+		$('.private-key-error').fadeOut(300);
+	
 		PrivKeyHex = PrivKey;
 		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
 		}
 	else if (PrivKey.length == 51 || PrivKey.length == 52)
 		{
+		$('.private-key-error').fadeOut(300);
+		
 		PrivKeyWIF = PrivKey;
 		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
 		PrivKeyHex = PrivateKeyWIFToHex(PrivKeyWIF);
@@ -359,8 +364,14 @@ function GenerateAddress(display)
 			
 		Compressed = Default_Compress;
 		}
+	else if (PrivKey.length == 0)
+		{
+		$('.private-key-error').fadeOut(300);
+		return;
+		}		
 	else
 		{
+		$('.private-key-error').fadeIn(300).html('Error: Unknown wallet format');
 		Log("Unknown format: Size " + PrivKey.length);
 		return;
 		}
@@ -417,15 +428,28 @@ function GenerateAddress(display)
 				$('.coin-wallet-2').css('display', 'none');
 				}
 			
-			if (CoinType == 'btc')
+			if (true || CoinType == 'btc')
 				{
+				/*
 				// Verify
+				var BitcoinAddress = new Bitcoin.ECKey(PrivKeyWIF);
+				//BitcoinAddress.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
+				Log(BitcoinAddress.version);
+				var VerifyPrivKeyWIF = BitcoinAddress.toString();
+				Log(VerifyPrivKeyWIF);
+				
+				var BitcoinECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
+				BitcoinECKey.compressed = Compressed;
+				BitcoinECKey.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
+				
+				/*
 				var VerifyAddressECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
 				VerifyAddressECKey.compressed = Compressed;
 				var VerifyAddress = VerifyAddressECKey.getBitcoinAddress().toString();
-				var Verified = (PrivKeyHex != '') && (Address == VerifyAddress);
+				var Verified = (PrivKeyHex != '') && (VerifyPrivKeyWIF == PrivKeyWIF && Address == VerifyAddress);
 				
 				$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
+				*/
 				}	
 				
 			$('.coin-wallets').removeClass(AllCoinTypes);
@@ -626,6 +650,45 @@ function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
 	var PrivateKeyBase58 =  Bitcoin.Base58.encode(Crypto.util.hexToBytes(PrivateKeyHexExt));
 	
 	return PrivateKeyBase58;
+	}
+	
+function CurveAdd(PubKeyHex1, PubKeyHex2)
+	{
+	var ECCurve = getSECCurveByName("secp256k1");
+	
+	var Curve = ECCurve.getCurve();
+	
+	var ECPoint1 = Curve.decodePointHex(PubKeyHex1);
+	var ECPoint2 = Curve.decodePointHex(PubKeyHex2);
+	
+	if (ECPoint1.equals(ECPoint2))
+		return null;
+	
+	var Compressed = (ECPoint1.compressed && ECPoint2.compressed);
+	
+	var PubKeyOut = ECPoint1.add(ECPoint2).getEncoded(Compressed);
+	
+	return PubKeyOut;	
+	}
+function CurveMultiply(PubKeyHex1, ECKey)
+	{
+	var ECCurve = getSECCurveByName("secp256k1");
+	var ECPoint = ECCurve.getCurve().decodePointHex(pubKeyHex);
+	
+	var Compressed = (ECPoint.compressed && ECKey.compressed);
+	
+	ECKey.setCompressed(false);
+	
+	if (ECPoint.equals(ECKey.getPubPoint()))
+		{
+		return null;
+		}
+	
+	var BigInt = ECKey.priv;
+	
+	var PubKeyOut = ECPoint.multiply(BigInt).getEncoded(Compressed);
+	
+	return PubKeyOut;	
 	}
 	
 function PrivateKeyWIFToHex(PrivateKeyWIF)

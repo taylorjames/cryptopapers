@@ -15,7 +15,7 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
 var WhenEntropyPoolFills_GoToPrint = false;
 
-var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 10;
 
 var sr = window.SecureRandom = function () { };
 
@@ -26,7 +26,9 @@ sr.poolSize = 256;
 sr.pptr = 0;
 
 sr.pointsKeepCollecting = true;
-sr.pointsRequired = 50 //  400;
+sr.pointsRequiredMin = 20; // 300;
+sr.pointsRequiredMax = 100; // 400;
+sr.pointsRequired = Math.round(Math.random() * (sr.pointsRequiredMax - sr.pointsRequiredMin)) + sr.pointsRequiredMin;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();
 
@@ -35,6 +37,11 @@ function InitRNG()
 	{
 	$('.rng-point-count').html(sr.pointsRequired);
 	
+	$('input[name=rng-keep-collecting]').change(function()
+		{
+		sr.pointsKeepCollecting = $(this).val() == "Yes";
+		});
+		
 	$('body').mousemove(function(ev)
 		{
 		sr.mouse_move(ev);
@@ -57,13 +64,13 @@ function InitRNG()
 			
 		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 		
-		var shadow = 26 - Math.round(collected_points / total_points  * 26);
-		$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #000000');
+		var shadow = 55 - Math.round(collected_points / total_points  * 55);
+		$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
 		
 		if (collected_points == total_points)
 			{
 			$('.entropy-satisfied').fadeIn(300);
-			$('.rng-move-mouse').animate({padding: '0', height: '0'}, 300);
+			$('.rng-move-mouse').animate({opacity: '0', padding: '0', height: '0'}, 300);
 			
 			if (!HasPrivateKey)
 				{

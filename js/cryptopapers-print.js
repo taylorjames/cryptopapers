@@ -228,19 +228,6 @@ var Backgrounds =
 
 		});
 	
-			
-	$('input[name=theme]').change(function()
-		{
-		if ($(this).val() == "Yes")
-			$('body').removeClass('dark-theme');
-		else
-			$('body').addClass('dark-theme');
-		});
-		
-	$('input[name=rng-keep-collecting]').change(function()
-		{
-		sr.pointsKeepCollecting = $(this).val() == "Yes";
-		});
 	
 	$('.frame-grid-row-header').click(function()
 		{

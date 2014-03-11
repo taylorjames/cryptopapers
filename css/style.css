@@ -185,6 +185,13 @@ font-weight: bold;
 	width:100%;
 }
 
+.private-key-error
+{
+color: red;
+margin-left: 325px;
+top: -10px;
+position: relative;
+}
 #header{
 	width:100%;
 	background:url('../images/dark-pattern.png');
@@ -1903,7 +1910,7 @@ background: none;
 	background-color: #ddd;
 	border-color: #ccc;
 	width: 100%;
-	box-shadow: 1px 1px 26px #000000;
+	box-shadow: 1px 1px 55px #000000;
 	margin-bottom: 23px;
 	padding: 10px;
 	color: #444;

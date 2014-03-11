@@ -598,7 +598,7 @@ $().ready(function ()
 					The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement
 					in order to guarantee it will produce impossible-to-predict keys.
 					<br><br>
-					Simply move your mouse around the screen until it's collected enough data.
+					Simply move your mouse around the screen until it has collected enough data.
 				</div>
 				<div class="key-import round-block help-section">
 					<h3>Private Key</h3>		
@@ -613,7 +613,8 @@ $().ready(function ()
 						(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed are all supported)
 						<br><br>
 						</span>
-					</div>			
+					</div>		
+					<span class="private-key-error"></span>	
 					<div class="private-key"> 
 						<div id="coin-key">	
 
@@ -751,7 +752,7 @@ $().ready(function ()
 					</div>	
 					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
-					<div class="help-bubble" style="float:left;">
+					<div class="help-bubble hide" style="float:left;">
 						<span>
 						The Address Checksum is derived from the Public Key and is used to create the Public Address.
 						<br>
@@ -761,6 +762,7 @@ $().ready(function ()
 					</div>	
 					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
+					<!--
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This wallet address has been verified by bitcoin-js.
@@ -768,7 +770,7 @@ $().ready(function ()
 						</span>
 					</div>	
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
-					
+					-->
 				</div>			
 			</div>
 			<div class="sub-section coin-setup-print">
