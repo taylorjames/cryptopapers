@@ -26,10 +26,22 @@ function InitPage()
 	
 	InitBIP38();
 	
+	InitDismissable();
+	 
 	if (InitPremium)
 		InitPremium();
 	}
+function InitDismissable()
+	{
+	$('.dismissable').prepend('<div class="close-button"></div>');
 	
+	$('.dismissable .close-button').click(function() {
+		$(this).parent().animate({opacity: '0', height: '0'}, 300, function() {
+			$(this).hide();
+		});
+	});
+	
+	}
 function InitDonate()
 	{
 	$(".donate-reminder").click(function() 

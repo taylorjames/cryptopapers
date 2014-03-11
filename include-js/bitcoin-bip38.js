@@ -427,7 +427,7 @@ Bitcoin.BIP38 = {
 	PrivateKeyToEncryptedKeyAsync: function (a, i, c, Address, g)
 	{
 		var e = null;
-		if (/^5[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{50}$/.test(a))
+		if (!c) ///^5[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{50}$/.test(a))
 		{
 			e = Bitcoin.Base58.decode(a);
 			e.shift();
@@ -435,7 +435,7 @@ Bitcoin.BIP38 = {
 		}
 		else
 		{
-			if (/^[LK][123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{51}$/.test(a))
+			if (c) // /^[LK][123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{51}$/.test(a))
 			{
 				e = Bitcoin.Base58.decode(a);
 				e.shift();

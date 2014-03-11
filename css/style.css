@@ -798,6 +798,21 @@ width: 46%
 {
 border: 5px solid;
 }
+.dismissable
+{
+position: relative;
+}
+.dismissable .close-button
+{
+background-image: url('../images/close.png');
+width:30px;
+height: 30px;
+background-size:100%;
+position: absolute;
+right: 4px;
+top: 4px;
+cursor: pointer;
+}
 
 .help-toggle
 {

@@ -612,6 +612,31 @@
   transform: rotate(90deg);
   -webkit-transform: rotate(90deg);
 }
+.frame-1 .coin-wallet-private-key.bottom .char32,
+.frame-2 .coin-wallet-private-key.bottom .char32 {
+  transform: rotate(195deg);
+  -webkit-transform: rotate(195deg);
+}
+.frame-1 .coin-wallet-private-key.bottom .char31,
+.frame-2 .coin-wallet-private-key.bottom .char31 {
+  transform: rotate(190deg);
+  -webkit-transform: rotate(190deg);
+}
+.frame-1 .coin-wallet-private-key.bottom .char30,
+.frame-2 .coin-wallet-private-key.bottom .char30 {
+  transform: rotate(185deg);
+  -webkit-transform: rotate(185deg);
+}
+.frame-1 .coin-wallet-private-key.bottom .char29,
+.frame-2 .coin-wallet-private-key.bottom .char29 {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+}
+.frame-1 .coin-wallet-private-key.bottom .char28,
+.frame-2 .coin-wallet-private-key.bottom .char28 {
+  transform: rotate(175deg);
+  -webkit-transform: rotate(175deg);
+}
 .frame-1 .coin-wallet-private-key.bottom .char27,
 .frame-2 .coin-wallet-private-key.bottom .char27 {
   transform: rotate(170deg);
