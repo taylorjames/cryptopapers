@@ -57,6 +57,8 @@ function InitRNG()
 			
 		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 		
+		var shadow = 26 - Math.round(collected_points / total_points  * 26);
+		$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #000000');
 		
 		if (collected_points == total_points)
 			{
