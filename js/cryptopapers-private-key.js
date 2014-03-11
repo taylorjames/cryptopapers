@@ -402,6 +402,31 @@ function GenerateAddress(display)
 		var Address = GetAddressFromBytes(CoinType, PubKeyBytes);
 		}
 		
+	
+	if (true || CoinType == 'btc')
+		{
+		/*
+		// Verify
+		var BitcoinAddress = new Bitcoin.ECKey(PrivKeyWIF);
+		//BitcoinAddress.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
+		Log(BitcoinAddress.version);
+		var VerifyPrivKeyWIF = BitcoinAddress.toString();
+		Log(VerifyPrivKeyWIF);
+		
+		var BitcoinECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
+		BitcoinECKey.compressed = Compressed;
+		BitcoinECKey.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
+		
+		/*
+		var VerifyAddressECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
+		VerifyAddressECKey.compressed = Compressed;
+		var VerifyAddress = VerifyAddressECKey.getBitcoinAddress().toString();
+		var Verified = (PrivKeyHex != '') && (VerifyPrivKeyWIF == PrivKeyWIF && Address == VerifyAddress);
+		
+		$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
+		*/
+		}	
+		
 	if (display)
 		{
 		$('#public-key-hex').val(PubKeyHex);
@@ -409,71 +434,74 @@ function GenerateAddress(display)
 		
 		$('.coin-wallet').fadeOut(300, function() 
 			{			
-			$('.coin-wallet-address').html(Address);
-			$('.coin-wallet-address-qr').qrcode(Address);
-		
-			var split = Math.round(PrivKeyWIF.length/2);
-			
-			var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
-			var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
-			
-			var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
-					
-			if (Backup)
-				{
-				$('.coin-wallet-2').css('display', 'block');
-				}
-			else
-				{
-				$('.coin-wallet-2').css('display', 'none');
-				}
-			
-			if (true || CoinType == 'btc')
-				{
-				/*
-				// Verify
-				var BitcoinAddress = new Bitcoin.ECKey(PrivKeyWIF);
-				//BitcoinAddress.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
-				Log(BitcoinAddress.version);
-				var VerifyPrivKeyWIF = BitcoinAddress.toString();
-				Log(VerifyPrivKeyWIF);
-				
-				var BitcoinECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
-				BitcoinECKey.compressed = Compressed;
-				BitcoinECKey.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
-				
-				/*
-				var VerifyAddressECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
-				VerifyAddressECKey.compressed = Compressed;
-				var VerifyAddress = VerifyAddressECKey.getBitcoinAddress().toString();
-				var Verified = (PrivKeyHex != '') && (VerifyPrivKeyWIF == PrivKeyWIF && Address == VerifyAddress);
-				
-				$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
-				*/
-				}	
-				
-			$('.coin-wallets').removeClass(AllCoinTypes);
-			$('.coin-wallets').addClass(CoinType);
-
-			$('.coin-wallet-address').html(Address);
-			
-			$('.coin-wallet-address-qr').html('');
-			$('.coin-wallet-address-qr').qrcode(Address);
-			
-			$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
-			$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
-			
-			$('.coin-wallet-private-key-qr').html('');
-			$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
-			
-			SetLettering();
-			
-			$('.coin-wallet').fadeIn(300);
+			DisplayWallet(CoinType, PrivKeyWIF, Address, false);
 			});
 		}
 	
 	return Address;
 	}
+
+function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
+	{	
+	$('.coin-wallet-address').html(Address);
+	$('.coin-wallet-address-qr').qrcode(Address);
+
+	var split = 26;
+	
+	var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
+	var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
+	
+	var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
+			
+	if (Backup)
+		{
+		$('.coin-wallet-2').css('display', 'block');
+		}
+	else
+		{
+		$('.coin-wallet-2').css('display', 'none');
+		}
+		
+	$('.coin-wallets').removeClass(AllCoinTypes);
+	$('.coin-wallets').addClass(CoinType);
+
+	$('.coin-wallet-address').html(Address);
+	
+	$('.coin-wallet-address-qr').html('');
+	$('.coin-wallet-address-qr').qrcode(Address);
+	
+	if (!Encrypted)
+		{
+		$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
+		$('.print-encryption #encrypted-key').val('');
+		$('.encrypted').fadeOut(300);
+		
+		$('#encryption-key').val('');
+		$('#encryption-key-confirm').val('');
+		$('#encryption-key-confirm').val('');
+		$('#encrypt-remove-button').attr('disabled', '');
+		$('.encryption-details').hide();
+		$('.encryption-keys').show().css('opacity','1');
+		}
+	else
+		{
+		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
+		$('.encryption-details').show().css('opacity','1');
+		$('.encryption-keys').hide();
+		}	
+	
+	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+	$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
+	
+	$('.coin-wallet-private-key-qr').html('');
+	$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
+	
+	SetLettering();
+	
+	$('.coin-wallet').fadeIn(300);
+	}
+	
 	
 function ParseBase58PrivateKey(PrivateKeyHex)
 	{

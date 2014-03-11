@@ -61,6 +61,15 @@ body.dark-theme .trust-items .trust-item {
 body.dark-theme .trust-items .trust-item em {
   background-color: #666666;
 }
+body.dark-theme .warning {
+  color: #ffffff;
+  background-color: #C70000;
+  box-shadow: 1px 1px 50px #FF0000;
+}
+body.dark-theme .warning a,
+body.dark-theme .warning a:visited {
+  color: #ddd;
+}
 body.dark-theme .security-risks .risk {
   color: #dddddd;
   background-color: #333333;

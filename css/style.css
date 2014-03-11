@@ -661,7 +661,6 @@ content: 'Zetacoin';
 }
 
 
-
 .key-details .coin
 {
 float: left;
@@ -844,7 +843,8 @@ margin-top: 10px;
 	overflow: visible;
 }
 
-input[type=text]{
+input[type=text],
+input[type=password]{
 	height:30px;
 	margin:0px;
 }
@@ -943,7 +943,23 @@ input[type=button]
     line-height:3px;
 
 }
-
+.warning
+{
+background-color: #FFC2C2;
+border-color: #ff6666;
+padding:10px;
+border-radius:10px;
+box-shadow: 1px 1px 30px #ff0000;
+float: left;
+margin-bottom: 23px;
+text-align: center;
+font-size: 15px;
+width: 100%;
+}
+input[type=button]:disabled
+{
+	background-color:#838383;
+}
 .print-buttons input[type=button]{
 	margin:auto;
 }
@@ -969,7 +985,7 @@ padding-bottom: 10px;
 
 .round-block
 {
-	
+	position: relative;
 	padding: 5px 20px 40px 20px;
 	border-radius: 10px;
 	background-color: #ececec;
@@ -1803,6 +1819,97 @@ color: #AD0000;
 {
 color: #00AD00;
 }
+
+.print-encryption
+{
+width: 35.6%;
+margin-bottom: 14px;
+float: right;
+padding-left: 14px;
+padding-right: 14px;
+padding-bottom: 14px;
+}
+.print-encryption label
+{
+width: 144px;
+}
+
+
+.print-encryption input[type=button]#encrypt-button
+{
+clear: left;
+}
+.print-encryption input[type=button]
+{
+float: left;
+width: 44%;
+margin: 10px;
+}
+.print-encryption input[type=text],
+.print-encryption input[type=password]
+{
+margin-top: 8px;
+width: 218px;
+}
+#encrypt-remove-button
+{
+clear: right;
+}
+
+.encryption-details
+{
+clear: both;
+}
+.encrypting
+{
+display: none;
+position: relative;
+top: 14px;
+margin-bottom: -16px;
+left: 367px;
+}
+.encrypted
+{
+display: none;
+background-image: url('../images/lock.png');
+background-size: 100%;
+width: 50px;
+height: 63px;
+}
+.print-encryption .encrypted
+{
+position: absolute;
+left: 355px;
+top: 1px;
+}
+.coin-wallet .encrypted
+{
+position: absolute;
+margin-left: 180px;
+width: 25px;
+height: 32px;
+margin-top: 5px;
+}
+
+.frame-1 .coin-wallet .encrypted,
+.frame-2 .coin-wallet .encrypted
+{
+margin-left: 98px;
+margin-top: -6px;
+}
+.frame-3 .coin-wallet .encrypted
+{
+margin-left: 0px;
+margin-top: 6px;
+}
+
+.progress
+{
+background-image: url('../images/progress.gif');
+width:16px;
+height:16px;
+}
+
 
 .frame-type,
 .design-type

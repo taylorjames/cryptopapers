@@ -24,6 +24,8 @@ function InitPage()
 	
 	InitDonate();
 	
+	InitBIP38();
+	
 	if (InitPremium)
 		InitPremium();
 	}
@@ -286,7 +288,14 @@ function AddDropdownCoins()
 			$('.changing-coin').fadeIn(300)
 			})
 		
+		if (CurrentCoinType == 'btc' && NewCoinType != 'btc')
+			$('.btc-only').fadeOut(300);
+		else if (NewCoinType == 'btc' && CurrentCoinType != 'btc')
+			$('.btc-only').fadeIn(300);
+		
+		
 		CurrentCoinType = NewCoinType;
+		
 		
 		$('#private-key-input').change();
 		});

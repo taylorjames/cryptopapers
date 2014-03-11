@@ -11,6 +11,13 @@ This tool, all styles and CryptoPapers libraries excluding external libraries we
 
 All images used in this tool have been released as Public Domain.
 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT 
+LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, 
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE 
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+	
 ----------------------------------------------------------------------------------------
 
 CryptoPapers has put great effort into making this tool (and your wallets) as secure as possible. If you like what
@@ -102,6 +109,8 @@ jquery-qrcode				Generating QR codes													https://github.com/lrsjng/jQuer
 crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
 bitcoinjs-lib					Bitcoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
 prng4							Pseudo-random generator, entropy modified from 	http://bitcoinpaperwallet.com, http://bitaddress.org
+bitcoin-bip38					BIP38 encryption of wallet import keys 						http://www.bit2factor.org/
+crypto-scrypt				Scrypt implementation for BIP38								http://www.bit2factor.org/
 
 ed25519						Curve25519 implementation for NXT addresses			http://www.flownet.com/ron/code/djbec.js
 jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
@@ -143,8 +152,12 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	<script type="text/javascript" src="include-js/bitcoin-js/wallet.js"></script>
 	<script type="text/javascript" src="include-js/bitcoin-js/txdb.js"></script>
 	
+	<script type="text/javascript" src="include-js/bitcoin-bip38.js"></script>
+	<script type="text/javascript" src="include-js/crypto-scrypt.js"></script>
+	
 	<script type="text/javascript" src="include-js/jquery-qrcode/jquery.qrcode.js"></script>
 	<script type="text/javascript" src="include-js/jquery-qrcode/qrcode.js"></script>
+	
 	
 	<!-- NXT Support
 	<script type="text/javascript" src="include-js/ed25519.js"></script>
@@ -925,17 +938,17 @@ $().ready(function ()
 							<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
 						</div>
 					</div>
-					
-					<div class="print-encryption round-block hide">
-						<h3>Encryption</h3>
-						
-						<label class="left-label">BIP38 Encryption key:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
-						
-						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" />
-						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" />
-					</div>
 				</div>
-				
+				<div class="warning"><b>WARNING: This is Beta software.</b>
+				<br><br>It's unlikely something will go wrong but it's still 
+				<b>highly recommended</b> that you test these keys by importing them 
+				<br>into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+				before sending funds to this wallet.
+				<br><br>
+				Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
+				<br><br>
+				We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
+				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
 						<img class="coin-wallet-background" />
@@ -950,6 +963,7 @@ $().ready(function ()
 							</div>
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="encrypted"></div>
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>
@@ -973,6 +987,7 @@ $().ready(function ()
 							</div>
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
+								<div class="encrypted"></div>
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>		
@@ -982,6 +997,32 @@ $().ready(function ()
 								<h2>To</h2>
 							</div>
 						</div>
+					</div>
+				</div>
+				
+					
+				<div class="print-encryption round-block btc-only">
+					<h3>BIP38 Wallet Encryption</h3>
+					<div class="encrypted"></div>
+					
+					<div class="encryption-keys">
+						<label class="left-label" for="encryption-key">Encryption key:</label>
+						<input type="password" id="encryption-key" autocomplete="off" />
+						<label class="left-label" for="encryption-key">Confirm key:</label>
+						<input type="password" id="encryption-key-confirm" autocomplete="off" />
+					</div>
+					
+					<div class="encryption-buttons">					
+						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" disabled />
+						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" disabled />
+					</div>
+					
+					<div class="encryption-details hide">
+						<label class="left-label">Unencrypted WIF:</label>
+						<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+						<label class="left-label">Encrypted WIF:</label>
+						<div class="encrypting progress"></div>
+						<input type="text" id="encrypted-key" autocomplete="off" readonly />
 					</div>
 				</div>
 				
