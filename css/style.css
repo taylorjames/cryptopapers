@@ -49,7 +49,6 @@
 	.no-print li,
 	.round-block,
 	label,
-	span,
 	em,
 	li,
 	a,
@@ -256,7 +255,7 @@ cursor: pointer;
 
 .coin-type
 {
-
+top: 0px;
 background-color: #eee;
 z-index: 100000;
 min-height: 140px;
@@ -351,6 +350,9 @@ right: 50px;
 	display: block;
 	background-color:#fff;
 	z-index: 1000;
+}
+.selector-grid-wrapper.selecting .frame.selector{
+	background-color:#888888;
 }
 
 .current-coin{
@@ -497,6 +499,181 @@ content: 'Auroracoin';
 content: 'Mastercoin';
 }
 
+
+.coin-wallets.vtc .coin-logo,
+.coin.vtc-coin{
+	background-image:url('../images/coin-icons/vtc-logo.png');
+}
+.vtc .coin-name:after
+{
+content: 'Vertcoin';
+}
+
+.coin-wallets.mint .coin-logo,
+.coin.mint-coin{
+	background-image:url('../images/coin-icons/mint-logo.png');
+}
+.mint .coin-name:after
+{
+content: 'Mintcoin';
+}
+
+.coin-wallets.xcp .coin-logo,
+.coin.xcp-coin{
+	background-image:url('../images/coin-icons/xcp-logo.png');
+}
+.xcp .coin-name:after
+{
+content: 'Counterparty';
+}
+
+.coin-wallets.ftc .coin-logo,
+.coin.ftc-coin{
+	background-image:url('../images/coin-icons/ftc-logo.png');
+}
+.ftc .coin-name:after
+{
+content: 'Feathercoin';
+}
+
+.coin-wallets.pts .coin-logo,
+.coin.pts-coin{
+	background-image:url('../images/coin-icons/pts-logo.png');
+}
+.pts .coin-name:after
+{
+content: 'ProtoShares';
+}
+
+.coin-wallets.qrk .coin-logo,
+.coin.qrk-coin{
+	background-image:url('../images/coin-icons/qrk-logo.png');
+}
+.qrk .coin-name:after
+{
+content: 'Quark';
+}
+
+.coin-wallets.cgb .coin-logo,
+.coin.cgb-coin{
+	background-image:url('../images/coin-icons/cgb-logo.png');
+}
+.cgb .coin-name:after
+{
+content: 'Cryptogenic';
+}
+
+.coin-wallets.dtc .coin-logo,
+.coin.dtc-coin{
+	background-image:url('../images/coin-icons/dtc-logo.png');
+}
+.dtc .coin-name:after
+{
+content: 'Datacoin';
+}
+
+.coin-wallets.dvc .coin-logo,
+.coin.dvc-coin{
+	background-image:url('../images/coin-icons/dvc-logo.png');
+}
+.dvc .coin-name:after
+{
+content: 'Devcoin';
+}
+
+.coin-wallets.dgc .coin-logo,
+.coin.dgc-coin{
+	background-image:url('../images/coin-icons/dgc-logo.png');
+}
+.dgc .coin-name:after
+{
+content: 'Digitalcoin';
+}
+
+.coin-wallets.ifc .coin-logo,
+.coin.ifc-coin{
+	background-image:url('../images/coin-icons/ifc-logo.png');
+}
+.ifc .coin-name:after
+{
+content: 'Infinitecoin';
+}
+
+.coin-wallets.ixc .coin-logo,
+.coin.ixc-coin{
+	background-image:url('../images/coin-icons/ixc-logo.png');
+}
+.ixc .coin-name:after
+{
+content: 'Ixcoin';
+}
+
+.coin-wallets.mmc .coin-logo,
+.coin.mmc-coin{
+	background-image:url('../images/coin-icons/mmc-logo.png');
+}
+.mmc .coin-name:after
+{
+content: 'Memorycoin';
+}
+
+.coin-wallets.nvc .coin-logo,
+.coin.nvc-coin{
+	background-image:url('../images/coin-icons/nvc-logo.png');
+}
+.nvc .coin-name:after
+{
+content: 'Novacoin';
+}
+
+.coin-wallets.trc .coin-logo,
+.coin.trc-coin{
+	background-image:url('../images/coin-icons/trc-logo.png');
+}
+.trc .coin-name:after
+{
+content: 'Terracoin';
+}
+
+.coin-wallets.wdc .coin-logo,
+.coin.wdc-coin{
+	background-image:url('../images/coin-icons/wdc-logo.png');
+}
+.wdc .coin-name:after
+{
+content: 'Worldcoin';
+}
+
+.coin-wallets.zet .coin-logo,
+.coin.zet-coin{
+	background-image:url('../images/coin-icons/zet-logo.png');
+}
+.zet .coin-name:after
+{
+content: 'Zetacoin';
+}
+
+
+
+.key-details .coin
+{
+float: left;
+width: 45px;
+height: 45px;
+background-size: 100%;
+margin-right: 10px;
+}
+.coin-type .coin
+{
+float: right;
+}
+.copyright
+{
+top: 93px;
+color: white;
+position: relative;
+left: -259px;
+}
 .coin-wallet-write-area
 {
 display: none;
@@ -511,10 +688,8 @@ opacity: 0.86;
 text-align: center;
 }
 
-.frame-4 .coin-wallet-write-area {
-	float: left;
-	left: 483px;
-}
+
+
 .back .coin-wallet-write-area
 {
 display: block;
@@ -611,15 +786,55 @@ z-index: 0;
 {
 margin-left: 20px;
 float: left;
-width: 50%
+width: 46%
 }
 .design-type .active > .coin-wallet-background
 {
 border: 5px solid;
 }
 
+.help-toggle
+{
+background-image: url('../images/help.png');
+width:50px;
+height: 50px;
+float: right;
+cursor: pointer;
+opacity: 0.5;
+}
+.help-active .help-toggle
+{
+opacity: 1.0;
+}
+.help-bubble
+{
+border:1px solid;
+border-radius: 10px;
+margin-top:10px;
+margin-bottom:10px;
+height: 0px;
+display: none;
+background-color: #ddddff;
+border-color: #bbbbcc;
+width: 100%;
+}
+.help-bubble > span
+{
+margin: 20px;
+display: block;
+}
+.help-active .help-bubble
+{
+display: block;
+}
+
+
+.risk-contact-us
+{
+margin-top: 10px;
+}
 #form1{
-	overflow:auto;
+	overflow: visible;
 }
 
 input[type=text]{
@@ -680,14 +895,14 @@ textarea[readonly]
 #private-key-input
 {
 	display: inline;
-	width: 72%;
+	width: 500px;
 	font-size: 12px;
 	height: 40px;
 	border: 1px solid #999;
 	border-radius: 10px;
 	position: relative;
 	margin: auto;
-	left: 80px;
+	left: 26px;
 	text-align: center;
 }
 
@@ -731,7 +946,14 @@ input[type=button]
 {
 	margin-top: 30px;
 }
-
+.round-block.print-appearance
+{
+float: right;
+width: 48%;
+position: relative;
+overflow: visible;
+padding-bottom: 10px;
+}
 .key-details,
 .print-buttons
 {
@@ -777,6 +999,14 @@ input[type=button]
 	width: 30%;
 	padding:20px;
 	margin:0 1.5% 0 1.5%;
+	position: relative;
+}
+.entropy-satisfied
+{
+display:none;
+position: absolute;
+top: 21px;
+left: 220px;
 }
 #random-pool
 {
@@ -969,6 +1199,7 @@ ul#coin-setup-menu li.active{
 {
 	float: left;
 	clear: both;
+	margin-top: 10px;
 }
 
 input#compress-decompress-button{
@@ -983,15 +1214,21 @@ overflow: visible;
 }
 .coin-wallets
 {
-zoom: 50%;
+zoom: 65%;
 border: 1px dashed;
 border-radius: 16px;
-float: right;
+float: left;
 padding: 15px;
 margin-bottom: 50px;
 background-color: #ddd;
 min-height: 854px;
 margin-top: 0px;
+}
+.frame-instructions
+{
+float: right;
+width: 36%;
+padding: 10px;
 }
 
 .coin-wallets .coin-logo
@@ -1106,8 +1343,8 @@ margin-top: 0px;
 .hue-shift-amount
 {
 	position: absolute;
-	top: 300px;
-	left: 279px;
+	top: 221px;
+	left: 270px;
 }
 .hue-shift-reset
 {
@@ -1149,100 +1386,7 @@ margin-left: 20px !important;
 } 
 
 
-
-
-.frame-1 .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame1.png');
-}
-
-.frame-1.back .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame1_Back.png');
-}
-
-.frame-2 .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame2.png');
-}
-
-.frame-2.back .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame2_Back.png');
-}
-
-.frame-3 .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame3.png');
-}
-
-.frame-3.back .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame3_Back.png');
-}
-
-.frame-4 .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame4.png');
-}
-
-.frame-4.back .coin-wallet .wallet-frame
-{
-	background-image: url('../images/wallet-frames/Frame4_Back.png');
-}
-
-.frame-4 .coin-wallet-right
-{
-	display: none;
-}
-.frame-4.back .coin-wallet-right
-{
-	display: block;
-	float: left;
-	padding-top: 76px;
-	padding-left: initial;
-	left: 60px;
-	position: relative;
-}
-.frame-4.back .coin-wallet-right canvas
-{
-	width: 100px;
-	height: 100px;
-}
-.frame-4.back .coin-wallet-private-key-qr
-{
-	margin-top: 5px;
-	margin-bottom: 5px;
-}
-.frame-4.back .coin-wallet-private-key
-{
-	font-size: 10px;
-	margin-right: 48px;
-	right: 0px;
-	position: relative;
-}
-.frame-4.back .coin-logo {
-
-	top: 75px;
-	left: 498px;
-	background-size: 100%;
-	width: 220px;
-	height: 220px;
-}
-.frame-4 .coin-logo-2
-{
-	background-size: 100%;
-	width: 220px;
-	height: 220px;
-
-	display: block;
-	top: 83px;
-	left: 852px;
-	width: 190px;
-	height: 190px;
-	opacity: 0.90;
-}
-.frame-4 .coin-wallets.back .zero-trust-wallet-seal
+.frame-3 .coin-wallets.back .zero-trust-wallet-seal
 	{
 	left: 700px;
 	}
@@ -1294,41 +1438,87 @@ a:hover, a:active, a:focus {
 #print-settings
 {
 float: left;
-width: 586px;
+width: 100%;
 position: relative;
 }
 #print-settings .left-label
 {
-	width: 105px;
+	width: 132px;
 }
 #print-settings .print-buttons
 {
-width: 100%;
+width: 49%;
+float: left;
 padding-right: 10px;
+min-height: 304px;
+}
+#print-settings .print-buttons
+{
+float: left;
+width: 50%;
+}
+.sample .coin-wallet-address-qr:after
+{
+content: 'SAMPLE WALLET DO NOT USE';
+color: red;
+font-weight: bolder;
+font-size: 18px;
+position: absolute;
+width: 171px;
+text-align: center;
+text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+background: rgba(0,0,0,0.5);
+}
+.frame-1.sample .coin-wallet-address-qr:after,
+.frame-2.sample .coin-wallet-address-qr:after
+{
+margin-left: -138px;
+margin-top: -58px;
+}
+.frame-3.sample .coin-wallet-address-qr:after,
+.frame-4.sample .coin-wallet-address-qr:after,
+.frame-5.sample .coin-wallet-address-qr:after
+{
+margin-left: 10px;
+margin-top: 0px;
+}
+.frame-6.sample .coin-wallet-address-qr:after,
+.frame-7.sample .coin-wallet-address-qr:after,
+.frame-8.sample .coin-wallet-address-qr:after
+{
+margin-left: 18px;
+margin-top: -43px;
 }
 
 .donate-keys
 {
 	width: 1025px;
 }
-
+#generate-new-wallet
+{
+float: left;
+height: 54px;
+margin-top: 10px;
+}
 .donate-keys .donate-key
 {
 }
 .donate-reminder
 {
+	display: none;
 	float: right;
 	cursor: pointer;
-	width: 631px;
-	font-size: 13px;
+	width: 418px;
+	font-size: 11px;
 	text-align: right;
 	background-color: #f2f2f2;
 	border-radius: 5px;
 	border: 1px solid #ddd;
 	padding: 7px;
-	margin-right: 17px;
-	margin-top: -16px;
-	display:none;
+	margin-right: 50px;
+	margin-top: -27px;
+	position: relative;
+	margin-bottom: -32px;
 }
 .donate-reminder img
 {
@@ -1343,6 +1533,7 @@ padding-right: 10px;
 	background-repeat: no-repeat;
 	padding-left: 125px;
 	margin-bottom: 15px;
+	background-size: 100px;
 }
 .donate-keys .donate-key .coin .donate-address
 {
@@ -1369,6 +1560,7 @@ padding-right: 10px;
 	text-align: center;
 	width: 120px;
 	border: 1px solid;
+	cursor: pointer;
 }
 
 .trust-items .trust-item em
@@ -1521,7 +1713,7 @@ left: 410px;
 .security-risks .risk-fix
 {
 	float: left;
-	margin-top: 10px;
+	margin-top: 5px;
 	background: #aaaaaa;
 	border-radius: 5px;
 	max-width: 586px;
@@ -1605,6 +1797,7 @@ color: #AD0000;
 color: #00AD00;
 }
 
+.frame-type,
 .design-type
 {
 display: block;
@@ -1614,16 +1807,23 @@ margin-bottom: 20px;
 border-radius: 10px;
 position: absolute;
 min-height: 67px;
-top: 206px;
-left: 128px;
+top: 53px;
+left: 155px;
 z-index: 10;
 margin-right: -700px;
 }
+
+
+.design-type
+{
+top: 138px;
+}
+.frame-grid-row-header,
 .design-grid-row-header
 {
 display:none;
-
 }
+.selecting .frame-grid-row-header,
 .selecting .design-grid-row-header
 {
 display: block;
@@ -1638,23 +1838,81 @@ float: left;
 clear: right;
 border-bottom: 2px solid;
 }
+.selecting .frame-grid-row-header
+{
+height: 63px;
+padding-top: 18px;
+text-align: center;
+border-top: 2px solid;
+margin-top: 6px;
+width:400px;
+}
+.selecting .frame-grid-row-header:hover
+{
+background-color: #ccc;
+}
+
+.frame-type.selecting,
 .design-type.selecting
 {
+z-index: 11;
 top: 0px;
 left: 15px;
 padding: 10px;
+position: absolute;
+}
+.design-type.selecting
+{
+left: -600px;
+}
+.frame-type.selecting
+{
+top: 40px;
+left: -263px;
 }
 
+.frame-label,
 .design-label
 {
 margin-bottom: 93px;
 }
+.color-shift-label
+{
+margin-top: 0px;
+}
+.design-label
+{
+margin-top: 47px;
+margin-bottom: 74px;
+}
 
+.frame-type .selector-grid-row,
 .design-type .selector-grid-row
 {
 background: none;
 }
 
+.coin-setup-keys
+{
+	float: left;
+	width: 100%;
+	margin-top: 0px !important;
+}
+.instructions
+{
+	background-color: #ddd;
+	border-color: #ccc;
+	width: 100%;
+	box-shadow: 1px 1px 26px #000000;
+	margin-bottom: 23px;
+	padding: 10px;
+	color: #444;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 10px;
+}
+
+.frame.selector,
 .design.selector
 {
 width: 207px;
@@ -1664,6 +1922,15 @@ float: left;
 margin: 5px;
 display: none;
 background-size: 100%;
+}
+.frame.selector
+{
+background-color: #888;
+float: right;
+border-radius: 10px;
+}
+.design.selector
+{
 }
 .design.selector.active
 }

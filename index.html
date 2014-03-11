@@ -1,55 +1,173 @@
 <!DOCTYPE HTML>
 
+<!--
+
+Copyright 2014 CryptoPapers
+
+The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
+reused or distributed, modified or unmodified, without permission.
+
+This tool, all styles and CryptoPapers libraries excluding external libraries were written by CryptoPapers.
+
+All images used in this tool have been released as Public Domain.
+
+----------------------------------------------------------------------------------------
+
+CryptoPapers has put great effort into making this tool (and your wallets) as secure as possible. If you like what
+we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
+Thanks, and stay safe!
+
+BTC: 18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b
+LTC: LapsL7RwrZqzXduiaVBrtLBibyroqujmvr
+PPC: P8r6T77etknGTKKNdB7amRWnEBno3mAxud
+DOGE: DNwWMvq2V9DjbwDK1g8bouqBa23SV34QQ1
+NMC: N5XHb3UH93WjZuq8XLmRpiM25J4d3djQYG
+MSC: 18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b
+XPM: Aw44AFgoGm4KC5FgVyqbgrMZXKEdZ6iwhJ
+AUR: AScmXdw1AEPoutgmMp9vHGMxev8L2bwEMX
+VTC: VcQEG8NKd5C3HjBdYcnepsEA7H5yFtQXbv
+MINT: MbFhQX7b6DbuzFmiSYv1MxJpgs9jjH2Hah
+XCP: 18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b
+FTC: 6nCuFhvyWCYibjVT2JjfTftFymzwXvghs6
+PTS: PgzC3bGqcHfMG5uPS8rMLovfeogSVMP7bC
+QRK: QVfQ1osZ2eb6txBZUyWzK4UEupCKpDZQB4
+CGB: 5gfHt9pbZFhM4C7bRUQV42fUugerpXtyvf
+DTC: D6Pk6fWVBEVRB4WH93XeQfEubnGnAPSTzZ
+DVC: 18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b
+DGC: DAFAosyZjS9KjXJtBN23TnEuSLExCWWjyg
+IFC: iGMBJRSY4yHaQ8k2aHBQd3qDoYnFn7hjDg
+IXC: xvygH7smhtT8N5h8apXsAf3YUTjbDd8e5w
+MMC: ML4rdNofSU4NDuLG5SetAmpowMcUh18NJJ
+NVC: 4JLDcmKUqniXFETijMfwPa299ysprqgri7
+TRC: 18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b
+WDC: WmZcammKRsLEAwYyeofZGUQSTkinbmTavx
+ZET: ZPr2d8DDmRaVFyXRrbfcQjapsat3QpeMry
+
+----------------------------------------------------------------------------------------
+
+Crucial Resources:
+
+Generating a Bitcoin Address with JavaScript
+http://procbits.com/2013/08/27/generating-a-bitcoin-address-with-javascript
+
+Bitcoin, List of address prefixes
+https://en.bitcoin.it/wiki/List_of_address_prefixes
+
+Offline Wallet Creator, key generation and verification
+http://bitcoinpaperwallet.com
+
+Offline Wallet Creator, key generation and verification
+http://bitaddress.org
+
+Brainwallet, key generation verification
+http://brainwallet.org/
+
+----------------------------------------------------------------------------------------
+
+Portions of the Random Number Generator and entropy collection were helped and inspired by:
+
+http://bitcoinpaperwallet.com by Canton Becker
+Donate: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG
+
+and
+
+http://bitaddress.org by pointbiz
+Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
+
+----------------------------------------------------------------------------------------
+
+CryptoPapers libraries:
+
+cryptopapers-private-key		All methods that generate addresses and handle private keys are either here or in an external library.
+											Javascript UI for the Private Key page
+cryptopapers-test-cases		Javascript Test cases to verify key -> address generation
+cryptopapers-security			Javascript UI for the Security page
+cryptopapers-print				Javascript UI for the Print page
+cryptopapers-premium			Javascript functions for Premium content
+cryptopapers-ui						Javascript UI for the whole application
+
+cryptopapers-test					Test functions - not included in release
+
+jquery-animate-auto				Custom script: animateAuto function for smooth visual effects	
+
+----------------------------------------------------------------------------------------
+
+External libraries:
+
+jquery-2.1.0																									http://code.jquery.com/jquery-2.1.0.js
+jquery-ui-1.10.4			For hue-shift slider													http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
+jquery.lettering				For text rotations on circular wallets							https://github.com/davatron5000/Lettering.js
+jquery-qrcode				Generating QR codes													https://github.com/lrsjng/jQuery.qrcode
+
+crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
+bitcoinjs-lib					Bitcoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
+prng4							Pseudo-random generator, entropy modified from 	http://bitcoinpaperwallet.com, http://bitaddress.org
+
+ed25519						Curve25519 implementation for NXT addresses			http://www.flownet.com/ron/code/djbec.js
+jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
+
+-->
+
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 	<meta http-equiv="X-UA-Compatible" content="IE=9" />
 	<title>CryptoPapers - Wallet Creator</title>
 	
-	<link rel="shortcut icon" href="images/logo_shield.ico" type="image/x-icon">	
+	<link rel="shortcut icon" href="images/cp-logo.ico" type="image/x-icon">	
 
-	<script type="text/javascript" src="js/jquery-2.1.0.js"></script>
-	<script type="text/javascript" src="js/jquery-ui/jquery-ui-1.10.4.js"></script>
+	<script type="text/javascript" src="include-js/jquery-2.1.0.js"></script>
+	<script type="text/javascript" src="include-js/jquery-ui/jquery-ui-1.10.4.js"></script>
+	<script type="text/javascript" src="include-js/jquery.lettering.js"></script>
+
+	<script type="text/javascript" src="include-js/big-integer.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/crypto.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/sha256.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/ripemd160.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/prng4.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/rng.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/jsbn.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/jsbn2.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/ec.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/jsbn/sec.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/events/eventemitter.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/bitcoin.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/util.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/base58.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/address.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/ecdsa.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/eckey.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/opcode.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/script.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/transaction.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/wallet.js"></script>
+	<script type="text/javascript" src="include-js/bitcoin-js/txdb.js"></script>
+	
+	<script type="text/javascript" src="include-js/jquery-qrcode/jquery.qrcode.js"></script>
+	<script type="text/javascript" src="include-js/jquery-qrcode/qrcode.js"></script>
+	
+	<!-- NXT Support
+	<script type="text/javascript" src="include-js/ed25519.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha_dev.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha1.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha256.js"></script>
+	<script type="text/javascript" src="include-js/jsSHA/sha512.js"></script>
+	-->	
 	
 	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
-	<script type="text/javascript" src="js/big-integer.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
+	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/crypto.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/sha256.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/crypto-js/ripemd160.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/prng4.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/rng.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/jsbn2.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/ec.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/jsbn/sec.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/events/eventemitter.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/bitcoin.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/util.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/base58.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/address.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/ecdsa.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/eckey.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/opcode.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/script.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/transaction.js"></script>
-
-	<script type="text/javascript" src="js/bitcoin-js/wallet.js"></script>
-	<script type="text/javascript" src="js/bitcoin-js/txdb.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	
+	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	
-	<script type="text/javascript" src="js/jquery-qrcode/jquery.qrcode.js"></script>
-	<script type="text/javascript" src="js/jquery-qrcode/qrcode.js"></script>
-	
-	<script type="text/javascript" src="js/prng4.js"></script>
-	
-	<script type="text/javascript" src="crypto-papers.js"></script>
-	<script type="text/javascript" src="crypto-papers-ui.js"></script>
-
+	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -58,21 +176,13 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 	<link rel="stylesheet" type="text/css" href="css/style-dark.css" />
-	<!--
-	<link rel="stylesheet" type="text/css" href="css/style-backgrounds.css" />
-	-->
+	<link rel="stylesheet" type="text/css" href="css/style-frames.css" />
 </head>
 <body class="">
 <script type="text/javascript">
-
-// Disable all browsers from remembering input status
-$('input').attr('autocomplete', 'off');
 	
 $().ready(function () 
 	{
-	// Disable all browsers from remembering input status
-	$('input').attr('autocomplete', 'off');
-	
 	InitPage();
 	});
 
@@ -80,32 +190,21 @@ $().ready(function ()
 
 <div id="header" class="wrapper no-print">
 	<div class="inner">
+		
 		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		<span class="copyright">&copy; 2014</span>
 		
 		<div class="coin-type selector-grid no-print" rowheight="140px">
 			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ltc-coin" data="ltc"><em>Litecoin</em></div>
-					<div class="coin selector nxt-coin disabled" data="nxt"><span class="coming-soon">COMING&nbsp;SOON</span><em>NXT</em></div>
-					<div class="coin selector nem-coin disabled" data="nem"><span class="coming-soon">COMING&nbsp;SOON</span><em>NEM</em></div>
-					<div class="coin selector nmc-coin" data="nmc"><em>Namecoin</em></div>
-					<div class="coin selector btc-coin active" data="btc"><em>Bitcoin</em></div>
-				</div>
-				<div class="coin-grid-row selector-grid-row">
-					<div class="coin selector ppc-coin" data="ppc"><em>Peercoin</em></div>
-					<div class="coin selector doge-coin" data="doge"><em>Dogecoin</em></div>
-					<div class="coin selector xpm-coin" data="xpm"><em>Primecoin</em></div>
-					<div class="coin selector aur-coin" data="aur"><em>Auroracoin</em></div>
-					<div class="coin selector msc-coin" data="msc"><em>Mastercoin</em></div>
-				</div>
+				<!-- Dynamically filled -->
 			</div>
 		</div>
 		
 		<div id="main-menu" class="menu no-print">
 			<ul>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
-				<li section="security" class="menu-key-security active">Security</li>
-				<li section="coin-setup" class="menu-key-import">Wallet Setup</li>
+				<li section="security" class="menu-key-security">Security</li>
+				<li section="coin-setup" class="menu-key-import active">Wallet Setup</li>
 				<li section="donate" class="menu-key-donate right">Donate</li>
 			</ul>
 		</div>
@@ -137,39 +236,70 @@ $().ready(function ()
 		<div class="section how-to no-print">
 		</div>
 		<div class="section security no-print">
-			<div class="trust-items round-block">
+			<div class="trust-items round-block help-section">
 				<h3>Trust</h3>
+				<div class="help-bubble">
+					<span>
+					The road to being 100% secure is twice as long as the road to 99%.
+					<br>
+					This tool is for those of you who want to go that extra mile.
+					<br><br>
+					How much trust are you placing in your environment?
+					<br><br>
+					I'm just going to give it to you straight - there are MANY risks to your private keys that exist. 
+					If you're willing to assume that your computer and network are clean and that this tool is not evil, 
+					feel free to skip this section and continue on to Wallet Setup.
+					<br><br>				
+					<b>Full Trust</b>: You are fully trusting this element to not be spying on you or collecting key data
+					<br>
+					<b>Some Trust</b>: You are partially trusting this element to not be spying on you or collecting key data. 
+					Some vulnerabilities have been protected against, but others exist.
+					<br>
+					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your coins to be taken.
+					<br><br>
+					Click an item below to see detailed risk information.
+					<br><br><br>
+					</span>
+				</div>
+				
 				<div class="trust-item trust-bugs trust-level-fully">
 					<em>Infections</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-network trust-level-some">
+				
+				<div class="trust-item trust-your-network trust-level-fully">
 					<em>Your Network</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-printer trust-level-some">
+				
+				<div class="trust-item trust-your-printer trust-level-fully">
 					<em>Your Printer</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-browser trust-level-some">
+				
+				<div class="trust-item trust-your-browser trust-level-fully">
 					<em>Your Browser</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-your-os trust-level-zero">
+				
+				<div class="trust-item trust-your-os trust-level-fully">
 					<em>Your OS</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
-				<div class="trust-item trust-this-tool trust-level-zero">
+				
+				<div class="trust-item trust-this-tool trust-level-fully">
 					<em>This Tool</em>
 					<div class="trust-image"></div>
 					<div class='security-level'></div>
 				</div>
+				
 			</div>
+			
 			<div class="security-test round-block">
 				<h3>Environment</h3>
 				<div class="test-results">
@@ -178,9 +308,20 @@ $().ready(function ()
 					<input class="button" id="js-test-refresh" Value="Refresh" autocomplete="off" >
 				</div>
 			</div>
-			<div class="security-questions round-block">
+			
+			<div class="security-questions round-block help-section">
 				<h3>Questions</h3>
 				<h4>Answer these questions honestly to understand your level of risk:</h4>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					The best thing you can do for your security would be to run this tool on an offline computer and printer.
+					<br>
+					If you can't dedicate a computer to be offline permanently, a Linux Live CD or Live USB is the next best thing.
+					<br><br>
+					</span>
+				</div>
+				
 				<label class="left-label">Are you running this from a Linux Live CD or Live USB?</label>
 				<div class="switch-toggle security-live-cd switch-2 switch-candy ">
 					<input type="radio" name="security-live-cd" value="No" id="security-live-cd-no" checked autocomplete="off" />
@@ -192,6 +333,14 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some root-kits and viruses can capture your screen while offline, and send them out later.
+					<br>
+					If you want to be completely assured your coins are safe, this extra precaution is needed.
+					</span>
+				</div>
+				
 				<label class="left-label">Will this machine ALWAYS be disconnected from any network?</label>
 				<div class="switch-toggle security-offline-permanent switch-2 switch-candy ">
 					<input type="radio" name="security-offline-permanent" value="No" id="security-offline-permanent-no" checked  autocomplete="off"/>
@@ -201,6 +350,14 @@ $().ready(function ()
 					<label for="security-offline-permanent-yes">Yes</label>
 					
 					<a></a>
+				</div>
+			
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some root-kits and viruses can capture your screen while offline, and send them out later.
+					<br>
+					To be completely assured your coins are safe, this extra precaution is needed.
+					</span>
 				</div>
 				
 				<label class="left-label">Is your printer a Network printer or is it connected directly?</label>
@@ -214,6 +371,14 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Are you connected to a wired or wireless network? Either could have unwanted guests or software that's listening for print jobs.
+					<br>
+					To be completely assured your coins are safe, use an offline printer.
+					</span>
+				</div>
+				
 				<label class="left-label">Will your printer always be kept offline?</label>
 				<div class="switch-toggle security-offline-printer switch-2 switch-candy ">
 					<input type="radio" name="security-offline-printer" value="No" id="security-offline-printer-no" checked autocomplete="off" />
@@ -223,6 +388,14 @@ $().ready(function ()
 					<label for="security-offline-printer-yes">Yes</label>
 
 					<a></a>
+				</div>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					Some printers keep a history of print jobs that can be retrieved by network devices at any time.
+					<br>
+					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
+					</span>
 				</div>
 				
 				<label class="left-label">Do you know for a fact that your printer keeps no internal print history?</label>
@@ -236,6 +409,18 @@ $().ready(function ()
 					<a></a>
 				</div>
 				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					This tool could be flawed or malicious; this is nearly guaranteed if you downloaded it from an unsafe source. 
+					<br><br>
+					*** As this is Beta software, to be completely sure that your coins are safe,
+					it's strongly recommended that you verify the keys by importing them into a secure wallet
+					<br><br>
+					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
+					<br><br><br>
+					</span>
+				</div>
+				
 				<label class="left-label">Will you be generating keys using this tool or importing them manually?</label>
 				<div class="switch-toggle security-generate-import switch-2 switch-candy ">
 					<input type="radio" name="security-generate-import" value="No" id="security-generate-import-no" checked autocomplete="off" />
@@ -245,6 +430,27 @@ $().ready(function ()
 					<label for="security-generate-import-yes">Import</label>
 
 					<a></a>
+				</div>
+				
+				<div class="help-bubble" style="float:left;">
+					<span>
+					If you downloaded this tool from us, it's extremely unlikely this would be a problem. 
+					<br>
+					The Address and QR Code generation has been thoroughly tested.
+					<br><br>
+					However, if you didn't download this from us, or you don't trust this software;
+					<br><br>
+					Validate keys using other trusted sources: 
+					<br>
+					<a href="http://bitaddress.org" target="_blank">bitaddress.org</a> 
+					<br>
+					<a href="http://bitcoinpaperwallet.com" target="_blank">bitcoinpaperwallet.com</a>
+					<br>
+					<a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+					<br><br>
+					To be completely assured your coins are safe, use a QR scanner to verify the private keys and addresses all match up.
+					<br><br>
+					</span>
 				</div>
 				
 				<label class="left-label">Using an offline QR scanner, do you plan to verify that QR codes on the wallets match and are valid?</label>
@@ -261,14 +467,15 @@ $().ready(function ()
 			<div class="security-risks round-block">
 				<h3>Risks - Detailed</h3>
 				
-				<div class="risk-category">
+				<div class="risk-category bugs">
 					<h3>Infections</h3>
-					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Rootkits</h4>
+					<h4>Spyware, Malware, Trojans, Viruses, Keyloggers, Root-kits</h4>
 					<div class="risk at-risk" id="risk-infection-online">
 						<div class="risk-status"></div>
 						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-infection-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">An infection could be watching your keystrokes, clipboard or your screen, storing them on a hard drive while offline, to be broadcast later.</div>
@@ -276,7 +483,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u> OR switch to a Live CD / USB</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-network">
 					<h3>Your Network</h3>
 					<h4>Infected network nodes, Network intruders</h4>
 					<div class="risk at-risk" id="risk-network-printer">
@@ -285,7 +492,7 @@ $().ready(function ()
 						<div class="risk-fix">Connect your printer to your computer directly</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-printer">
 					<h3>Your Printer</h3>
 					<h4>Printer history</h4>
 					<div class="risk at-risk" id="risk-printer-online-storage">
@@ -293,6 +500,7 @@ $().ready(function ()
 						<div class="risk-details">If your printer keeps a history of print jobs, they could be taken by anyone with network access to it.</div>
 						<div class="risk-fix">Connect your printer to your computer directly OR Ensure your printer does not save its history</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-printer-offline-storage">
 						<div class="risk-status"></div>
 						<div class="risk-details">If your printer keeps a history of print jobs, once the printer is brought online, 
@@ -300,7 +508,7 @@ $().ready(function ()
 						<div class="risk-fix">Connect your printer to your computer directly, and never connect it to a network OR Ensure your printer does not save its history</div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-browser">
 					<h3>Your Browser</h3>
 					<h4>Malicious plugins, Addons, Extensions</h4>
 					<div class="risk at-risk" id="risk-browser-addons-online">
@@ -308,6 +516,7 @@ $().ready(function ()
 						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-browser-addons-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">Malicious browser addons could be tracking everything that gets rendered on your screen.
@@ -315,7 +524,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category your-os">
 					<h3>Your OS</h3>
 					<h4>OS & 3rd party software vulnerabilities, Logs, Reporting</h4>
 					<div class="risk at-risk" id="risk-os-online">
@@ -323,6 +532,7 @@ $().ready(function ()
 						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, giving them full access to your screen.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-os-offline">
 						<div class="risk-status"></div>
 						<div class="risk-details">An attacker could be exploiting a vulnerability in your OS, recording your actions while offline, 
@@ -330,7 +540,7 @@ $().ready(function ()
 						<div class="risk-fix">Take your computer offline <u>permanently</u></div>
 					</div>
 				</div>
-				<div class="risk-category">
+				<div class="risk-category this-tool">
 					<h3>This Tool</h3>
 					<h4>
 					If this tool were malicious, or if you downloaded it from an unsafe source<br />
@@ -343,20 +553,23 @@ $().ready(function ()
 						<div class="risk-details">RNG pools or private keys could be broadcasted to an external server.</div>
 						<div class="risk-fix">Take your computer offline</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-offline-cookies">
 						<div class="risk-status"></div>
 						<div class="risk-details">RNG pools or private keys could be stored as cookies, to be retrieved later by a website.</div>
 						<div class="risk-fix">Turn off cookies OR Take your computer offline <u>permanently</u></div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-badrng">
 						<div class="risk-status"></div>
 						<div class="risk-details">The RNG pool generation process could be simulated or flawed, and this tool could be producing known or predictable keys.</div>
 						<div class="risk-fix">Import your own Private keys generated from a trusted source (QT Wallet)</div>
 					</div>
+					
 					<div class="risk at-risk" id="risk-this-tool-badcodes">
 						<div class="risk-status"></div>
-						<div class="risk-details">Addresses and QR codes could be on the printouts could be incorrect.</div>
-						<div class="risk-fix">Manuall verify that this application produces the valid QR codes and addresses</div>
+						<div class="risk-details">Addresses and QR codes on the printouts could be incorrect, causing you to send to the wrong location.</div>
+						<div class="risk-fix">Manually verify that this application produces the valid QR codes and addresses.</div>
 					</div>
 				</div>
 				
@@ -369,7 +582,7 @@ $().ready(function ()
 		<div class="section coin-setup">
 			<span class="donate-reminder">
 				<img src="images/up-arrow.png" alt="" title="" />
-				We put great effort into making this tool (and your wallets) as secure as possible. If you like what<br />
+				We put great effort into making this tool (and your wallets) as secure as possible. If you like what
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
 				Thanks, and stay safe!
 			</span>
@@ -381,8 +594,26 @@ $().ready(function ()
 				
 			</ul>
 			<div class="sub-section coin-setup-keys no-print">
-				<div class="key-import round-block">
-					<h3>Private Key</h3>					
+				<div class="instructions rng-move-mouse">
+					The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement
+					in order to guarantee it will produce impossible-to-predict keys.
+					<br><br>
+					Simply move your mouse around the screen until it's collected enough data.
+				</div>
+				<div class="key-import round-block help-section">
+					<h3>Private Key</h3>		
+					<h4>Import / Generate</h4>
+					<div class="help-bubble" style="float:left;">
+						<span>
+						A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
+						<br><br>
+						Paste a private key exported from your coin wallet software into the box below 
+						or click on Generate to generate a new private key from the Random Number Generator pool.
+						<br><br>
+						(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed are all supported)
+						<br><br>
+						</span>
+					</div>			
 					<div class="private-key"> 
 						<div id="coin-key">	
 
@@ -393,8 +624,22 @@ $().ready(function ()
 					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 				
 				</div>			
-				<div class="random-info round-block">
+				<div class="random-info round-block help-section">
 					<h3>RNG Entropy</h3>
+					<img src="images/check.png" class="entropy-satisfied">
+					<div class="help-bubble" style="float:left;">
+						<span>
+						Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
+						<br><br>
+						'Entropy' is random or semi-random, unpredictable data. 
+						<br>
+						This tool's RNG uses system, time, and browser data to fill the pool initially, then adds at least <b><span class="rng-point-count"></span></b> coordinates
+						of mouse movement to that. 
+						<br><br>
+						The keys produced by this tool aren't predictable in any way.
+						<br><br><br><br><br><br><br><br><br>
+						</span>
+					</div>	
 					<div class="rng-status">
 						<label>RNG Pool Status: 
 							<span class="rng-status-text"></span>
@@ -403,6 +648,7 @@ $().ready(function ()
 							<div class="pool-status-complete" style="width:0%"></div>
 						</div>
 					</div>
+					
 					
 					<label class="left-label">Keep Collecting:</label>
 					<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
@@ -415,17 +661,45 @@ $().ready(function ()
 						<a></a>
 					</div>
 					
+					<div class="help-bubble" style="float:left;">
+						<span>
+							This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.
+						<br>
+						<br>
+						<br>
+						</span>
+					</div>	
+					
 					<label>RNG Pool Data:</label>
 					<textarea id="random-pool" readonly></textarea>
 				</div>
-				<div class="key-details round-block"> 
+				<div class="key-details round-block help-section"> 
+					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
+					<div class="help-bubble" style="float:left;">
+						<span>
+						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+						<br>
+						</span>
+					</div>	
 					<span class="key-info-public-address">
 					<label class="left-label">Public Address:</label><input type="text" id="public-address" autocomplete="off" readonly />
 					</span>
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						[Explain address compression]
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
@@ -437,16 +711,62 @@ $().ready(function ()
 						<a></a>
 					</div>
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Private Key in Wallet Import Format (WIF). 
+						<br>
+						This is the format most wallet software will export to, and is the format it will import from.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Private Key Checksum, which is included in the Private Key WIF.
+						<br>
+						This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the Public Key, which is derived from the public key. The public key
+						<br>
+						Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" autocomplete="off" readonly />
-					<br />			
+					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
+						<br>
+						Every address's Hash160 is known.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
+					<div class="help-bubble" style="float:left;">
+						<span>
+						The Address Checksum is derived from the Public Key and is used to create the Public Address.
+						<br>
+						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
+						<br><br>
+						</span>
+					</div>	
 					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This wallet address has been verified by bitcoin-js.
+						<br>
+						</span>
+					</div>	
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					
 				</div>			
@@ -454,9 +774,19 @@ $().ready(function ()
 			<div class="sub-section coin-setup-print">
 			
 				<div id="print-settings" class="no-print">
-					<div class="print-buttons round-block">
+					<div class="print-buttons round-block help-section">
 						<h3>Page Setup</h3>
 
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Switch between printing the front and back side of the page.
+							<br><br>
+							Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
+							back is printed on the right side and with the right orientation.
+							<br><br><br>
+							</span>
+						</div>	
+						
 						<label class="left-label">Print Face:</label>
 							<div class="switch-toggle switch-2 switch-candy ">
 								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
@@ -468,6 +798,13 @@ $().ready(function ()
 								<a></a>
 						</div>
 
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Include a second copy of the wallet on the paper, to use as a backup.
+							<br><br>
+							</span>
+						</div>	
+						
 						<div class="backup">
 
 							<label class="left-label">Copies:</label>
@@ -482,7 +819,36 @@ $().ready(function ()
 							</div>
 							
 						</div>
+						
+						<div class="help-bubble" style="float:left;">
+							<span>
+							For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
+							<br><br>
+							</span>
+						</div>	
+						
+						<div class="sample">
+
+							<label class="left-label">Sample Wallet:</label>
+							<div class="switch-toggle switch-2 switch-candy ">
+								<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
+								<label for="sample-wallet-no">No</label> 
+								
+								<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
+								<label for="sample-wallet-yes">Yes</label>
+						
+								<a></a>
+							</div>
 							
+						</div>
+							
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Use zoom to correct for printer differences and get the wallet to print properly.
+							<br><br>
+							</span>
+						</div>	
+						
 						<label class="left-label">Zoom:</label>
 						<div class="switch-toggle switch-5 switch-candy ">
 							
@@ -504,21 +870,27 @@ $().ready(function ()
 							<a></a>
 						</div>
 						
-						<label class="left-label">Frame:</label>
-						<div class="switch-toggle wallet-frame switch-4 switch-candy ">
-							<input type="radio" name="wallet-frame" value="frame-1" id="wallet-frame-1" autocomplete="off" checked/>
-							<label for="wallet-frame-1">1</label> 
-							
-							<input type="radio" name="wallet-frame" value="frame-2" id="wallet-frame-2" autocomplete="off"  />
-							<label for="wallet-frame-2">2</label>
-							
-							<input type="radio" name="wallet-frame" value="frame-3" id="wallet-frame-3" autocomplete="off"  />
-							<label for="wallet-frame-3">3</label>
-							
-							<input type="radio" name="wallet-frame" value="frame-4" id="wallet-frame-4" autocomplete="off"  />
-							<label for="wallet-frame-4">4</label>
+						<!--
+						<label class="left-label design-label">Custom:</label>
+						<div class="design-type-custom" >
+							<input type="file" id="custom-design">
+						</div>
+						-->
+						
+
+						<input type="button" id="print-button" class="large-button right" value="Print" />
+						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+						<br />
+					</div>
 					
-							<a></a>
+					<div class="print-appearance round-block help-section">
+						<h3>Appearance</h3>
+						
+						<label class="left-label">Frame:</label>
+						<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
+							<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
+								<!-- Dynamically filled -->
+							</div>
 						</div>
 						
 						<label class="left-label design-label">Design:</label>
@@ -528,28 +900,30 @@ $().ready(function ()
 							</div>
 						</div>
 						
-						<label class="left-label design-label">Color Shift:</label>
-						<!--
-						<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-						<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-						-->
-						<span class="hue-shift-amount">0&deg;</span>
 						
-						<div id="hue-slider"></div>
-						<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+						<div class="hue-shift hide premium">
 						
-						<!--
-						<label class="left-label design-label">Custom:</label>
-						<div class="design-type-custom" >
-							<input type="file" id="custom-design">
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Color shift the wallet background
+								<br><br>
+								*Only supported by Chrome
+								<br>
+								</span>
+							</div>	
+							
+							<label class="left-label color-shift-label">Color Shift:</label>
+							<!--
+							<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+							<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+							-->
+							<span class="hue-shift-amount">0&deg;</span>
+							
+							<div id="hue-slider"></div>
+							<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
 						</div>
-						-->
-						
-						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Wallet" disabled />
-
-						<input type="button" id="print-button" class="large-button right" value="Print" />
-						<br />
 					</div>
+					
 					<div class="print-encryption round-block hide">
 						<h3>Encryption</h3>
 						
@@ -608,31 +982,22 @@ $().ready(function ()
 						</div>
 					</div>
 				</div>
+				
+				<div class="frame-instructions round-block">
+					<h3>Frame Instructions</h3>
+					
+					<div class="frame-difficulty"></div>
+					<div class="frame-name"></div>
+					<div class="frame-creator"></div>
+					<div class="frame-description"></div>
+					<div class="frame-detail-instructions"></div>
+				</div>
 			</div>
 		</div>
 		<div class="section donate no-print">
 			<div class="donate-keys round-block">
 				<h3>Donate</h3>
-				<div class="donate-key">
-					<div class="coin btc-coin">
-						<div class="donate-address">1btcbtcbtcbtcbtcbtcbtcbtcbtcbtcbtc</div>
-					</div>
-				</div>
-				<div class="donate-key">
-					<div class="coin ltc-coin">
-						<div class="donate-address">Lltcltcltcltcltcltcltcltcltcltcltc</div>
-					</div>
-				</div>
-				<div class="donate-key">
-					<div class="coin nmc-coin">
-						<div class="donate-address">Nnmcnmcnmcnmcnmcnmcnmcnmcnmcnmcnmc</div>
-					</div>
-				</div>
-				<div class="donate-key">
-					<div class="coin ppc-coin">
-						<div class="donate-address">Pppcppcppcppcppcppcppcppcppcppcppc</div>
-					</div>
-				</div>
+				<div class="donate-coins-auto"></div>
 			</div>
 		</div>
 	</div>

@@ -31,6 +31,8 @@ jQuery.fn.animateAuto = function (prop, speed, callback, addto)
 			width = elem.css("width");
 			elem.remove();
 
+			Log(height);
+			
 			el.animate({ "height": height }, speed, callback);
 		}
 		else if (prop === "width")
