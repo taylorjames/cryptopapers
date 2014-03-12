@@ -28,6 +28,8 @@ function InitPage()
 	
 	InitDismissable();
 	 
+	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
+	
 	if (InitPremium)
 		InitPremium();
 	}
@@ -286,6 +288,7 @@ function AddDropdownCoins()
 		}
 			coins += '</div>';
 	
+		
 	$('.coins-grid-wrapper').html(coins);
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
@@ -309,6 +312,7 @@ function AddDropdownCoins()
 		
 		CurrentCoinType = NewCoinType;
 		
+		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		
 		$('#private-key-input').change();
 		});

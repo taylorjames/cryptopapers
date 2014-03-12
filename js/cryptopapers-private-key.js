@@ -18,7 +18,7 @@ var CoinInfo = {
 		fullName: 'Bitcoin',
 		addressVersion: '00',
 		defaultCompress: true,
-		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
 		enabled: true
 		},
 	'ltc': {
@@ -26,7 +26,7 @@ var CoinInfo = {
 		fullName: 'Litecoin',
 		addressVersion: '30',
 		defaultCompress: true,
-		donateAddress: 'LapsL7RwrZqzXduiaVBrtLBibyroqujmvr',
+		donateAddress: 'LaPsL7RwrZqzXduiaVBrtLBibyroqujmvr',
 		enabled: true	
 		},
 	'ppc': {
@@ -42,7 +42,7 @@ var CoinInfo = {
 		fullName: 'Dogecoin',
 		addressVersion: '1E',
 		defaultCompress: false,
-		donateAddress: 'DNwWMvq2V9DjbwDK1g8bouqBa23SV34QQ1',
+		donateAddress: 'DNwWMvq2V9DJbwDK1g8bouqBa23SV34QQ1',
 		enabled: true
 		},
 	'nmc': {
@@ -74,7 +74,7 @@ var CoinInfo = {
 		fullName: 'Mastercoin',
 		addressVersion: '00',
 		defaultCompress: false,
-		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
 		enabled: true
 		},
 	'xpm': {
@@ -114,7 +114,7 @@ var CoinInfo = {
 		fullName: 'Counterparty',
 		addressVersion: '00',
 		defaultCompress: true,
-		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
 		enabled: true
 		},
 	'ftc': {
@@ -130,7 +130,7 @@ var CoinInfo = {
 		fullName: 'ProtoShares',
 		addressVersion: '38',
 		defaultCompress: false,
-		donateAddress: 'PgzC3bGqcHfMG5uPS8rMLovfeogSVMP7bC',
+		donateAddress: 'PgzC3bGycHfMG5uPS8rMLovfeogSVMP7bC',
 		enabled: true
 		},
 	'qrk': {
@@ -162,7 +162,7 @@ var CoinInfo = {
 		fullName: 'Devcoin',
 		addressVersion: '00',
 		defaultCompress: false,
-		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
 		enabled: true
 		},
 	'dgc': {
@@ -210,7 +210,7 @@ var CoinInfo = {
 		fullName: 'Terracoin',
 		addressVersion: '00',
 		defaultCompress: false,
-		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7b',
+		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
 		enabled: true
 		},
 	'wdc': {
@@ -230,8 +230,8 @@ var CoinInfo = {
 		enabled: true
 		},
 	};
-	
 var AllCoinTypes = '';
+var AllCoinTypesFull = '';
 
 var CoinTypes = new Array();
 
@@ -239,9 +239,13 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	{
 	CoinTypes[i] = CoinInfo[Object.keys(CoinInfo)[i]].name;
 	AllCoinTypes += CoinInfo[Object.keys(CoinInfo)[i]].name;
+	AllCoinTypesFull += CoinInfo[Object.keys(CoinInfo)[i]].fullName;
 	
 	if (i < Object.keys(CoinInfo).length - 1)
+		{
 		AllCoinTypes += ' ';
+		AllCoinTypesFull += ', ';
+		}
 	}
 	
  function InitPrivateKeyPage()
@@ -365,7 +369,7 @@ function GenerateAddress(display)
 		PrivKeyHex = PrivKey;
 		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
 		}
-	else if (PrivKey.length == 51 || PrivKey.length == 52)
+	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52)
 		{
 		$('.private-key-error').fadeOut(300);
 		
