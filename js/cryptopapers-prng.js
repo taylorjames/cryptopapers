@@ -76,7 +76,7 @@ function InitRNG()
 				{
 				$('.generate-button').removeAttr('disabled').addClass('enabled');
 				
-				if (WhenEntropyPoolFills_AutoGenerateKeys)
+				if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
 					{
 					$('#private-key-generate').click();
 					

@@ -184,7 +184,20 @@ font-weight: bold;
 .wrapper{
 	width:100%;
 }
-
+.key-error,
+.key-success
+{
+width: 100%;
+margin: 5px;
+}
+.key-error
+{
+color: red;
+}
+.key-success
+{
+color: green;
+}
 .private-key-error
 {
 color: red;
@@ -273,8 +286,13 @@ right: 50px;
 
 #coin-key{
 	float: left;
-	width: 80%;
-	margin-left: 19%;
+	width: 100%;
+	text-align: center;
+}
+#private-key-encrypt
+{
+margin: auto;
+margin-top: 10px;
 }
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
@@ -794,6 +812,21 @@ margin-left: 20px;
 float: left;
 width: 46%
 }
+.input-key
+{
+float: left;
+clear: both;
+width: 100%;
+}
+.decrypt-key
+{
+float: left;
+clear: both;
+text-align: center;
+margin-top: 12px;
+margin-bottom: 10px;
+width: 100%;
+}
 .design-type .active > .coin-wallet-background
 {
 border: 5px solid;
@@ -914,7 +947,8 @@ textarea[readonly]
 	float:left;
 }
 
-#private-key-input
+#private-key-input,
+#decrypt-password
 {
 	display: inline;
 	width: 500px;
@@ -924,8 +958,26 @@ textarea[readonly]
 	border-radius: 10px;
 	position: relative;
 	margin: auto;
-	left: 26px;
 	text-align: center;
+}
+#decrypt-password
+{
+width: 450px;
+}
+#private-key-decrypt
+{
+margin: auto;
+margin-top: 10px;
+}
+.decrypt-key .progress
+{
+margin-bottom: -16px;
+margin-left: -16px;
+margin: auto;
+top: 56px;
+position: relative;
+float: left;
+left: 65%;
 }
 
 #private-key-submit{

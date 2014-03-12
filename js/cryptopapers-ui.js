@@ -31,6 +31,7 @@ function InitPage()
 	if (InitPremium)
 		InitPremium();
 	}
+	
 function InitDismissable()
 	{
 	$('.dismissable').prepend('<div class="close-button"></div>');

@@ -50,7 +50,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 GitHub Repository: https://github.com/mannkind/bit2factor.org
 */
 
-
 function InitBIP38()
 	{
 	$('#encryption-key, #encryption-key-confirm').keyup(function()
@@ -121,6 +120,73 @@ function InitBIP38()
 		
 		DisplayWallet(CurrentCoinType, WIF, Address, false);
 		});
+	$('#decrypt-password').keyup(function ()
+		{
+		if ($(this).val().length > 0)
+			{
+			$('#private-key-decrypt').removeAttr('disabled');
+			}
+		else
+			{
+			$('#private-key-decrypt').attr('disabled', '');
+			}
+		});
+		
+	$('#private-key-decrypt').click(function ()
+		{
+		$('#private-key-decrypt').attr('disabled', '');
+		$('.decrypt-key .progress').fadeIn(300);
+		
+		$(".decrypt-key .key-error").fadeOut(300, function ()
+			{
+			$(this).hide();
+			});
+		
+		var Key = $('#private-key-input').val();
+		var Password = $('#decrypt-password').val();
+		
+		$('#decrypt-password').val('');		
+		
+		try
+			{
+			Bitcoin.BIP38.EncryptedKeyToByteArrayAsync(Key, Password, function (n, o)
+				{	
+				$('#private-key-decrypt').removeAttr('disabled');
+				$('.decrypt-key .progress').fadeOut(300);
+									
+				if (n != null && n.length > 0)
+					{
+					if (n.length == 32)
+						n = Crypto.util.bytesToHex(n);
+						
+					// success
+					$('.key-success').fadeIn(300, function()
+						{
+						setTimeout(function()
+							{
+							$('.key-success').fadeOut(300, function()
+								{
+								$('#private-key-input').val(n);
+								$('#private-key-input').change();
+								});
+							},1500);
+						});
+						
+					}
+				else
+					{
+					$(".decrypt-key .key-error").show().fadeIn(300);
+					}
+				})
+			}
+		catch (k)
+			{
+			$('#private-key-decrypt').removeAttr('disabled');
+			Log(k);
+			$(".decrypt-key .key-error").show().fadeIn(300);
+			}
+		});
+		
 	}
 
 
@@ -321,16 +387,17 @@ Bitcoin.BIP38 = {
 		};
 		var o = function ()
 		{
-			var r = new Bitcoin.ECKey(l);
-			r.setCompressed(k);
-			var e = r.getBitcoinAddress();
+			//var r = new Bitcoin.ECKey(l);
+			//r.setCompressed(k);
+			var e = GetAddressFromKeyUnknown(CurrentCoinType, l, k); //Address; //r.getBitcoinAddress();
+			
 			i = Bitcoin.Util.dsha256(e);
 			if (i[0] != f[3] || i[1] != f[4] || i[2] != f[5] || i[3] != f[6])
 			{
 				m(new Error("Incorrect Passphrase"));
 				return
 			}
-			m(r.getBitcoinPrivateKeyByteArray(), k)
+			m(l, k);
 		};
 		if (!g)
 		{

@@ -270,6 +270,22 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	
 	$('#private-key-input').change(function() 
 		{
+		if (Bitcoin.BIP38.isBIP38Format($(this).val()))
+			{
+			$('.decrypt-key').show().animate({opacity: '1', height: '100'}, 300);
+			
+			return;
+			}
+		else
+			{
+			$('.decrypt-key').animate({opacity: '0', height: '0'}, 300, function () 
+				{
+				$(this).hide();
+				});
+			}
+		
+		
+		
 		var Address = GenerateAddress(true);	
 
 		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
@@ -277,7 +293,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		
 		SetLettering();
 		});	 
-	 }
+	}
 	 
 	 
 
@@ -571,7 +587,11 @@ function GetPublicKeyBytes(PrivateKeyBytes, Compressed)
 
 function GetAddressFromKeyUnknown(CoinType, PrivateKey, Compressed)
 	{
-	if (PrivateKey.length == 64)
+	if (PrivateKey.length == 32)
+		{
+		return GetAddressFromKeyHex(CoinType, Crypto.util.bytesToHex(PrivateKey), Compressed);
+		}
+	else if (PrivateKey.length == 64)
 		{
 		return GetAddressFromKeyHex(CoinType, PrivateKey, Compressed);
 		}

@@ -616,24 +616,34 @@ $().ready(function ()
 				<div class="key-import round-block help-section">
 					<h3>Private Key</h3>		
 					<h4>Import / Generate</h4>
-					<div class="help-bubble" style="float:left;">
-						<span>
-						A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
-						<br><br>
-						Paste a private key exported from your coin wallet software into the box below 
-						or click on Generate to generate a new private key from the Random Number Generator pool.
-						<br><br>
-						(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed are all supported)
-						<br><br>
-						</span>
-					</div>		
-					<span class="private-key-error"></span>	
-					<div class="private-key"> 
-						<div id="coin-key">	
-
-							<input type="text" id="private-key-input" autocomplete="off" />	
+					
+					<div class="input-key">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
+							<br><br>
+							Paste a private key exported from your coin wallet software into the box below 
+							or click on Generate to generate a new private key from the Random Number Generator pool.
+							<br><br>
+							(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
+							<br><br>
+							</span>
+						</div>		
+						<span class="private-key-error"></span>	
+						<div class="private-key"> 
+							<div id="coin-key">
+								<input type="text" id="private-key-input" autocomplete="off" />	
+							</div>
 						</div>
-					</div>	
+					</div>
+					<div class="decrypt-key hide">
+						<span>This private key is encrypted. Please enter password to decrypt:</span>
+						<input type="password" id="decrypt-password" autocomplete="off" />
+						<div class="progress hide"></div>
+						<span class="key-error hide">Error - incorrect private key or password</span>
+						<span class="key-success hide">Success!</span>
+						<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
+					</div>
 					
 					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
 				
