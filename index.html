@@ -697,6 +697,8 @@ $().ready(function ()
 					<label>RNG Pool Data:</label>
 					<textarea id="random-pool" readonly></textarea>
 				</div>
+				
+				
 				<div class="key-details round-block help-section"> 
 					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
@@ -724,6 +726,7 @@ $().ready(function ()
 						<br>
 						</span>
 					</div>	
+					<div class="encrypted"></div>
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
@@ -794,7 +797,31 @@ $().ready(function ()
 					</div>	
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					-->
-				</div>			
+				</div>	
+				
+				<div class="print-encryption round-block">
+					<h3>BIP38 Wallet Encryption</h3>
+					
+					<div class="encryption-keys">
+						<label class="left-label" for="encryption-key">Password:</label>
+						<input type="password" id="encryption-key" autocomplete="off" />
+						<label class="left-label" for="encryption-key">Confirm:</label>
+						<input type="password" id="encryption-key-confirm" autocomplete="off" />
+					</div>
+					
+					<div class="encryption-buttons">					
+						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" disabled />
+						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" disabled />
+					</div>
+					
+					<div class="encryption-details hide">
+						<label class="left-label">Unencrypted:</label>
+						<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+						<label class="left-label">Encrypted:</label>
+						<div class="encrypting progress"></div>
+						<input type="text" id="encrypted-key" autocomplete="off" readonly />
+					</div>
+				</div>		
 			</div>
 			<div class="sub-section coin-setup-print">
 			
@@ -1007,32 +1034,6 @@ $().ready(function ()
 								<h2>To</h2>
 							</div>
 						</div>
-					</div>
-				</div>
-				
-					
-				<div class="print-encryption round-block">
-					<h3>BIP38 Wallet Encryption</h3>
-					<div class="encrypted"></div>
-					
-					<div class="encryption-keys">
-						<label class="left-label" for="encryption-key">Encryption key:</label>
-						<input type="password" id="encryption-key" autocomplete="off" />
-						<label class="left-label" for="encryption-key">Confirm key:</label>
-						<input type="password" id="encryption-key-confirm" autocomplete="off" />
-					</div>
-					
-					<div class="encryption-buttons">					
-						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" disabled />
-						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" disabled />
-					</div>
-					
-					<div class="encryption-details hide">
-						<label class="left-label">Unencrypted WIF:</label>
-						<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-						<label class="left-label">Encrypted WIF:</label>
-						<div class="encrypting progress"></div>
-						<input type="text" id="encrypted-key" autocomplete="off" readonly />
 					</div>
 				</div>
 				

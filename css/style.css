@@ -926,9 +926,9 @@ textarea[readonly]
 	border-right: none;
 	border-radius: 10px;
 	top: 23px;
-	left: 322px;
 	font-weight: bolder;
 	font-size: 20px;
+	margin: auto;
 }
 
 #private-key-generate[disabled]{
@@ -1106,6 +1106,7 @@ left: 220px;
 }
 
 .key-details{
+	float: left;
 	display:none;
 }
 
@@ -1889,16 +1890,19 @@ color: #00AD00;
 
 .print-encryption
 {
-width: 35.6%;
+display: none;
+width: 30%;
 margin-bottom: 14px;
 float: right;
 padding-left: 14px;
 padding-right: 14px;
 padding-bottom: 14px;
+margin-right: 18px;
+margin-top: 12px;
 }
 .print-encryption label
 {
-width: 144px;
+width: 96px;
 }
 
 
@@ -1909,7 +1913,7 @@ clear: left;
 .print-encryption input[type=button]
 {
 float: left;
-width: 44%;
+width: 42%;
 margin: 10px;
 }
 .print-encryption input[type=text],
@@ -1933,7 +1937,7 @@ display: none;
 position: relative;
 top: 14px;
 margin-bottom: -16px;
-left: 367px;
+left: 318px;
 }
 .encrypted
 {
@@ -1942,6 +1946,11 @@ background-image: url('../images/lock.png');
 background-size: 100%;
 width: 50px;
 height: 63px;
+}
+.key-details .encrypted
+{
+left: 700px;
+position: absolute;
 }
 .print-encryption .encrypted
 {

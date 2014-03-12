@@ -397,6 +397,7 @@ function GenerateAddress(display)
 	if (display)
 		{
 		$('.key-details').fadeIn();
+		$('.print-encryption').fadeIn();
 		
 		$('#private-key-hex').val(PrivKeyHex);
 		$('#private-key-wif').val(PrivKeyWIF);
