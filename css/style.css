@@ -1041,6 +1041,10 @@ input[type=button]:disabled
 {
 	background-color:#838383;
 }
+input[type=button].error
+{
+	background-color:#BB3B3B;
+}
 .print-buttons input[type=button]{
 	margin:auto;
 }

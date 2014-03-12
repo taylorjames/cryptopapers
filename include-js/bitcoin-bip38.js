@@ -56,10 +56,17 @@ function InitBIP38()
 		{
 		if ($(this).val() != '' && $('#encryption-key').val() == $('#encryption-key-confirm').val())
 			{
+			$('#encrypt-button').removeClass('error');
 			$('#encrypt-button').removeAttr('disabled');
+			}
+		else if ($(this).val() != '' && $('#encryption-key').val().length == $('#encryption-key-confirm').val().length)
+			{
+			$('#encrypt-button').addClass('error');
+			$('#encrypt-button').attr('disabled', '');
 			}
 		else
 			{
+			$('#encrypt-button').removeClass('error');
 			$('#encrypt-button').attr('disabled', '');
 			}
 		})
