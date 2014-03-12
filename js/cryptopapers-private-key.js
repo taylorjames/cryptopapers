@@ -495,7 +495,10 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
-		$('#encryption-key-confirm').val('');
+		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
+			{
+			$(this).hide();
+			});
 		$('#encrypt-remove-button').attr('disabled', '');
 		$('.encryption-details').hide();
 		$('.encryption-keys').show().css('opacity','1');
@@ -503,6 +506,10 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	else
 		{
 		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
+		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
+			{
+			});
+		$('#private-key-encrypted').val(PrivKeyWIF);
 		$('.encryption-details').show().css('opacity','1');
 		$('.encryption-keys').hide();
 		}	

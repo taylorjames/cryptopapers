@@ -726,7 +726,6 @@ $().ready(function ()
 						<br>
 						</span>
 					</div>	
-					<div class="encrypted"></div>
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
@@ -748,6 +747,18 @@ $().ready(function ()
 					</div>	
 					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
+					<div class="private-key-encrypted">
+						<div class="encrypted"></div>
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the Encrypted Private Key, which is the Private Key WIF encrypted using BIP38 and the password you provided.
+							<br>
+							<br><br>
+							</span>
+						</div>
+						<label class="left-label">Private Key Encrypted:</label><input type="text" id="private-key-encrypted" autocomplete="off" readonly />
+						<br />
+					</div>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Private Key Checksum, which is included in the Private Key WIF.

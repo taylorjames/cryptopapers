@@ -294,6 +294,20 @@ right: 50px;
 margin: auto;
 margin-top: 10px;
 }
+.private-key-encrypted
+{
+display: block;
+height: 38px;
+float: left;
+opacity: 1;
+clear: left;
+width: 100%;
+}
+#private-key-encrypted
+{
+width: 500px;
+}
+
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
 	border: 1px solid;
@@ -1949,8 +1963,11 @@ height: 63px;
 }
 .key-details .encrypted
 {
-left: 700px;
+left: 680px;
 position: absolute;
+width: 28px;
+height: 35px;
+margin-top: -2px;
 }
 .print-encryption .encrypted
 {
