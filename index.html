@@ -600,7 +600,7 @@ $().ready(function ()
 				Thanks, and stay safe!
 			</span>
 			<ul id="coin-setup-menu" class="menu no-print">
-				<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Key Generation</li>
+				<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
 				<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
 				<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
 				<a></a>
@@ -992,15 +992,31 @@ $().ready(function ()
 						</div>
 					</div>
 				</div>
-				<div class="warning dismissable no-print"><b>WARNING: This is Beta software.</b>
-				<br><br>It's unlikely something will go wrong but it's still 
-				<b>highly recommended</b> that you test these keys by importing them 
-				<br>into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
-				before sending funds to this wallet.
-				<br><br>
-				Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
-				<br><br>
-				We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
+				<div class="warning dismissable no-print">
+					<b>WARNING: This is Beta software.</b>
+					<br><br>It's unlikely something will go wrong but it's still 
+					<b>highly recommended</b> that you test these keys by importing them 
+					<br>into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+					before sending funds to this wallet.
+					<br><br>
+					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
+					<br><br>
+					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
+				</div>
+				<div class="warning dismissable warning-encryption">
+					<b>WARNING: Encryption is being used.</b>
+					<br><br>
+					Make sure you test decryption of these keys before sending funds to this wallet.
+					<br><br>
+					To decrypt a BIP38 wallet key, simply enter it into the Import Private Key box on the 
+					<a class="private-key-page">Private Key</a> page and enter the password you used to encrypt it.
+					<br>
+					You can also use an offline tool like <a href="http://bitaddress.org">bitaddress.org</a> to decrypt Bitcoin keys.
+					<br><br>
+					Be careful when using encrypted keys: while some advanced wallet apps can decode these keys, most can not. 
+					<br><br>
+					Be especially careful when using this feature for lesser known alt-coins. While <a href="http://bitaddress.org">bitaddress.org</a>
+					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.
 				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">

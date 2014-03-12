@@ -37,99 +37,149 @@ function FigureOutCoinPrefix(PrivateKeyWIF, Address)
 	return Out;
 	}
 	
-function TestTheory()
-	{
-	/*
-	var bytes1 = sr.getBytes(32);
-	var byteshex1 = Crypto.util.bytesToHex(bytes1);
-	var wallet1 = new Bitcoin.ECKey(bytes1);
-	var walletpt1 = wallet1.getPubPoint();
-	var walletptpublichex1 = Crypto.util.bytesToHex(GetEncoded(walletpt1, false));
-	
-	var bytes2 = sr.getBytes(32);
-	var byteshex2 = Crypto.util.bytesToHex(bytes2);
-	var wallet2 = new Bitcoin.ECKey(bytes2);
-	var walletpt2 = wallet2.getPubPoint();
-	var walletptpublichex2 = Crypto.util.bytesToHex(GetEncoded(walletpt2, false));
-	var publickey2 = GetPublicKeyBytes(bytes2);
-	var publickeyhex2 = Crypto.util.bytesToHex(publickey2);
-
-	var walletpt3 = walletpt1.add(walletpt2);
-	
-//	var walletptpublichex3 = Crypto.util.bytesToHex(GetEncoded(walletpt3, false));
-//	var address = GetAddress(walletptpublichex3);
-	
-	var wallet3 = new Bitcoin.ECKey();
-	wallet3.setPub(walletpt3);
-	var address2 = wallet3.getBitcoinAddress();
-	
-	Log(publickeyhex2);
-	Log(walletptpublichex2);
-//	Log(walletptpublichex3);
-//	Log(address);
-	Log(address2);
-	*/
-//	walletpt3.add(walletpt2);
-	/*
-	var CoinType = 'btc';
-	
-	var bytes1 = sr.getBytes(32);
-	var byteshex1 = Crypto.util.bytesToHex(bytes1);
-	var publickey1 = GetPublicKeyBytes(bytes1);
-	var publickeyhex1 = Crypto.util.bytesToHex(publickey1);
-	var address1 = GetAddressFromBytes(CoinType, publickey1);
-	
-	var bytes2 = sr.getBytes(32);
-	var byteshex2 = Crypto.util.bytesToHex(bytes2);
-	var publickey2 = GetPublicKeyBytes(bytes2);
-	var publickeyhex2 = Crypto.util.bytesToHex(publickey2);
-	var address2 = GetAddressFromBytes(CoinType, publickey2);
-	
-	var bytes3 = XORBytes(bytes1, bytes2);
-	var byteshex3 = Crypto.util.bytesToHex(bytes3);
-	var publickey3 = GetPublicKeyBytes(bytes3);
-	var publickeyhex3 = Crypto.util.bytesToHex(publickey3);
-	var address3 = GetAddressFromBytes(CoinType, publickey3);
-	
-	
-	var publickey4 = XORBytes(publickey1, publickey2);
-	var publickeyhex4 = Crypto.util.bytesToHex(publickey4);
-	var address4 = GetAddressFromBytes(CoinType, publickey4);
-	
-	Log(byteshex1);
-	Log(publickeyhex1);
-	Log(address1);
-	
-	Log(byteshex2);
-	Log(publickeyhex2);
-	Log(address2);
-	
-	Log(byteshex3);
-	Log(publickeyhex3);
-	Log(address3);	
-	
-	Log();
-	Log(publickeyhex4);
-	Log(address4);	
-	*/
-	}
-
  
 var Vanity = '';
-var VanityCaseSensitive = true;
+var VanityCaseSensitive = false;
 
+var VanityLeastCaps = false;
+var VanityMostCaps = false;
+var VanityLeastLower = false;
+var VanityMostLower = false;
+var VanityLeastNumbers = false;
+var VanityMostNumbers = false;
+
+var Vanity_AtTheStart = true;
+
+var Vanity_Time = 0;
+
+Log(VanityEstimateSeconds());
+
+function VanityEnabled()
+	{
+	return Vanity != '' || VanityLeastCaps || VanityMostCaps || VanityLeastNumbers || VanityMostNumbers || VanityLeastLower || VanityMostLower;
+	}
+function VanityEstimateSeconds()
+	{	
+	var Time = 50;
+	
+	var Caps = "ABCDEFGHJKLMNPQRSTUVWXYZ".length;
+	var Lower = "abcdefghijkmnopqrstuvwxyz".length;
+	var Numbers = "123456789".length;
+	var All = "123456789abcdefghijkmnopqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ".length;
+	
+	var AddressLen = Math.round((34 + 27) /2);
+	
+	var Odds = 1;
+	
+	if (Vanity != '')
+		{
+		}
+	if (VanityLeastCaps != '')
+		{
+		Odds = 1 / Math.pow((Lower+Numbers) / All, AddressLen);
+		}
+	if (VanityMostCaps != '')
+		{
+		Odds = 1 / Math.pow(Caps / All, AddressLen);
+		}
+	if (VanityLeastNumbers != '')
+		{
+		Odds = 1 / Math.pow((Caps+Lower) / All, AddressLen);
+		}
+	if (VanityMostNumbers != '')
+		{
+		Odds = 1 / Math.pow(Numbers / All, AddressLen);
+		}
+	if (VanityLeastLower != '')
+		{
+		Odds = 1 / Math.pow((Caps+Numbers) / All, AddressLen);
+		}
+	if (VanityMostLower != '')
+		{
+		Odds = 1 / Math.pow(Lower / All, AddressLen);
+		}
+	
+	Odds = Math.round(Odds);
+	
+	return Odds * (Time / 1000);
+	}
+	
+function CountUpperCase(Str)
+	{
+	return Str.replace(/[^A-Z]/g, "").length;
+	}
+function CountLowerCase(Str)
+	{
+	return Str.replace(/[^a-z]/g, "").length;
+	}
+function CountNumbers(Str)
+	{
+	return Str.replace(/\D/g, "").length;
+	}
+function IndexFirstUpper(Str)
+	{
+	var Match = Str.match(/[A-Z]/);
+	return Match == null ? Str.length : Match.index;
+	}
+function IndexFirstLower(Str)
+	{
+	var Match = Str.match(/[a-z]/);
+	return Match == null ? Str.length : Match.index;
+	}
+function IndexFirstDigit(Str)
+	{
+	var Match = Str.match(/\d/);
+	return Match == null ? Str.length : Match.index;
+	}
+function IndexFirstNonUpper(Str)
+	{
+	var Match = Str.match(/[^A-Z]/);
+	return Match == null ? Str.length : Match.index;
+	}
+function IndexFirstNonLower(Str)
+	{
+	var Match = Str.match(/[^a-z]/);
+	return Match == null ? Str.length : Match.index;
+	}
+function IndexFirstNonDigit(Str)
+	{
+	var Match = Str.match(/[^0-9]/);
+	return Match == null ? Str.length : Match.index;
+	}
+	
 function GenerateVanity()
 	{
 	if (!VanityCaseSensitive)
 		Vanity = Vanity.toLowerCase();
 
+	if (Default_Compress == undefined)
+		{
+		Default_Compress = GetDefaultCompress(CurrentCoinType);
+		}
+		
 	var tries = 0;
 	var tries_count2 = 0;
 
 	var CoinType = $('div.coin.active').attr('data');
 
+	var PrivKeyBytes_Best = null;
+	var Address_Best = '';
+	var Count_Best = -1;
+	
+	var Vanity_Time_Last = 0;
+
 	while (true)
 		{
+		if (Vanity_Time == 0 && Vanity_Time_Last != 0)
+			{
+			Vanity_Time = window.performance.now() - Vanity_Time_Last;
+			Log(Vanity_Time);
+			}
+		else if (Vanity_Time == 0)
+			{
+			Vanity_Time_Last = window.performance.now();
+			}
+		
 		var PrivateBytes = sr.getBytes(32);
 		
 		sr.seedTime();
@@ -138,6 +188,7 @@ function GenerateVanity()
 		
 		var Address = GetAddressFromBytes(CoinType, PubKeyBytes);
 							
+			
 		if (tries_count2 == 100)
 			{
 			Log(tries);
@@ -148,26 +199,194 @@ function GenerateVanity()
 		tries++;
 		tries_count2++;
 		
-		if (!VanityCaseSensitive)
+		if (Vanity != '')
 			{
-			Address = Address.toLowerCase();	
+			AddressLower = Address;
+			
+			if (!VanityCaseSensitive)
+				{
+				AddressLower = Address.toLowerCase();	
+				}
+				
+			if (Vanity[0] != AddressLower[1])
+				{
+				continue;
+				}
+			else if (Count_Best < 1)
+				{
+				Count_Best = 1;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+				
+			if (Vanity.length > 1 && Vanity[1] != AddressLower[2])
+				{
+				continue;
+				}
+			else if (Count_Best < 2)
+				{
+				Count_Best = 2;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+				
+			if (Vanity.length > 2 && Vanity[2] != AddressLower[3])
+				{
+				continue;
+				}
+			else if (Count_Best < 3)
+				{
+				Count_Best = 3;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+				
+			if (Vanity.length > 3 && Vanity[3] != AddressLower[4])
+				{
+				continue;
+				}
+			else if (Count_Best < 4)
+				{
+				Count_Best = 4;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+				
+			if (Vanity.length > 4 && Vanity[4] != AddressLower[5])
+				{
+				continue;
+				}
+			else if (Count_Best < 5)
+				{
+				Count_Best = 5;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			}
+		else if (VanityLeastCaps)
+			{
+			var CountCaps = Vanity_AtTheStart ? Address.length - 1 - IndexFirstCap(Address.substr(1)) :CountUpperCase(Address.substr(1));
+			
+			if (Count_Best == -1 || CountCaps < Count_Best)
+				{
+				Count_Best = CountCaps;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountCaps == 0)
+				break;
+			else
+				continue;
+			}
+		else if (VanityMostCaps)
+			{
+			var CountCaps = Vanity_AtTheStart ? IndexFirstNonUpper(Address.substr(1)) :CountUpperCase(Address.substr(1));
+			
+			if (Count_Best == -1 || CountCaps > Count_Best)
+				{
+				Count_Best = CountCaps;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountCaps == Address.length-1)
+				break;
+			else
+				continue;
+			}
+		else if (VanityLeastNumbers)
+			{
+			var CountNum = Vanity_AtTheStart ? Address.length - 1 - IndexFirstDigit(Address.substr(1)) : CountNumbers(Address.substr(1));
+			
+			if (Count_Best == -1 || CountNum < Count_Best)
+				{
+				Count_Best = CountNum;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountNum == 0)
+				break;
+			else
+				continue;
+			}
+		else if (VanityMostNumbers)
+			{
+			var CountNum =  Vanity_AtTheStart ? IndexFirstNonDigit(Address.substr(1)) : CountNumbers(Address.substr(1));
+			
+			if (Count_Best == -1 || CountNum > Count_Best)
+				{
+				Count_Best = CountNum;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountNum == Address.length-1)
+				break;
+			else
+				continue;
+			}
+		else if (VanityLeastLower)
+			{
+			var CountLower = Vanity_AtTheStart ? Address.length - 1 - IndexFirstLower(Address.substr(1)) : CountLowerCase(Address.substr(1));
+			
+			if (Count_Best == -1 || CountLower < Count_Best)
+				{
+				Count_Best = CountLower;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountLower == 0)
+				break;
+			else
+				continue;
+			}
+		else if (VanityMostLower)
+			{
+			var CountLower = Vanity_AtTheStart ? IndexFirstNonLower(Address.substr(1)) : CountLowerCase(Address.substr(1));
+			
+			if (Count_Best == -1 || CountLower > Count_Best)
+				{
+				Count_Best = CountLower;
+				PrivKeyBytes_Best = PrivateBytes;
+				Address_Best = Address;
+				Log(Count_Best);
+				Log(Address_Best);
+				}
+			
+			if (CountLower == Address.length-1)
+				break;
+			else
+				continue;
 			}
 			
-		if (Vanity[0] != Address[1])
-			continue;
-		if (Vanity.length > 1 && Vanity[1] != Address[2])
-			continue;
-		if (Vanity.length > 2 && Vanity[2] != Address[3])
-			continue;
-		if (Vanity.length > 3 && Vanity[3] != Address[4])
-			continue;
-		if (Vanity.length > 4 && Vanity[4] != Address[5])
-			continue;
 			
 		break;						
 		}
 
-	$('#private-key-input').val(Crypto.util.bytesToHex(PrivateBytes));
+	$('#private-key-input').val(Crypto.util.bytesToHex(PrivKeyBytes_Best));
 	$('#private-key-input').change();
 	}
 	

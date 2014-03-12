@@ -252,7 +252,13 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	 {
 	$('.generate-button').click(function()
 		{
-		if (Vanity == null || Vanity.length == 0)
+		if (VanityEnabled())
+			{
+			var AddressStart = '-----';
+			
+			GenerateVanity();
+			}
+		else
 			{
 			var bytes = sr.getBytes(32);
 			sr.seedTime();
@@ -262,13 +268,6 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			$('#private-key-input').change();
 			
 			$('#security-generate-import-no').click();
-			
-			}
-		else
-			{
-			var AddressStart = '-----';
-			
-			setTimeout(GenerateVanity, 100);
 			}
 		});
 	
@@ -467,7 +466,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	$('.coin-wallet-address').html(Address);
 	$('.coin-wallet-address-qr').qrcode(Address);
 
-	var split = 26;
+	var split = Encrypted ? 29 : 26;
 	
 	var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
 	var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
@@ -496,7 +495,9 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
 		$('.print-encryption #encrypted-key').val('');
 		$('.encrypted').fadeOut(300);
+		$('.warning-encryption').fadeOut(300);
 		
+		$('.coin-wallets').removeClass('keys-encrypted');
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
 		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
@@ -509,10 +510,12 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		}
 	else
 		{
+		$('.coin-wallets').addClass('keys-encrypted');
 		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
 		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
 			{
 			});
+		$('.warning-encryption').fadeIn(300);
 		$('#private-key-encrypted').val(PrivKeyWIF);
 		$('.encryption-details').show().css('opacity','1');
 		$('.encryption-keys').hide();
@@ -607,7 +610,7 @@ function GetAddressFromKeyUnknown(CoinType, PrivateKey, Compressed)
 		{
 		return GetAddressFromKeyHex(CoinType, PrivateKey, Compressed);
 		}
-	else if (PrivateKey.length == 51 || PrivateKey.length == 52)
+	else if (PrivateKey.length == 50 ||PrivateKey.length == 51 || PrivateKey.length == 52)
 		{
 		return GetAddressFromKeyWIF(CoinType, PrivateKey, Compressed);
 		}

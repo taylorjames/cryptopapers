@@ -93,6 +93,11 @@ function InitMenus()
 	$('.sub-section').hide();
 	$('.sub-section.' + subsection).show();
 	
+	$('.private-key-page').click(function() 
+		{
+		$('#coin-setup-menu #generate').click();
+		});
+
 	$('#coin-setup-menu.menu li').click(function() 
 		{
 		if ($(this).hasClass('disabled') || $(this).hasClass('active'))
