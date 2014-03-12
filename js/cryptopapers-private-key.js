@@ -12,6 +12,8 @@ var HasPrivateKey = false;
 var DefaultCoin = 'btc';
 var CurrentCoinType = DefaultCoin;
 
+var VanityEnabled = undefined;
+
 var CoinInfo = {
 	'btc': {
 		name: 'btc',
@@ -252,7 +254,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	 {
 	$('.generate-button').click(function()
 		{
-		if (VanityEnabled())
+		if (VanityEnabled != undefined && VanityEnabled())
 			{
 			var AddressStart = '-----';
 			

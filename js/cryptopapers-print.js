@@ -38,6 +38,7 @@ var WalletFrames = 6;
 var Frames = 
 	{
 	'Frame-1': {
+		Active: true,
 		Name: 'Coin Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Advanced',
@@ -49,6 +50,7 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-2': {
+		Active: true,
 		Name: 'Coin Wallet Booklet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Advanced',
@@ -60,6 +62,7 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-3': {
+		Active: true,
 		Name: 'Coin Slip',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Intermediate',
@@ -71,6 +74,7 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-4': {
+		Active: true,
 		Name: 'Credit Card Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Beginner',
@@ -82,6 +86,7 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-5': {
+		Active: true,
 		Name: 'Rounded Credit Card Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Intermediate',
@@ -93,6 +98,7 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-6': {
+		Active: true,
 		Name: 'Standard Wallet V2',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Intermediate',
@@ -105,17 +111,10 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-7': {
-		Name: 'BitcoinPaperWallet.com Variation',
-		Creator: 'Canton Becker',
-		Difficulty: 'Beginner',
-		Description: 'Donate BTC: 1Pjg628vjMLBvADrPHsthtzKiryM2y46DG',
-		Instructions: '<ol>' + 
-			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
-			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
-			'</ol>'
+		Active: false
 	},
 	'Frame-8': {
+		Active: true,
 		Name: 'Standard Wallet',
 		Creator: 'Whoever invented the rectangle',
 		Difficulty: 'Beginner',
@@ -327,6 +326,9 @@ function AddFrames()
 	
 	for (var i = 0; i < Object.keys(Frames).length; i++)
 		{
+		if (!Frames[Object.keys(Frames)[i]].Active)
+			continue;
+			
 		var Frame = "Frame-" + (i+1);
 		var FrameName = Frames[Object.keys(Frames)[i]].Name;
 				

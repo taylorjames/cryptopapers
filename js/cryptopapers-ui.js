@@ -63,20 +63,22 @@ function InitHelp()
 		
 	$('.help-toggle').click(function() 
 		{
-		if ($(this).parent().hasClass('help-active'))
+		var Toggle = $(this);
+		if (Toggle.parent().hasClass('help-active'))
 			{
-			$(this).animate({opacity: '0.5'});
-			$(this).parent().find('.help-bubble').animate({opacity: '0', height: '0px'}, 300 , function() 
+			Toggle.animate({opacity: '0.5'});
+			Toggle.parent().find('.help-bubble').animate({opacity: '0', height: '0px'}, 300 , function() 
 				{
-				if ($(this).parent().removeClass('help-active'));
+				Toggle.parent().removeClass('help-active');
+				$(this).hide();
 				});
 			}
 		else
 			{
-			$(this).animate({opacity: '1'});
-			if ($(this).parent().addClass('help-active'));
+			Toggle.animate({opacity: '1'});
+			Toggle.parent().addClass('help-active');
 			
-			$(this).parent().find('.help-bubble').css('opacity','1').animateAuto('height', 300, function() 
+			Toggle.parent().find('.help-bubble').show().css('opacity','1').animateAuto('height', 300, function() 
 				{
 				});
 			}
