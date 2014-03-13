@@ -404,7 +404,7 @@ function XORBytes(a, b)
 	
 		
 /* NXT Address Generation - Convert from Java to JavaScript
-
+*/
 //12237344381764262326
 Log(GetNXTAccountIdFromSecret('a'));
 
@@ -471,7 +471,11 @@ function GetNXTAccountIdFromSecret(NXTSecretPhrase)
 	{
 	var PublicKeyBytes = GetNXTPublicKey(NXTSecretPhrase);
 	
-	return GetNXTAccountId(PublicKeyBytes)
+	var id = GetNXTAccountId(PublicKeyBytes)
+	
+	Log("ID: " + id);
+	
+	return id;
 	}
 	
 function UByteShift(Bytes)
@@ -496,44 +500,48 @@ function GetNXTPublicKey(NXTSecretPhrase)
 	var SecretBytes = StringToUTF8Bytes(NXTSecretPhrase)
 	
 	var shaObj = new jsSHA(NXTSecretPhrase, "ASCII");
-	var test = bi2bytes(hex2bi(shaObj.getHash("SHA-256", "HEX")), 32).reverse();
+	var SHABytes = bi2bytes(hex2bi(shaObj.getHash("SHA-256", "HEX")), 32).reverse();
 	  
-	Log(test);
-	Log(UByteShift(test));
+	var Curve = curve25519(bi(Crypto.util.bytesToHex(SHABytes)), bi(16));
+	//var Curve = curve25519(bi(Crypto.util.bytesToHex(UByteShift(SHABytes))));
 	
-	var SHABytes = Crypto.SHA256(SecretBytes, { asBytes: true });
-	var SHABytesShift = UByteShift(SHABytes);
+	//var PublicKey = ed25519_publickey(Curve);
+	var PublicKey = ed25519_publickey(bi(SHABytes));
 	
-	var Curve = curve25519(bi(Crypto.util.bytesToHex(SHABytesShift)));
-	var PublicKey = ed25519_publickey(Curve);
-	var PublicKeyShift = UByteShift(PublicKey);
-	
+	Log('Secret: ');
 	Log(NXTSecretPhrase);
+	Log('Secret Bytes: ')
 	Log(SecretBytes);
+	Log('SHA: ');
 	Log(SHABytes);
-	Log(SHABytesShift);
+	Log('SHA Shift: ');
+	Log(UByteShift(SHABytes));
 	Log(Curve);
-	Log('pk ' + PublicKey);
-	Log('pkshift ' + PublicKeyShift);
+	Log('Public Key: ');
+	Log(PublicKey);
+	Log('Public Key Shift: ');
+	Log(UByteShift(PublicKey));
 	
-	return PublicKeyShift;
+	return PublicKey;
 	}
+	
 function GetNXTAccountId(PublicKeyBytes)
 	{		
-	var publicKeyHash = Crypto.SHA256(Crypto.util.bytesToHex(PublicKeyBytes), {asBytes: true});
-	Log(publicKeyHash);
+	var shaObj = new jsSHA(PublicKeyBytes, "B64");
+	var publicKeyHash = bi2bytes(hex2bi(shaObj.getHash("SHA-256", "HEX")), 64).reverse();
 	var publicKeyHashReverse = [ publicKeyHash[7], 
 		publicKeyHash[6], publicKeyHash[5], publicKeyHash[4], 
 		publicKeyHash[3], publicKeyHash[2], publicKeyHash[1], 
 		publicKeyHash[0]];
-	Log(publicKeyHashReverse);
+		
+	Log('Public Key Hash: ' + publicKeyHash);
+	Log('Public Key Hash Reverse: ' + publicKeyHashReverse);
 	
-	var bigInteger = bi(publicKeyHashReverse);
+	var bigInteger = bi(publicKeyHash);
 	
 	return bigInteger.longValue();
 	}
 
-*/
 
 /*
 // Find Curve25519 JavaScript implementation
