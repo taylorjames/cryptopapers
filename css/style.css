@@ -1,11 +1,12 @@
 
+
 @font-face {
-    font-family: 'museo300';
-    src: url('fonts/museo_300-webfont.eot');
-    src: url('fonts/museo_300-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/museo_300-webfont.woff') format('woff'),
-         url('fonts/museo_300-webfont.ttf') format('truetype'),
-         url('fonts/museo_300-webfont.svg#museo300') format('svg');
+    font-family: 'alefbold';
+    src: url('fonts/alef-bold-webfont.eot');
+    src: url('fonts/alef-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/alef-bold-webfont.woff') format('woff'),
+         url('fonts/alef-bold-webfont.ttf') format('truetype'),
+         url('fonts/alef-bold-webfont.svg#alefbold') format('svg');
     font-weight: normal;
     font-style: normal;
 
@@ -15,32 +16,16 @@
 
 
 @font-face {
-    font-family: 'museo500';
-    src: url('fonts/museo_500-webfont.eot');
-    src: url('fonts/museo_500-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/museo_500-webfont.woff') format('woff'),
-         url('fonts/museo_500-webfont.ttf') format('truetype'),
-         url('fonts/museo_500-webfont.svg#museo500') format('svg');
+    font-family: 'alefregular';
+    src: url('fonts/alef-regular-webfont.eot');
+    src: url('fonts/alef-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/alef-regular-webfont.woff') format('woff'),
+         url('fonts/alef-regular-webfont.ttf') format('truetype'),
+         url('fonts/alef-regular-webfont.svg#alefregular') format('svg');
     font-weight: normal;
     font-style: normal;
 
 }
-
-
-
-
-@font-face {
-    font-family: 'museo700';
-    src: url('fonts/museo_700-webfont.eot');
-    src: url('fonts/museo_700-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/museo_700-webfont.woff') format('woff'),
-         url('fonts/museo_700-webfont.ttf') format('truetype'),
-         url('fonts/museo_700-webfont.svg#museo700') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
 @media print
 {
 	@page {size: landscape}
@@ -167,12 +152,36 @@ body{
 font-weight: bold;
 }
 
+.medium-button, .large-button{
+	background-color:#32A0F8;
+	color:#fff;
+}
+
+.medium-button:hover, .large-button:hover{
+	background-color:#3a7abc !important;
+}
+
+.medium-button{
+	width:48%;
+
+}
+
+.medium-button.left{
+	float:left;
+	margin-right:4%;
+}
+
+.medium-button.last{
+	margin-right:0%;
+}
+
 .large-button {
 	font-size: 27px;
 	margin-top:20px;
 	padding: 16px;
-	width:40%;
+	width:100%;
 	height:50px;
+
 }
 
 .button {
@@ -204,15 +213,14 @@ color: red;
 margin-left: 325px;
 top: -10px;
 position: relative;
+display:none;
 }
 #header{
 	width:100%;
-	background:url('../images/dark-pattern.png');
-	border-bottom:2px solid #000;
-	border-top:2px solid #000;
+	background-color:#32A0F8;
 	overflow: visible;
 	position: relative;
-	height: 119px;
+	height: 86px;
 	overflow-y: visible;
 	margin-bottom: 23px;
 }
@@ -222,7 +230,6 @@ position: relative;
 	overflow-y: visible;
 	overflow: visible;
 	height: 117px;
-	padding-right: 165px;
 	margin-bottom: 53px;
 }
 
@@ -235,9 +242,9 @@ position: relative;
 #logo{
 	margin: auto;
 	display: block;
-	width:350px;
+	width:200px;
 	float:left;
-	margin-top:10px;
+	margin-top:7px;
 	margin-bottom:10px;
 }
 
@@ -271,17 +278,73 @@ cursor: pointer;
 	margin:auto;
 }
 
+/**************
+	Columns
+***************/
+.row{
+		display:block;
+		max-width:100%;
+		width:100%;
+		float:left;
+		clear:both;
+
+		        box-sizing:border-box;
+		   -moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+}
+
+.colone, .coltwo, .colthree, .colfour, .colfive, .colsix, .colseven, .coleight, .colnine, .colten, .coleleven, .coltwelve{
+			display:block;
+			float:left;
+			overflow:auto;
+			margin-left:1%;
+			box-sizing:border-box;
+		   -moz-box-sizing:border-box;
+		-webkit-box-sizing:border-box;
+}
+
+.colinner{
+	padding:20px;
+}
+
+.colinner > h3{
+	text-align:center;
+	margin-bottom:25px;
+}
+.first{
+	margin-left:0px;
+	clear:left;
+
+}
+
+.last{
+	float:right;
+	margin-right:0px;
+}
+
+.center{
+	float:none;
+	margin:auto;
+}
+
+.colone{width:7.333%;}.coltow{width:15.666%;}.colthree{width:23.999%;}.colfour{width:32.333%;}.colfive{width:40.666%;}.colsix{width:48.999%;}.colseven{width:57.333%;}.coleight{width:65.666%;}.colnine{width:73.999%;}.colten{width:82.333%;}.coleleven{width:90.666%}.coltwelve{width:98.999%;}
+
+
+
+h1, h2, h3, h4, h5, h6{
+	font-family:'alefbold';
+}
+
+
 
 
 .coin-type
 {
 top: 0px;
-background-color: #eee;
+background-color: #fff;
 z-index: 100000;
-min-height: 140px;
-min-width: 100px;
 position: absolute;
-right: 50px;
+right: 0px;
 }
 
 #coin-key{
@@ -326,7 +389,7 @@ width: 500px;
 	width: 100%;
 	height: 0px;
 	
-	background-color: #eee;
+	background-color: #fff;
 }
 
 .coin-type .selector-grid-wrapper.selecting .selector-grid-row{
@@ -337,6 +400,7 @@ width: 500px;
 	height:auto;
 	overflow:visible;
 	border-radius:10px;
+	padding:10px;
 }
 .coin-grid-row{
 
@@ -365,13 +429,11 @@ width: 500px;
 }
 .coins-grid-wrapper .coin{
 	display:none;
-	width: 100px;
-	height: 100px;
 	background-size: 100%;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	float:left;
-	padding:115px 0px 0px 0px;
+	padding:72px 0px 0px 0px;
 	background-repeat:no-repeat;
 	background-position:center 10px;
 	border-radius:5px;
@@ -420,7 +482,7 @@ width: 500px;
 }
 .coins-grid-wrapper .coin:hover, 
 .coins-grid-wrapper .coin.active{
-	background-color:#eee;
+	background-color:#fff;
 }
 .coins-grid-wrapper.selecting{
 	width: 100%;
@@ -435,14 +497,17 @@ width: 500px;
 
 
 .coins-grid-wrapper .coin em{
-	width:100%;
 	display:inline-block;
 	text-align:center;
 	padding-bottom: 5px;
 	font-style: normal;
 	font-weight: bolder;
-	padding-top: 2px;
-	background: #dddddd;
+	padding-top: 4px;
+	background-color: #3a7abc;
+	color: #fff;
+	display:block;
+	margin-left: -11px;
+	width: 74px;
 }
 
 .coin-wallets.btc .coin-logo,
@@ -704,6 +769,7 @@ margin-right: 10px;
 .coin-type .coin
 {
 float: right;
+width:54px;
 }
 .copyright
 {
@@ -766,19 +832,16 @@ width: 50%;
 
 label.left-label {
 	width: 10%;
-	text-align: right;
 	display: block;
-	min-height: 30px;
 	float: left;
-	padding: 8px 13px 5px 17px;
 	clear: left;
-	font-size: 14px;
+	font-size: 12px;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
-	background-color: #fff;
-	border: 1px solid #999;
 	border-right: none;
 	color: #8c8c8c;
+	margin-bottom:2px;
+	padding-left:10px;
 }
 .random-info .left-label
 {	
@@ -831,6 +894,8 @@ width: 46%
 float: left;
 clear: both;
 width: 100%;
+box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+border-radius: 10px;
 }
 .decrypt-key
 {
@@ -864,11 +929,13 @@ cursor: pointer;
 .help-toggle
 {
 background-image: url('../images/help.png');
-width:50px;
-height: 50px;
+width: 22px;
+height: 22px;
 float: right;
 cursor: pointer;
 opacity: 0.5;
+margin-top: 5px;
+margin-right: 5px;
 }
 .help-active .help-toggle
 {
@@ -877,14 +944,16 @@ opacity: 1.0;
 .help-bubble
 {
 border:1px solid;
-border-radius: 10px;
-margin-top:10px;
+border-radius: 5px;
+margin-top:0px;
 margin-bottom:10px;
 height: 0px;
 display: none;
-background-color: #ddddff;
-border-color: #bbbbcc;
+background-color: #fff;
+border-color: #ccc;
 width: 100%;
+box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+opacity:0.5 !important;
 }
 .help-bubble > span
 {
@@ -904,7 +973,9 @@ margin-top: 10px;
 #form1{
 	overflow: visible;
 }
-
+input{
+	font-family:'alefregular';
+}
 input[type=text],
 input[type=password]{
 	height:30px;
@@ -921,39 +992,42 @@ input[type=password]{
 #coin-address-verify,
 #private-key-checksum
 {
-	width: 500px;
+	width: 100%;
 	display:block;
 	float:left;
+	margin-bottom:20px;
 }
 
 input[readonly],
 textarea[readonly]
 {
-	background-color: #EEEEEE;
+	background-color: #fff;
 	cursor: default;
+	border-radius:10px;
+	box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 #private-key-generate {
 	display: block;
-	width: 28%;
-	height: 40px;
+	width: 100%;
+	border:none;
 	border-right: none;
-	border-radius: 10px;
+	border-radius: 5px;
 	top: 23px;
 	font-weight: bolder;
 	font-size: 20px;
-	margin: auto;
+	background-color:#32A0F8;
+	margin-bottom:20px;
 }
 
 #private-key-generate[disabled]{
-	background-color:#d00707;
 	border:none;
-	opacity:1;
+	opacity:0.6;
 	text-shadow:none;
 }
 
 #private-key-generate.enabled{
-	background-color:#029d02;
+	opacity:1;
 }
 
 #private-key-compressed{
@@ -965,13 +1039,14 @@ textarea[readonly]
 #decrypt-password
 {
 	display: inline;
-	width: 500px;
+	width: 100%;
 	font-size: 12px;
 	height: 40px;
 	border: 1px solid #999;
 	border-radius: 10px;
 	position: relative;
 	margin: auto;
+	margin-bottom:20px;
 	text-align: center;
 }
 #decrypt-password
@@ -1001,7 +1076,7 @@ left: 65%;
 	width: 250px;
 	height: 72px;
 	font-size: 18px;
-	font-family: museo300;
+	font-family: 'alefregular';
 }
 
 .button{
@@ -1011,17 +1086,15 @@ left: 65%;
 input[type=button]
 {
 	display:block;
-	width: 200px;
 	color: white;
-	background-color:#0da3da;
-	text-shadow: 1px 1px 0 rgba(0, 0, 0, 1);
+	background-color:#32A0F8;
 	font-size:0.875rem;
-	border: 1px solid #333333;
-    border-radius: 3px;
-    background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+	font-weight:100;
+    border-radius: 5px;
+    box-shadow: 0 3px 0px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.45);
     line-height:3px;
+    height:50px;
+    border:none;
 
 }
 .warning
@@ -1039,7 +1112,6 @@ width: 100%;
 }
 input[type=button]:disabled
 {
-	background-color:#838383;
 }
 input[type=button].error
 {
@@ -1062,7 +1134,7 @@ position: relative;
 overflow: visible;
 padding-bottom: 10px;
 }
-.key-details,
+
 .print-buttons
 {
 	clear: left;
@@ -1071,21 +1143,21 @@ padding-bottom: 10px;
 .round-block
 {
 	position: relative;
-	padding: 5px 20px 40px 20px;
-	border-radius: 10px;
+	border-radius: 5px;
 	background-color: #ececec;
-	width:66.6%;
-	margin-bottom:40px;
+	margin-bottom:25px;
 	overflow:auto;
 	border: 1px solid #e2e2e2;
-    box-shadow: 0 5px 0px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+    box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 
 }
 
-.round-block > h3
-{
-	font-weight: bold;
-	text-shadow: 3px 3px 0 rgba(0, 0, 0, .3);
+
+.round-block .colinner em{
+	display:block;
+	margin-top:-10px;
+	font-weight:100;
+	color:#666;
 }
 
 .choose-coin
@@ -1099,62 +1171,65 @@ padding-bottom: 10px;
 {
 	float: left;
 	overflow: visible;
-	min-height: 213px;
 }
 .random-info
 {
 	float: right;
-	width: 30%;
-	padding:20px;
-	margin:0 1.5% 0 1.5%;
 	position: relative;
 }
 .entropy-satisfied
 {
 display:none;
 position: absolute;
-top: 21px;
-left: 220px;
+top: 30px;
+left: 212px;
 }
 #random-pool
 {
-	height: 200px;
+	height: 80px;
 	font-size: 10px;
 	width: 100%;
 }
 
 .key-details{
-	float: left;
 	display:none;
 }
 
 .pool-status-bar
 {
-	height: 20px;
-	width: 97%;
+	height: 35px;
+	width: 100%;
 	margin: auto;
 	background-color: #d00707;
 	border-radius:3px;
-	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 .pool-status-complete
 {
-	height: 20px;
-	background-color: #029d02;
+	height: 35px;
+	background-color: #32A0F8;
 	border-radius:3px;
-	background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 
 .random-info label:first-child{
 	padding-top:0px;
 }
+
+div.rng-status{
+	box-shadow: 0 3px 0px rgba(0, 0, 0, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+	border-radius:5px;
+}
+
+span.rng-status-text{
+	margin-top: 11px;
+	display: block;
+	position: absolute;
+	color: #fff;
+	width:94%;
+	text-align:center;
+}
 .key-info-public-address label
 {
-	font-weight: bold;
+	
 }
 .key-info-public-address input
 {
@@ -1181,23 +1256,30 @@ left: 220px;
 
 .menu ul li {
 
-	color:#ececec;
+	color:#fff;
 	display: inline-block;
 	font-size: 16px;
 	cursor: pointer;
 	padding:10px 20px 10px 20px;
-	border-radius:3px;
+	border-radius:0px;
 	float: left;
-	font-weight: bold;
-	font-family:museo300;
+	font-family:'alefregular';
+	height:86px;
+	line-height:23px;
+	height:40px;
+	margin-top:23px;
+	margin-right:12px;
+	border-radius:5px;
+
 }
 .menu ul li.disabled {
-	color: gray;
+	color: #3a7abc;
 	cursor: default;
+	background:transparent;
 }
 .menu ul li.active {
-	background-color:#000;
-	background-color:rgba(0, 0, 0, 0.5);
+	background-color:rgba(0,0,0,0.1);
+	color:#fff;
 }
 .menu ul li.right {
 	float: right;
@@ -1208,11 +1290,13 @@ left: 220px;
 	border:1px solid #ececec;
 	border-radius:3px;
 	margin-left:40px;
+	height:50px;
+	margin-top:17px;
+	line-height:32px;
 }
 
 #main-menu{
 	float:right;
-	margin-top:40px;
 }
 
 #coin-setup-menu{
@@ -1227,8 +1311,8 @@ left: 220px;
 	height:40px;
 	left:0;
 	top:0;
-	background-color:#0d76ae;
-	border-radius:10px;
+	background-color:#3a7abc;
+	border-radius:5px;
 }
 
 ul#coin-setup-menu.menu{
@@ -1240,8 +1324,8 @@ ul#coin-setup-menu.menu{
 
 ul#coin-setup-menu li{
 
-	border-radius:10px;
-	font-family:museo300;
+	border-radius:5px;
+	font-family:'alefregular';
 	padding:20px;
 	margin-right:20px;
 	height:40px;
@@ -1268,7 +1352,7 @@ ul#coin-setup-menu li.active{
 }
 
 #lights{
-	margin-top:45px;
+	margin-top:27px;
 }
 
 .coin-wallet
@@ -1504,6 +1588,8 @@ margin-left: 20px !important;
 .switch-toggle{
 	width:70%;
 	float:left;
+	clear:left;
+	margin-bottom:18px;
 }
 
 .switch-toggle.coins{
@@ -1909,37 +1995,36 @@ color: #00AD00;
 .print-encryption
 {
 display: none;
-width: 30%;
-margin-bottom: 14px;
-float: right;
-padding-left: 14px;
-padding-right: 14px;
-padding-bottom: 14px;
-margin-right: 18px;
-margin-top: 12px;
 }
 .print-encryption label
 {
 width: 96px;
-padding-left: 5px;
+margin-bottom:2px;
 }
 
 
-.print-encryption input[type=button]#encrypt-button
+.print-encryption input[type=button]#encrypt-button, .print-encryption input[type=button]#encrypt-remove-button
 {
-clear: left;
+	margin-top:10px;
+	margin-bottom:20px;
+	font-weight: bolder;
+	font-size: 20px;
 }
 .print-encryption input[type=button]
 {
-float: left;
-width: 42%;
-margin: 10px;
+
 }
 .print-encryption input[type=text],
 .print-encryption input[type=password]
 {
-margin-top: 8px;
-width: 218px;
+margin-bottom: 15px;
+width: 100%;
+background-color: #fff;
+cursor: default;
+border-radius: 10px;
+border:1px solid #ccc;
+height:40px;
+box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 #encrypt-remove-button
 {
@@ -1957,6 +2042,10 @@ position: relative;
 top: 14px;
 margin-bottom: -16px;
 left: 318px;
+}
+
+.encryption-buttons{
+	overflow:auto;
 }
 .encrypted
 {
@@ -2122,6 +2211,7 @@ background: none;
 	text-align: center;
 	font-weight: bold;
 	border-radius: 10px;
+	display:none;
 }
 
 .frame.selector,
