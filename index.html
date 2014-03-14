@@ -199,6 +199,16 @@ $().ready(function ()
 
 </script>
 
+<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
+			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
+			<label for="lights-on">+</label>
+
+			<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
+			<label for="lights-off">-</label> 
+
+			<a></a>
+</div>
+
 <div id="header" class="wrapper no-print">
 	<div class="inner">
 		
@@ -219,14 +229,11 @@ $().ready(function ()
 			
 		</div>
 		
-		<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
-			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
-			<label for="lights-on">+</label>
-
-			<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
-			<label for="lights-off">-</label> 
-
-			<a></a>
+		<div id="coin-selected" data="btc"><img src="images/coin-icons/btc-logo.png" class="btc-coin"/><em>BTC</em><div class="notch"></div><div class="notchBack"></div></div>
+		<div class="coin-type selector-grid no-print" rowheight="140px">
+			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+				<!-- Dynamically filled -->
+			</div>
 		</div>
 		
 	</div>
@@ -237,11 +244,6 @@ $().ready(function ()
 <form id="form1">
 
 
-		<div class="coin-type selector-grid no-print" rowheight="140px">
-			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-				<!-- Dynamically filled -->
-			</div>
-		</div>
 
 <div id="page" class="wrapper">
 	<div class="inner">

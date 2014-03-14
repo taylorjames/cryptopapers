@@ -173,93 +173,109 @@ function InitTheme()
 
 function InitSelectorGrid()
 	{
-	
-	$('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
-		{
-		e.preventDefault();
-		
-		var ParentRow = $(this).parents('.selector-grid-row');
-		var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
-		var ParentGrid = $(this).parents('.selector-grid');
-		var Fade = ParentGrid.attr('fade') == 'true';
-		var Scroll = ParentGrid.attr('scroll') == 'true';
-		
-		if (ParentGridWrapper.hasClass('selecting'))
-			{
-			ParentGridWrapper.find('.selector.active').removeClass('active');
-			ParentGridWrapper.find('.selector-grid-row.active').removeClass('active');
-			
-			$(this).parent().addClass('active');
+
+		$('#coin-selected').click(function(e){
+			e.preventDefault();
+			$('div.coin-type').fadeIn('fast');
 			$(this).addClass('active');
+		})
+	
+		$('div.coin.selector').click(function(e){
+			e.preventDefault();
+			var abbrev = $(this).attr('data');
+			$('#coin-selected img').attr('src', 'images/coin-icons/' + abbrev + '-logo.png');
+			$('#coin-selected em').html(abbrev);
+			$('div.coin-type').fadeOut('fast');
+			$('#coin-selected.active').removeClass('active');
+
+		})
+
+	// $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
+	// 	{
+	// 	e.preventDefault();
+		
+	// 	var ParentRow = $(this).parents('.selector-grid-row');
+	// 	var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
+	// 	var ParentGrid = $(this).parents('.selector-grid');
+	// 	var Fade = ParentGrid.attr('fade') == 'true';
+	// 	var Scroll = ParentGrid.attr('scroll') == 'true';
+		
+	// 	if (ParentGridWrapper.hasClass('selecting'))
+	// 		{
+	// 		ParentGridWrapper.find('.selector.active').removeClass('active');
+	// 		ParentGridWrapper.find('.selector-grid-row.active').removeClass('active');
 			
-			if (Fade)
-				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
-					ParentGridWrapper.removeClass('selecting');
-					ParentGrid.removeClass('selecting');
+	// 		$(this).parent().addClass('active');
+	// 		$(this).addClass('active');
+			
+	// 		if (Fade)
+	// 			{
+	// 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+	// 			ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
+	// 				ParentGridWrapper.removeClass('selecting');
+	// 				ParentGrid.removeClass('selecting');
 					
-					});
-				}
-			else
-				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
-					{
-					ParentGridWrapper.removeClass('selecting');
-					ParentGrid.removeClass('selecting');
-					});
-				}
-			}
-		else
-			{
-			ParentGrid.addClass('selecting');
-			ParentGridWrapper.addClass('selecting');
+	// 				});
+	// 			}
+	// 		else
+	// 			{
+	// 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+	// 			ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+	// 				{
+	// 				ParentGridWrapper.removeClass('selecting');
+	// 				ParentGrid.removeClass('selecting');
+	// 				});
+	// 			}
+	// 		}
+	// 	else
+	// 		{
+	// 		ParentGrid.addClass('selecting');
+	// 		ParentGridWrapper.addClass('selecting');
 			
-			if (Fade)
-				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
-					if (Scroll)
-						{
-						var Obj = $(this);
+	// 		if (Fade)
+	// 			{
+	// 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
+	// 			ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
+	// 				if (Scroll)
+	// 					{
+	// 					var Obj = $(this);
 						
 					
-						var Position = Obj.offset().top;
+	// 					var Position = Obj.offset().top;
 						
-						$('html, body').animate({
-							scrollTop: Position
-						}, 300);
-						Scroll = false;
-						}
-				});
-				}
-			else
-				{
+	// 					$('html, body').animate({
+	// 						scrollTop: Position
+	// 					}, 300);
+	// 					Scroll = false;
+	// 					}
+	// 			});
+	// 			}
+	// 		else
+	// 			{
 			
-			//	ParentRow.animate({ height: }, 300);
+	// 		//	ParentRow.animate({ height: }, 300);
 				
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300, function() {
+	// 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
+	// 			ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300, function() {
 				
-					if (Scroll)
-						{
-						var Obj = $(this);
+	// 				if (Scroll)
+	// 					{
+	// 					var Obj = $(this);
 						
-						var Position = Obj.offset().top;
+	// 					var Position = Obj.offset().top;
 						
-						$('html, body').animate({
-							scrollTop: Position
-						}, 300);
-						Scroll = false;
-						}
-				});
+	// 					$('html, body').animate({
+	// 						scrollTop: Position
+	// 					}, 300);
+	// 					Scroll = false;
+	// 					}
+	// 			});
 				
-				}
-			}
+	// 			}
+	// 		}
 			
-		return true;
-		});	
+	// 	return true;
+	// 	});	
 	}
 
 function AddDropdownCoins()
@@ -272,6 +288,7 @@ function AddDropdownCoins()
 		var CoinAbbreviation = CoinInfo[Object.keys(CoinInfo)[i]].name;
 		var CoinFullName = CoinInfo[Object.keys(CoinInfo)[i]].fullName;
 		var Enabled = CoinInfo[Object.keys(CoinInfo)[i]].enabled;
+		var CoinImage = CoinAbbreviation + "-logo.png";
 		
 		var Disabled = (Enabled ? '' : ' disabled');
 		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
@@ -283,8 +300,8 @@ function AddDropdownCoins()
 		if (i == 0)
 			coins += '<div class="coin-grid-row selector-grid-row">';
 			
-		coins += '<div class="coin selector ' + CoinAbbreviation + '-coin' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' 
-		+ ComingSoon + Tests + '<em>' + CoinFullName + '</em></div>';
+		coins += '<div class="coin selector ' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' + '<img src="images/coin-icons/' + CoinAbbreviation + '-logo.png" class="' + CoinAbbreviation + '-coin" />'
+		+ ComingSoon + Tests + '<em>' + CoinAbbreviation + '</em></div>';
 				
 		if ((i+1) % cols == 0)
 			{
@@ -295,8 +312,9 @@ function AddDropdownCoins()
 		}
 			coins += '</div>';
 	
-		
+	
 	$('.coins-grid-wrapper').html(coins);
+
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
 		{
@@ -318,6 +336,8 @@ function AddDropdownCoins()
 		
 		
 		CurrentCoinType = NewCoinType;
+
+		console.log(CurrentCoinType);
 		
 		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		

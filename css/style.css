@@ -273,7 +273,7 @@ cursor: pointer;
 	min-height: 600px;
 }
 
- .wrapper .inner{
+div.inner{
 	max-width:1170px;
 	margin:auto;
 }
@@ -340,11 +340,16 @@ h1, h2, h3, h4, h5, h6{
 
 .coin-type
 {
-top: 0px;
-background-color: #fff;
+top: 175px;
+background:#fff;
 z-index: 100000;
 position: absolute;
 right: 0px;
+padding:20px;
+border:1px solid #e2e2e2;
+border-radius:5px;
+box-shadow:0px 0px 8px rgba(0, 0, 0, 0.2);
+display:none;
 }
 
 #coin-key{
@@ -388,8 +393,6 @@ width: 500px;
 	display: block;
 	width: 100%;
 	height: 0px;
-	
-	background-color: #fff;
 }
 
 .coin-type .selector-grid-wrapper.selecting .selector-grid-row{
@@ -399,8 +402,6 @@ width: 500px;
 .coins-grid-wrapper{
 	height:auto;
 	overflow:visible;
-	border-radius:10px;
-	padding:10px;
 }
 .coin-grid-row{
 
@@ -428,19 +429,16 @@ width: 500px;
 	border:1px solid #fff;
 }
 .coins-grid-wrapper .coin{
-	display:none;
 	background-size: 100%;
 	box-sizing:border-box;
 	-moz-box-sizing:border-box;
 	float:left;
-	padding:72px 0px 0px 0px;
 	background-repeat:no-repeat;
-	background-position:center 10px;
+	background-position:left 10px;
+	background-size:50px;
 	border-radius:5px;
 	-moz-border-radius:5px;
 	cursor:pointer;
-
-	border:1px solid #fff;
 }
 
 .selector-grid-wrapper .selector.active{
@@ -482,7 +480,7 @@ width: 500px;
 }
 .coins-grid-wrapper .coin:hover, 
 .coins-grid-wrapper .coin.active{
-	background-color:#fff;
+	background-color:transparent;
 }
 .coins-grid-wrapper.selecting{
 	width: 100%;
@@ -499,15 +497,89 @@ width: 500px;
 .coins-grid-wrapper .coin em{
 	display:inline-block;
 	text-align:center;
-	padding-bottom: 5px;
 	font-style: normal;
-	font-weight: bolder;
-	padding-top: 4px;
+	color: #3a7abc;
+	display:block;
+	width: 100%;
+	padding:5px 0px 5px 0px;
+	text-transform:uppercase;
+	position:relative;
+	z-index:100;
+	border-radius:5px;
+	text-align:center;
+}
+
+.coin.selector img{
+	display:block;
+	width:50px;
+	margin:auto;
+}
+
+#coin-selected{
+	position:absolute;
+	display:block;
+	top:110px;
+	right:0px;
+}
+
+#coin-selected:hover{
+	cursor:pointer;
+}
+
+#coin-selected img{
+	float: left;
+	display: block;
+	width: 50px;
+	position: relative;
+	z-index: 1000;
+}
+
+#coin-selected em{
+	display:inline-block;
+	text-align:center;
+	font-style: normal;
 	background-color: #3a7abc;
 	color: #fff;
 	display:block;
-	margin-left: -11px;
-	width: 74px;
+	float:left;
+	width: 70px;
+	padding:5px 5px 5px 10px;
+	margin-left:-16px;
+	position:relative;
+	z-index:100;
+	margin-top:13px;
+	border-radius:5px;
+	text-transform:uppercase;
+}
+
+#coin-selected .notch{
+	border-left: 8px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #ffffff;
+	display: none;
+	position: absolute;
+	top: 58px;
+	width: 0;
+	height: 0;
+	z-index: 1000000;
+	left: 17px;
+}
+
+#coin-selected .notchBack{
+	border-left: 8px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #e2e2e2;
+	display: none;
+	position: absolute;
+	top: 56px;
+	width: 0;
+	height: 0;
+	z-index: 100009;
+	left: 17px;
+}
+
+#coin-selected.active .notch, #coin-selected.active .notchBack{
+	display:block;
 }
 
 .coin-wallets.btc .coin-logo,
@@ -760,16 +832,19 @@ content: 'Zetacoin';
 
 .key-details .coin
 {
-float: left;
-width: 45px;
-height: 45px;
+position:absolute;
+width: 35px;
+height: 35px;
 background-size: 100%;
-margin-right: 10px;
+left:210px;
+top:24px;
 }
 .coin-type .coin
 {
-float: right;
-width:54px;
+width:110px;
+margin:5px 0px 10px 0px;
+padding-top:10px;
+padding-bottom:5px;
 }
 .copyright
 {
@@ -792,7 +867,10 @@ opacity: 0.86;
 text-align: center;
 }
 
-
+.coin-type .coin:hover{
+	border-radius:5px;
+	background-color:#e2e2e2;
+}
 
 .back .coin-wallet-write-area
 {
@@ -1278,7 +1356,7 @@ span.rng-status-text{
 	background:transparent;
 }
 .menu ul li.active {
-	background-color:rgba(0,0,0,0.1);
+	background-color:#2c8fde;
 	color:#fff;
 }
 .menu ul li.right {
@@ -1311,7 +1389,7 @@ span.rng-status-text{
 	height:40px;
 	left:0;
 	top:0;
-	background-color:#3a7abc;
+	background-color:#2c8fde;
 	border-radius:5px;
 }
 
