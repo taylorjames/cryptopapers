@@ -15,7 +15,7 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
 var WhenEntropyPoolFills_GoToPrint = false;
 
-var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 5;
 
 var sr = window.SecureRandom = function () { };
 

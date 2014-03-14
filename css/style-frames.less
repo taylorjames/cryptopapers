@@ -528,6 +528,120 @@
 	}
 }
 
+
+
+.frame-9
+{
+	.coin-wallet
+	{
+		.wallet-frame
+		{
+			background-image: url('../images/wallet-frames/Frame-9.png');
+		}
+		.coin-wallet-left
+		{
+			width: 253px;
+			margin-left: 12px;
+			margin-top: -6px;
+		}
+		.coin-wallet-right
+		{
+			margin-right: 415px;
+			padding-top: 39px;
+
+		}
+		.coin-wallet-address,
+		.coin-wallet-private-key
+		{
+		
+			background: none;
+		}
+		.coin-wallet-private-key
+		{
+			span
+			{
+				left: 541px;
+				font: 13px;
+				height: 109px;
+				position: absolute;
+				width: 20px;
+				top: 58px;
+				transform-origin: bottom center;
+				-webkit-transform-origin: bottom center;
+				text-shadow: 4px 1px 4px rgba(0,0,0,0.5);
+				font-weight: bold;
+			}
+		}
+		.coin-wallet-address-qr
+		{
+			margin-left: 87px;
+			margin-top: 92px;
+		}
+		.coin-wallet-private-key-qr
+		{
+			canvas
+			{
+				padding: 7px;
+				border-radius: 10px;
+				background-color: white;
+			}
+		}
+		.coin-wallet-address
+		{
+		span
+			{
+				font: 16px;
+				height: 127px;
+				position: absolute;
+				width: 20px;
+				left: 169px;
+				top: 44px;
+				transform-origin: bottom center;
+				-webkit-transform-origin: bottom center;
+				text-shadow: 4px 1px 4px rgba(0,0,0,0.5);
+				font-weight: bold;
+			}
+		}
+		.coin-wallet-write-area
+		{
+			display: none;
+		}
+	}	
+	.coin-logo
+	{
+		display: block;
+		left: 806px;
+		background-size: 100%;
+		width: 235px;
+		height: 235px;
+		top: 55px;
+		opacity: 0.8;
+
+		&:after
+		{
+			content: '';
+			display: none;
+		}
+	}
+	
+	&.back
+	{
+		.coin-wallet
+		{
+			.wallet-frame
+			{
+				background-image: url('../images/wallet-frames/Frame-9-Back.png');
+			}
+		}
+		.coin-logo
+		{
+			display: none;
+		}
+	}
+}
+
+
+
 .char-rotate (@start, @increment, @i) when (@i > 0) {
     .char@{i} {
 		@degree: @start + @increment * @i;
@@ -546,7 +660,8 @@
 }
 	
 .frame-1,
-.frame-2
+.frame-2,
+.frame-9
 {
 	.coin-wallet-private-key.bottom
 	{
@@ -557,7 +672,8 @@
 .keys-encrypted
 {
 	&.frame-1,
-	&.frame-2
+	&.frame-2,
+	&.frame-9	
 	{
 		.coin-wallet-private-key.bottom
 		{

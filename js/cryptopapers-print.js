@@ -39,7 +39,7 @@ var Frames =
 	{
 	'Frame-1': {
 		Active: true,
-		Name: 'Coin Wallet',
+		Name: 'Folding Coin Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Advanced',
 		Description: 'This stylish paper wallet folds into the shape of a coin!',
@@ -123,6 +123,19 @@ var Frames =
 			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
 			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
 			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
+			'</ol>'
+	},
+	'Frame-9': {
+		Active: true,
+		Name: 'Coin Wallet',
+		Creator: 'CryptoPapers',
+		Difficulty: 'Ninja',
+		Description: 'This wallet has no folds and is perfectly circular, the private key is inside!',
+		Instructions: '<ol>' + 
+			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
+			'<li>Use the two larger circles to sandwich in the smaller circle, the private key. make sure the public address and the large coin logo are facing outwards.</li>' +
+			'<li><b>Glue:</b> Lay one of the larger circle sections face down, so that the anti-candling grid is shown.' +
+			' Lay the private key down in the center of the circle and apply glue around the outer edge. Lay the other side down, and allow it to dry.</li>' + 
 			'</ol>'
 	}
 	};
@@ -434,6 +447,8 @@ function SetLettering()
 	$('.frame-1 .coin-wallet-private-key').lettering();
 	$('.frame-2 .coin-wallet-address').lettering();
 	$('.frame-2 .coin-wallet-private-key').lettering();
+	$('.frame-9 .coin-wallet-address').lettering();
+	$('.frame-9 .coin-wallet-private-key').lettering();
 	}
 
 function ApplyHueShift()
