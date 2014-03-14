@@ -612,15 +612,15 @@ $().ready(function ()
 			</div>
 
 			<div class="instructions rng-move-mouse">
-					The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement
-					in order to guarantee it will produce impossible-to-predict keys.
-					<br><br>
-					Simply move your mouse around the screen until it has collected enough data.
+					<p>
+					Move your mouse around the screen until enough entropy data has been collected.<br/>
+						<em>The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement in order to guarantee it will produce impossible-to-predict keys.</em>
+					</p>
 			</div>
 
 			<div class="sub-section coin-setup-keys no-print row">
 				
-				<div class="key-import round-block help-section colfive first">
+				<div class="key-import round-block help-section colseven first">
 					<div class="colinner">
 						<h3>Private Key</h3>
 						<div class="input-key">
@@ -654,7 +654,7 @@ $().ready(function ()
 						<input type="button" id="private-key-generate" class="generate-button large-button" value="Generate" disabled />
 					</div>
 				</div>			
-				<div class="random-info round-block help-section colseven last">
+				<div class="random-info round-block help-section colfive last">
 					<div class="colinner">
 						<h3>RNG Entropy</h3>
 						<img src="images/check.png" class="entropy-satisfied">
@@ -704,33 +704,8 @@ $().ready(function ()
 					</div>
 				</div>
 				
-				<div class="print-encryption round-block colfive first">
-					<div class="colinner">	
-						<h3>BIP38 Wallet Encryption</h3>
-						
-						<div class="encryption-keys">
-							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" autocomplete="off" />
-							<label class="left-label" for="encryption-key">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" autocomplete="off" />
-						</div>
-						
-						<div class="encryption-buttons">					
-							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
-							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
-						</div>
-						
-						<div class="encryption-details hide">
-							<label class="left-label">Unencrypted:</label>
-							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label">Encrypted:</label>
-							<div class="encrypting progress"></div>
-							<input type="text" id="encrypted-key" autocomplete="off" readonly />
-						</div>
-					</div>
-				</div>	
 				
-				<div class="key-details round-block help-section colseven last">
+				<div class="key-details round-block help-section colseven first">
 					<div class="colinner"> 
 					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
@@ -866,6 +841,33 @@ $().ready(function ()
 					-->
 					</div>
 				</div>	
+
+				<div class="print-encryption round-block colfive last">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" autocomplete="off" />
+							<label class="left-label" for="encryption-key">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">					
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">
+							<label class="left-label">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label">Encrypted:</label>
+							<div class="encrypting progress"></div>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+						</div>
+					</div>
+				</div>	
+				
 				
 					
 			</div>

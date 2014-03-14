@@ -134,6 +134,12 @@ body{
 	padding:0px;
 }
 
+p{
+	margin:0px;
+}
+
+p em{font-size:14px;font-weight:regular;}
+
 #dark-box{
 	top:0;
 	left:0;
@@ -1203,6 +1209,11 @@ input[type=button].error
 .inner .section .sub-section
 {
 	margin-top: 30px;
+	position:relative;
+}
+
+.inner .section .sub-section.coin-setup-keys{
+	margin-top:150px;
 }
 .round-block.print-appearance
 {
@@ -1260,7 +1271,7 @@ padding-bottom: 10px;
 display:none;
 position: absolute;
 top: 30px;
-left: 212px;
+left: 120px;
 }
 #random-pool
 {
@@ -2275,21 +2286,35 @@ background: none;
 {
 	float: left;
 	width: 100%;
-	margin-top: 0px !important;
 }
 .instructions
 {
-	background-color: #ddd;
 	border-color: #ccc;
 	width: 100%;
-	box-shadow: 1px 1px 55px #000000;
+	box-shadow: 1px 1px 8px #e2e2e2;
 	margin-bottom: 23px;
+	border:1px solid #32A0F8;
 	padding: 10px;
 	color: #444;
 	text-align: center;
 	font-weight: bold;
+	font-family:'alefbold';
 	border-radius: 10px;
-	display:none;
+	position:absolute;
+	padding:30px;
+}
+
+.instructions.rng-move-mouse{
+	top:63px;
+}
+
+.instructions.rng-move-mouse p{
+	color:#2c8fde;
+}
+
+.instructions.rng-move-mouse p em{
+	color:#000;
+	margin-bottom:10px;
 }
 
 .frame.selector,

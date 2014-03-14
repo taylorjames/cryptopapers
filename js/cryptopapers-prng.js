@@ -64,13 +64,15 @@ function InitRNG()
 			
 		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 		
-		var shadow = 55 - Math.round(collected_points / total_points  * 55);
-		$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
+		// var shadow = 55 - Math.round(collected_points / total_points  * 55);
+		// $('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
 		
 		if (collected_points == total_points)
 			{
 			$('.entropy-satisfied').fadeIn(300);
-			$('.rng-move-mouse').animate({opacity: '0', padding: '0', height: '0'}, 300);
+			
+				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){});
+				setTimeout(function(){$('.sub-section.coin-setup-keys').animate({'margin-top': '0px'}, 300, function(){})}, 400)
 			
 			if (!HasPrivateKey)
 				{
