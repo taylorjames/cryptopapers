@@ -872,173 +872,181 @@ $().ready(function ()
 					
 			</div>
 			<div class="sub-section coin-setup-print">
-			
-				<div id="print-settings" class="no-print">
-					<div class="print-buttons round-block help-section">
-						<h3>Page Setup</h3>
+				<div class="warning dismissable no-print">
+					<p><b>WARNING: This is Beta software.</b>
+					<em><br /><br />It's unlikely something will go wrong but it's still 
+					<b>highly recommended</b> that you test these keys by importing them 
+					<br />into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+					before sending funds to this wallet.
+					<br />
+					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
+					<br />
+					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.</em></p>
+				</div>
+				<div id="print-settings" class="row no-print">
+					<div class="print-buttons round-block help-section colsix first">
+						<div class="colinner">
+							<h3>Page Setup</h3>
 
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Switch between printing the front and back side of the page.
-							<br><br>
-							Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
-							back is printed on the right side and with the right orientation.
-							<br><br><br>
-							</span>
-						</div>	
-						
-						<label class="left-label">Print Face:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
-								<label for="toggle-front">Front</label>
-
-								<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
-								<label for="toggle-back">Back</label> 
-
-								<a></a>
-						</div>
-
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Include a second copy of the wallet on the paper, to use as a backup.
-							<br><br>
-							</span>
-						</div>	
-						
-						<div class="backup">
-
-							<label class="left-label">Copies:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
-								<label for="wallet-backup-no">One</label> 
-								
-								<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
-								<label for="wallet-backup-yes">Two</label>
-						
-								<a></a>
-							</div>
-							
-						</div>
-						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
-							<br><br>
-							</span>
-						</div>	
-						
-						<div class="sample">
-
-							<label class="left-label">Sample Wallet:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
-								<label for="sample-wallet-no">No</label> 
-								
-								<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
-								<label for="sample-wallet-yes">Yes</label>
-						
-								<a></a>
-							</div>
-							
-						</div>
-							
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Use zoom to correct for printer differences and get the wallet to print properly.
-							<br><br>
-							</span>
-						</div>	
-						
-						<label class="left-label">Zoom:</label>
-						<div class="switch-toggle switch-5 switch-candy ">
-							
-							<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
-							<label for="wallet-zoom-90">0.90 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
-							<label for="wallet-zoom-95">0.95 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
-							<label for="wallet-zoom-100">1.00 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
-							<label for="wallet-zoom-105">1.05 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
-							<label for="wallet-zoom-110">1.10 X</label>
-					
-							<a></a>
-						</div>
-						
-						<!--
-						<label class="left-label design-label">Custom:</label>
-						<div class="design-type-custom" >
-							<input type="file" id="custom-design">
-						</div>
-						-->
-						
-
-						<input type="button" id="print-button" class="large-button right" value="Print" />
-						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
-						<br />
-					</div>
-					
-					<div class="print-appearance round-block help-section">
-						<h3>Appearance</h3>
-						
-						<label class="left-label">Frame:</label>
-						<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
-							<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
-						</div>
-						
-						<label class="left-label design-label">Design:</label>
-						<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
-							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
-						</div>
-						
-						
-						<div class="hue-shift hide premium">
-						
 							<div class="help-bubble" style="float:left;">
 								<span>
-								Color shift the wallet background
+								Switch between printing the front and back side of the page.
 								<br><br>
-								*Only supported by Chrome
-								<br>
+								Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
+								back is printed on the right side and with the right orientation.
+								<br><br><br>
+								</span>
+							</div>	
+							<div class="row"><div class="colsix first">
+							<label class="left-label">Print Face:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
+									<label for="toggle-front">Front</label>
+
+									<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
+									<label for="toggle-back">Back</label> 
+
+									<a></a>
+							</div>
+							</div>
+
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Include a second copy of the wallet on the paper, to use as a backup.
+								<br><br>
+								</span>
+							</div>	
+							<div class="colsix last">
+							<div class="backup">
+
+								<label class="left-label">Copies:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
+									<label for="wallet-backup-no">One</label> 
+									
+									<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
+									<label for="wallet-backup-yes">Two</label>
+							
+									<a></a>
+								</div>
+								
+							</div>
+							</div>
+							</div>
+							<div class="help-bubble" style="float:left;">
+								<span>
+								For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
+								<br><br>
 								</span>
 							</div>	
 							
-							<label class="left-label color-shift-label">Color Shift:</label>
-							<!--
-							<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-							<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-							-->
-							<span class="hue-shift-amount">0&deg;</span>
+							<div class="sample">
+
+								<label class="left-label">Sample Wallet:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
+									<label for="sample-wallet-no">No</label> 
+									
+									<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
+									<label for="sample-wallet-yes">Yes</label>
 							
-							<div id="hue-slider"></div>
-							<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+									<a></a>
+								</div>
+								
+							</div>
+								
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Use zoom to correct for printer differences and get the wallet to print properly.
+								<br><br>
+								</span>
+							</div>	
+							
+							<label class="left-label">Zoom:</label>
+							<div class="switch-toggle switch-5 switch-candy ">
+								
+								<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
+								<label for="wallet-zoom-90">0.90 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
+								<label for="wallet-zoom-95">0.95 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
+								<label for="wallet-zoom-100">1.00 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
+								<label for="wallet-zoom-105">1.05 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
+								<label for="wallet-zoom-110">1.10 X</label>
+						
+								<a></a>
+							</div>
+							
+							<!--
+							<label class="left-label design-label">Custom:</label>
+							<div class="design-type-custom" >
+								<input type="file" id="custom-design">
+							</div>
+							-->
+							
+
+							<input type="button" id="print-button" class="large-button right" value="Print" />
+							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+							<br />
+						</div>
+					</div>
+					
+					<div class="print-appearance round-block help-section colsix last">
+						<div class="colinner">
+							<h3>Appearance</h3>
+							
+							<label class="left-label">Frame:</label>
+							<div id="current-frame"><img src="" id="current-frame-img"/></div>
+							<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
+								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
+									<!-- Dynamically filled -->
+								</div>
+							</div>
+							
+							<label class="left-label design-label">Design:</label>
+							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
+							<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
+								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+									<!-- Dynamically filled -->
+								</div>
+							</div>
+							
+							
+							<div class="hue-shift hide premium">
+							
+								<div class="help-bubble" style="float:left;">
+									<span>
+									Color shift the wallet background
+									<br><br>
+									*Only supported by Chrome
+									<br>
+									</span>
+								</div>	
+								
+								<label class="left-label color-shift-label">Color Shift:</label>
+								<!--
+								<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+								<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+								-->
+								<span class="hue-shift-amount">0&deg;</span>
+								
+								<div id="hue-slider"></div>
+								<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="warning dismissable no-print">
-					<b>WARNING: This is Beta software.</b>
-					<br><br>It's unlikely something will go wrong but it's still 
-					<b>highly recommended</b> that you test these keys by importing them 
-					<br>into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
-					before sending funds to this wallet.
-					<br><br>
-					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
-					<br><br>
-					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
-				</div>
+				
 				<div class="warning dismissable warning-encryption">
-					<b>WARNING: Encryption is being used.</b>
+					<p><b>WARNING: Encryption is being used.</b>
 					<br><br>
-					Make sure you test decryption of these keys before sending funds to this wallet.
+					<em>Make sure you test decryption of these keys before sending funds to this wallet.
 					<br><br>
 					To decrypt a BIP38 wallet key, simply enter it into the Import Private Key box on the 
 					<a class="private-key-page">Private Key</a> page and enter the password you used to encrypt it.
@@ -1048,7 +1056,7 @@ $().ready(function ()
 					Be careful when using encrypted keys: while some advanced wallet apps can decode these keys, most can not. 
 					<br><br>
 					Be especially careful when using this feature for lesser known alt-coins. While <a href="http://bitaddress.org">bitaddress.org</a>
-					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.
+					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</em></p>
 				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">

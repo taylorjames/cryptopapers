@@ -71,17 +71,18 @@ function InitRNG()
 			{
 			$('.entropy-satisfied').fadeIn(300);
 			
-				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){});
-				setTimeout(function(){$('.sub-section.coin-setup-keys').animate({'margin-top': '0px'}, 300, function(){})}, 400)
+				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){$(this).css({'position':'static', 'display':'none'})});
+				$('.sub-section.coin-setup-keys').addClass('up').css('margin-top','0px');
+				setTimeout(function(){$('.sub-section.coin-setup-keys').removeClass('up')}, 300)
 			
 			if (!HasPrivateKey)
 				{
+
 				$('.generate-button').removeAttr('disabled').addClass('enabled');
 				
 				if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
 					{
 					$('#private-key-generate').click();
-					
 					if (WhenEntropyPoolFills_GoToPrint)
 						{
 						$('#coin-setup-menu #print').click();

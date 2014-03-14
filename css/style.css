@@ -311,6 +311,7 @@ div.inner{
 
 .colinner{
 	padding:20px;
+	overflow:auto;
 }
 
 .colinner > h3{
@@ -448,7 +449,7 @@ width: 500px;
 }
 
 .selector-grid-wrapper .selector.active{
-	display: block;
+	display: none;
 }
 	
 .selector-grid-wrapper.selecting .selector{
@@ -915,7 +916,7 @@ width: 50%;
 }
 
 label.left-label {
-	width: 10%;
+	width: 100px;
 	display: block;
 	float: left;
 	clear: left;
@@ -1018,8 +1019,9 @@ height: 22px;
 float: right;
 cursor: pointer;
 opacity: 0.5;
-margin-top: 5px;
-margin-right: 5px;
+top: 5px;
+right: 5px;
+position:absolute;
 }
 .help-active .help-toggle
 {
@@ -1183,16 +1185,28 @@ input[type=button]
 }
 .warning
 {
-background-color: #FFC2C2;
-border-color: #ff6666;
-padding:10px;
-border-radius:10px;
-box-shadow: 1px 1px 30px #ff0000;
-float: left;
-margin-bottom: 23px;
-text-align: center;
-font-size: 15px;
+border-color: #ccc;
 width: 100%;
+box-shadow: 1px 1px 8px #e2e2e2;
+margin-bottom: 23px;
+border: 1px solid #d00707;
+padding: 10px;
+color: #444;
+text-align: center;
+font-weight: bold;
+font-family: 'alefbold';
+border-radius: 10px;
+padding: 30px;
+position: absolute;
+max-width: 1170px;
+}
+
+.warning p{
+	color:#d00707;
+}
+
+.warning em{
+	color:#000;
 }
 input[type=button]:disabled
 {
@@ -1209,11 +1223,21 @@ input[type=button].error
 .inner .section .sub-section
 {
 	margin-top: 30px;
-	position:relative;
 }
 
 .inner .section .sub-section.coin-setup-keys{
 	margin-top:150px;
+}
+
+.inner .section .sub-section.coin-setup-print{
+	margin-top:245px;
+}
+
+.inner .section .sub-section.up{	
+	-webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 .round-block.print-appearance
 {
@@ -2190,7 +2214,7 @@ height:16px;
 .frame-type,
 .design-type
 {
-display: block;
+display: none;
 float: left;
 background: #ddd;
 margin-bottom: 20px;
@@ -2201,6 +2225,25 @@ top: 53px;
 left: 155px;
 z-index: 10;
 margin-right: -700px;
+}
+
+#current-frame, #current-bkg{
+	background-color:#fff;
+	display:block;
+	border-radius:5px;
+	max-width:300px;
+	margin:auto;
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+#current-bkg{
+	margin-bottom:40px;
+}
+
+#current-bkg-img{
+	max-width:300px;
+	padding:20px;
 }
 
 
@@ -2272,8 +2315,6 @@ margin-top: 0px;
 }
 .design-label
 {
-margin-top: 47px;
-margin-bottom: 74px;
 }
 
 .frame-type .selector-grid-row,
@@ -2282,7 +2323,7 @@ margin-bottom: 74px;
 background: none;
 }
 
-.coin-setup-keys
+.coin-setup-keys, .coin-setup-print
 {
 	float: left;
 	width: 100%;
@@ -2300,12 +2341,14 @@ background: none;
 	font-weight: bold;
 	font-family:'alefbold';
 	border-radius: 10px;
-	position:absolute;
 	padding:30px;
+	position:absolute;
+	max-width:1170px;
+
 }
 
-.instructions.rng-move-mouse{
-	top:63px;
+.instructions.rng-move-mouse, .warning.dismissable{
+	top:183px;
 }
 
 .instructions.rng-move-mouse p{
@@ -2316,6 +2359,8 @@ background: none;
 	color:#000;
 	margin-bottom:10px;
 }
+
+
 
 .frame.selector,
 .design.selector

@@ -355,6 +355,7 @@ function AddFrames()
 		}
 	
 	$('.frame-grid-wrapper').html(frames);
+	$('#current-frame-img').attr('src', 'images/wallet-frames/' + DefaultFrame + '.png')
 	}
 	
 function AddBackgrounds()
@@ -395,6 +396,8 @@ function AddBackgrounds()
 		}
 	
 	$('.designs-grid-wrapper').html(designs);
+	$('#current-bkg-img').attr('src', 'images/wallet-backgrounds/' + DefaultBG + '.jpg')
+
 	}
 
 function SetDesign(Design)

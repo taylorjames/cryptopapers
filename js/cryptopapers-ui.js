@@ -39,9 +39,13 @@ function InitDismissable()
 	$('.dismissable').prepend('<div class="close-button"></div>');
 	
 	$('.dismissable .close-button').click(function() {
-		$(this).parent().animate({opacity: '0', height: '0'}, 300, function() {
+		$(this).parent().animate({opacity: '0'}, 300, function() {
 			$(this).hide();
+			$('.sub-section.coin-setup-print').addClass('up').css('margin-top', '0px');
+		setTimeout(function(){$('.sub-section.coin-setup-print').removeClass('up')}, 300);
 		});
+
+		
 	});
 	
 	}
