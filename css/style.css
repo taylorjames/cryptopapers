@@ -223,7 +223,7 @@ display:none;
 }
 #header{
 	width:100%;
-	background-color:#32A0F8;
+	background-color:#3a7abc;
 	overflow: visible;
 	position: relative;
 	height: 86px;
@@ -237,6 +237,8 @@ display:none;
 	overflow: visible;
 	height: 117px;
 	margin-bottom: 53px;
+	max-width:none;
+	width:100%;
 }
 
 .switch-toggle.theme
@@ -1391,7 +1393,7 @@ span.rng-status-text{
 	background:transparent;
 }
 .menu ul li.active {
-	background-color:#2c8fde;
+	background-color:#32A0F8;
 	color:#fff;
 }
 .menu ul li.right {
@@ -1424,7 +1426,7 @@ span.rng-status-text{
 	height:40px;
 	left:0;
 	top:0;
-	background-color:#2c8fde;
+	background-color:#3a7abc;
 	border-radius:5px;
 }
 
