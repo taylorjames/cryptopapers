@@ -90,7 +90,7 @@ function InitBIP38()
 			$('.encryption-keys').hide();
 			});
 			
-		$('.encryption-details').css('height','0').show().animate({opacity: '1', height: '77'}, 300);
+		$('.encryption-details').css('height','0').show().animate({opacity: '1', height: '138'}, 300);
 		
 		$('.encrypting').fadeIn(300);
 		

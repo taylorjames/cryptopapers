@@ -15,7 +15,7 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
 var WhenEntropyPoolFills_GoToPrint = false;
 
-var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 1;
 
 var sr = window.SecureRandom = function () { };
 
@@ -42,6 +42,18 @@ function InitRNG()
 		sr.pointsKeepCollecting = $(this).val() == "Yes";
 		});
 		
+	$('.random-info .help-toggle').click(function() 
+		{
+		if ($('.random-info').hasClass('help-active'))
+			{
+			$('.rng-pool').fadeOut('fast');
+			}
+		else
+			{
+			$('.rng-pool').fadeIn('fast');
+			}
+		
+		});
 	$('body').mousemove(function(ev)
 		{
 		sr.mouse_move(ev);
@@ -71,10 +83,10 @@ function InitRNG()
 			{
 			$('.entropy-satisfied').fadeIn(300);
 			
-				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){$(this).css({'position':'static', 'display':'none'})});
-				$('.sub-section.coin-setup-keys').addClass('up').css('margin-top','0px');
-				setTimeout(function(){$('.sub-section.coin-setup-keys').removeClass('up')}, 300)
-			
+			$('.rng-move-mouse').animate({opacity: 0}, 300, function(){$(this).css({'position':'static', 'display':'none'})});
+			$('.sub-section.coin-setup-keys').addClass('up').css('margin-top','0px');
+			setTimeout(function(){$('.sub-section.coin-setup-keys').removeClass('up')}, 300)
+				
 			if (!HasPrivateKey)
 				{
 

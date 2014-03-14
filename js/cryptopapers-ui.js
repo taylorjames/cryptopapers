@@ -177,11 +177,19 @@ function InitTheme()
 
 function InitSelectorGrid()
 	{
-
+		
 		$('#coin-selected').click(function(e){
 			e.preventDefault();
-			$('div.coin-type').fadeIn('fast');
-			$(this).addClass('active');
+			if ($(this).hasClass('active'))
+				{
+				$('div.coin-type').fadeOut('fast');	
+				$(this).removeClass('active');			
+				}
+			else
+				{
+				$('div.coin-type').fadeIn('fast');
+				$(this).addClass('active');
+				}
 		})
 	
 		$('div.coin.selector').click(function(e){

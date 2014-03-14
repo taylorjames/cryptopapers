@@ -2146,7 +2146,13 @@ clear: right;
 
 .encryption-details
 {
-clear: both;
+}
+.encryption-details .encrypting
+{
+position: relative;
+top: -7px;
+margin-bottom: -16px;
+left: 208px;
 }
 .encrypting
 {
