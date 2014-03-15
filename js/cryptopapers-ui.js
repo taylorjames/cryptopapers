@@ -30,6 +30,14 @@ function InitPage()
 	 
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
+	$('#run-self-tests').click(function() {
+		var Result = RunTests();
+		Log(Result);
+		
+		// Get a better display box.
+		alert(Result);		
+	});
+	
 	if (InitPremium)
 		InitPremium();
 	}
@@ -51,7 +59,7 @@ function InitDismissable()
 	}
 function InitDonate()
 	{
-	$(".donate-reminder").click(function() 
+	$(".donate-reminder, .donate-reminder *").click(function() 
 		{
 		$('.menu-key-donate').click();
 		});

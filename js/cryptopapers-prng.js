@@ -68,9 +68,6 @@ function InitRNG()
 		if (percent > 100)
 			percent = 100;
 		
-		if (collected_points > total_points)
-			collected_points = total_points;
-		
 		// Only change when entropy still needs to be collected
 		if (collected_points <= total_points)
 			{			
@@ -81,14 +78,20 @@ function InitRNG()
 			
 			$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
 			}
+		
+		if (collected_points > total_points)
+			collected_points = total_points;
 			
 			
 		if (collected_points == total_points)
 			{
 			$('.entropy-satisfied').fadeIn(300);
 			
-			$('.rng-move-mouse').animate({opacity: 0}, 300, function(){$(this).css({'position':'static', 'display':'none'})});
-			$('.sub-section.coin-setup-keys').addClass('up').css('margin-top','0px');
+			$('.rng-move-mouse').animate({opacity: 0}, 300, function(){
+				$(this).css({'position':'static', 'display':'none'});
+				$('.sub-section.coin-setup-keys').addClass('up').animate({'margin-top':'0'}, 300);
+			});
+			
 			setTimeout(function(){$('.sub-section.coin-setup-keys').removeClass('up')}, 300)
 				
 			if (!HasPrivateKey)

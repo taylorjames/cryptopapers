@@ -1,3 +1,19 @@
+.coin-wallets .cryptopapers-logo {
+  background: url("../images/logo2.png");
+  width: 146px;
+  height: 38px;
+  background-size: 100%;
+  position: absolute;
+  top: 123px;
+  left: 259px;
+  z-index: 101;
+  opacity: 1;
+  background-color: rgba(17, 17, 17, 0.47);
+  border-radius: 10px;
+}
+.coin-wallets.back .cryptopapers-logo {
+  display: none;
+}
 .frame-instructions .frame-name {
   font-size: 22px;
   text-decoration: underline;
@@ -40,6 +56,9 @@
 }
 .frame-instructions .frame-difficulty:before {
   content: 'Difficulty: ';
+}
+.frame-1 .coin-wallet .cryptopapers-logo {
+  display: none;
 }
 .frame-1 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-1.png');
@@ -92,6 +111,12 @@
 .frame-1 .coin-logo {
   display: none;
 }
+.frame-1.back .cryptopapers-logo {
+  display: block;
+  left: 310px;
+  top: 124px;
+  zoom: 112%;
+}
 .frame-1.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-1-Back.png');
 }
@@ -115,6 +140,12 @@
 }
 .frame-2 .coin-wallet .coin-wallet-address-qr {
   margin-left: 88px;
+}
+.frame-2 .coin-wallet .cryptopapers-logo {
+  display: block;
+  left: 748px;
+  top: 127px;
+  zoom: 112%;
 }
 .frame-2 .coin-wallet .coin-wallet-private-key-qr canvas {
   padding: 7px;
@@ -155,6 +186,9 @@
 .frame-2 .coin-logo:after {
   display: none;
 }
+.frame-2.back .cryptopapers-logo {
+  display: none;
+}
 .frame-2.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-2-Back.png');
 }
@@ -191,6 +225,15 @@
   width: 185px;
   height: 185px;
   background-size: 100%;
+}
+.frame-3 .coin-wallet .cryptopapers-logo {
+  display: block;
+  left: 768px;
+  top: 131px;
+  zoom: 112%;
+}
+.frame-3.back .coin-wallet .cryptopapers-logo {
+  display: none;
 }
 .frame-3.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-3-Back.png');
@@ -255,6 +298,12 @@
 .frame-4.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-4-Back.png');
 }
+.frame-4.back .cryptopapers-logo {
+  display: block;
+  left: 170px;
+  top: 124px;
+  zoom: 112%;
+}
 .frame-4.back .coin-logo {
   top: 63px;
   left: 159px;
@@ -294,6 +343,19 @@
   width: 115px;
   height: 115px;
 }
+.frame-5 .coin-wallet .encrypted {
+  position: absolute;
+  margin-left: 163px;
+}
+.frame-5.keys-encrypted .coin-wallet-private-key {
+  font-size: 7pt;
+}
+.frame-5.back .coin-wallet .cryptopapers-logo {
+  display: block;
+  left: 194px;
+  top: 135px;
+  zoom: 112%;
+}
 .frame-5.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-5-Back.png');
 }
@@ -306,11 +368,19 @@
   width: 231px;
   height: 231px;
 }
+.frame-6 .coin-wallet .cryptopapers-logo {
+  left: 172px;
+  top: 207px;
+}
 .frame-6 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-6.png');
 }
 .frame-6.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-6-Back.png');
+}
+.frame-7 .coin-wallet .cryptopapers-logo {
+  left: 172px;
+  top: 207px;
 }
 .frame-7 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-7.png');

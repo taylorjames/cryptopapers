@@ -199,16 +199,6 @@ $().ready(function ()
 
 </script>
 
-<div id="lights" class="switch-toggle theme switch-2 switch-candy no-print">
-			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
-			<label for="lights-on">+</label>
-
-			<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
-			<label for="lights-off">-</label> 
-
-			<a></a>
-</div>
-
 <div id="header" class="wrapper no-print medColor-bkg">
 	<div class="inner">
 		
@@ -222,7 +212,9 @@ $().ready(function ()
 			</ul>
 		</div>
 		
-		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
+		<a href="http://cryptopapers.com" target="_blank" title="CryptoPapers" alt="CryptoPapers">
+			<img id="logo" src="images/logo.png"/>
+		</a>
 		<span class="copyright">&copy; 2014</span>
 		
 		
@@ -591,7 +583,7 @@ $().ready(function ()
 				</div>
 				
 				<div class="risk-contact-us">
-					If you believe there's a security risk has not been taken into consideration here, please let us know at:
+					If you believe there's a security risk that hasn't been taken into consideration here, please let us know at:
 					<a href="mailto:info@CryptoPapers.com">info@CryptoPapers.com</a>
 				</div>
 			</div>
@@ -600,9 +592,10 @@ $().ready(function ()
 
 			<span class="donate-reminder no-print">
 				<img src="images/up-arrow.png" alt="" title="" />
+				<p>
 				We put great effort into making this tool (and your wallets) as secure as possible. If you like what
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
-				Thanks, and stay safe!
+				Thanks, and stay safe!</p>
 			</span>
 			<div class="row no-print">
 				<ul id="coin-setup-menu" class="menu no-print">
@@ -715,10 +708,9 @@ $().ready(function ()
 					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
 
-					<label class="left-label">Compression:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
-						<span clas="coin-full-name"></span> addresses can be compressed or uncompressed.
+						<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
 						<br>
 						Doing this saves space in the block chain by making the Public Key smaller.
 						<br>
@@ -727,6 +719,7 @@ $().ready(function ()
 						<br>
 						</span>
 					</div>
+					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
 						<label for="decompressed">No</label> 
@@ -740,43 +733,42 @@ $().ready(function ()
 						
 					<span class="key-info-public-address">
 					
-					<label class="left-label">Public Address:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
-						<br>
+						<br><br>
 						</span>
 					</div>
+					<label class="left-label">Public Address:</label>
 					<input type="text" id="public-address" autocomplete="off" readonly />
 					</span>
 					<br />
 						
-					<label class="left-label">Private Key Hex:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
 						<br>
 						</span>
 					</div>
+					<label class="left-label">Private Key Hex:</label>
 					<input type="text" id="private-key-hex" autocomplete="off" readonly />
 					<br />
 					
 					
-					<label class="left-label">Private Key WIF:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Private Key in Wallet Import Format (WIF). 
 						<br>
 						This is the format most wallet software will export to, and is the format it will import from.
-						<br>
+						<br><br>
 						</span>
 					</div>	
+					<label class="left-label">Private Key WIF:</label>
 					<input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
 					<div class="private-key-encrypted">
 						<div class="encrypted"></div>
 						
-						<label class="left-label">Private Key Encrypted:</label>
 						<div class="help-bubble" style="float:left;">
 							<span>
 							This is the Encrypted Private Key, which is the Private Key WIF encrypted using BIP38 and the password you provided.
@@ -784,11 +776,11 @@ $().ready(function ()
 							<br><br>
 							</span>
 						</div>
+						<label class="left-label">Private Key Encrypted:</label>
 						<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
 						<br />
 					</div>
 					
-					<label class="left-label">Private CheckSum:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Private Key Checksum, which is included in the Private Key WIF.
@@ -797,10 +789,10 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
+					<label class="left-label">Private CheckSum:</label>
 					<input type="text" id="private-key-checksum" autocomplete="off" readonly />
 					<br />
 					
-					<label class="left-label">Public Key Hex:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Public Key, which is derived from the public key. The public key
@@ -809,10 +801,10 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
+					<label class="left-label">Public Key Hex:</label>
 					<input type="text" id="public-key-hex" autocomplete="off" readonly />
 					<br />
 					
-					<label class="left-label">Hash160:</label>
 					<div class="help-bubble" style="float:left;">
 						<span>
 						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
@@ -821,18 +813,19 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
+					<label class="left-label">Hash160:</label>
 					<input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
 					
-					<label class="left-label">Address CheckSum:</label>
 					<div class="help-bubble hide" style="float:left;">
 						<span>
 						The Address Checksum is derived from the Public Key and is used to create the Public Address.
 						<br>
 						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
-						<br><br>
+						<br><br><br>
 						</span>
 					</div>	
+					<label class="left-label">Address CheckSum:</label>
 					<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
 					<!--
@@ -996,10 +989,8 @@ $().ready(function ()
 							</div>
 							-->
 							
-							<div class="row">
-							<div class="colfour first"><input type="button" id="print-button" class="large-button right" value="Print" /></div>
-							<div class="coleight last"><input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled /></div>
-							</div>
+							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+							<input type="button" id="print-button" class="large-button right" value="Print" />
 							<br />
 						</div>
 					</div>
@@ -1070,12 +1061,14 @@ $().ready(function ()
 					Be careful when using encrypted keys: while some advanced wallet apps can decode these keys, most can not. 
 					<br><br>
 					Be especially careful when using this feature for lesser known alt-coins. While <a href="http://bitaddress.org">bitaddress.org</a>
-					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</p>
+					decrypts Bitcoin keys, <br>
+					for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</p>
 				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
+							<div class="cryptopapers-logo"></div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
@@ -1100,6 +1093,7 @@ $().ready(function ()
 					<div class="coin-wallet coin-wallet-2 zoom-100">
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
+							<div class="cryptopapers-logo"></div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
@@ -1141,6 +1135,31 @@ $().ready(function ()
 			</div>
 		</div>
 	</div>
+	
+<div class="footer no-print medColor-bkg">
+
+	<div id="lights" class="switch-toggle theme switch-2 switch-candy no-print">
+				<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
+				<label for="lights-off">-</label> 
+				
+				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
+				<label for="lights-on">+</label>
+
+				<a></a>
+	</div>
+	
+	<input class="button" id="run-self-tests" Value="Run Self Tests" autocomplete="off" >
+	
+	<p>
+	&copy; Copyright 2014 CryptoPapers
+	<br><br>
+	The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
+	reused or distributed, modified or unmodified, without permission.
+	</p>
+
+
+</div>
+
 </div>
 </form>
 

@@ -88,6 +88,7 @@ function InitBIP38()
 		$('.encryption-keys').animate({opacity: '0', height: '0'}, 300, function()
 			{
 			$('.encryption-keys').hide();
+			$('.encryption-details').css('height', 'auto');
 			});
 			
 		$('.encryption-details').css('height','0').show().animate({opacity: '1', height: '93'}, 300);
@@ -105,6 +106,7 @@ function InitBIP38()
 			$('#encrypt-remove-button').removeAttr('disabled');
 			})
 		});
+		
 	$('#encrypt-remove-button').click(function()
 		{		
 		$('#encryption-key').val('');
@@ -127,6 +129,7 @@ function InitBIP38()
 		
 		DisplayWallet(CurrentCoinType, WIF, Address, false);
 		});
+		
 	$('#decrypt-password').keyup(function ()
 		{
 		if ($(this).val().length > 0)
@@ -176,7 +179,7 @@ function InitBIP38()
 								$('#private-key-input').val(n);
 								$('#private-key-input').change();
 								});
-							},1500);
+							},600);
 						});
 						
 					}
