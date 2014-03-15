@@ -199,7 +199,7 @@ $().ready(function ()
 
 </script>
 
-<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
+<div id="lights" class="switch-toggle theme switch-2 switch-candy no-print">
 			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
 			<label for="lights-on">+</label>
 
@@ -209,7 +209,7 @@ $().ready(function ()
 			<a></a>
 </div>
 
-<div id="header" class="wrapper no-print darkColor-bkg">
+<div id="header" class="wrapper no-print medColor-bkg">
 	<div class="inner">
 		
 		<div id="main-menu" class="menu no-print">
@@ -598,23 +598,23 @@ $().ready(function ()
 		</div>
 		<div class="section coin-setup">
 
-			<span class="donate-reminder">
+			<span class="donate-reminder no-print">
 				<img src="images/up-arrow.png" alt="" title="" />
 				We put great effort into making this tool (and your wallets) as secure as possible. If you like what
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
 				Thanks, and stay safe!
 			</span>
-			<div class="row">
+			<div class="row no-print">
 				<ul id="coin-setup-menu" class="menu no-print">
 					<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
 					<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
 					<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
-					<a class="darkColor-bkg"></a>
+					<a class="medColor-bkg"></a>
 					
 				</ul>
 			</div>
 
-			<div class="instructions rng-move-mouse">
+			<div class="instructions rng-move-mouse no-print">
 					<p>
 					Move your mouse around the screen until enough entropy data has been collected.<br/>
 						<p class="subtext">The Random Number Generator must collect at least <span class="rng-point-count"></span> 
@@ -877,7 +877,7 @@ $().ready(function ()
 					
 			</div>
 			<div class="sub-section coin-setup-print">
-				<div class="warning dismissable no-print">
+				<div class="warning dismissable beta-software no-print">
 					<p><b>WARNING: This is Beta software.</b>
 					<p class="subtext">It's unlikely something will go wrong but it's still 
 					<b>highly recommended</b> that you test these keys by importing them 
@@ -1057,10 +1057,10 @@ $().ready(function ()
 					</div>
 				</div>
 				
-				<div class="warning dismissable warning-encryption">
+				<div class="warning dismissable warning-encryption no-print">
 					<p><b>WARNING: Encryption is being used.</b>
 					<br><br>
-					<em>Make sure you test decryption of these keys before sending funds to this wallet.
+					Make sure you test decryption of these keys before sending funds to this wallet.
 					<br><br>
 					To decrypt a BIP38 wallet key, simply enter it into the Import Private Key box on the 
 					<a class="private-key-page">Private Key</a> page and enter the password you used to encrypt it.
@@ -1070,7 +1070,7 @@ $().ready(function ()
 					Be careful when using encrypted keys: while some advanced wallet apps can decode these keys, most can not. 
 					<br><br>
 					Be especially careful when using this feature for lesser known alt-coins. While <a href="http://bitaddress.org">bitaddress.org</a>
-					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</em></p>
+					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</p>
 				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">

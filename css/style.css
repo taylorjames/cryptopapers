@@ -13,7 +13,9 @@
 	a,
 	.coin-type,
 	.left-label,
-	.preload
+	.preload,
+	#header,
+	input
 	{
 		display: none !important;
 	}
@@ -39,6 +41,9 @@
 	{
 		background-color: white !important;
 	}
+	.inner .section, 
+	.inner .section .sub-section,
+	#header,
 	.coin-setup-print,
 	.coin-setup,
 	.wrapper,
@@ -1361,8 +1366,13 @@ text-align: center;
 font-weight: 500;
 border-radius: 10px;
 padding: 25px;
-position: absolute;
 max-width: 1170px;
+float: left;
+}
+.warning.beta-software
+{
+position: absolute;
+	top:183px;
 }
 .warning p{
 	color:#e94b78;
@@ -2545,8 +2555,7 @@ background: none;
 
 }
 
-.instructions.rng-move-mouse,
-.warning.dismissable{
+.instructions.rng-move-mouse{
 	top:183px;
 }
 .instructions.rng-move-mouse .subtext{
