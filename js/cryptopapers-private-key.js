@@ -327,7 +327,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	$('.coin-wallet-address').html(Address);
 	
 	$('.coin-wallet-address-qr').html('');
-	$('.coin-wallet-address-qr').qrcode(Address);
+	$('.coin-wallet-address-qr').qrcode(Address, QRErrorCorrectLevel.H);
 	
 	if (!Encrypted)
 		{
@@ -365,7 +365,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
 	
 	$('.coin-wallet-private-key-qr').html('');
-	$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
+	$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF, QRErrorCorrectLevel.H);
 	
 	SetLettering();
 	

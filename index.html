@@ -630,7 +630,7 @@ $().ready(function ()
 								or click on Generate to generate a new private key from the Random Number Generator pool.
 								<br><br>
 								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
-								<br><br><br><br/><br/><br/><br/></p>
+								<br><br><br><br/><br/></p>
 								</span>
 							</div>		
 							<span class="private-key-error"></span>	
@@ -656,7 +656,17 @@ $().ready(function ()
 					<div class="colinner">
 						<h3>RNG Entropy</h3>
 						<img src="images/check.png" class="entropy-satisfied">
-						<div class="help-bubble" style="margin-top:53px;float:left;">
+						
+						<div class="rng-status">
+							<label>
+								<span class="rng-status-text"></span>
+							</label>
+							<div class="pool-status-bar">
+								<div class="pool-status-complete" style="width:0%"></div>
+							</div>
+						</div>
+						
+						<div class="help-bubble" style="float:left;">
 							<span>
 							<p>Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
 							<br/><br/>
@@ -669,15 +679,6 @@ $().ready(function ()
 							<br/><br/><br/><br/><br/></p>
 							</span>
 						</div>	
-						
-						<div class="rng-status">
-							<label>
-								<span class="rng-status-text"></span>
-							</label>
-							<div class="pool-status-bar">
-								<div class="pool-status-complete" style="width:0%"></div>
-							</div>
-						</div>
 						
 						
 						<!-- <label class="left-label">Keep Collecting:</label>
@@ -709,6 +710,9 @@ $().ready(function ()
 					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
 
+					<div class="coin-wallet-address-qr"></div>
+					<div class="coin-wallet-private-key-qr"></div>
+					
 					<div class="help-bubble" style="float:left;">
 						<span>
 						<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.

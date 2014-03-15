@@ -49,8 +49,7 @@ function InitDismissable()
 	$('.dismissable .close-button').click(function() {
 		$(this).parent().animate({opacity: '0'}, 300, function() {
 			$(this).hide();
-			$('.sub-section.coin-setup-print').addClass('up').css('margin-top', '0px');
-		setTimeout(function(){$('.sub-section.coin-setup-print').removeClass('up')}, 300);
+			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
 		});
 
 		
@@ -125,9 +124,7 @@ function InitMenus()
 
 		$('#coin-setup-menu.menu li.active').removeClass('active');
 
-		$('.coin-setup .sub-section').each(function() {
-			$(this).fadeOut(300);
-		});
+		$('.coin-setup .sub-section').fadeOut(300);
 		
 		$(this).addClass('active');
 		

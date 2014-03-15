@@ -388,11 +388,19 @@
 .frame-7.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-7-Back.png');
 }
+.frame-8 .coin-wallet .cryptopapers-logo {
+  left: 172px;
+  top: 207px;
+}
 .frame-8 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-8.png');
 }
 .frame-8.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-8-Back.png');
+}
+.frame-9 .coin-wallet .cryptopapers-logo {
+  left: 842px;
+  top: 149px;
 }
 .frame-9 .coin-wallet .encrypted {
   position: absolute;

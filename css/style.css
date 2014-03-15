@@ -1410,13 +1410,14 @@ input[type=button].error
 .inner .section .sub-section.coin-setup-print{
 	margin-top:202px;
 }
-
+/* this acts very weird.
 .inner .section .sub-section.up{	
 	-webkit-transition: all .3s ease-in-out;
     -moz-transition: all .3s ease-in-out;
     -o-transition: all .3s ease-in-out;
     transition: all .3s ease-in-out;
 }
+*/
 .round-block.print-appearance
 {
 float: right;
@@ -1981,7 +1982,7 @@ margin-top: -58px;
 .frame-5.sample .coin-wallet-address-qr:after
 {
 margin-left: 10px;
-margin-top: 0px;
+margin-top: 35px;
 }
 .frame-6.sample .coin-wallet-address-qr:after,
 .frame-7.sample .coin-wallet-address-qr:after,
@@ -2002,6 +2003,54 @@ margin-top: -43px;
 float: left;
 width: 36%;
 }
+
+.key-details .coin-wallet-private-key-qr,
+.key-details .coin-wallet-address-qr
+{
+margin:0px;
+padding:0px;
+display: inline-block;
+float: right;
+position: absolute;
+}
+.key-details .coin-wallet-private-key-qr
+{
+top: 40px;
+left: 555px;
+}
+.key-details .coin-wallet-private-key-qr:before
+{
+content: 'Private Key';
+position: absolute;
+top: -20px;
+font-size: 11px;
+text-decoration: underline;
+}
+
+.key-details .coin-wallet-address-qr
+{
+top: 40px;
+left: 460px;
+}
+.key-details .coin-wallet-address-qr:before
+{
+content: 'Public Address';
+position: absolute;
+top: -20px;
+font-size: 11px;
+text-decoration: underline;
+}
+
+.key-details .coin-wallet-private-key-qr canvas,
+.key-details .coin-wallet-address-qr canvas
+{
+width: 75px;
+height: 75px;
+background-color: white;
+padding:5px;
+border-radius: 5px;
+}
+
 .donate-keys .donate-key
 {
 }
