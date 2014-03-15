@@ -324,6 +324,13 @@
 .frame-8.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-8-Back.png');
 }
+.frame-9 .coin-wallet .encrypted {
+  position: absolute;
+  margin-left: 96px;
+  width: 25px;
+  height: 32px;
+  margin-top: -4px;
+}
 .frame-9 .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-9.png');
 }
@@ -378,16 +385,19 @@
 }
 .frame-9 .coin-logo {
   display: block;
-  left: 806px;
+  left: 802px;
   background-size: 100%;
   width: 235px;
   height: 235px;
-  top: 55px;
+  top: 57px;
   opacity: 0.8;
 }
 .frame-9 .coin-logo:after {
   content: '';
   display: none;
+}
+.frame-9.back .coin-wallet .coin-wallet-right {
+  display: block;
 }
 .frame-9.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-9-Back.png');
