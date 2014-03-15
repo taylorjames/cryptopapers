@@ -277,7 +277,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		{
 		if (Bitcoin.BIP38.isBIP38Format($(this).val()))
 			{
-			$('.decrypt-key').show().animate({opacity: '1', height: '100'}, 300);
+			$('.decrypt-key').show().animate({opacity: '1', height: '138'}, 300);
 			
 			return;
 			}
@@ -289,8 +289,6 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 				});
 			}
 		
-		
-		
 		var Address = GenerateAddress(true);	
 
 		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
@@ -301,6 +299,78 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	}
 	 
 	 
+
+function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
+	{	
+	$('.coin-wallet-address').html(Address);
+	$('.coin-wallet-address-qr').qrcode(Address);
+
+	var split = Encrypted ? 29 : 26;
+	
+	var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
+	var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
+	
+	var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
+			
+	if (Backup)
+		{
+		$('.coin-wallet-2').css('display', 'block');
+		}
+	else
+		{
+		$('.coin-wallet-2').css('display', 'none');
+		}
+		
+	$('.coin-wallets').removeClass(AllCoinTypes);
+	$('.coin-wallets').addClass(CoinType);
+
+	$('.coin-wallet-address').html(Address);
+	
+	$('.coin-wallet-address-qr').html('');
+	$('.coin-wallet-address-qr').qrcode(Address);
+	
+	if (!Encrypted)
+		{
+		$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
+		$('.print-encryption #encrypted-key').val('');
+		$('.encrypted').fadeOut(300);
+		$('.warning-encryption').fadeOut(300);
+		
+		$('.coin-wallets').removeClass('keys-encrypted');
+		$('#encryption-key').val('');
+		$('#encryption-key-confirm').val('');
+		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
+			{
+			$(this).hide();
+			});
+		$('#encrypt-remove-button').attr('disabled', '');
+		$('.encryption-details').hide();
+		$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
+		}
+	else
+		{
+		$('.coin-wallets').addClass('keys-encrypted');
+		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
+		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
+			{
+			});
+		$('.warning-encryption').fadeIn(300);
+		$('#private-key-encrypted').val(PrivKeyWIF);
+		$('.encryption-details').show().css('height', 'auto').css('opacity','1');
+		$('.encryption-keys').hide();
+		}	
+	
+	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+	$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
+	
+	$('.coin-wallet-private-key-qr').html('');
+	$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
+	
+	SetLettering();
+	
+	$('.coin-wallet').fadeIn(300);
+	}
 
 // Only used for 'FigureOutCoinAddressVersion' function
 var OverrideAddressPrefix = undefined;
@@ -461,78 +531,6 @@ function GenerateAddress(display)
 		}
 	
 	return Address;
-	}
-
-function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{	
-	$('.coin-wallet-address').html(Address);
-	$('.coin-wallet-address-qr').qrcode(Address);
-
-	var split = Encrypted ? 29 : 26;
-	
-	var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
-	var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
-	
-	var Backup = ($('input[name=wallet-backup]:checked').val() == "Yes");
-			
-	if (Backup)
-		{
-		$('.coin-wallet-2').css('display', 'block');
-		}
-	else
-		{
-		$('.coin-wallet-2').css('display', 'none');
-		}
-		
-	$('.coin-wallets').removeClass(AllCoinTypes);
-	$('.coin-wallets').addClass(CoinType);
-
-	$('.coin-wallet-address').html(Address);
-	
-	$('.coin-wallet-address-qr').html('');
-	$('.coin-wallet-address-qr').qrcode(Address);
-	
-	if (!Encrypted)
-		{
-		$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
-		$('.print-encryption #encrypted-key').val('');
-		$('.encrypted').fadeOut(300);
-		$('.warning-encryption').fadeOut(300);
-		
-		$('.coin-wallets').removeClass('keys-encrypted');
-		$('#encryption-key').val('');
-		$('#encryption-key-confirm').val('');
-		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
-			{
-			$(this).hide();
-			});
-		$('#encrypt-remove-button').attr('disabled', '');
-		$('.encryption-details').hide();
-		$('.encryption-keys').show().css('opacity','1');
-		}
-	else
-		{
-		$('.coin-wallets').addClass('keys-encrypted');
-		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
-		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
-			{
-			});
-		$('.warning-encryption').fadeIn(300);
-		$('#private-key-encrypted').val(PrivKeyWIF);
-		$('.encryption-details').show().css('opacity','1');
-		$('.encryption-keys').hide();
-		}	
-	
-	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
-	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
-	$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
-	
-	$('.coin-wallet-private-key-qr').html('');
-	$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF);
-	
-	SetLettering();
-	
-	$('.coin-wallet').fadeIn(300);
 	}
 	
 	

@@ -15,7 +15,7 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
 var WhenEntropyPoolFills_GoToPrint = false;
 
-var MINIMUM_CAPTURE_TIME_DIFFERENCE = 5;
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 1;
 
 var sr = window.SecureRandom = function () { };
 
@@ -42,6 +42,18 @@ function InitRNG()
 		sr.pointsKeepCollecting = $(this).val() == "Yes";
 		});
 		
+	$('.random-info .help-toggle').click(function() 
+		{
+		if ($('.random-info').hasClass('help-active'))
+			{
+			$('.rng-pool').fadeOut('fast');
+			}
+		else
+			{
+			$('.rng-pool').fadeIn('fast');
+			}
+		
+		});
 	$('body').mousemove(function(ev)
 		{
 		sr.mouse_move(ev);
@@ -56,22 +68,32 @@ function InitRNG()
 		if (percent > 100)
 			percent = 100;
 		
+		// Only change when entropy still needs to be collected
+		if (collected_points <= total_points)
+			{			
+			$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
+				
+			$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
+			var shadow = 25 - Math.round(collected_points / total_points  * 25);
+			
+			$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
+			}
+		
 		if (collected_points > total_points)
 			collected_points = total_points;
 			
-		$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
-		
 			
-		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
-		
-		var shadow = 55 - Math.round(collected_points / total_points  * 55);
-		$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
-		
 		if (collected_points == total_points)
 			{
 			$('.entropy-satisfied').fadeIn(300);
-			$('.rng-move-mouse').animate({opacity: '0', padding: '0', height: '0'}, 300);
 			
+			$('.rng-move-mouse').animate({opacity: 0}, 300, function(){
+				$(this).css({'position':'static', 'display':'none'});
+				$('.sub-section.coin-setup-keys').addClass('up').animate({'margin-top':'0'}, 300);
+			});
+			
+			setTimeout(function(){$('.sub-section.coin-setup-keys').removeClass('up')}, 300)
+				
 			if (!HasPrivateKey)
 				{
 				$('.generate-button').removeAttr('disabled').addClass('enabled');
@@ -79,7 +101,6 @@ function InitRNG()
 				if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
 					{
 					$('#private-key-generate').click();
-					
 					if (WhenEntropyPoolFills_GoToPrint)
 						{
 						$('#coin-setup-menu #print').click();

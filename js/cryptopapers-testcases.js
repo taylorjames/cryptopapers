@@ -330,13 +330,13 @@ function RunTests()
 			else
 				{
 				Result += 'Failed ' + CoinInfo[CoinType].fullName + ' test: ' + 
-					Key + '\r\nExpected: ' + 
-					ExpectedAddress + '\r\nActual: ' + 
-					ActualAddress + '\r\n';
+					Key + '\nExpected: ' + 
+					ExpectedAddress + '\nActual: ' + 
+					ActualAddress + '\n';
 				}
 			}	
 			
-		Result += 'Passed ' + Success + ' / ' + Total + ' '  + CoinInfo[CoinType].fullName + ' tests.\r\n';
+		Result += 'Passed ' + Success + ' / ' + Total + ' '  + CoinInfo[CoinType].fullName + ' tests.\n';
 		}
 		
 	return Result;

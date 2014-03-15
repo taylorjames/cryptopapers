@@ -200,39 +200,36 @@ $().ready(function ()
 
 </script>
 
-<div id="header" class="wrapper no-print">
+<div id="header" class="wrapper no-print medColor-bkg">
 	<div class="inner">
-		
-		<a id="logo" href="" title="" /><img id="logo" src="images/logo.png"/></a>
-		<span class="copyright">&copy; 2014</span>
-		
-		<div class="coin-type selector-grid no-print" rowheight="140px">
-			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-				<!-- Dynamically filled -->
-			</div>
-		</div>
 		
 		<div id="main-menu" class="menu no-print">
 			<ul>
+
+				<li section="donate" class="menu-key-donate right">Donate</li>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
 				<li section="security" class="menu-key-security">Security</li>
-				<li section="coin-setup" class="menu-key-import active">Wallet Setup</li>
-				<li section="donate" class="menu-key-donate right">Donate</li>
+				<li section="coin-setup" class="menu-key-import active last">Wallet Setup</li>
 			</ul>
 		</div>
+		
+		<a href="http://cryptopapers.com" target="_blank" title="CryptoPapers" alt="CryptoPapers">
+			<img id="logo" src="images/logo.png"/>
+		</a>
+		<span class="copyright">&copy; 2014</span>
+		
 		
 		<div class="zero-trust-seal hidden">
 			
 		</div>
 		
-		<div id="lights" class="switch-toggle theme switch-2 switch-candy ">
-			<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
-			<label for="lights-on">+</label>
-
-			<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
-			<label for="lights-off">-</label> 
-
-			<a></a>
+		<!--
+		<div id="coin-selected" data="btc"><img src="images/coin-icons/btc-logo.png" class="btc-coin"/><em>BTC</em><div class="notch"></div><div class="notchBack"></div></div>
+		-->
+		<div class="coin-type selector-grid no-print" rowheight="105px" colwidth="100px">
+			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+				<!-- Dynamically filled -->
+			</div>
 		</div>
 		
 	</div>
@@ -241,6 +238,7 @@ $().ready(function ()
 
 
 <form id="form1">
+
 
 
 <div id="page" class="wrapper">
@@ -586,142 +584,134 @@ $().ready(function ()
 				</div>
 				
 				<div class="risk-contact-us">
-					If you believe there's a security risk has not been taken into consideration here, please let us know at:
+					If you believe there's a security risk that hasn't been taken into consideration here, please let us know at:
 					<a href="mailto:info@CryptoPapers.com">info@CryptoPapers.com</a>
 				</div>
 			</div>
 		</div>
 		<div class="section coin-setup">
-			<span class="donate-reminder">
+
+			<span class="donate-reminder no-print">
 				<img src="images/up-arrow.png" alt="" title="" />
+				<p>
 				We put great effort into making this tool (and your wallets) as secure as possible. If you like what
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
-				Thanks, and stay safe!
+				Thanks, and stay safe!</p>
 			</span>
-			<ul id="coin-setup-menu" class="menu no-print">
-				<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
-				<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
-				<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
-				<a></a>
-				
-			</ul>
-			<div class="sub-section coin-setup-keys no-print">
-				<div class="instructions rng-move-mouse">
-					The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement
-					in order to guarantee it will produce impossible-to-predict keys.
-					<br><br>
-					Simply move your mouse around the screen until it has collected enough data.
-				</div>
-				<div class="key-import round-block help-section">
-					<h3>Private Key</h3>		
-					<h4>Import / Generate</h4>
+			<div class="row no-print">
+				<ul id="coin-setup-menu" class="menu no-print">
+					<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
+					<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
+					<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
+					<a class="medColor-bkg"></a>
 					
-					<div class="input-key">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
-							<br><br>
-							Paste a private key exported from your coin wallet software into the box below 
-							or click on Generate to generate a new private key from the Random Number Generator pool.
-							<br><br>
-							(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
-							<br><br><br>
-							</span>
-						</div>		
-						<span class="private-key-error"></span>	
-						<div class="private-key"> 
-							<div id="coin-key">
-								<input type="text" id="private-key-input" autocomplete="off" />	
+				</ul>
+			</div>
+
+			<div class="instructions rng-move-mouse no-print">
+					<p>
+					Move your mouse around the screen until enough entropy data has been collected.<br/>
+						<p class="subtext">The Random Number Generator must collect at least <span class="rng-point-count"></span> 
+						points of mouse movement in order to guarantee it will produce impossible-to-predict keys.</p>
+					</p>
+			</div>
+
+			<div class="sub-section coin-setup-keys no-print row">
+				
+				<div class="key-import round-block help-section colseven first">
+					<div class="colinner">
+						<h3>Private Key</h3>
+						<div class="input-key">
+							<div class="help-bubble" style="float:left;">
+								<span><p>
+								A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
+								<br><br>
+								Paste a private key exported from your coin wallet software into the box below 
+								or click on Generate to generate a new private key from the Random Number Generator pool.
+								<br><br>
+								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
+								<br><br><br><br/><br/><br/><br/></p>
+								</span>
+							</div>		
+							<span class="private-key-error"></span>	
+							<div class="private-key"> 
+								<div id="coin-key">
+									<input type="text" id="private-key-input" autocomplete="off" />	
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="decrypt-key hide">
-						<span>This private key is encrypted. Please enter password to decrypt:</span>
-						<input type="password" id="decrypt-password" autocomplete="off" />
-						<div class="progress hide"></div>
-						<span class="key-error hide">Error - incorrect private key or password</span>
-						<span class="key-success hide">Success!</span>
-						<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
-					</div>
-					
-					<input type="button" id="private-key-generate" class="button generate-button" value="Generate" disabled />
-				
-				</div>			
-				<div class="random-info round-block help-section">
-					<h3>RNG Entropy</h3>
-					<img src="images/check.png" class="entropy-satisfied">
-					<div class="help-bubble" style="float:left;">
-						<span>
-						Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
-						<br><br>
-						'Entropy' is random or semi-random, unpredictable data. 
-						<br>
-						This tool's RNG uses system, time, and browser data to fill the pool initially, then adds at least <b><span class="rng-point-count"></span></b> coordinates
-						of mouse movement to that. 
-						<br><br>
-						The keys produced by this tool aren't predictable in any way.
-						<br><br><br><br><br><br><br><br><br>
-						</span>
-					</div>	
-					<div class="rng-status">
-						<label>RNG Pool Status: 
-							<span class="rng-status-text"></span>
-						</label>
-						<div class="pool-status-bar">
-							<div class="pool-status-complete" style="width:0%"></div>
+						<div class="decrypt-key hide">
+							<span>This private key is encrypted. Please enter password to decrypt:</span>
+							<input type="password" id="decrypt-password" autocomplete="off" />
+							<div class="progress hide"></div>
+							<span class="key-error hide">Error - incorrect private key or password</span>
+							<span class="key-success hide">Success!</span>
+							<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
 						</div>
-					</div>
-					
-					
-					<label class="left-label">Keep Collecting:</label>
-					<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
-						<input type="radio" name="rng-keep-collecting" value="No" id="rng-no-collect" autocomplete="off" />
-						<label for="rng-no-collect">No</label> 
 						
-						<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect" autocomplete="off" checked />
-						<label for="rng-collect">Yes</label>
-
-						<a></a>
+						<input type="button" id="private-key-generate" class="generate-button large-button" value="Generate" disabled />
 					</div>
-					
-					<div class="help-bubble" style="float:left;">
-						<span>
-							This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.
-						<br>
-						<br>
-						<br>
-						</span>
-					</div>	
-					
-					<label>RNG Pool Data:</label>
-					<textarea id="random-pool" readonly></textarea>
+				</div>			
+				<div class="random-info round-block help-section colfive last">
+					<div class="colinner">
+						<h3>RNG Entropy</h3>
+						<img src="images/check.png" class="entropy-satisfied">
+						<div class="help-bubble" style="margin-top:53px;float:left;">
+							<span>
+							<p>Having a good secure Random Number Generator (RNG) is essential to creating secure paper wallets.
+							<br/><br/>
+							'Entropy' is random or semi-random, unpredictable data. 
+							<br/>
+							This tool's RNG uses system, time, and browser data to fill the pool initially, then adds at least <b><span class="rng-point-count"></span></b> coordinates
+							of mouse movement to that. 
+							<br><br>
+							The end result is that attempting to predict these keys is no easier than brute-forcing addresses at random.
+							<br/><br/><br/><br/><br/></p>
+							</span>
+						</div>	
+						
+						<div class="rng-status">
+							<label>
+								<span class="rng-status-text"></span>
+							</label>
+							<div class="pool-status-bar">
+								<div class="pool-status-complete" style="width:0%"></div>
+							</div>
+						</div>
+						
+						
+						<!-- <label class="left-label">Keep Collecting:</label>
+						<div class="switch-toggle rng-keep-collecting switch-2 switch-candy ">
+							<input type="radio" name="rng-keep-collecting" value="No" id="rng-no-collect" autocomplete="off" />
+							<label for="rng-no-collect">No</label> 
+							
+							<input type="radio" name="rng-keep-collecting" value="Yes" id="rng-collect" autocomplete="off" checked />
+							<label for="rng-collect">Yes</label>
+
+							<a></a>
+						</div> -->
+						
+						<br/>
+						<label class="hide">RNG Pool Data:</label>
+						<div class="help-bubble" style="float:left;">
+							<span>
+								<p>This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.</p>
+							<br>
+							</span>
+						</div>	
+						<textarea id="random-pool" readonly></textarea>
+					</div>
 				</div>
 				
 				
-				<div class="key-details round-block help-section"> 
+				<div class="key-details round-block help-section colseven first">
+					<div class="colinner"> 
 					<div class="coin btc-coin changing-coin"></div>
 					<h3>Key Details</h3>
+
 					<div class="help-bubble" style="float:left;">
 						<span>
-						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
-						<br>
-						</span>
-					</div>	
-					<span class="key-info-public-address">
-					<label class="left-label">Public Address:</label><input type="text" id="public-address" autocomplete="off" readonly />
-					</span>
-					<br />
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
-						<br>
-						</span>
-					</div>	
-					<label class="left-label">Private Key Hex:</label><input type="text" id="private-key-hex" autocomplete="off" readonly />
-					<br />
-					<div class="help-bubble" style="float:left;">
-						<span>
-						<span clas="coin-full-name"></span> addresses can be compressed or uncompressed.
+						<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
 						<br>
 						Doing this saves space in the block chain by making the Public Key smaller.
 						<br>
@@ -729,7 +719,7 @@ $().ready(function ()
 						<br>Make sure to test all your keys before sending substantial amounts.
 						<br>
 						</span>
-					</div>	
+					</div>
 					<label class="left-label">Compression:</label>
 					<div class="switch-toggle compression switch-2 switch-candy ">
 						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
@@ -741,18 +731,45 @@ $().ready(function ()
 						<a></a>
 					</div>
 					<br />
+						
+					<span class="key-info-public-address">
+					
+					<div class="help-bubble" style="float:left;">
+						<span>
+						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+						<br><br>
+						</span>
+					</div>
+					<label class="left-label">Public Address:</label>
+					<input type="text" id="public-address" autocomplete="off" readonly />
+					</span>
+					<br />
+						
+					<div class="help-bubble" style="float:left;">
+						<span>
+						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
+						<br>
+						</span>
+					</div>
+					<label class="left-label">Private Key Hex:</label>
+					<input type="text" id="private-key-hex" autocomplete="off" readonly />
+					<br />
+					
+					
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Private Key in Wallet Import Format (WIF). 
 						<br>
 						This is the format most wallet software will export to, and is the format it will import from.
-						<br>
+						<br><br>
 						</span>
 					</div>	
-					<label class="left-label">Private Key WIF:</label><input type="text" id="private-key-wif" autocomplete="off" readonly />
+					<label class="left-label">Private Key WIF:</label>
+					<input type="text" id="private-key-wif" autocomplete="off" readonly />
 					<br />
 					<div class="private-key-encrypted">
 						<div class="encrypted"></div>
+						
 						<div class="help-bubble" style="float:left;">
 							<span>
 							This is the Encrypted Private Key, which is the Private Key WIF encrypted using BIP38 and the password you provided.
@@ -760,9 +777,11 @@ $().ready(function ()
 							<br><br>
 							</span>
 						</div>
-						<label class="left-label">Private Key Encrypted:</label><input type="text" id="private-key-encrypted" autocomplete="off" readonly />
+						<label class="left-label">Private Key Encrypted:</label>
+						<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
 						<br />
 					</div>
+					
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Private Key Checksum, which is included in the Private Key WIF.
@@ -771,8 +790,10 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
-					<label class="left-label">Private CheckSum:</label><input type="text" id="private-key-checksum" autocomplete="off" readonly />
+					<label class="left-label">Private CheckSum:</label>
+					<input type="text" id="private-key-checksum" autocomplete="off" readonly />
 					<br />
+					
 					<div class="help-bubble" style="float:left;">
 						<span>
 						This is the Public Key, which is derived from the public key. The public key
@@ -781,8 +802,10 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
-					<label class="left-label">Public Key Hex:</label><input type="text" id="public-key-hex" autocomplete="off" readonly />
+					<label class="left-label">Public Key Hex:</label>
+					<input type="text" id="public-key-hex" autocomplete="off" readonly />
 					<br />
+					
 					<div class="help-bubble" style="float:left;">
 						<span>
 						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
@@ -791,17 +814,20 @@ $().ready(function ()
 						<br><br>
 						</span>
 					</div>	
-					<label class="left-label">Hash160:</label><input type="text" id="public-key-hash160" autocomplete="off" readonly />
+					<label class="left-label">Hash160:</label>
+					<input type="text" id="public-key-hash160" autocomplete="off" readonly />
 					<br />
+					
 					<div class="help-bubble hide" style="float:left;">
 						<span>
 						The Address Checksum is derived from the Public Key and is used to create the Public Address.
 						<br>
 						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
-						<br><br>
+						<br><br><br>
 						</span>
 					</div>	
-					<label class="left-label">Address CheckSum:</label><input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
+					<label class="left-label">Address CheckSum:</label>
+					<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
 					<br />		
 					<!--
 					<div class="help-bubble" style="float:left;">
@@ -812,198 +838,219 @@ $().ready(function ()
 					</div>	
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					-->
+					</div>
+				</div>	
+
+				<div class="print-encryption round-block colfive last">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" autocomplete="off" />
+							<label class="left-label" for="encryption-key">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">					
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">
+							<label class="left-label">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label">Encrypted:</label>
+							<div class="encrypting progress"></div>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+						</div>
+					</div>
 				</div>	
 				
-				<div class="print-encryption round-block">
-					<h3>BIP38 Wallet Encryption</h3>
+				
 					
-					<div class="encryption-keys">
-						<label class="left-label" for="encryption-key">Password:</label>
-						<input type="password" id="encryption-key" autocomplete="off" />
-						<label class="left-label" for="encryption-key">Confirm:</label>
-						<input type="password" id="encryption-key-confirm" autocomplete="off" />
-					</div>
-					
-					<div class="encryption-buttons">					
-						<input type="button" id="encrypt-button" class="large-button" value="Encrypt" disabled />
-						<input type="button" id="encrypt-remove-button" class="large-button" value="Remove" disabled />
-					</div>
-					
-					<div class="encryption-details hide">
-						<label class="left-label">Unencrypted:</label>
-						<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-						<label class="left-label">Encrypted:</label>
-						<div class="encrypting progress"></div>
-						<input type="text" id="encrypted-key" autocomplete="off" readonly />
-					</div>
-				</div>		
 			</div>
 			<div class="sub-section coin-setup-print">
-			
-				<div id="print-settings" class="no-print">
-					<div class="print-buttons round-block help-section">
-						<h3>Page Setup</h3>
+				<div class="warning dismissable beta-software no-print">
+					<p><b>WARNING: This is Beta software.</b>
+					<p class="subtext">It's unlikely something will go wrong but it's still 
+					<b>highly recommended</b> that you test these keys by importing them 
+					<br />into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
+					before sending funds to this wallet.
+					<br />
+					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
+					<br />
+					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
+					</p></p>
+				</div>
+				<div id="print-settings" class="row no-print">
+					<div class="print-buttons round-block help-section colsix first">
+						<div class="colinner">
+							<h3>Page Setup</h3>
 
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Switch between printing the front and back side of the page.
-							<br><br>
-							Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
-							back is printed on the right side and with the right orientation.
-							<br><br><br>
-							</span>
-						</div>	
-						
-						<label class="left-label">Print Face:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
-								<label for="toggle-front">Front</label>
-
-								<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
-								<label for="toggle-back">Back</label> 
-
-								<a></a>
-						</div>
-
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Include a second copy of the wallet on the paper, to use as a backup.
-							<br><br>
-							</span>
-						</div>	
-						
-						<div class="backup">
-
-							<label class="left-label">Copies:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
-								<label for="wallet-backup-no">One</label> 
-								
-								<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
-								<label for="wallet-backup-yes">Two</label>
-						
-								<a></a>
-							</div>
-							
-						</div>
-						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
-							<br><br>
-							</span>
-						</div>	
-						
-						<div class="sample">
-
-							<label class="left-label">Sample Wallet:</label>
-							<div class="switch-toggle switch-2 switch-candy ">
-								<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
-								<label for="sample-wallet-no">No</label> 
-								
-								<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
-								<label for="sample-wallet-yes">Yes</label>
-						
-								<a></a>
-							</div>
-							
-						</div>
-							
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Use zoom to correct for printer differences and get the wallet to print properly.
-							<br><br>
-							</span>
-						</div>	
-						
-						<label class="left-label">Zoom:</label>
-						<div class="switch-toggle switch-5 switch-candy ">
-							
-							<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
-							<label for="wallet-zoom-90">0.90 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
-							<label for="wallet-zoom-95">0.95 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
-							<label for="wallet-zoom-100">1.00 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
-							<label for="wallet-zoom-105">1.05 X</label>
-							
-							<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
-							<label for="wallet-zoom-110">1.10 X</label>
-					
-							<a></a>
-						</div>
-						
-						<!--
-						<label class="left-label design-label">Custom:</label>
-						<div class="design-type-custom" >
-							<input type="file" id="custom-design">
-						</div>
-						-->
-						
-
-						<input type="button" id="print-button" class="large-button right" value="Print" />
-						<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
-						<br />
-					</div>
-					
-					<div class="print-appearance round-block help-section">
-						<h3>Appearance</h3>
-						
-						<label class="left-label">Frame:</label>
-						<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
-							<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
-						</div>
-						
-						<label class="left-label design-label">Design:</label>
-						<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
-							<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
-						</div>
-						
-						
-						<div class="hue-shift hide premium">
-						
 							<div class="help-bubble" style="float:left;">
 								<span>
-								Color shift the wallet background
+								Switch between printing the front and back side of the page.
 								<br><br>
-								*Only supported by Chrome
-								<br>
+								Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
+								back is printed on the right side and with the right orientation.
+								<br><br><br>
 								</span>
 							</div>	
 							
-							<label class="left-label color-shift-label">Color Shift:</label>
-							<!--
-							<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-							<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-							-->
-							<span class="hue-shift-amount">0&deg;</span>
+							<label class="left-label">Print Face:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
+									<label for="toggle-front">Front</label>
+
+									<input type="radio" name="print-face" value="Back" id="toggle-back" autocomplete="off" />
+									<label for="toggle-back">Back</label> 
+
+									<a></a>
+							</div>
 							
-							<div id="hue-slider"></div>
-							<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Include a second copy of the wallet on the paper, to use as a backup.
+								<br><br>
+								</span>
+							</div>	
+							
+							<div class="backup">
+
+								<label class="left-label">Copies:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="wallet-backup" value="No" id="wallet-backup-no" autocomplete="off" />
+									<label for="wallet-backup-no">One</label> 
+									
+									<input type="radio" name="wallet-backup" value="Yes" id="wallet-backup-yes" autocomplete="off" checked />
+									<label for="wallet-backup-yes">Two</label>
+							
+									<a></a>
+								</div>
+								
+							
+							
+							</div>
+							<div class="help-bubble" style="float:left;">
+								<span>
+								For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
+								<br><br>
+								</span>
+							</div>	
+							
+							<div class="sample">
+
+								<label class="left-label">Sample Wallet:</label>
+								<div class="switch-toggle switch-2 switch-candy ">
+									<input type="radio" name="sample-wallet" value="No" id="sample-wallet-no" autocomplete="off" checked />
+									<label for="sample-wallet-no">No</label> 
+									
+									<input type="radio" name="sample-wallet" value="Yes" id="sample-wallet-yes" autocomplete="off" />
+									<label for="sample-wallet-yes">Yes</label>
+							
+									<a></a>
+								</div>
+								
+							</div>
+								
+							<div class="help-bubble" style="float:left;">
+								<span>
+								Use zoom to correct for printer differences and get the wallet to print properly.
+								<br><br>
+								</span>
+							</div>	
+							
+							<label class="left-label">Zoom:</label>
+							<div class="switch-toggle switch-5 switch-candy ">
+								
+								<input type="radio" name="wallet-zoom" value="90" id="wallet-zoom-90" autocomplete="off" />
+								<label for="wallet-zoom-90">0.90 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="95" id="wallet-zoom-95" autocomplete="off" />
+								<label for="wallet-zoom-95">0.95 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="100" id="wallet-zoom-100" autocomplete="off" checked />
+								<label for="wallet-zoom-100">1.00 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="105" id="wallet-zoom-105" autocomplete="off" />
+								<label for="wallet-zoom-105">1.05 X</label>
+								
+								<input type="radio" name="wallet-zoom" value="110" id="wallet-zoom-110" autocomplete="off" />
+								<label for="wallet-zoom-110">1.10 X</label>
+						
+								<a></a>
+							</div>
+							
+							<!--
+							<label class="left-label design-label">Custom:</label>
+							<div class="design-type-custom" >
+								<input type="file" id="custom-design">
+							</div>
+							-->
+							
+							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+							<input type="button" id="print-button" class="large-button right" value="Print" />
+							<br />
+						</div>
+					</div>
+					
+					<div class="print-appearance round-block help-section colsix last">
+						<div class="colinner">
+							<h3>Appearance</h3>
+							
+							<label id="current-frame-label" class="left-label">Frame:</label>
+							<!--
+							<div id="current-frame"><img src="" id="current-frame-img"/></div>
+							-->
+							
+							<div class="frame-type selector-grid" fade="true" scroll="false" colwidth="207px" rowheight="67px">
+								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
+									<!-- Dynamically filled -->
+								</div>
+							</div>
+
+							
+							<label class="left-label design-label">Design:</label>
+							
+							<!--
+							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
+							-->
+							
+							<div class="design-type selector-grid" fade="false" scroll="true" effect="false" colwidth="207px" rowheight="67px">
+								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+									<!-- Dynamically filled -->
+								</div>
+							</div>
+							
+							<div class="hue-shift hide premium">
+							
+								<div class="help-bubble" style="float:left;">
+									<span>
+									Color shift the wallet background
+									<br><br>
+									*Only supported by Chrome
+									<br>
+									</span>
+								</div>	
+								
+								<label class="left-label color-shift-label">Color Shift:</label>
+								<!--
+								<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
+								<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
+								-->
+								<span class="hue-shift-amount">0&deg;</span>
+								
+								<div id="hue-slider"></div>
+								<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
+							</div>
 						</div>
 					</div>
 				</div>
-				<div class="warning dismissable no-print">
-					<b>WARNING: This is Beta software.</b>
-					<br><br>It's unlikely something will go wrong but it's still 
-					<b>highly recommended</b> that you test these keys by importing them 
-					<br>into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
-					before sending funds to this wallet.
-					<br><br>
-					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
-					<br><br>
-					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
-				</div>
-				<div class="warning dismissable warning-encryption">
-					<b>WARNING: Encryption is being used.</b>
+				
+				<div class="warning dismissable warning-encryption no-print">
+					<p><b>WARNING: Encryption is being used.</b>
 					<br><br>
 					Make sure you test decryption of these keys before sending funds to this wallet.
 					<br><br>
@@ -1015,12 +1062,14 @@ $().ready(function ()
 					Be careful when using encrypted keys: while some advanced wallet apps can decode these keys, most can not. 
 					<br><br>
 					Be especially careful when using this feature for lesser known alt-coins. While <a href="http://bitaddress.org">bitaddress.org</a>
-					decrypts Bitcoin keys, for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.
+					decrypts Bitcoin keys, <br>
+					for many of these coins there is no tool besides CryptoPapers to encrypt and decrypt BIP38.</p>
 				</div>
 				<div class="btc coin-wallets frame-1 fractal-1">
 					<div class="coin-wallet coin-wallet-1 zoom-100">
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
+							<div class="cryptopapers-logo"></div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
@@ -1045,6 +1094,7 @@ $().ready(function ()
 					<div class="coin-wallet coin-wallet-2 zoom-100">
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
+							<div class="cryptopapers-logo"></div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
@@ -1086,7 +1136,36 @@ $().ready(function ()
 			</div>
 		</div>
 	</div>
+	
+<div class="footer no-print medColor-bkg">
+
+	<div id="lights" class="switch-toggle theme switch-2 switch-candy no-print">
+				<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
+				<label for="lights-off">-</label> 
+				
+				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
+				<label for="lights-on">+</label>
+
+				<a></a>
+	</div>
+	
+	<input class="button" id="run-self-tests" Value="Run Self Tests" autocomplete="off" >
+	
+	<p>
+	&copy; Copyright 2014 CryptoPapers
+	<br><br>
+	The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
+	reused or distributed, modified or unmodified, without permission.
+	</p>
+
+
+</div>
+
 </div>
 </form>
+
+
+
+
 </body>
 </html>

@@ -252,12 +252,12 @@ var Backgrounds =
 		
 		$('.coin-wallet').animate({zoom: Zoom + '%'}, 300);
 		
-		setTimeout(301, function()
+		setTimeout(function()
 			{
 			$('.coin-wallet').css('zoom', '');
 			$('.coin-wallet').removeClass('zoom-90').removeClass('zoom-95').removeClass('zoom-100').removeClass('zoom-105').removeClass('zoom-110');		
 			$('.coin-wallet').addClass('zoom-' + Zoom);
-			});
+			}, 301);
 		
 		});
 		
@@ -368,6 +368,7 @@ function AddFrames()
 		}
 	
 	$('.frame-grid-wrapper').html(frames);
+	$('#current-frame-img').attr('src', 'images/wallet-frames/' + DefaultFrame + '.png')
 	}
 	
 function AddBackgrounds()
@@ -408,6 +409,8 @@ function AddBackgrounds()
 		}
 	
 	$('.designs-grid-wrapper').html(designs);
+	$('#current-bkg-img').attr('src', 'images/wallet-backgrounds/' + DefaultBG + '.jpg')
+
 	}
 
 function SetDesign(Design)

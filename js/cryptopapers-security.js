@@ -56,40 +56,42 @@ var Security_ManualVerify = false;
 		UpdateSecurityTrust();
 		});
 	
+	var ScrollOffset = -50;
+	
 	$('.trust-bugs').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.bugs").offset().top
+			scrollTop: $(".risk-category.bugs").offset().top + ScrollOffset
 		}, 300);
 		});
 	$('.trust-your-network').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.your-network").offset().top
+			scrollTop: $(".risk-category.your-network").offset().top+ ScrollOffset
 		}, 300);
 		});
 	$('.trust-your-printer').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.your-printer").offset().top
+			scrollTop: $(".risk-category.your-printer").offset().top+ ScrollOffset
 		}, 300);
 		});
 	$('.trust-your-browser').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.your-browser").offset().top
+			scrollTop: $(".risk-category.your-browser").offset().top+ ScrollOffset
 		}, 300);
 		});
 	$('.trust-your-os').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.your-os").offset().top
+			scrollTop: $(".risk-category.your-os").offset().top+ ScrollOffset
 		}, 300);
 		});
 	$('.trust-this-tool').click(function()
 		{
 		$('html, body').animate({
-			scrollTop: $(".risk-category.this-tool").offset().top
+			scrollTop: $(".risk-category.this-tool").offset().top+ ScrollOffset
 		}, 300);
 		});
 	}
