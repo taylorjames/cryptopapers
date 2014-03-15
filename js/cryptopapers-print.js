@@ -250,7 +250,7 @@ var Backgrounds =
 		
 	$('.frame.selector').click(function()
 		{
-		if (!$('.frame-type').hasClass('selecting'))
+		if ($('.frame-type').hasClass('selecting'))
 			return;
 		if ($(this).hasClass('active'))
 			return;
