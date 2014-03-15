@@ -70,15 +70,19 @@ function InitRNG()
 		
 		if (collected_points > total_points)
 			collected_points = total_points;
+		
+		// Only change when entropy still needs to be collected
+		if (collected_points <= total_points)
+			{			
+			$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
+				
+			$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
+			var shadow = 25 - Math.round(collected_points / total_points  * 25);
 			
-		$('.rng-status .rng-status-text').html(percent + '% ' + '(' + collected_points + ' / ' + total_points + ')');
-		
+			$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
+			}
 			
-		$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
-		
-		// var shadow = 55 - Math.round(collected_points / total_points  * 55);
-		// $('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
-		
+			
 		if (collected_points == total_points)
 			{
 			$('.entropy-satisfied').fadeIn(300);
@@ -89,7 +93,6 @@ function InitRNG()
 				
 			if (!HasPrivateKey)
 				{
-
 				$('.generate-button').removeAttr('disabled').addClass('enabled');
 				
 				if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)

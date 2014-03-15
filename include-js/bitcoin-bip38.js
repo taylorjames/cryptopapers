@@ -90,7 +90,7 @@ function InitBIP38()
 			$('.encryption-keys').hide();
 			});
 			
-		$('.encryption-details').css('height','0').show().animate({opacity: '1', height: '138'}, 300);
+		$('.encryption-details').css('height','0').show().animate({opacity: '1', height: '93'}, 300);
 		
 		$('.encrypting').fadeIn(300);
 		
@@ -120,7 +120,7 @@ function InitBIP38()
 			$('#encrypt-remove-button').attr('disabled', '');
 			});
 			
-		$('.encryption-keys').show().css('opacity', '1').animate({height: 77});
+		$('.encryption-keys').show().css('opacity', '1').animate({height: '95'});
 			
 		$('.encrypted').fadeOut(300);
 			

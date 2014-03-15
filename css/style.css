@@ -914,6 +914,8 @@ label.left-label {
 	display: block;
 	float: left;
 	clear: left;
+	background-color: #D8D8D8;
+	padding: 4px;
 	font-size: 12px;
 	border-bottom-left-radius: 3px;
 	border-top-left-radius: 3px;
@@ -922,6 +924,7 @@ label.left-label {
 	margin-bottom:2px;
 	padding-right:20px;
 	text-align:right;
+	font-weight: bolder;
 }
 .random-info .left-label
 {	
@@ -1183,7 +1186,8 @@ input[type=button]:hover{
 {
 border-color: #ccc;
 width: 100%;
-box-shadow: 1px 1px 8px #e2e2e2;
+background-color: rgba(255, 228, 228, 0.69);
+box-shadow: 1px 1px 30px #FF9E9E;
 margin-bottom: 23px;
 border: 1px solid #e94b78;
 padding: 10px;
@@ -1205,6 +1209,8 @@ max-width: 1170px;
 }
 input[type=button]:disabled
 {
+background-color: #A5A5A5;
+box-shadow: 0 2px 0px #87939B, inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
 input[type=button].error
 {
@@ -1256,7 +1262,7 @@ padding-bottom: 10px;
 	margin-bottom:25px;
 	overflow:auto;
 	border: 1px solid #e2e2e2;
-    box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+	box-shadow: 4px 7px 7px rgba(0, 0, 0, 0.5);
 
 }
 
@@ -1735,7 +1741,8 @@ a:hover, a:active, a:focus {
 .key-details .left-label
 {
 	font-size: 12px;
-	margin-top:8px;
+	margin-top: 0px;
+	padding: 9px;
 }
 #print-settings
 {
@@ -2107,10 +2114,13 @@ display: none;
 width: 96px;
 margin-bottom:2px;
 text-align:left;
+margin-top: 1px;
+padding: 13px;
 }
 
 
-.print-encryption input[type=button]#encrypt-button, .print-encryption input[type=button]#encrypt-remove-button
+.print-encryption input[type=button]#encrypt-button,
+.print-encryption input[type=button]#encrypt-remove-button
 {
 	margin-top:10px;
 	margin-bottom:20px;
@@ -2124,7 +2134,7 @@ text-align:left;
 .print-encryption input[type=password]
 {
 margin-bottom: 15px;
-width: 100%;
+width: 76%;
 background-color: #fff;
 cursor: default;
 border-radius: 5px;
@@ -2143,9 +2153,9 @@ clear: right;
 .encryption-details .encrypting
 {
 position: relative;
-top: -7px;
+top: 12px;
 margin-bottom: -16px;
-left: 208px;
+left: 77px;
 }
 .encrypting
 {
@@ -2349,7 +2359,6 @@ background: none;
 {
 	border-color: #ccc;
 	width: 100%;
-	box-shadow: 1px 1px 8px #e2e2e2;
 	margin-bottom: 23px;
 	border:1px solid #3EB5FF;
 	padding: 10px;
@@ -2363,10 +2372,16 @@ background: none;
 
 }
 
-.instructions.rng-move-mouse, .warning.dismissable{
+.instructions.rng-move-mouse,
+.warning.dismissable{
 	top:183px;
 }
 
+.instructions.rng-move-mouse
+{
+	box-shadow: 1px 1px 25px #000046;
+	background-color: #E5E4F1;
+}
 .instructions.rng-move-mouse p{
 	color:#2c8fde;
 }
