@@ -120,7 +120,7 @@ function InitBIP38()
 			$('#encrypt-remove-button').attr('disabled', '');
 			});
 			
-		$('.encryption-keys').show().css('opacity', '1').animate({height: '95'});
+		$('.encryption-keys').show().css('opacity', '1').animate({height: '97'});
 			
 		$('.encrypted').fadeOut(300);
 			

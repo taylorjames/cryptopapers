@@ -16,8 +16,11 @@ body {
 			ul {
 				li {
 					&.disabled {
+						color: #3a7abc;
+					/*
 						color: #888888;
 						background-color: #333333;
+						*/
 					}
 				}
 			}
@@ -81,6 +84,9 @@ body {
 			a:visited,{
 				color: #ddd;
 			}
+			p.subtext{
+			color: #ffffff;
+			}
 		}
 		.security-risks {
 			.risk {
@@ -141,6 +147,10 @@ body {
 			border-color: #222244;
 			color: #dddddd;
 			box-shadow: 1px 1px 26px #ffffff;
+			.subtext
+			{
+			color: white;
+			}
 		}
 		.selecting {
 			.frame-grid-row-header {
@@ -149,15 +159,26 @@ body {
 				}
 			}
 		}
+		.dismissable .close-button
+		{
+		background-image: url('../images/close_dark.png');
+		}
 		.help-bubble {
 			background-color: #000022;
 			border-color: #222244;
 			color: #dddddd;
+		}		
+		.help-toggle
+		{
+		background-image: url('../images/help_dark.png');
 		}
 		h3,
 		h4 {
 			color: white;
 			text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
+		}
+		h5 {
+			color: rgb(224, 224, 224);
 		}
 		input[type=text],
 		input[type=password],

@@ -243,9 +243,11 @@ display:none;
 
 .section.security .left-label
 {
-	width: 600px;
-	text-align: left;
-	height: 50px;
+width: 600px;
+text-align: left;
+height: 50px;
+padding: 19px;
+font-size: 12px;
 }
 .security-questions .switch-toggle
 {
@@ -393,6 +395,7 @@ width: 75%;
 	z-index:10000;
 	max-width: 1102px;
 }
+
 .selector-grid-row{
 	display: block;
 	width: 100%;
@@ -515,6 +518,8 @@ width: 75%;
 	font-weight: bolder;
 	padding-top: 2px;
 	background: #dddddd;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
 }
 
 .coin.selector{
@@ -1007,6 +1012,7 @@ color: white;
 position: relative;
 left: -118px;
 text-shadow: 1px 1px 1px white;
+font-size: 11px;
 }
 .coin-wallet-write-area
 {
@@ -1128,6 +1134,7 @@ z-index: 0;
 {
 margin-left: 20px;
 float: left;
+margin-top: 16px;
 width: 46%
 }
 .input-key
@@ -1353,7 +1360,7 @@ color: #444;
 text-align: center;
 font-weight: 500;
 border-radius: 10px;
-padding: 30px;
+padding: 25px;
 position: absolute;
 max-width: 1170px;
 }
@@ -1391,7 +1398,7 @@ input[type=button].error
 }
 
 .inner .section .sub-section.coin-setup-print{
-	margin-top:217px;
+	margin-top:202px;
 }
 
 .inner .section .sub-section.up{	
@@ -1427,6 +1434,11 @@ padding-bottom: 10px;
 }
 
 
+.section.security .round-block
+{
+	padding: 22px;
+}
+
 .round-block .colinner em{
 	display:block;
 	margin-top:-10px;
@@ -1460,7 +1472,7 @@ left: 120px;
 }
 #random-pool
 {
-	height: 102px;
+	height: 122px;
 	font-size: 10px;
 	width: 100%;
 }
@@ -1474,7 +1486,7 @@ left: 120px;
 	height: 35px;
 	width: 100%;
 	margin: auto;
-	background-color: #e94b78;
+	background-color: #b90000;
 	border-radius:5px;
 }
 .pool-status-complete
@@ -1551,7 +1563,7 @@ span.rng-status-text{
 	background:transparent;
 }
 .menu ul li.active {
-	background-color:rgba(0,0,0,0.1);
+	background-color:rgba(0,0,0,0.4);
 }
 
 .menu ul li.last{
@@ -1814,9 +1826,9 @@ width: 100%;
 }
 .hue-shift-amount
 {
-	position: absolute;
-	top: 221px;
-	left: 270px;
+position: absolute;
+top: 275px;
+left: 264px;
 }
 .hue-shift-reset
 {
@@ -1970,7 +1982,9 @@ margin-top: -43px;
 
 .donate-keys
 {
+	padding: 21px;
 	width: 1025px;
+	margin: auto;
 }
 #generate-new-wallet
 {
@@ -2004,12 +2018,12 @@ float: left;
 
 .donate-keys .donate-key .coin
 {
-	width: 100%;
+	width: auto;
 	height: 100px;
 	background-repeat: no-repeat;
-	padding-left: 125px;
+	padding-left: 93px;
 	margin-bottom: 15px;
-	background-size: 100px;
+	background-size: 86px;
 }
 .donate-keys .donate-key .coin .donate-address
 {
@@ -2162,9 +2176,9 @@ left: 410px;
 .security-risks .risk
 {
 	font-size: 14px;
-	width: 706px;
+	width: 1066px;
 	color: #333333;
-	height: 85px;
+	height: 75px;
 	border: 1px solid;
 	border-top-left-radius: 10px;
 	background-color: #cccccc;
@@ -2181,7 +2195,7 @@ left: 410px;
 }
 .security-risks .risk .risk-details
 {
-	width: 542px;
+	width: 986px;
 	float: left;
 	padding: 5px;
 }
@@ -2205,8 +2219,8 @@ left: 410px;
 .security-risks .risk .risk-status:after
 {
 display: block;
-padding-top: 37px;
-height: 86px;
+padding-top: 30px;
+height: 75px;
 border-top-right-radius: 10px;
 border-bottom-right-radius: 10px;
 padding-left: 18px;
@@ -2252,7 +2266,8 @@ display: none;
 {
 	padding-bottom: 0px;
 	float: right;
-	width: 330px;
+	width: 327px;
+	margin-left: 14px;
 }
 .security-test #js-test-refresh
 {
@@ -2391,46 +2406,40 @@ height:16px;
 .frame-type,
 .design-type
 {
-background: #fff;
+overflow: hidden;
+display: block;
+float: left;
+background: #ddd;
 margin-bottom: 20px;
-border-radius: 5px;
-position: absolute;
-min-height: 67px;
-display:none;
-z-index:10000000;
-top: 96px;
-left: 138px;
-box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
+border-radius: 10px;
+z-index: 10;
+height: 77px;
+max-width: 218px;
 }
 
-#current-frame, #current-bkg{
-	display:block;
-	border-radius:5px;
-	max-width:300px;
-	margin:auto;
-	margin-bottom:10px;
-	float:left;
-	height:100px;
-	border:1px solid #fff;
+.frame-grid-wrapper
+{
+z-index: 10000;
+max-width: 1102px;
+overflow: hidden;
+min-height: 78px;
 }
-
-#current-bkg{
-	margin-bottom:40px;
-}
-
-#current-bkg-img{
-	max-width:300px;
-	padding:20px;
+.selecting .frame-grid-wrapper
+{
+overflow: visible;
 }
 
 
 .design-type
 {
 top: 138px;
+height: 77px;
+overflow: hidden;
 }
 .frame-grid-row-header,
 .design-grid-row-header
 {
+display:none;
 }
 .selecting .frame-grid-row-header,
 .selecting .design-grid-row-header
@@ -2461,13 +2470,14 @@ width:400px;
 background-color: #ccc;
 }
 
-.frame-grid-row-header{
-	width: 250px;
-text-align: left;
-margin-top: 20px;
-padding-left: 6px;
+#current-frame-label
+{
+margin-bottom: 67px;
 }
-
+.frame.selector img
+{
+border-radius: 5px;
+}
 .frame-type.selecting,
 .design-type.selecting
 {
@@ -2479,12 +2489,17 @@ position: absolute;
 }
 .design-type.selecting
 {
-left: -600px;
+max-width: 1114px;
+left: -568px;
+top: 12px;
+height: auto;
 }
 .frame-type.selecting
 {
-top: 40px;
-left: -263px;
+top: 75px;
+left: -279px;
+max-width: 689px;
+height: auto;
 }
 
 .frame-label,
@@ -2498,23 +2513,14 @@ margin-top: 0px;
 }
 .design-label
 {
+margin-top: 47px;
+margin-bottom: 74px;
 }
 
 .frame-type .selector-grid-row,
 .design-type .selector-grid-row
 {
 background: none;
-}
-
-.frame-type .selector-grid-row{
-	background: none;
-	width: 200px;
-	height: 100px;
-}
-
-.frame-type .selector-grid-wrapper{
-	width:300px;
-	padding:0px 20px 20px 20px;
 }
 
 .coin-setup-keys, .coin-setup-print
@@ -2575,12 +2581,16 @@ background-size: 100%;
 {
 background-color: #888;
 border-radius: 10px;
-width:250px;
-height:82px;
+width:205px;
+height:67px;
+}
+.frame.selector img
+{
+height:67px;
 }
 .design.selector
 {
-	width: 207px;
+	width: 205px;
 height: 67px;
 }
 .design.selector.active

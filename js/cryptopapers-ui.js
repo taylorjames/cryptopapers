@@ -225,8 +225,10 @@ function InitSelectorGrid()
 	 	var ParentGrid = $(this).parents('.selector-grid');
 	 	var Fade = ParentGrid.attr('fade') == 'true';
 	 	var Scroll = ParentGrid.attr('scroll') == 'true';
+		var Effect = ParentGrid.attr('effect') != 'false';
 		
 		var RowHeight = ParentGrid.attr('rowheight');
+		var ColWidth = ParentGrid.attr('colwidth');
 		
 	 	if (ParentGridWrapper.hasClass('selecting'))
 	 		{
@@ -245,6 +247,14 @@ function InitSelectorGrid()
 					
 	 				});
 	 			}
+			else if (!Effect)
+				{
+				ParentGrid.find('.selector-grid-row:not(.active)').css('height', '0px');
+				ParentGridWrapper.find('.selector:not(.active)').css('height', '0px').css('width', '0px').hide();
+				
+				ParentGridWrapper.removeClass('selecting');
+				ParentGrid.removeClass('selecting');
+				}
 	 		else
 	 			{
 	 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
@@ -255,7 +265,7 @@ function InitSelectorGrid()
 	 				});
 	 			}
 	 		}
-	 	else
+		else
 	 		{
 	 		ParentGrid.addClass('selecting');
 	 		ParentGridWrapper.addClass('selecting');
@@ -266,13 +276,12 @@ function InitSelectorGrid()
 	 			ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
 	 				if (Scroll)
 	 					{
-	 					var Obj = $(this);
-						
+	 					var Obj = $(this);						
 					
 	 					var Position = Obj.offset().top;
 						
 	 					$('html, body').animate({
-	 						scrollTop: Position
+	 						scrollTop: Position - 100
 	 					}, 300);
 	 					Scroll = false;
 	 					}
@@ -280,26 +289,48 @@ function InitSelectorGrid()
 	 			}
 	 		else
 	 			{
-			
-	 			ParentRow.animate({ height: RowHeight}, 300);
+				if (!Effect)
+					{
+					ParentRow.css('height', RowHeight + 'px');
 				
-	 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: RowHeight}, 300);
-	 			ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: RowHeight}, 300, function() {
+					ParentGrid.find('.selector-grid-row:not(.active)').css('height', RowHeight);
+					ParentGridWrapper.find('.selector:not(.active)').css('width', ColWidth).css('height', RowHeight).show();
 					
-					
-				
 	 				if (Scroll)
 	 					{
 	 					var Obj = $(this);
 						
+					
 	 					var Position = Obj.offset().top;
 						
 	 					$('html, body').animate({
-	 						scrollTop: Position
+	 						scrollTop: Position - 100
 	 					}, 300);
 	 					Scroll = false;
 	 					}
-	 			});
+					}
+				else
+					{
+					ParentRow.animate({ height: RowHeight}, 300);
+				
+					ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: RowHeight}, 300);
+					ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: ColWidth, height: RowHeight}, 300, function() {
+						
+						
+					
+						if (Scroll)
+							{
+							var Obj = $(this);
+							
+							var Position = Obj.offset().top;
+							
+							$('html, body').animate({
+								scrollTop: Position - 100
+							}, 300);
+							Scroll = false;
+							}
+					});
+					}
 				
 	 			}
 	 		}

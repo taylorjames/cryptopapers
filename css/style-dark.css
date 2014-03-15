@@ -15,8 +15,11 @@ body.dark-theme .menu li {
   border-color: #DADADA;
 }
 body.dark-theme .menu ul li.disabled {
-  color: #888888;
-  background-color: #333333;
+  color: #3a7abc;
+  /*
+						color: #888888;
+						background-color: #333333;
+						*/
 }
 body.dark-theme .coin-type {
   background-color: #444444;
@@ -63,12 +66,15 @@ body.dark-theme .trust-items .trust-item em {
 }
 body.dark-theme .warning {
   color: #ffffff;
-  background-color: #C70000;
+  background-color: #630000;
   box-shadow: 1px 1px 50px #FF0000;
 }
 body.dark-theme .warning a,
 body.dark-theme .warning a:visited {
   color: #ddd;
+}
+body.dark-theme .warning p.subtext {
+  color: #ffffff;
 }
 body.dark-theme .security-risks .risk {
   color: #dddddd;
@@ -118,18 +124,30 @@ body.dark-theme .instructions {
   color: #dddddd;
   box-shadow: 1px 1px 26px #ffffff;
 }
+body.dark-theme .instructions .subtext {
+  color: white;
+}
 body.dark-theme .selecting .frame-grid-row-header:hover {
   background-color: #444;
+}
+body.dark-theme .dismissable .close-button {
+  background-image: url('../images/close_dark.png');
 }
 body.dark-theme .help-bubble {
   background-color: #000022;
   border-color: #222244;
   color: #dddddd;
 }
+body.dark-theme .help-toggle {
+  background-image: url('../images/help_dark.png');
+}
 body.dark-theme h3,
 body.dark-theme h4 {
   color: white;
   text-shadow: 3px 3px 0 rgba(255, 255, 255, 0.3);
+}
+body.dark-theme h5 {
+  color: #e0e0e0;
 }
 body.dark-theme input[type=text],
 body.dark-theme input[type=password],
