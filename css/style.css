@@ -368,7 +368,7 @@ margin-top: 10px;
 .private-key-encrypted
 {
 display: block;
-height: 38px;
+min-height: 42px;
 float: left;
 opacity: 1;
 clear: left;
@@ -376,7 +376,7 @@ width: 100%;
 }
 #private-key-encrypted
 {
-width: 500px;
+width: 75%;
 }
 
 
@@ -1002,10 +1002,11 @@ text-align: center;
 }
 .copyright
 {
-top: 93px;
+top: 61px;
 color: white;
 position: relative;
-left: -259px;
+left: -118px;
+text-shadow: 1px 1px 1px white;
 }
 .coin-wallet-write-area
 {
@@ -1343,8 +1344,8 @@ input[type=button]:hover{
 {
 border-color: #ccc;
 width: 100%;
-background-color: rgba(255, 228, 228, 0.69);
-box-shadow: 1px 1px 30px #FF9E9E;
+background-color: rgba(255, 236, 208, 1);
+box-shadow: 1px 1px 30px #FFC59E;
 margin-bottom: 23px;
 border: 1px solid #e94b78;
 padding: 10px;
@@ -1356,9 +1357,11 @@ padding: 30px;
 position: absolute;
 max-width: 1170px;
 }
-
 .warning p{
 	color:#e94b78;
+}
+.warning p.subtext{
+	color:#000000;
 }
 
 .warning em{
@@ -1388,7 +1391,7 @@ input[type=button].error
 }
 
 .inner .section .sub-section.coin-setup-print{
-	margin-top:245px;
+	margin-top:217px;
 }
 
 .inner .section .sub-section.up{	
@@ -1804,6 +1807,11 @@ padding: 10px;
 	width: 132px;
 	height: 132px;
 }
+.hue-shift
+{
+float: left;
+width: 100%;
+}
 .hue-shift-amount
 {
 	position: absolute;
@@ -1899,7 +1907,9 @@ a:hover, a:active, a:focus {
 {
 	font-size: 12px;
 	margin-top: 0px;
-	padding: 9px;
+	padding-top: 9px;
+	padding-bottom: 9px;
+	padding-right: 5px;
 }
 #print-settings
 {
@@ -2398,7 +2408,6 @@ box-shadow: 0px 0px 8px rgba(0,0,0,0.3);
 	border-radius:5px;
 	max-width:300px;
 	margin:auto;
-	margin-top:10px;
 	margin-bottom:10px;
 	float:left;
 	height:100px;
@@ -2533,6 +2542,9 @@ background: none;
 .instructions.rng-move-mouse,
 .warning.dismissable{
 	top:183px;
+}
+.instructions.rng-move-mouse .subtext{
+	color: black;
 }
 
 .instructions.rng-move-mouse

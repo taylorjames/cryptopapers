@@ -617,7 +617,8 @@ $().ready(function ()
 			<div class="instructions rng-move-mouse">
 					<p>
 					Move your mouse around the screen until enough entropy data has been collected.<br/>
-						<em>The Random Number Generator must collect at least <span class="rng-point-count"></span> points of mouse movement in order to guarantee it will produce impossible-to-predict keys.</em>
+						<p class="subtext">The Random Number Generator must collect at least <span class="rng-point-count"></span> 
+						points of mouse movement in order to guarantee it will produce impossible-to-predict keys.</p>
 					</p>
 			</div>
 
@@ -878,14 +879,15 @@ $().ready(function ()
 			<div class="sub-section coin-setup-print">
 				<div class="warning dismissable no-print">
 					<p><b>WARNING: This is Beta software.</b>
-					<em><br /><br />It's unlikely something will go wrong but it's still 
+					<p class="subtext">It's unlikely something will go wrong but it's still 
 					<b>highly recommended</b> that you test these keys by importing them 
 					<br />into your QT Wallet software or by using another offline tool like <a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
 					before sending funds to this wallet.
 					<br />
 					Start with small amounts and verify you can withdraw before using these wallets for anything substantial.
 					<br />
-					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.</em></p>
+					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
+					</p></p>
 				</div>
 				<div id="print-settings" class="row no-print">
 					<div class="print-buttons round-block help-section colsix first">
@@ -1007,7 +1009,10 @@ $().ready(function ()
 							<h3>Appearance</h3>
 							
 							<label id="current-frame-label" class="left-label">Frame:</label>
+							<!--
 							<div id="current-frame"><img src="" id="current-frame-img"/></div>
+							-->
+							
 							<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
 								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
 									<!-- Dynamically filled -->
@@ -1016,8 +1021,10 @@ $().ready(function ()
 
 							
 							<label class="left-label design-label">Design:</label>
+							
+							<!--
 							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
-						
+							-->
 							
 							<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
 								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
