@@ -172,7 +172,7 @@
     .switch-toggle.switch-5 input:checked:last-of-type ~ a {
       left: 80%; }
   .switch-candy {
-    background-color: #2d3035;
+    background-color: #13374E;
     border-radius: 3px;
     color: white;
     font-weight: bold;
@@ -191,11 +191,8 @@
 	  */ }
     .switch-candy a {
       border: 1px solid #333333;
-      background-color: #0da3da;
+      background-color: #205D82;
       border-radius: 3px;
-      background-image: -webkit-linear-gradient(top, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-      background-image: linear-gradient(to  bottom, rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
-      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.45); }
     .switch-candy > span {
       color: #333333;
       text-shadow: none; }

@@ -209,15 +209,16 @@ $().ready(function ()
 			<a></a>
 </div>
 
-<div id="header" class="wrapper no-print">
+<div id="header" class="wrapper no-print darkColor-bkg">
 	<div class="inner">
 		
 		<div id="main-menu" class="menu no-print">
 			<ul>
+
+				<li section="donate" class="menu-key-donate right">Donate</li>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
 				<li section="security" class="menu-key-security">Security</li>
-				<li section="coin-setup" class="menu-key-import active">Wallet Setup</li>
-				<li section="donate" class="menu-key-donate right">Donate</li>
+				<li section="coin-setup" class="menu-key-import active last">Wallet Setup</li>
 			</ul>
 		</div>
 		
@@ -606,7 +607,7 @@ $().ready(function ()
 					<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
 					<li id="calibrate" class="step disabled two" section="coin-setup-calibrate">Step 2 - Calibrate Printer</li>
 					<li id="print" class="step disabled three" section="coin-setup-print">Step 3 - Print & Fold</li>
-					<a></a>
+					<a class="darkColor-bkg"></a>
 					
 				</ul>
 			</div>
@@ -897,7 +898,7 @@ $().ready(function ()
 								<br><br><br>
 								</span>
 							</div>	
-							<div class="row"><div class="colsix first">
+							
 							<label class="left-label">Print Face:</label>
 								<div class="switch-toggle switch-2 switch-candy ">
 									<input type="radio" name="print-face" value="Front" id="toggle-front" autocomplete="off" checked />
@@ -908,7 +909,7 @@ $().ready(function ()
 
 									<a></a>
 							</div>
-							</div>
+							
 
 							<div class="help-bubble" style="float:left;">
 								<span>
@@ -916,7 +917,7 @@ $().ready(function ()
 								<br><br>
 								</span>
 							</div>	
-							<div class="colsix last">
+							
 							<div class="backup">
 
 								<label class="left-label">Copies:</label>
@@ -930,8 +931,8 @@ $().ready(function ()
 									<a></a>
 								</div>
 								
-							</div>
-							</div>
+							
+							
 							</div>
 							<div class="help-bubble" style="float:left;">
 								<span>
@@ -990,9 +991,10 @@ $().ready(function ()
 							</div>
 							-->
 							
-
-							<input type="button" id="print-button" class="large-button right" value="Print" />
-							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+							<div class="row">
+							<div class="colfour first"><input type="button" id="print-button" class="large-button right" value="Print" /></div>
+							<div class="coleight last"><input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled /></div>
+							</div>
 							<br />
 						</div>
 					</div>
@@ -1001,22 +1003,24 @@ $().ready(function ()
 						<div class="colinner">
 							<h3>Appearance</h3>
 							
-							<label class="left-label">Frame:</label>
+							<label id="current-frame-label" class="left-label">Frame:</label>
 							<div id="current-frame"><img src="" id="current-frame-img"/></div>
 							<div class="frame-type selector-grid" fade="true" scroll="false" rowheight="67px">
 								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
 									<!-- Dynamically filled -->
 								</div>
 							</div>
+
 							
 							<label class="left-label design-label">Design:</label>
 							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
+						
+							
 							<div class="design-type selector-grid" fade="true" scroll="true" rowheight="67px">
 								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
 									<!-- Dynamically filled -->
 								</div>
 							</div>
-							
 							
 							<div class="hue-shift hide premium">
 							
@@ -1129,5 +1133,9 @@ $().ready(function ()
 	</div>
 </div>
 </form>
+
+
+
+
 </body>
 </html>

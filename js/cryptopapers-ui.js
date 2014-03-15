@@ -190,7 +190,7 @@ function InitSelectorGrid()
 				$('div.coin-type').fadeIn('fast');
 				$(this).addClass('active');
 				}
-		})
+		});
 	
 		$('div.coin.selector').click(function(e){
 			e.preventDefault();
@@ -200,7 +200,20 @@ function InitSelectorGrid()
 			$('div.coin-type').fadeOut('fast');
 			$('#coin-selected.active').removeClass('active');
 
-		})
+		});
+
+		$('div.frame-type .frame-grid-row .frame').click(function(){
+			var newFrame = $(this).attr('data').toString();
+			var newLabel = $(this).siblings('.frame-grid-row-header').html();
+			$('#current-frame img').attr('src', 'images/wallet-frames/' + newFrame + '.png');
+			$('#current-frame-label').html(newLabel);
+
+			$('div.frame-type').fadeOut('fast');
+		});
+
+		$('#current-frame img').click(function(){
+			$('.frame-type, #black-out').fadeIn('fast');
+		});
 
 	// $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 	// 	{
