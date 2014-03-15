@@ -343,16 +343,16 @@ h1, h2, h3, h4, h5, h6{
 
 .coin-type
 {
-top: 175px;
-background:#fff;
+top: 0px;
+height: 105px;
+background: #fff;
 z-index: 100000;
 position: absolute;
-right: 0px;
-padding:20px;
-border:1px solid #e2e2e2;
-border-radius:5px;
-box-shadow:0px 0px 8px rgba(0, 0, 0, 0.2);
-display:none;
+left: 192px;
+padding: 0px;
+border: 1px solid #e2e2e2;
+border-radius: 5px;
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
 }
 
 #coin-key{
@@ -379,6 +379,154 @@ width: 100%;
 width: 500px;
 }
 
+
+.coin-type .coin-type-radio,
+.wallet-backup-radio {
+	border: 1px solid;
+	padding: 4px;
+	border-radius: 5px;
+	margin: 3px;
+	background-color: #eeeeee;
+}
+.selector-grid-wrapper
+{
+	z-index:10000;
+	max-width: 1102px;
+}
+.selector-grid-row{
+	display: block;
+	width: 100%;
+	height: 0px;
+	
+	background-color: #eee;
+}
+
+.coin-type .selector-grid-wrapper.selecting .selector-grid-row{
+	height: 105px;
+}
+
+.coins-grid-wrapper{
+	height:auto;
+	overflow:visible;
+	border-radius:10px;
+}
+.coin-grid-row{
+
+}
+.coins-grid-wrapper.selecting .coin-grid-row{
+	height: 105px;
+}
+
+.design-grid-wrapper .design
+{
+	display:none;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	float:left;
+	padding:115px 0px 0px 0px;
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+
+	border:1px solid #fff;
+}
+.coins-grid-wrapper .coin{
+	display:none;
+	width: 100px;
+	height: 100px;
+	background-size: 100%;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	float:left;
+	padding:115px 0px 0px 0px;
+	background-repeat:no-repeat;
+	background-position:center 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+
+	border:1px solid #fff;
+}
+
+.selector-grid-wrapper .selector.active{
+	display: block;
+}
+	
+.selector-grid-wrapper.selecting .selector{
+	display: block;
+	background-color:#f3f3f3;
+	z-index: 1000;
+}
+.selector-grid-wrapper.selecting .frame.selector{
+	background-color:#888888;
+}
+
+.current-coin{
+	display:block;
+	width:120px;
+	height:105px;
+	box-sizing:border-box;
+	-moz-box-sizing:border-box;
+	padding:10px 10px 0px 10px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	cursor:pointer;
+	background-color:#fff;
+	float:left;
+}
+
+.current-coin em{
+
+	font-weight: bold;
+	width: 100%;
+	font-style: normal;
+	display: inline-block;
+	text-align: center;
+	border-radius: 5px;
+	height: 25px;
+}
+.coins-grid-wrapper .coin:hover, 
+.coins-grid-wrapper .coin.active{
+	background-color:#eee;
+}
+.coins-grid-wrapper.selecting{
+	width: 100%;
+	overflow: visible;
+	float: left;
+	position: relative;
+	background-color:#eee;
+	margin-bottom: 10px;
+	box-shadow:0px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.coins-grid-wrapper .coin em{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	padding-bottom: 5px;
+	font-style: normal;
+	font-weight: bolder;
+	padding-top: 2px;
+	background: #dddddd;
+}
+
+.coin.selector{
+width: 80px;
+height: 105px;
+}
+.coin-type .coin img {
+height: 80px;
+width: auto;
+}
+
+/*
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
 	border: 1px solid;
@@ -584,7 +732,7 @@ width: 500px;
 #coin-selected.active .notch, #coin-selected.active .notchBack{
 	display:block;
 }
-
+*/
 .coin-wallets.btc .coin-logo,
 .coin.btc-coin {
 	background-image:url('../images/coin-icons/btc-logo.png');
@@ -844,10 +992,13 @@ top:24px;
 }
 .coin-type .coin
 {
-width:110px;
-margin:5px 0px 10px 0px;
-padding-top:10px;
-padding-bottom:5px;
+width: 100px;
+margin: 0px;
+padding: 0px;
+text-align: center;
+}
+.coin-type .coin img
+{
 }
 .copyright
 {
@@ -907,6 +1058,12 @@ width: 50%;
 	font-weight: bolder;
 	text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
 	font-size: 13px;
+color: white;
+}
+.coming-soon.untested
+{
+left: 14px;
+text-shadow: 1px 1px 9px rgba(0, 0, 0, 1);
 }
 
 label.left-label {
@@ -1752,8 +1909,9 @@ position: relative;
 }
 #print-settings .left-label
 {
-	width: 117px;
-	margin-top: 8px;
+width: 117px;
+margin-top: 0px;
+padding: 9px;
 }
 #print-settings .print-buttons
 {
