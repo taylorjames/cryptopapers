@@ -142,31 +142,31 @@ var Frames =
 	
 var Backgrounds = 
 	{	
-	'abstract': 53,
-	'bricks': 12,
+	'abstract': 10,
+	'bricks': 10,
 	'camo': 2,
 	'cash': 2,
 	'coin': 6,
 	'fire': 4,
-	'flower': 11,
+	'flower': 10,
 	'food': 7,
 	'fractal': 5,
 	'glass': 2,
 	'holiday': 6,
 	'love': 4,
 	'metal': 10,
-	'misc': 17,
+	'misc': 10,
 	'music': 1,
 	'paper': 2,
-	'plants': 14,
+	'plants': 10,
 	'rocks-sand': 6,
 	'sky': 7,
 	'stars': 3,
 	'tech': 3,
-	'texture': 21,
+	'texture': 10,
 	'tiles': 7,
-	'water': 16,
-	'wood': 20
+	'water': 10,
+	'wood': 10
 	};
 
 	
