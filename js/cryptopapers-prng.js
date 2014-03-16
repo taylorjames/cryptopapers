@@ -86,21 +86,21 @@ function InitRNG()
 					$(this).css({'position':'static', 'display':'none'});
 					$('.sub-section.coin-setup-keys').animate({'margin-top':'0'}, 500);
 				});
-				}		
-				
-			if (!HasPrivateKey)
-				{
-				$('.generate-button').removeAttr('disabled').addClass('enabled');
-				
-				if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
+					
+				if (!HasPrivateKey)
 					{
-					$('#private-key-generate').click();
-					if (WhenEntropyPoolFills_GoToPrint)
+					$('.generate-button').removeAttr('disabled').addClass('enabled');
+					
+					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
 						{
-						$('#coin-setup-menu #print').click();
+						$('#private-key-generate').click();
+						if (WhenEntropyPoolFills_GoToPrint)
+							{
+							$('#coin-setup-menu #print').click();
+							}
 						}
 					}
-				}
+				}				
 			}
 		});
 	}

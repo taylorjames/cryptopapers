@@ -49,13 +49,20 @@ function InitDismissable()
 	$('.dismissable .close-button').click(function() {
 		$(this).parent().animate({opacity: '0'}, 300, function() {
 			$(this).hide();
+			//$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
+		});
+	});
+	$('.dismissable.warning.beta-software .close-button').click(function() {
+		$(this).parent().animate({opacity: '0'}, 300, function() {
+			$(this).hide();
 			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
 		});
+	});
 
 		
-	});
 	
 	}
+	
 function InitDonate()
 	{
 	$(".donate-reminder, .donate-reminder *").click(function() 

@@ -32,6 +32,8 @@
 		margin: 0px;
 		padding: 0px;
 		zoom: 0.81;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(0.81);
 	}
 	.inner
 	{
@@ -58,6 +60,8 @@
 		float: left !important;
 		background-color: white !important;
 		zoom: 1.00 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.00) !important;	
 		height: auto !important;
 		border: none !important;
 		max-width: auto !important;
@@ -73,22 +77,32 @@
 	.coin-wallet.zoom-90
 	{
 		zoom: 0.90 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(0.90)  !important;
 	}
 	.coin-wallet.zoom-95
 	{
 		zoom: 0.95 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(0.95)  !important;
 	}
 	.coin-wallet.zoom-100
 	{
 		zoom: 1.00 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.00)  !important;
 	}
 	.coin-wallet.zoom-105
 	{
 		zoom: 1.05 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.05)  !important;
 	}
 	.coin-wallet.zoom-110
 	{
 		zoom: 1.10 !important;
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.10)  !important;
 	}
 	body
 	{
@@ -1669,22 +1683,32 @@ ul#coin-setup-menu li.active{
 .zoom-90 .coin-wallet
 {
 	zoom: 0.90;
+	-moz-transform-origin: left top;
+	-moz-transform: scale(0.90);
 }
 .zoom-95 .coin-wallet
 {
 	zoom: 0.95;
+	-moz-transform-origin: left top;
+	-moz-transform: scale(0.95);
 }
 .zoom-100 .coin-wallet
 {
 	zoom: 1.00;
+	-moz-transform-origin: left top;
+	-moz-transform: scale(1.00);
 }
 .zoom-105 .coin-wallet
 {
 	zoom: 1.05;
+	-moz-transform-origin: left top;
+	-moz-transform: scale(1.05);
 }
 .zoom-110 .coin-wallet
 {
 	zoom: 1.10;
+	-moz-transform-origin: left top;
+	-moz-transform: scale(1.10);
 }
 
 #print-button
@@ -1706,6 +1730,8 @@ overflow: visible;
 .coin-wallets
 {
 zoom: 65%;
+-moz-transform-origin: left top;
+-moz-transform: scale(0.65);
 border: 1px dashed;
 border-radius: 16px;
 float: left;
@@ -2104,7 +2130,6 @@ margin-top: 5px;
 	font-size: 37px;
 	padding-top: 20px;
 }
-
 .trust-items
 {
 	width: 830px;
@@ -2702,4 +2727,11 @@ float: right;
 margin-top: 27px;
 margin-right: 11px;
 width: 123px;
+}
+
+.print-instructions
+{
+float: right;
+position: relative;
+width: 36%;
 }

@@ -116,6 +116,8 @@
   left: 310px;
   top: 124px;
   zoom: 112%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.12) !important;
 }
 .frame-1.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-1-Back.png');
@@ -146,6 +148,8 @@
   left: 748px;
   top: 127px;
   zoom: 112%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.12) !important;
 }
 .frame-2 .coin-wallet .coin-wallet-private-key-qr canvas {
   padding: 7px;
@@ -231,6 +235,8 @@
   left: 768px;
   top: 131px;
   zoom: 112%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.12) !important;
 }
 .frame-3.back .coin-wallet .cryptopapers-logo {
   display: none;
@@ -243,7 +249,7 @@
   float: left;
   padding-top: 76px;
   padding-left: initial;
-  left: 60px;
+  left: 43px;
   position: relative;
 }
 .frame-3.back .coin-wallet .coin-wallet-right canvas {
@@ -261,8 +267,8 @@
   margin-bottom: 5px;
 }
 .frame-3.back .coin-logo {
-  top: 75px;
-  left: 498px;
+  top: 72px;
+  left: 469px;
   background-size: 100%;
   width: 220px;
   height: 220px;
@@ -293,7 +299,10 @@
 }
 .frame-4 .coin-wallet .coin-logo {
   top: 95px;
-  left: 288px;
+  left: 278px;
+}
+.frame-4 .coin-wallet .cryptopapers-logo {
+  left: 249px;
 }
 .frame-4.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-4-Back.png');
@@ -303,6 +312,8 @@
   left: 170px;
   top: 124px;
   zoom: 112%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.12) !important;
 }
 .frame-4.back .coin-logo {
   top: 63px;
@@ -330,6 +341,9 @@
   padding-top: 45px;
   width: 185px;
 }
+.frame-5 .coin-wallet .coin-wallet-private-key {
+  font-size: 8pt;
+}
 .frame-5 .coin-wallet .coin-wallet-address-qr {
   margin-top: 44px;
   margin-left: 54px;
@@ -355,6 +369,8 @@
   left: 194px;
   top: 135px;
   zoom: 112%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.12) !important;
 }
 .frame-5.back .coin-wallet .wallet-frame {
   background-image: url('../images/wallet-frames/Frame-5-Back.png');
