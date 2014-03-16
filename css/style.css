@@ -123,6 +123,21 @@
 	}
 }
 
+@-moz-document url-prefix() {
+	@media print {
+	body
+	{
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.10)  !important;
+	}
+	.coin-wallets
+	{
+		-moz-transform-origin: left top;
+		-moz-transform: scale(1.00)  !important;
+	}
+}
+}
+
 body{
 	margin:0px;
 	padding:0px;
