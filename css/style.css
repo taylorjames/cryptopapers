@@ -1350,11 +1350,14 @@ input[type=button]
     line-height:3px;
     height:50px;
     border:none;
+    -webkit-transition: background-color 300ms ease-out;
+	-moz-transition: background-color 300ms ease-out;
+	transition: background-color 300ms ease-out;
 
 }
 
 input[type=button]:hover{
-	box-shadow: 0 2px 0px #205D82, inset 0 1px 1px rgba(255, 255, 255, 0.45);
+	background-color:#13374E;
 }
 .warning
 {
