@@ -69,6 +69,7 @@
 		margin-bottom: 0px !important;
 		background-color: none !important;
 		margin-top:  0px !important;
+		margin-right: 0px !important;
 	}
 	.coin-wallets.back
 	{
@@ -1737,6 +1738,7 @@ input#compress-decompress-button{
 position: relative;
 overflow: visible;
 }
+
 .coin-wallets
 {
 zoom: 65%;
@@ -1750,7 +1752,11 @@ margin-bottom: 50px;
 background-color: #ddd;
 min-height: 854px;
 margin-top: 0px;
+/* FF Fixes */
+margin-right: -500px;
+margin-bottom: -279px;
 }
+
 .frame-instructions
 {
 float: right;
