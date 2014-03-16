@@ -308,12 +308,22 @@ var Backgrounds =
 		Log(evt.target.files[0]);
 		
 		var fr = new FileReader();
-		var	filecontent = fr.readAsArrayBuffer(evt.target.files[0]);
-		var binary = window.btoa(filecontent);
 		
-		Log(filecontent);
-		Log(binary);
+		fr.onload = (function(theFile) {
+			return function(e) {
+				// Render background.
+				Log(e.target.result);
+				
+				$('.coin-wallet .coin-wallet-background').attr('src', e.target.result);
+				$('.custom.coin-wallet-background').attr('src', e.target.result);
+				
+				};
+			})(evt.target.files[0]);
+
+		// Read in the image file as a data URL.
+		var a = fr.readAsDataURL(evt.target.files[0]);
 		
+		Log(a);
 	//	$('.coin-wallet').css('background-image', 'url("' + '' + '")');
 		});
 	}

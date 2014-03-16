@@ -994,13 +994,6 @@ $().ready(function ()
 								<a></a>
 							</div>
 							
-							<!--
-							<label class="left-label design-label">Custom:</label>
-							<div class="design-type-custom" >
-								<input type="file" id="custom-design">
-							</div>
-							-->
-							
 							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
 							<input type="button" id="print-button" class="large-button right" value="Print" />
 							<br />
@@ -1012,9 +1005,6 @@ $().ready(function ()
 							<h3>Appearance</h3>
 							
 							<label id="current-frame-label" class="left-label">Frame:</label>
-							<!--
-							<div id="current-frame"><img src="" id="current-frame-img"/></div>
-							-->
 							
 							<div class="frame-type selector-grid" fade="true" scroll="false" colwidth="207px" rowheight="67px">
 								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
@@ -1024,10 +1014,6 @@ $().ready(function ()
 
 							
 							<label class="left-label design-label">Design:</label>
-							
-							<!--
-							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
-							-->
 							
 							<div class="design-type selector-grid" fade="false" scroll="true" effect="false" colwidth="207px" rowheight="67px">
 								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
@@ -1047,15 +1033,30 @@ $().ready(function ()
 								</div>	
 								
 								<label class="left-label color-shift-label">Color Shift:</label>
-								<!--
-								<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-								<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-								-->
 								<span class="hue-shift-amount">0&deg;</span>
 								
 								<div id="hue-slider"></div>
 								<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
 							</div>
+							
+							<div class="custom-backgrounds">
+							
+								<label class="left-label design-label">Custom:</label>
+								<div class="design-type-custom" >
+									<input type="file" id="custom-design">
+								</div>
+								
+														
+								<span class="custom-design-x-amount">X: 50%</span>							
+								<div id="custom-design-x-slider"></div>
+								
+								<span class="custom-design-y-amount">Y: 0%</span>							
+								<div id="custom-design-y-slider"></div>
+								
+								<span class="custom-design-zoom-amount">Zoom 50%</span>							
+								<div id="custom-design-zoom-slider"></div>
+							</div>
+							
 						</div>
 					</div>
 				</div>

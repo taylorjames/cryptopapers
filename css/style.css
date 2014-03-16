@@ -1155,7 +1155,8 @@ position: absolute;
 top: 0px;
 left: 0px;
 z-index: 1;
-max-height:358px;
+width: 100%;
+max-width: none;
 }
 .design-type .coin-wallet-background
 {
@@ -1698,6 +1699,7 @@ ul#coin-setup-menu li.active{
 {
 	width: 1100px;
 	height: 360px;
+	overflow: hidden;
 	
 	margin-left: 0px;
 	margin-top: 0px;
