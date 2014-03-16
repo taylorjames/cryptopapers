@@ -76,7 +76,7 @@ function InitRNG()
 			$('.pool-status-bar .pool-status-complete').attr('style', 'width:' + percent + '%');
 			var shadow = 25 - Math.round(collected_points / total_points  * 25);
 			
-			$('.rng-move-mouse').css('box-shadow', '1px 1px ' + shadow + 'px #' + ($('body').hasClass('dark-theme') ? 'ffffff': '000000'));
+			$('.rng-move-mouse').css('box-shadow', '0px 3px ' + shadow + 'px rgba(' + ($('body').hasClass('dark-theme') ? '255,255,255,1)': '18,87,129,0.5'));
 			
 			if (collected_points == total_points)
 				{
@@ -84,7 +84,7 @@ function InitRNG()
 				
 				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){
 					$(this).css({'position':'static', 'display':'none'});
-					$('.sub-section.coin-setup-keys').animate({'margin-top':'0'}, 500);
+					$('.sub-section.coin-setup-keys').animate({'margin-top':'10px'}, 500);
 				});
 					
 				if (!HasPrivateKey)
