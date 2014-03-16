@@ -30,6 +30,14 @@ function InitPage()
 	 
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
+	$('#run-self-tests').click(function() {
+		var Result = RunTests();
+		Log(Result);
+		
+		// Get a better display box.
+		alert(Result);		
+	});
+	
 	if (InitPremium)
 		InitPremium();
 	}
@@ -39,15 +47,25 @@ function InitDismissable()
 	$('.dismissable').prepend('<div class="close-button"></div>');
 	
 	$('.dismissable .close-button').click(function() {
-		$(this).parent().animate({opacity: '0', height: '0'}, 300, function() {
+		$(this).parent().animate({opacity: '0'}, 300, function() {
 			$(this).hide();
+			//$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
 		});
 	});
+	$('.dismissable.warning.beta-software .close-button').click(function() {
+		$(this).parent().animate({opacity: '0'}, 300, function() {
+			$(this).hide();
+			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
+		});
+	});
+
+		
 	
 	}
+	
 function InitDonate()
 	{
-	$(".donate-reminder").click(function() 
+	$(".donate-reminder, .donate-reminder *").click(function() 
 		{
 		$('.menu-key-donate').click();
 		});
@@ -113,9 +131,7 @@ function InitMenus()
 
 		$('#coin-setup-menu.menu li.active').removeClass('active');
 
-		$('.coin-setup .sub-section').each(function() {
-			$(this).fadeOut(300);
-		});
+		$('.coin-setup .sub-section').fadeOut(300);
 		
 		$(this).addClass('active');
 		
@@ -173,93 +189,166 @@ function InitTheme()
 
 function InitSelectorGrid()
 	{
+		/*
+		$('#coin-selected').click(function(e){
+			e.preventDefault();
+			if ($(this).hasClass('active'))
+				{
+				$('div.coin-type').fadeOut('fast');	
+				$(this).removeClass('active');			
+				}
+			else
+				{
+				$('div.coin-type').fadeIn('fast');
+				$(this).addClass('active');
+				}
+		});
 	
-	$('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
-		{
-		e.preventDefault();
+		$('div.coin.selector').click(function(e){
+			e.preventDefault();
+			var abbrev = $(this).attr('data');
+			$('#coin-selected img').attr('src', 'images/coin-icons/' + abbrev + '-logo.png');
+			$('#coin-selected em').html(abbrev);
+			$('div.coin-type').fadeOut('fast');
+			$('#coin-selected.active').removeClass('active');
+
+		});
+
+		$('div.frame-type .frame-grid-row .frame').click(function(){
+			var newFrame = $(this).attr('data').toString();
+			var newLabel = $(this).siblings('.frame-grid-row-header').html();
+			$('#current-frame img').attr('src', 'images/wallet-frames/' + newFrame + '.png');
+			$('#current-frame-label').html(newLabel);
+
+			$('div.frame-type').fadeOut('fast');
+		});
+
+		$('#current-frame img').click(function(){
+			$('.frame-type, #black-out').fadeIn('fast');
+		});
+		*/
+
+	 $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
+	 	{
+	 	e.preventDefault();
 		
-		var ParentRow = $(this).parents('.selector-grid-row');
-		var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
-		var ParentGrid = $(this).parents('.selector-grid');
-		var Fade = ParentGrid.attr('fade') == 'true';
-		var Scroll = ParentGrid.attr('scroll') == 'true';
+	 	var ParentRow = $(this).parents('.selector-grid-row');
+	 	var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
+	 	var ParentGrid = $(this).parents('.selector-grid');
+	 	var Fade = ParentGrid.attr('fade') == 'true';
+	 	var Scroll = ParentGrid.attr('scroll') == 'true';
+		var Effect = ParentGrid.attr('effect') != 'false';
 		
-		if (ParentGridWrapper.hasClass('selecting'))
-			{
-			ParentGridWrapper.find('.selector.active').removeClass('active');
-			ParentGridWrapper.find('.selector-grid-row.active').removeClass('active');
+		var RowHeight = ParentGrid.attr('rowheight');
+		var ColWidth = ParentGrid.attr('colwidth');
+		
+	 	if (ParentGridWrapper.hasClass('selecting'))
+	 		{
+	 		ParentGridWrapper.find('.selector.active').removeClass('active');
+	 		ParentGridWrapper.find('.selector-grid-row.active').removeClass('active');
 			
-			$(this).parent().addClass('active');
-			$(this).addClass('active');
+	 		$(this).parent().addClass('active');
+	 		$(this).addClass('active');
 			
-			if (Fade)
-				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
-					ParentGridWrapper.removeClass('selecting');
-					ParentGrid.removeClass('selecting');
+	 		if (Fade)
+	 			{
+	 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+	 			ParentGridWrapper.find('.selector:not(.active)').fadeOut(300, function() {
+	 				ParentGridWrapper.removeClass('selecting');
+	 				ParentGrid.removeClass('selecting');
 					
-					});
-				}
-			else
+	 				});
+	 			}
+			else if (!Effect)
 				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
-					{
-					ParentGridWrapper.removeClass('selecting');
-					ParentGrid.removeClass('selecting');
-					});
+				ParentGrid.find('.selector-grid-row:not(.active)').css('height', '0px');
+				ParentGridWrapper.find('.selector:not(.active)').css('height', '0px').css('width', '0px').hide();
+				
+				ParentGridWrapper.removeClass('selecting');
+				ParentGrid.removeClass('selecting');
 				}
-			}
+	 		else
+	 			{
+	 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: '0px'}, 300);
+	 			ParentGridWrapper.find('.selector:not(.active)').animate({height: '0px', width: '0px'}, 300, function() 
+	 				{
+	 				ParentGridWrapper.removeClass('selecting');
+	 				ParentGrid.removeClass('selecting');
+	 				});
+	 			}
+	 		}
 		else
-			{
-			ParentGrid.addClass('selecting');
-			ParentGridWrapper.addClass('selecting');
+	 		{
+	 		ParentGrid.addClass('selecting');
+	 		ParentGridWrapper.addClass('selecting');
 			
-			if (Fade)
-				{
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
-					if (Scroll)
-						{
-						var Obj = $(this);
+	 		if (Fade)
+	 			{
+	 			ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: RowHeight}, 300);
+	 			ParentGridWrapper.find('.selector:not(.active)').fadeIn(300, function() {
+	 				if (Scroll)
+	 					{
+	 					var Obj = $(this);						
+					
+	 					var Position = Obj.offset().top;
+						
+	 					$('html, body').animate({
+	 						scrollTop: Position - 100
+	 					}, 300);
+	 					Scroll = false;
+	 					}
+	 			});
+	 			}
+	 		else
+	 			{
+				if (!Effect)
+					{
+					ParentRow.css('height', RowHeight + 'px');
+				
+					ParentGrid.find('.selector-grid-row:not(.active)').css('height', RowHeight);
+					ParentGridWrapper.find('.selector:not(.active)').css('width', ColWidth).css('height', RowHeight).show();
+					
+	 				if (Scroll)
+	 					{
+	 					var Obj = $(this);
 						
 					
-						var Position = Obj.offset().top;
+	 					var Position = Obj.offset().top;
 						
-						$('html, body').animate({
-							scrollTop: Position
-						}, 300);
-						Scroll = false;
-						}
-				});
-				}
-			else
-				{
+	 					$('html, body').animate({
+	 						scrollTop: Position - 100
+	 					}, 300);
+	 					Scroll = false;
+	 					}
+					}
+				else
+					{
+					ParentRow.animate({ height: RowHeight}, 300);
+				
+					ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: RowHeight}, 300);
+					ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: ColWidth, height: RowHeight}, 300, function() {
+						
+						
+					
+						if (Scroll)
+							{
+							var Obj = $(this);
+							
+							var Position = Obj.offset().top;
+							
+							$('html, body').animate({
+								scrollTop: Position - 100
+							}, 300);
+							Scroll = false;
+							}
+					});
+					}
+				
+	 			}
+	 		}
 			
-			//	ParentRow.animate({ height: }, 300);
-				
-				ParentGrid.find('.selector-grid-row:not(.active)').animate({ height: ParentGrid.attr('rowheight')}, 300);
-				ParentGridWrapper.find('.selector:not(.active)').css('width', '0px').css('height', '0px').animate({width: '100px', height: '100px'}, 300, function() {
-				
-					if (Scroll)
-						{
-						var Obj = $(this);
-						
-						var Position = Obj.offset().top;
-						
-						$('html, body').animate({
-							scrollTop: Position
-						}, 300);
-						Scroll = false;
-						}
-				});
-				
-				}
-			}
-			
-		return true;
-		});	
+	 	return true;
+	 	});	
 	}
 
 function AddDropdownCoins()
@@ -272,18 +361,19 @@ function AddDropdownCoins()
 		var CoinAbbreviation = CoinInfo[Object.keys(CoinInfo)[i]].name;
 		var CoinFullName = CoinInfo[Object.keys(CoinInfo)[i]].fullName;
 		var Enabled = CoinInfo[Object.keys(CoinInfo)[i]].enabled;
+		var CoinImage = CoinAbbreviation + "-logo.png";
 		
 		var Disabled = (Enabled ? '' : ' disabled');
 		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
-		var Tests = (Enabled && !HasTests(CoinAbbreviation) ? '<span class="coming-soon">UNTESTED</span>' : '');
+		var Tests = (Enabled && !HasTests(CoinAbbreviation) ? '<span class="coming-soon untested">UNTESTED</span>' : '');
 		var Active = (CoinAbbreviation == DefaultCoin ? ' active' : '');
-		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:right;"' : '');
+		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:left;"' : '');
 		
 		
 		if (i == 0)
 			coins += '<div class="coin-grid-row selector-grid-row">';
 			
-		coins += '<div class="coin selector ' + CoinAbbreviation + '-coin' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' 
+		coins += '<div class="coin selector ' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' + '<img src="images/coin-icons/' + CoinAbbreviation + '-logo.png" class="' + CoinAbbreviation + '-coin" />'
 		+ ComingSoon + Tests + '<em>' + CoinFullName + '</em></div>';
 				
 		if ((i+1) % cols == 0)
@@ -295,8 +385,9 @@ function AddDropdownCoins()
 		}
 			coins += '</div>';
 	
-		
+	
 	$('.coins-grid-wrapper').html(coins);
+
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
 		{
@@ -318,6 +409,8 @@ function AddDropdownCoins()
 		
 		
 		CurrentCoinType = NewCoinType;
+
+		console.log(CurrentCoinType);
 		
 		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		
