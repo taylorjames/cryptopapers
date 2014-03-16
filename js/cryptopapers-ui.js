@@ -49,7 +49,7 @@ function InitDismissable()
 	$('.dismissable .close-button').click(function() {
 		$(this).parent().animate({opacity: '0'}, 300, function() {
 			$(this).hide();
-			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
+			$('.sub-section.coin-setup-print').animate({'margin-top': '10px'}, 500);
 		});
 
 		
