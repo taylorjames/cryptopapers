@@ -15,7 +15,7 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 var WhenEntropyPoolFills_AutoGenerateKeys = true;
 var WhenEntropyPoolFills_GoToPrint = false;
 
-var MINIMUM_CAPTURE_TIME_DIFFERENCE = 1;
+var MINIMUM_CAPTURE_TIME_DIFFERENCE = 40;
 
 var sr = window.SecureRandom = function () { };
 
@@ -26,8 +26,8 @@ sr.poolSize = 256;
 sr.pptr = 0;
 
 sr.pointsKeepCollecting = true;
-sr.pointsRequiredMin = 100;
-sr.pointsRequiredMax = 150;
+sr.pointsRequiredMin = 300;
+sr.pointsRequiredMax = 400;
 sr.pointsRequired = Math.round(Math.random() * (sr.pointsRequiredMax - sr.pointsRequiredMin)) + sr.pointsRequiredMin;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();

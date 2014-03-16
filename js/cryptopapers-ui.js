@@ -176,6 +176,7 @@ function InitTheme()
 			$('body').addClass('dark-theme');
 		});
 		
+	/*
 	if (!Security_IsOnline)
 		{
 		$('#lights-off').click();
@@ -184,6 +185,7 @@ function InitTheme()
 		{
 		$('#lights-on').click();
 		}
+	*/
 		
 	}
 
