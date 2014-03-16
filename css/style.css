@@ -1027,10 +1027,10 @@ text-align: center;
 }
 .copyright
 {
-top: 61px;
+top: 17px;
 color: white;
 position: relative;
-left: -118px;
+left: -38px;
 text-shadow: 1px 1px 1px white;
 font-size: 11px;
 }
@@ -1439,6 +1439,8 @@ input[type=button].error
     transition: all .3s ease-in-out;
 }
 */
+
+.inner, .warning {min-width:1170px;}
 .round-block.print-appearance
 {
 float: right;
