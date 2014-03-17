@@ -43,25 +43,79 @@ function InitPage()
 		InitPremium();
 	}
 	
+$.fn.snazzyShow = function(speed, callback) {
+	this.each(function() {
+	
+	speed = speed == undefined ?  300 : speed;
+
+	$(this).attr('oldpadding-top') 
+	if ($(this).attr('oldpadding-top') == undefined)
+		$(this).show().animate({height: $(this).getTrueHeight()}, speed, function() {
+			$(this).animate({opacity: '1'}, speed);
+			$(this).css('height', 'auto');
+		});
+	else
+		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: $(this).getTrueHeight()}, speed, function() {
+			$(this).animate({opacity: '1'}, speed, function() { 
+				$(this).css('height', 'auto');
+			});
+			
+		});
+	});
+	
+	if (callback)
+		callback();
+}
+
+$.fn.snazzyHide = function(speed, callback) {
+	this.each(function() {
+		if ($(this).css('height') == '0px')
+			return; // Already hidden.
+			
+		speed = speed == undefined ?  300 : speed;
+		
+		$(this).animate({opacity: '0'}, speed, function() {
+		
+			$(this).attr('oldpadding-top', $(this).css('padding-top'));
+			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
+			
+			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
+				$(this).hide();
+				});
+			});
+		});
+	
+	setTimeout(function() {
+	if (callback)
+		callback();
+		}, speed*2+1);
+}
+
+$.fn.getTrueHeight = function() {
+
+	var OldHeight = this.css('height');
+	this.css('height', 'auto');
+	var NewHeight = this.css('height');
+	this.css('height', OldHeight);
+	
+	if ($(this).attr('oldpadding-top') != undefined)
+		{
+		NewHeight = parseInt(NewHeight.substring(0, NewHeight.length-2));
+		NewHeight +=  parseInt($(this).attr('oldpadding-top').substring(0, $(this).attr('oldpadding-top').length-2));
+		NewHeight +=  parseInt($(this).attr('oldpadding-bottom').substring(0, $(this).attr('oldpadding-bottom').length-2));
+		}
+		
+	return NewHeight;
+}
+
+
 function InitDismissable()
 	{
 	$('.dismissable').prepend('<div class="close-button"></div>');
 	
 	$('.dismissable .close-button').click(function() {
-		$(this).parent().animate({opacity: '0'}, 300, function() {
-			$(this).hide();
-			//$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
-		});
-	});
-	$('.dismissable.warning.beta-software .close-button').click(function() {
-		$(this).parent().animate({opacity: '0'}, 300, function() {
-			$(this).hide();
-			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
-		});
-	});
-
-		
-	
+		$(this).parent().snazzyHide();
+	});	
 	}
 	
 function InitDonate()
@@ -85,21 +139,18 @@ function InitHelp()
 		var Toggle = $(this);
 		if (Toggle.parent().hasClass('help-active'))
 			{
-			Toggle.animate({opacity: '0.5'});
-			Toggle.parent().find('.help-bubble').animate({opacity: '0', height: '0px'}, 300 , function() 
+			Toggle.animate({opacity: '0.5'}, 300);
+			Toggle.parent().find('.help-bubble').snazzyHide(300 , function() 
 				{
 				Toggle.parent().removeClass('help-active');
-				$(this).hide();
 				});
 			}
 		else
 			{
-			Toggle.animate({opacity: '1'});
+			Toggle.animate({opacity: '1'}, 300);
 			Toggle.parent().addClass('help-active');
 			
-			Toggle.parent().find('.help-bubble').show().css('opacity','1').animateAuto('height', 300, function() 
-				{
-				});
+			Toggle.parent().find('.help-bubble').snazzyShow();
 			}
 		});
 	}

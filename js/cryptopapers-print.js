@@ -5,34 +5,6 @@ var DefaultFrame = 'Frame-4';
 var HueShift = 0;
 var HueShiftChange = 5;
 
-var BackgroundCategories = [
-	'abstract',
-	'bricks',
-	'camo',
-	'cash',
-	'coin',
-	'fire',
-	'flower',
-	'food',
-	'fractal',
-	'glass',
-	'holiday',
-	'love',
-	'metal',
-	'misc',
-	'music',
-	'paper',
-	'plants',
-	'rocks-sand',
-	'sky',
-	'stars',
-	'tech',
-	'texture',
-	'tiles',
-	'water',
-	'wood'];
-	
-
 var WalletFrames = 6;
 
 var Frames = 
@@ -182,9 +154,9 @@ var Backgrounds =
 		{
 		AllBGs = '';
 		
-		for (var i = 0; i < BackgroundCategories.length; i++)
+		for (var i = 0; i < Object.keys(Backgrounds).length; i++)
 			{
-			AllBGs += BGString(BackgroundCategories[i], Backgrounds[BackgroundCategories[i]]); 
+			AllBGs += BGString(Object.keys(Backgrounds)[i], Backgrounds[Object.keys(Backgrounds)[i]]); 
 			}
 		
 		AllBGs = AllBGs.substr(0, AllBGs.length-1);
@@ -376,16 +348,16 @@ function AddBackgrounds()
 	var cols = 5;
 	var designs = '';
 	
-	for (var i = 0; i < BackgroundCategories.length; i++)
+	for (var i = 0; i < Object.keys(Backgrounds).length; i++)
 		{
-		var Category = BackgroundCategories[i];
+		var Category = Object.keys(Backgrounds)[i];
 		
 		designs += '<div class="design-grid-row selector-grid-row">';
 		
 			
 		designs += '<div class="design-grid-row-header ' + Category + '">' + Category + '</div>';
 			
-		var CategoryCount = Backgrounds[BackgroundCategories[i]];
+		var CategoryCount = Backgrounds[Object.keys(Backgrounds)[i]];
 		
 		for (var j = 0; j < CategoryCount; j++)
 			{

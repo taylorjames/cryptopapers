@@ -301,16 +301,13 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		{
 		if (Bitcoin.BIP38.isBIP38Format($(this).val()))
 			{
-			$('.decrypt-key').show().animate({opacity: '1', height: '138'}, 300);
+			$('.decrypt-key').snazzyShow();
 			
 			return;
 			}
 		else
 			{
-			$('.decrypt-key').animate({opacity: '0', height: '0'}, 300, function () 
-				{
-				$(this).hide();
-				});
+			$('.decrypt-key').snazzyHide();
 			}
 		
 		var Address = GenerateAddress(true);	
@@ -363,10 +360,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.coin-wallets').removeClass('keys-encrypted');
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
-		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
-			{
-			$(this).hide();
-			});
+		$('.private-key-encrypted').snazzyHide();
 		$('#encrypt-remove-button').attr('disabled', '');
 		$('.encryption-details').hide();
 		$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
@@ -375,9 +369,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		{
 		$('.coin-wallets').addClass('keys-encrypted');
 		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
-		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
-			{
-			});
+		$('.private-key-encrypted').snazzyShow();
 		$('.warning-encryption').fadeIn(300);
 		$('#private-key-encrypted').val(PrivKeyWIF);
 		$('.encryption-details').show().css('height', 'auto').css('opacity','1');
@@ -676,7 +668,8 @@ function GetAddressFromBytes(CoinType, PublicKeyBytes)
 	var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
 	KeyHash160Bytes.unshift(version);
 	
-	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes));
+	// Don't show the first two characters of the Hash 160.
+	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes).substring(2));
 	
 	var CheckSum = GetCheckSum(KeyHash160Bytes);
 	

@@ -406,11 +406,11 @@ margin-top: 10px;
 .private-key-encrypted
 {
 display: block;
-min-height: 42px;
+opacity: 0;
 float: left;
-opacity: 1;
 clear: left;
 width: 100%;
+height: 0px;
 }
 #private-key-encrypted
 {
@@ -1227,6 +1227,7 @@ position:absolute;
 {
 opacity: 1.0;
 }
+
 .help-bubble
 {
 border:1px solid;
@@ -1235,12 +1236,13 @@ margin-top:0px;
 margin-bottom:10px;
 height: 0px;
 display: none;
-background-color: #fff;
+opacity: 0;
+background-color: rgba(255, 255, 255, 0.61);
 border-color: #ccc;
 width: 100%;
 box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-opacity:0.5 !important;
 }
+
 .help-bubble > span
 {
 margin: 20px;
@@ -1369,6 +1371,18 @@ left: 67%;
 	height:30px;
 }
 
+*
+{
+    -webkit-transition: color 300ms ease-out;
+	-moz-transition: color 300ms ease-out;
+	transition: color 300ms ease-out;
+	
+    -webkit-transition: background-color 300ms ease-out;
+	-moz-transition: background-color 300ms ease-out;
+	transition: background-color 300ms ease-out;
+	
+}
+
 input[type=button]
 {
 	display:block;
@@ -1381,9 +1395,6 @@ input[type=button]
     line-height:3px;
     height:50px;
     border:none;
-    -webkit-transition: background-color 300ms ease-out;
-	-moz-transition: background-color 300ms ease-out;
-	transition: background-color 300ms ease-out;
 
 }
 
@@ -1409,8 +1420,6 @@ float: left;
 }
 .warning.beta-software
 {
-position: absolute;
-	top:183px;
 }
 .warning p{
 	color:#e94b78;
@@ -1442,11 +1451,9 @@ input[type=button].error
 }
 
 .inner .section .sub-section.coin-setup-keys{
-	margin-top:150px;
 }
 
 .inner .section .sub-section.coin-setup-print{
-	margin-top:202px;
 }
 /* this acts very weird.
 .inner .section .sub-section.up{	
@@ -2474,8 +2481,7 @@ clear: right;
 .encryption-details .encrypting
 {
 position: relative;
-top: 12px;
-margin-bottom: -16px;
+top: -43px;
 left: 77px;
 }
 .encrypting
@@ -2488,7 +2494,8 @@ left: 318px;
 }
 
 .encryption-buttons{
-	overflow:auto;
+float: left;
+width: 100%;
 }
 .encrypted
 {
@@ -2500,11 +2507,12 @@ height: 63px;
 }
 .key-details .encrypted
 {
-left: 633px;
-position: absolute;
+left: 611px;
+position: relative;
 width: 28px;
 height: 35px;
-margin-top: -2px;
+margin-top: -33px;
+margin-bottom: -7px;
 }
 .print-encryption .encrypted
 {
@@ -2586,6 +2594,16 @@ overflow: hidden;
 {
 display:none;
 }
+.frame-grid-row-header
+{
+cursor:pointer;
+}
+.ui-slider,
+.ui-slider .ui-slider-handle
+{
+cursor:pointer;
+}
+
 .selecting .frame-grid-row-header,
 .selecting .design-grid-row-header
 {
@@ -2677,7 +2695,6 @@ background: none;
 {
 	border-color: #ccc;
 	width: 100%;
-	margin-bottom: 23px;
 	border:1px solid #125781;
 	padding: 10px;
 	color: #444;
@@ -2685,9 +2702,8 @@ background: none;
 	font-weight: 500;
 	border-radius: 10px;
 	padding:30px;
-	position:absolute;
 	max-width:1170px;
-
+	float: left;
 }
 
 .instructions.rng-move-mouse{
@@ -2721,6 +2737,7 @@ float: left;
 margin: 5px;
 background-size: 100%;
 display: none;
+cursor: pointer;
 }
 .frame.selector
 {
@@ -2779,4 +2796,5 @@ float: right;
 position: relative;
 width: 36%;
 background: white;
+margin-bottom: 10px;
 }
