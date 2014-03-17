@@ -636,6 +636,10 @@ $().ready(function ()
 							<br>
 							It's up to you to make sure that they are correct.
 						</div>
+						<div class="private-key-address-manual address-box hide">
+								<label for="private-key-address-manual">Address</label>
+								<input type="text" id="private-key-address-manual" maxlength="40" autocomplete="off" />	
+						</div>
 						<h3>Private Key</h3>
 						<div class="input-key">
 							<div class="help-bubble" style="float:left;">
@@ -652,12 +656,8 @@ $().ready(function ()
 							<span class="private-key-error"></span>	
 							<div class="private-key"> 
 								<div id="coin-key">
-									<input type="text" id="private-key-input" autocomplete="off" />	
+									<input type="text" id="private-key-input" maxlength="64" autocomplete="off" />	
 								</div>
-							</div>
-							<div class="private-key-address-manual address-box hide">
-									<label for="private-key-address-manual">Address</label>
-									<input type="text" id="private-key-address-manual" maxlength="40" autocomplete="off" />	
 							</div>
 						</div>
 						<div class="decrypt-key hide">
@@ -669,7 +669,7 @@ $().ready(function ()
 							<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
 						</div>
 						
-						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate" fixed-height="50px" disabled />
+						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate New Key" fixed-height="50px" disabled />
 					</div>
 				</div>			
 				<div class="random-info round-block help-section colfive last">
