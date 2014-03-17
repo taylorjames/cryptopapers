@@ -183,6 +183,7 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	-->
 	
+	<script type="text/javascript" src="js/cryptopapers-bip38.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
@@ -275,7 +276,7 @@ $().ready(function ()
 					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your coins to be taken.
 					<br><br>
 					Click an item below to see detailed risk information.
-					<br><br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -335,7 +336,7 @@ $().ready(function ()
 					The best thing you can do for your security would be to run this tool on an offline computer and printer.
 					<br>
 					If you can't dedicate a computer to be offline permanently, a Linux Live CD or Live USB is the next best thing.
-					<br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -434,7 +435,7 @@ $().ready(function ()
 					it's strongly recommended that you verify the keys by importing them into a secure wallet
 					<br><br>
 					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
-					<br><br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -466,7 +467,7 @@ $().ready(function ()
 					<a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
 					<br><br>
 					To be completely assured your coins are safe, use a QR scanner to verify the private keys and addresses all match up.
-					<br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -627,17 +628,25 @@ $().ready(function ()
 				
 				<div class="key-import round-block help-section colseven first">
 					<div class="colinner">
+						<div class="private-key-address-manual bubble-text hide">
+							<span class="coin-full-name"></span> address generation is not yet supported. 
+							You can, however, supply your own private keys and addresses generated using the <span class="coin-full-name"></span> wallet software.
+							<br><br>
+							Please be aware that we aren't able to verify that these keys and addresses match.
+							<br>
+							It's up to you to make sure that they are correct.
+						</div>
 						<h3>Private Key</h3>
 						<div class="input-key">
 							<div class="help-bubble" style="float:left;">
 								<span><p>
-								A private key consists of a series of 32 bytes (256 bits). Your coin address is produced from this.
+								A private key consists of a series of 32 bytes (256 bits). Your <span class="coin-full-name"></span> address is produced from this.
 								<br><br>
 								Paste a private key exported from your coin wallet software into the box below 
 								or click on Generate to generate a new private key from the Random Number Generator pool.
 								<br><br>
 								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
-								<br><br><br><br/><br/></p>
+								<br></p>
 								</span>
 							</div>		
 							<span class="private-key-error"></span>	
@@ -645,6 +654,10 @@ $().ready(function ()
 								<div id="coin-key">
 									<input type="text" id="private-key-input" autocomplete="off" />	
 								</div>
+							</div>
+							<div class="private-key-address-manual address-box hide">
+									<label for="private-key-address-manual">Address</label>
+									<input type="text" id="private-key-address-manual" maxlength="40" autocomplete="off" />	
 							</div>
 						</div>
 						<div class="decrypt-key hide">
@@ -656,7 +669,7 @@ $().ready(function ()
 							<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
 						</div>
 						
-						<input type="button" id="private-key-generate" class="generate-button large-button" value="Generate" disabled />
+						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate" fixed-height="50px" disabled />
 					</div>
 				</div>			
 				<div class="random-info round-block help-section colfive last">
@@ -683,7 +696,7 @@ $().ready(function ()
 							of mouse movement to that. 
 							<br><br>
 							The end result is that attempting to predict these keys is no easier than brute-forcing addresses at random.
-							<br/><br/><br/><br/><br/></p>
+							<br/></p>
 							</span>
 						</div>	
 						
@@ -702,9 +715,7 @@ $().ready(function ()
 						<br/>
 						<label class="hide">RNG Pool Data:</label>
 						<div class="help-bubble" style="float:left;">
-							<span>
-								<p>This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.</p>
-							<br>
+							<span>This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.
 							</span>
 						</div>	
 						<textarea id="random-pool" readonly></textarea>
@@ -720,66 +731,71 @@ $().ready(function ()
 					<div class="coin-wallet-address-qr"></div>
 					<div class="coin-wallet-private-key-qr"></div>
 					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
-						<br>
-						Doing this saves space in the block chain by making the Public Key smaller.
-						<br>
-						Be careful! Some alternate coins don't support compressed keys for imports!
-						<br>Make sure to test all your keys before sending substantial amounts.
-						<br>
-						</span>
-					</div>
-					<label class="left-label">Compression:</label>
-					<div class="switch-toggle compression switch-2 switch-candy ">
-						<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
-						<label for="decompressed">No</label> 
-						
-						<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
-						<label for="compressed">Yes</label>
+					<div class="manual-hide compression">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
+							<br>
+							Doing this saves space in the block chain by making the Public Key smaller.
+							<br>
+							Be careful! Some alternate coins don't support compressed keys for imports!
+							<br>Make sure to test all your keys before sending substantial amounts.
+							<br>
+							</span>
+						</div>
+					
+						<label class="left-label">Compression:</label>
+						<div class="switch-toggle compression switch-2 switch-candy ">
+							<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
+							<label for="decompressed">No</label> 
+							
+							<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
+							<label for="compressed">Yes</label>
 
-						<a></a>
+							<a></a>
+						</div>
 					</div>
-					<br />
+					
+					<div class="">
+						<span class="key-info-public-address">
 						
-					<span class="key-info-public-address">
-					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
-						<br><br>
-						</span>
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+							<br><br>
+							</span>
+						</div>
+						<label class="left-label" for="public-address">Public Address:</label>
+						<input type="text" id="public-address" autocomplete="off" readonly />
+						</span>						
 					</div>
-					<label class="left-label">Public Address:</label>
-					<input type="text" id="public-address" autocomplete="off" readonly />
-					</span>
-					<br />
-						
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
-						<br>
-						</span>
+					
+					
+					<div class="manual-hide">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
+							<br>
+							</span>
+						</div>
+						<label class="left-label " for="private-key-hex">Private Key Hex:</label>
+						<input type="text" id="private-key-hex" autocomplete="off" readonly />
 					</div>
-					<label class="left-label">Private Key Hex:</label>
-					<input type="text" id="private-key-hex" autocomplete="off" readonly />
-					<br />
 					
+					<div class="">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the Private Key in Wallet Import Format (WIF). 
+							<br>
+							This is the format most wallet software will export to, and is the format it will import from.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="private-key-wif">Private Key WIF:</label>
+						<input type="text" id="private-key-wif" autocomplete="off" readonly />
+					</div>
 					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This is the Private Key in Wallet Import Format (WIF). 
-						<br>
-						This is the format most wallet software will export to, and is the format it will import from.
-						<br><br>
-						</span>
-					</div>	
-					<label class="left-label">Private Key WIF:</label>
-					<input type="text" id="private-key-wif" autocomplete="off" readonly />
-					<br />
-					<div class="private-key-encrypted">
-						<div class="encrypted"></div>
+					<div class="private-key-encrypted manual-hide">
 						
 						<div class="help-bubble" style="float:left;">
 							<span>
@@ -788,58 +804,62 @@ $().ready(function ()
 							<br><br>
 							</span>
 						</div>
-						<label class="left-label">Private Key Encrypted:</label>
+						<label class="left-label" for="private-key-encrypted">Private Key Encrypted:</label>
 						<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
-						<br />
+						<div class="encrypted"></div>
 					</div>
 					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This is the Private Key Checksum, which is included in the Private Key WIF.
-						<br>
-						This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
-						<br><br>
-						</span>
-					</div>	
-					<label class="left-label">Private CheckSum:</label>
-					<input type="text" id="private-key-checksum" autocomplete="off" readonly />
-					<br />
+					<div class="manual-hide">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the Private Key Checksum, which is included in the Private Key WIF.
+							<br>
+							This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="private-key-checksum">Private CheckSum:</label>
+						<input type="text" id="private-key-checksum" autocomplete="off" readonly />
+					</div>
 					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This is the Public Key, which is derived from the public key. The public key
-						<br>
-						Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
-						<br><br>
-						</span>
-					</div>	
-					<label class="left-label">Public Key Hex:</label>
-					<input type="text" id="public-key-hex" autocomplete="off" readonly />
-					<br />
+					<div class="manual-hide">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the Public Key, which is derived from the public key. The public key
+							<br>
+							Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="public-key-hex">Public Key Hex:</label>
+						<input type="text" id="public-key-hex" autocomplete="off" readonly />
+					</div>
 					
-					<div class="help-bubble" style="float:left;">
-						<span>
-						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
-						<br>
-						Every address's Hash160 is known.
-						<br><br>
-						</span>
-					</div>	
-					<label class="left-label">Hash160:</label>
-					<input type="text" id="public-key-hash160" autocomplete="off" readonly />
-					<br />
+					<div class="manual-hide">					
+						<div class="help-bubble" style="float:left;">
+							<span>
+							The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
+							<br>
+							Every address's Hash160 is known.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="public-key-hash160">Hash160:</label>
+						<input type="text" id="public-key-hash160" autocomplete="off" readonly />
+					</div>
 					
-					<div class="help-bubble hide" style="float:left;">
-						<span>
-						The Address Checksum is derived from the Public Key and is used to create the Public Address.
-						<br>
-						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
-						<br><br><br>
-						</span>
-					</div>	
-					<label class="left-label">Address CheckSum:</label>
-					<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
-					<br />		
+					<div class="manual-hide">					
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							The Address Checksum is derived from the Public Key and is used to create the Public Address.
+							<br>
+							The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="public-key-address-checksum">Address CheckSum:</label>
+						<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
+					</div>
 					<!--
 					<div class="help-bubble" style="float:left;">
 						<span>
@@ -852,28 +872,42 @@ $().ready(function ()
 					</div>
 				</div>	
 
-				<div class="print-encryption round-block colfive last">
+				<div class="print-encryption round-block colfive last help-section">
 					<div class="colinner">	
 						<h3>BIP38 Wallet Encryption</h3>
+						
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
+							<br><br>
+							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
+							<br>
+							If you use a strong password, this will make retrieving private keys very difficult, even if someone was able to steal the paper wallet.
+							<br><br>
+							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
+							This makes brute-forcing BIP38 keys very difficult.
+							<br>
+							</span>
+						</div>	
 						
 						<div class="encryption-keys">
 							<label class="left-label" for="encryption-key">Password:</label>
 							<input type="password" id="encryption-key" autocomplete="off" />
-							<label class="left-label" for="encryption-key">Confirm:</label>
+							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
 							<input type="password" id="encryption-key-confirm" autocomplete="off" />
 						</div>
 						
-						<div class="encryption-buttons">					
+						<div class="encryption-buttons">		
 							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
 							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
 						</div>
 						
-						<div class="encryption-details hide">
-							<label class="left-label">Unencrypted:</label>
+						<div class="encryption-details hide">			
+							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
 							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label">Encrypted:</label>
-							<div class="encrypting progress"></div>
+							<label class="left-label" for="encrypted-key">Encrypted:</label>
 							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+							<div class="encrypting progress"></div>
 						</div>
 					</div>
 				</div>	
@@ -894,6 +928,15 @@ $().ready(function ()
 					We do our utmost to make this app safe and secure, but we cannot be held responsible for lost coins.
 					</p></p>
 				</div>
+				<div class="warning dismissable manual-keys no-print hide">
+					<p><b>WARNING: You've manually entered your Private Key and Address.</b>
+					<p class="subtext">
+						<br>
+						Since we aren't yet able to generate <span class="coin-full-name"></span> addresses, we can't verify that the private key you entered corresponds to the address you entered.
+						<br>
+						We <b>strongly recommend</b> that you test this wallet for any mistakes before sending coins to it.
+					</p></p>
+				</div>
 				<div id="print-settings" class="row no-print">
 					<div class="print-buttons round-block help-section colsix first">
 						<div class="colinner">
@@ -905,7 +948,7 @@ $().ready(function ()
 								<br><br>
 								Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
 								back is printed on the right side and with the right orientation.
-								<br><br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -924,7 +967,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								Include a second copy of the wallet on the paper, to use as a backup.
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -947,7 +990,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -969,7 +1012,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								Use zoom to correct for printer differences and get the wallet to print properly.
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -994,7 +1037,8 @@ $().ready(function ()
 								<a></a>
 							</div>
 							
-							<input type="button" id="generate-new-wallet" class="button generate-button large-button" value="Generate New Address" disabled />
+							<input type="button" id="generate-new-wallet" class="button generate-button manual-hide large-button" value="Generate New Address" fixed-height="50px" disabled />
+							
 							<input type="button" id="print-button" class="large-button right" value="Print" />
 							<br />
 						</div>
@@ -1161,7 +1205,7 @@ $().ready(function ()
 				<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
 				<label for="lights-off">-</label> 
 				
-				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
+				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" checked />
 				<label for="lights-on">+</label>
 
 				<a></a>

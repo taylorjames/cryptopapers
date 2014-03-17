@@ -21,7 +21,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: true,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ltc': {
 		name: 'ltc',
@@ -29,7 +30,8 @@ var CoinInfo = {
 		addressVersion: '30',
 		defaultCompress: true,
 		donateAddress: 'LaPsL7RwrZqzXduiaVBrtLBibyroqujmvr',
-		enabled: true	
+		enabled: true,
+		manual: false
 		},
 	'ppc': {
 		name: 'ppc',
@@ -37,7 +39,8 @@ var CoinInfo = {
 		addressVersion: '37',
 		defaultCompress: false,
 		donateAddress: 'P8r6T77etknGTKKNdB7amRWnEBno3mAxud',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'doge': {
 		name: 'doge',
@@ -45,7 +48,8 @@ var CoinInfo = {
 		addressVersion: '1E',
 		defaultCompress: false,
 		donateAddress: 'DNwWMvq2V9DJbwDK1g8bouqBa23SV34QQ1',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nmc': {
 		name: 'nmc',
@@ -53,7 +57,8 @@ var CoinInfo = {
 		addressVersion: '34',
 		defaultCompress: false,
 		donateAddress: 'N5XHb3UH93WjZuq8XLmRpiM25J4d3djQYG',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nxt': {
 		name: 'nxt',
@@ -61,7 +66,8 @@ var CoinInfo = {
 		addressVersion: '',
 		defaultCompress: false,
 		donateAddress: '',
-		enabled: false
+		enabled: true,
+		manual: true
 		}, 
 	'nem': {
 		name: 'nem',
@@ -69,7 +75,8 @@ var CoinInfo = {
 		addressVersion: '',
 		defaultCompress: false,
 		donateAddress: '',
-		enabled: false
+		enabled: false,
+		manual: false
 		}, 
 	'msc': {
 		name: 'msc',
@@ -77,7 +84,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'xpm': {
 		name: 'xpm',
@@ -85,7 +93,8 @@ var CoinInfo = {
 		addressVersion: '17',
 		defaultCompress: false,
 		donateAddress: 'Aw44AFgoGm4KC5FgVyqbgrMZXKEdZ6iwhJ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'aur': {
 		name: 'aur',
@@ -93,7 +102,8 @@ var CoinInfo = {
 		addressVersion: '17',
 		defaultCompress: false,
 		donateAddress: 'AScmXdw1AEPoutgmMp9vHGMxev8L2bwEMX',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'vtc': {
 		name: 'vtc',
@@ -101,7 +111,8 @@ var CoinInfo = {
 		addressVersion: '47',
 		defaultCompress: false,
 		donateAddress: 'VcQEG8NKd5C3HjBdYcnepsEA7H5yFtQXbv',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'mint': {
 		name: 'mint',
@@ -109,7 +120,8 @@ var CoinInfo = {
 		addressVersion: '33',
 		defaultCompress: false,
 		donateAddress: 'MbFhQX7b6DbuzFmiSYv1MxJpgs9jjH2Hah',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'xcp': {
 		name: 'xcp',
@@ -117,7 +129,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: true,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ftc': {
 		name: 'ftc',
@@ -125,7 +138,8 @@ var CoinInfo = {
 		addressVersion: '0e',
 		defaultCompress: false,
 		donateAddress: '6nCuFhvyWCYibjVT2JjfTftFymzwXvghs6',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'pts': {
 		name: 'pts',
@@ -133,7 +147,8 @@ var CoinInfo = {
 		addressVersion: '38',
 		defaultCompress: false,
 		donateAddress: 'PgzC3bGycHfMG5uPS8rMLovfeogSVMP7bC',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'qrk': {
 		name: 'qrk',
@@ -141,7 +156,8 @@ var CoinInfo = {
 		addressVersion: '3a',
 		defaultCompress: false,
 		donateAddress: 'QVfQ1osZ2eb6txBZUyWzK4UEupCKpDZQB4',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'cgb': {
 		name: 'cgb',
@@ -149,7 +165,8 @@ var CoinInfo = {
 		addressVersion: '0b',
 		defaultCompress: false,
 		donateAddress: '5gfHt9pbZFhM4C7bRUQV42fUugerpXtyvf',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dtc': {
 		name: 'dtc',
@@ -157,7 +174,8 @@ var CoinInfo = {
 		addressVersion: '1e',
 		defaultCompress: false,
 		donateAddress: 'D6Pk6fWVBEVRB4WH93XeQfEubnGnAPSTzZ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dvc': {
 		name: 'dvc',
@@ -165,7 +183,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dgc': {
 		name: 'dgc',
@@ -181,7 +200,8 @@ var CoinInfo = {
 		addressVersion: '66',
 		defaultCompress: false,
 		donateAddress: 'iGMBJRSY4yHaQ8k2aHBQd3qDoYnFn7hjDg',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ixc': {
 		name: 'ixc',
@@ -197,7 +217,8 @@ var CoinInfo = {
 		addressVersion: '32',
 		defaultCompress: false,
 		donateAddress: 'ML4rdNofSU4NDuLG5SetAmpowMcUh18NJJ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nvc': {
 		name: 'nvc',
@@ -213,7 +234,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'wdc': {
 		name: 'wdc',
@@ -221,7 +243,8 @@ var CoinInfo = {
 		addressVersion: '49',
 		defaultCompress: false,
 		donateAddress: 'WmZcammKRsLEAwYyeofZGUQSTkinbmTavx',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'zet': {
 		name: 'zet',
@@ -229,7 +252,17 @@ var CoinInfo = {
 		addressVersion: '50',
 		defaultCompress: false,
 		donateAddress: 'ZPr2d8DDmRaVFyXRrbfcQjapsat3QpeMry',
-		enabled: true
+		enabled: true,
+		manual: false
+		},
+	'drk': {
+		name: 'drk',
+		fullName: 'Darkcoin',
+		addressVersion: '50',
+		defaultCompress: false,
+		donateAddress: '',
+		enabled: true,
+		manual: true
 		},
 	};
 var AllCoinTypes = '';
@@ -273,35 +306,79 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			}
 		});
 	
-	$('#private-key-input').change(function() 
+	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
-		if (Bitcoin.BIP38.isBIP38Format($(this).val()))
+		$(this).change();
+		}
+		);
+	$('#private-key-input, #private-key-address-manual').change(function() 
+		{
+		if (CoinInfo[CurrentCoinType].manual)
 			{
-			$('.decrypt-key').show().animate({opacity: '1', height: '138'}, 300);
+			$('#private-key-hex').val('');
+			$('#private-key-encrypted').val('');
+			$('.private-key-encrypted').snazzyHide();
+			$('#private-key-checksum').val('');
+			$('#public-key-hex').val('');
+			$('#public-key-hash160').val('');
+			$('#public-key-address-checksum').val('');
 			
-			return;
+			$('#public-address').val('');
+			$('#public-key-address-checksum').val('');
+			$('#private-key-wif').val('');
+
+			
+			var Address = $('#private-key-address-manual').val();
+			var Key = $('#private-key-input').val();
+			
+			DisplayWallet(CurrentCoinType, Key, Address, false);	
+			
+			if (Key.length == 0 || Address.length == 0)
+				{
+				$('#coin-setup-menu #print').addClass('disabled');
+				}
+			else
+				{
+				$('.key-details').snazzyShow();
+				$('#coin-setup-menu #print').removeClass('disabled');
+				}
 			}
 		else
 			{
-			$('.decrypt-key').animate({opacity: '0', height: '0'}, 300, function () 
+			if (Bitcoin.BIP38.isBIP38Format($(this).val()))
 				{
-				$(this).hide();
-				});
-			}
-		
-		var Address = GenerateAddress(true);	
+				$('.decrypt-key').snazzyShow();
+				
+				return;
+				}
+			else
+				{
+				$('.decrypt-key').snazzyHide();
+				}
+			
+			var Address = GenerateAddress(true);	
 
-		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
-		$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
-		
-		SetLettering();
+			// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+			$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+			
+			SetLettering();
+			}
 		});	 
 	}
 	 
 	 
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{	
+	{
+	if (PrivKeyWIF != undefined && PrivKeyWIF != '')
+		{
+		$('.key-details').snazzyShow();
+		$('.print-encryption').snazzyShow();
+		}
+	
+	$('#private-key-wif').val(PrivKeyWIF);
+	$('#public-address').val(Address);
+	
 	$('.coin-wallet-address').html(Address);
 	$('.coin-wallet-address-qr').qrcode(Address);
 
@@ -339,10 +416,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.coin-wallets').removeClass('keys-encrypted');
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
-		$('.private-key-encrypted').animate({height: '0', opacity: '0'}, 300, function() 
-			{
-			$(this).hide();
-			});
+		$('.private-key-encrypted').snazzyHide();
 		$('#encrypt-remove-button').attr('disabled', '');
 		$('.encryption-details').hide();
 		$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
@@ -351,9 +425,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		{
 		$('.coin-wallets').addClass('keys-encrypted');
 		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
-		$('.private-key-encrypted').show().animate({height: '38', opacity: '1'}, 300, function() 
-			{
-			});
+		$('.private-key-encrypted').snazzyShow();
 		$('.warning-encryption').fadeIn(300);
 		$('#private-key-encrypted').val(PrivKeyWIF);
 		$('.encryption-details').show().css('height', 'auto').css('opacity','1');
@@ -469,16 +541,6 @@ function GenerateAddress(display)
 		
 	HasPrivateKey = true;
 	
-	if (display)
-		{
-		$('.key-details').fadeIn();
-		$('.print-encryption').fadeIn();
-		
-		$('#private-key-hex').val(PrivKeyHex);
-		$('#private-key-wif').val(PrivKeyWIF);
-		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
-		}
-	
 	var PubKeyHex;
 	var Address;
 	if (display)
@@ -520,12 +582,13 @@ function GenerateAddress(display)
 		}	
 		
 	if (display)
-		{
+		{		
+		$('#private-key-hex').val(PrivKeyHex);
+		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
 		$('#public-key-hex').val(PubKeyHex);
-		$('#public-address').val(Address);
 		
 		$('.coin-wallet').fadeOut(300, function() 
-			{			
+			{
 			DisplayWallet(CoinType, PrivKeyWIF, Address, false);
 			});
 		}
@@ -652,7 +715,8 @@ function GetAddressFromBytes(CoinType, PublicKeyBytes)
 	var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
 	KeyHash160Bytes.unshift(version);
 	
-	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes));
+	// Don't show the first two characters of the Hash 160.
+	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes).substring(2));
 	
 	var CheckSum = GetCheckSum(KeyHash160Bytes);
 	

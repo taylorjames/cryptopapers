@@ -82,16 +82,20 @@ function InitRNG()
 				{
 				$('.entropy-satisfied').fadeIn(300);
 				
+				$('.rng-move-mouse').snazzyHide();
+				
+				/*
 				$('.rng-move-mouse').animate({opacity: 0}, 300, function(){
 					$(this).css({'position':'static', 'display':'none'});
 					$('.sub-section.coin-setup-keys').animate({'margin-top':'10px'}, 500);
 				});
+				*/
 					
 				if (!HasPrivateKey)
 					{
 					$('.generate-button').removeAttr('disabled').addClass('enabled');
 					
-					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
+					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys && !CoinInfo[CurrentCoinType].manual)
 						{
 						$('#private-key-generate').click();
 						if (WhenEntropyPoolFills_GoToPrint)

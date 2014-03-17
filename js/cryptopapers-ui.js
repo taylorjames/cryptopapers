@@ -43,25 +43,87 @@ function InitPage()
 		InitPremium();
 	}
 	
+$.fn.snazzyShow = function(speed, callback) {
+	this.each(function() {
+	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
+		return; // Already visible
+	
+	speed = speed == undefined ?  300 : speed;
+
+	$(this).attr('oldpadding-top') 
+	if ($(this).attr('oldpadding-top') == undefined)
+		$(this).css('display', 'block').animate({height: $(this).getTrueHeight()}, speed, function() {
+			$(this).animate({opacity: '1'}, speed);
+			
+			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
+				$(this).css('height', 'inherit');
+		});
+	else
+		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: $(this).getTrueHeight()}, speed, function() {
+			$(this).animate({opacity: '1'}, speed, function() { 
+			
+			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
+					$(this).css('height', 'inherit');
+			});
+			
+		});
+	});
+	
+	if (callback)
+		callback();
+}
+
+$.fn.snazzyHide = function(speed, callback) {
+	this.each(function() {
+		if ($(this).css('height') == '0px')
+			return; // Already hidden.
+			
+		speed = speed == undefined ?  300 : speed;
+		
+		$(this).animate({opacity: '0'}, speed, function() {
+		
+			$(this).attr('oldpadding-top', $(this).css('padding-top'));
+			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
+			
+			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
+				$(this).css('display', 'none');
+				});
+			});
+		});
+	
+	setTimeout(function() {
+	if (callback)
+		callback();
+		}, speed*2+1);
+}
+
+$.fn.getTrueHeight = function() {
+	if (this.attr('fixed-height') != undefined)
+		return parseInt(this.attr('fixed-height'));
+		
+	var OldHeight = this.css('height');
+	this.css('height', 'auto');
+	var NewHeight = this.css('height');
+	this.css('height', OldHeight);
+	
+	if ($(this).attr('oldpadding-top') != undefined)
+		{
+		NewHeight = parseInt(NewHeight.substring(0, NewHeight.length-2));
+		NewHeight +=  parseInt($(this).attr('oldpadding-top').substring(0, $(this).attr('oldpadding-top').length-2));
+		NewHeight +=  parseInt($(this).attr('oldpadding-bottom').substring(0, $(this).attr('oldpadding-bottom').length-2));
+		}
+		
+	return NewHeight;
+}
+
+
 function InitDismissable()
 	{
 	$('.dismissable').prepend('<div class="close-button"></div>');
 	
 	$('.dismissable .close-button').click(function() {
-		$(this).parent().animate({opacity: '0'}, 300, function() {
-			$(this).hide();
-			//$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
-		});
-	});
-	$('.dismissable.warning.beta-software .close-button').click(function() {
-		$(this).parent().animate({opacity: '0'}, 300, function() {
-			$(this).hide();
-			$('.sub-section.coin-setup-print').animate({'margin-top': '0px'}, 500);
-		});
-	});
-
-		
-	
+		$(this).parent().snazzyHide();
+	});	
 	}
 	
 function InitDonate()
@@ -85,21 +147,18 @@ function InitHelp()
 		var Toggle = $(this);
 		if (Toggle.parent().hasClass('help-active'))
 			{
-			Toggle.animate({opacity: '0.5'});
-			Toggle.parent().find('.help-bubble').animate({opacity: '0', height: '0px'}, 300 , function() 
+			Toggle.animate({opacity: '0.5'}, 300);
+			Toggle.parent().find('.help-bubble').snazzyHide(300 , function() 
 				{
 				Toggle.parent().removeClass('help-active');
-				$(this).hide();
 				});
 			}
 		else
 			{
-			Toggle.animate({opacity: '1'});
+			Toggle.animate({opacity: '1'}, 300);
 			Toggle.parent().addClass('help-active');
 			
-			Toggle.parent().find('.help-bubble').show().css('opacity','1').animateAuto('height', 300, function() 
-				{
-				});
+			Toggle.parent().find('.help-bubble').snazzyShow();
 			}
 		});
 	}
@@ -364,11 +423,14 @@ function AddDropdownCoins()
 		var CoinAbbreviation = CoinInfo[Object.keys(CoinInfo)[i]].name;
 		var CoinFullName = CoinInfo[Object.keys(CoinInfo)[i]].fullName;
 		var Enabled = CoinInfo[Object.keys(CoinInfo)[i]].enabled;
+		var Manual = CoinInfo[Object.keys(CoinInfo)[i]].manual;
+		
 		var CoinImage = CoinAbbreviation + "-logo.png";
 		
 		var Disabled = (Enabled ? '' : ' disabled');
-		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
+		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING SOON</span>');
 		var Tests = (Enabled && !HasTests(CoinAbbreviation) ? '<span class="coming-soon untested">UNTESTED</span>' : '');
+		var Tests = Manual ? '<span class="coming-soon manual-entry">IMPORT ONLY</span>' : Tests;
 		var Active = (CoinAbbreviation == DefaultCoin ? ' active' : '');
 		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:left;"' : '');
 		
@@ -390,7 +452,6 @@ function AddDropdownCoins()
 	
 	
 	$('.coins-grid-wrapper').html(coins);
-
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
 		{
@@ -410,10 +471,35 @@ function AddDropdownCoins()
 		else if (NewCoinType == 'btc' && CurrentCoinType != 'btc')
 			$('.btc-only').fadeIn(300);
 		
+		if (CoinInfo[NewCoinType].manual)
+			{
+			if ($('#main-menu .menu-key-import').hasClass('active') && !$('#coin-setup-menu #generate').hasClass('active'))
+				{
+				$('#coin-setup-menu #generate').click();
+				}
+				
+			$('#private-key-input').val('');
+			$('.private-key-address-manual').snazzyShow();
+			
+			$('.key-details').snazzyHide();
+			
+			$('.manual-hide').snazzyHide();
+			
+			$('.print-encryption').snazzyHide();
+			$('.warning.manual-keys').snazzyShow();
+			
+			$('#private-key-input').change();
+			}
+		else if (CoinInfo[CurrentCoinType].manual)
+			{
+			$('.warning.manual-keys').snazzyHide();
+			$('.manual-hide').snazzyShow();
+			$('.private-key-address-manual').snazzyHide();
+			
+			$('#private-key-input').change();
+			}
 		
 		CurrentCoinType = NewCoinType;
-
-		console.log(CurrentCoinType);
 		
 		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		
