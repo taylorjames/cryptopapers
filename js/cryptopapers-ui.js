@@ -28,6 +28,7 @@ function InitPage()
 	InitBIP38();
 	
 	InitDismissable();
+	InitMinimizable();
 	 
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
@@ -52,20 +53,25 @@ $.fn.snazzyShow = function(speed, callback) {
 		}
 	
 	speed = speed == undefined ?  300 : speed;
-
+	
+	var minimized = $(this).hasClass('minimized')
+	var height = minimized ? $(this).attr('minimized-height') : $(this).getTrueHeight();
+	
 	$(this).attr('oldpadding-top') 
 	if ($(this).attr('oldpadding-top') == undefined)
-		$(this).css('display', 'block').animate({height: $(this).getTrueHeight()}, speed, function() {
+		$(this).css('display', 'block').animate({'height': height}, speed, function() {
 			$(this).animate({opacity: '1'}, speed);
 			
 			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
-				$(this).css('height', 'inherit');
+				if (!minimized)
+					$(this).css('height', 'inherit');
 		});
 	else
-		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: $(this).getTrueHeight()}, speed, function() {
+		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), 'height': height}, speed, function() {
 			$(this).animate({opacity: '1'}, speed, function() { 
 			
 			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
+				if (!minimized)
 					$(this).css('height', 'inherit');
 			});
 			
@@ -108,9 +114,15 @@ $.fn.getTrueHeight = function() {
 		return parseInt(this.attr('fixed-height'));
 		
 	var OldHeight = this.css('height');
+	var OldMaxHeight = this.css('max-height');
 	this.css('height', 'auto');
+	this.css('max-height', 'auto');
 	var NewHeight = this.css('height');
-	this.css('height', OldHeight);
+	
+	if (NewHeight != OldHeight)
+		this.css('height', OldHeight);
+		
+	this.css('max-height', OldMaxHeight);
 	
 	if ($(this).attr('oldpadding-top') != undefined)
 		{
@@ -123,6 +135,45 @@ $.fn.getTrueHeight = function() {
 }
 
 
+function InitMinimizable()
+	{
+	$('.minimizable').prepend('<div class="minimize-button"></div>');
+	
+	
+	$('.minimizable .minimize-button').click(function() {
+	
+		var height = $(this).parent().attr('minimized-height') == undefined ? 40 : parseInt($(this).parent().attr('minimized-height'));
+		var oldheight = $(this).parent().attr('maximized-height') == undefined || $(this).parent().attr('maximized-height') == '' ? $(this).parent().getTrueHeight() : $(this).parent().attr('maximized-height');
+		
+		if ($(this).parent().hasClass('minimized'))
+			{
+			$(this).parent().animate({'height': oldheight}, 300, function() 
+				{
+				$(this).css('height', 'inherit');
+				});
+			$(this).parent().find('h3:not(.stay)').animate({'margin-top': 0 }, 300);
+			$(this).parent().find('.help-toggle').fadeIn(300);
+			$(this).parent().find('.minimize-hide').fadeIn(300);
+			if ($(this).parent().hasClass('help-active'))
+				$(this).parent().find('.help-bubble').snazzyShow();
+			$(this).parent().removeClass('minimized');
+			}
+		else
+			{
+			$(this).parent().attr('maximized-height', $(this).parent().getTrueHeight());
+			$(this).parent().animate({'height': height}, 300);
+			$(this).parent().find('h3:not(.stay)').animate({'margin-top': -20 }, 300);
+			$(this).parent().find('.help-toggle').fadeOut(300);
+			$(this).parent().find('.minimize-hide').fadeOut(300);
+			$(this).parent().find('.help-bubble').snazzyHide();
+			$(this).parent().addClass('minimized');
+			}
+	});	
+	$('.minimizable.minimized').each(function() {
+		$(this).removeClass('minimized').find('.minimize-button').click();
+		});
+	}
+	
 function InitDismissable()
 	{
 	$('.dismissable').prepend('<div class="close-button"></div>');
