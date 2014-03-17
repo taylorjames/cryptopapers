@@ -46,7 +46,10 @@ function InitPage()
 $.fn.snazzyShow = function(speed, callback) {
 	this.each(function() {
 	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
+		{
+		$(this).show();
 		return; // Already visible
+		}
 	
 	speed = speed == undefined ?  300 : speed;
 
@@ -76,7 +79,10 @@ $.fn.snazzyShow = function(speed, callback) {
 $.fn.snazzyHide = function(speed, callback) {
 	this.each(function() {
 		if ($(this).css('height') == '0px')
-			return; // Already hidden.
+			{
+			$(this).hide();
+			return;
+			}
 			
 		speed = speed == undefined ?  300 : speed;
 		
