@@ -644,7 +644,8 @@ function GetAddressFromBytes(CoinType, PublicKeyBytes)
 	var KeyHash160Bytes = Crypto.util.hexToBytes(KeyHash160);
 	KeyHash160Bytes.unshift(version);
 	
-	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes));
+	// Don't show the first two characters of the Hash 160.
+	$('#public-key-hash160').val(Crypto.util.bytesToHex(KeyHash160Bytes).substring(2));
 	
 	var CheckSum = GetCheckSum(KeyHash160Bytes);
 	

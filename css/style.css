@@ -406,11 +406,11 @@ margin-top: 10px;
 .private-key-encrypted
 {
 display: block;
-min-height: 42px;
+opacity: 0;
 float: left;
-opacity: 1;
 clear: left;
 width: 100%;
+height: 0px;
 }
 #private-key-encrypted
 {
@@ -1373,13 +1373,14 @@ left: 67%;
 
 *
 {
-    -webkit-transition: color 300ms ease-out;
+    -webkit-transition: color 300ms ease-out;
 	-moz-transition: color 300ms ease-out;
 	transition: color 300ms ease-out;
 	
     -webkit-transition: background-color 300ms ease-out;
 	-moz-transition: background-color 300ms ease-out;
-	transition: background-color 300ms ease-out;;
+	transition: background-color 300ms ease-out;
+	
 }
 
 input[type=button]
@@ -2480,8 +2481,7 @@ clear: right;
 .encryption-details .encrypting
 {
 position: relative;
-top: 12px;
-margin-bottom: -16px;
+top: -43px;
 left: 77px;
 }
 .encrypting
@@ -2494,7 +2494,8 @@ left: 318px;
 }
 
 .encryption-buttons{
-	overflow:auto;
+float: left;
+width: 100%;
 }
 .encrypted
 {
@@ -2506,11 +2507,12 @@ height: 63px;
 }
 .key-details .encrypted
 {
-left: 633px;
-position: absolute;
+left: 611px;
+position: relative;
 width: 28px;
 height: 35px;
-margin-top: -2px;
+margin-top: -33px;
+margin-bottom: -7px;
 }
 .print-encryption .encrypted
 {
@@ -2592,6 +2594,16 @@ overflow: hidden;
 {
 display:none;
 }
+.frame-grid-row-header
+{
+cursor:pointer;
+}
+.ui-slider,
+.ui-slider .ui-slider-handle
+{
+cursor:pointer;
+}
+
 .selecting .frame-grid-row-header,
 .selecting .design-grid-row-header
 {
@@ -2725,6 +2737,7 @@ float: left;
 margin: 5px;
 background-size: 100%;
 display: none;
+cursor: pointer;
 }
 .frame.selector
 {

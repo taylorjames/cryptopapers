@@ -44,42 +44,51 @@ function InitPage()
 	}
 	
 $.fn.snazzyShow = function(speed, callback) {
-	Log(this.attr('oldpadding-top'));
-	Log(this.getTrueHeight());
-	this.attr('oldpadding-top') 
-	if (this.attr('oldpadding-top') == undefined)
-		this.show().animate({height: this.getTrueHeight()}, speed, function() {
+	this.each(function() {
+	
+	speed = speed == undefined ?  300 : speed;
+
+	$(this).attr('oldpadding-top') 
+	if ($(this).attr('oldpadding-top') == undefined)
+		$(this).show().animate({height: $(this).getTrueHeight()}, speed, function() {
 			$(this).animate({opacity: '1'}, speed);
-			
-			if (callback)
-				callback();
+			$(this).css('height', 'auto');
 		});
 	else
-		this.show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: this.getTrueHeight()}, speed, function() {
+		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: $(this).getTrueHeight()}, speed, function() {
 			$(this).animate({opacity: '1'}, speed, function() { 
 				$(this).css('height', 'auto');
 			});
 			
-			if (callback)
-				callback();
 		});
+	});
+	
+	if (callback)
+		callback();
 }
 
 $.fn.snazzyHide = function(speed, callback) {
-	speed = speed == undefined ?  300 : speed;
-	
-	this.animate({opacity: '0'}, speed, function() {
-	
-		$(this).attr('oldpadding-top', $(this).css('padding-top'));
-		$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
-		
-		$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
-			$(this).hide();
+	this.each(function() {
+		if ($(this).css('height') == '0px')
+			return; // Already hidden.
 			
-			if (callback)
-				callback();
+		speed = speed == undefined ?  300 : speed;
+		
+		$(this).animate({opacity: '0'}, speed, function() {
+		
+			$(this).attr('oldpadding-top', $(this).css('padding-top'));
+			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
+			
+			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
+				$(this).hide();
+				});
 			});
 		});
+	
+	setTimeout(function() {
+	if (callback)
+		callback();
+		}, speed*2+1);
 }
 
 $.fn.getTrueHeight = function() {
