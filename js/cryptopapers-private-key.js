@@ -382,7 +382,9 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.print-encryption').snazzyHide();
 		}
 	
-	$('#private-key-wif').val(PrivKeyWIF);
+	if (!Encrypted)
+		$('#private-key-wif').val(PrivKeyWIF);
+		
 	$('#public-address').val(Address);
 	
 	$('.coin-wallet-address').html(Address);
