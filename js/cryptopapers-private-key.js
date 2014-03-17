@@ -255,6 +255,15 @@ var CoinInfo = {
 		enabled: true,
 		manual: false
 		},
+	'drk': {
+		name: 'drk',
+		fullName: 'Darkcoin',
+		addressVersion: '50',
+		defaultCompress: false,
+		donateAddress: '',
+		enabled: true,
+		manual: true
+		},
 	};
 var AllCoinTypes = '';
 var AllCoinTypesFull = '';
@@ -297,32 +306,79 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			}
 		});
 	
-	$('#private-key-input').change(function() 
+	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
-		if (Bitcoin.BIP38.isBIP38Format($(this).val()))
+		$(this).change();
+		}
+		);
+	$('#private-key-input, #private-key-address-manual').change(function() 
+		{
+		if (CoinInfo[CurrentCoinType].manual)
 			{
-			$('.decrypt-key').snazzyShow();
+			$('#private-key-hex').val('');
+			$('#private-key-encrypted').val('');
+			$('.private-key-encrypted').snazzyHide();
+			$('#private-key-checksum').val('');
+			$('#public-key-hex').val('');
+			$('#public-key-hash160').val('');
+			$('#public-key-address-checksum').val('');
 			
-			return;
+			$('#public-address').val('');
+			$('#public-key-address-checksum').val('');
+			$('#private-key-wif').val('');
+
+			
+			var Address = $('#private-key-address-manual').val();
+			var Key = $('#private-key-input').val();
+			
+			DisplayWallet(CurrentCoinType, Key, Address, false);	
+			
+			if (Key.length == 0 || Address.length == 0)
+				{
+				$('#coin-setup-menu #print').addClass('disabled');
+				}
+			else
+				{
+				$('.key-details').snazzyShow();
+				$('#coin-setup-menu #print').removeClass('disabled');
+				}
 			}
 		else
 			{
-			$('.decrypt-key').snazzyHide();
-			}
-		
-		var Address = GenerateAddress(true);	
+			if (Bitcoin.BIP38.isBIP38Format($(this).val()))
+				{
+				$('.decrypt-key').snazzyShow();
+				
+				return;
+				}
+			else
+				{
+				$('.decrypt-key').snazzyHide();
+				}
+			
+			var Address = GenerateAddress(true);	
 
-		// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
-		$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
-		
-		SetLettering();
+			// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+			$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+			
+			SetLettering();
+			}
 		});	 
 	}
 	 
 	 
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{	
+	{
+	if (PrivKeyWIF != undefined && PrivKeyWIF != '')
+		{
+		$('.key-details').snazzyShow();
+		$('.print-encryption').snazzyShow();
+		}
+	
+	$('#private-key-wif').val(PrivKeyWIF);
+	$('#public-address').val(Address);
+	
 	$('.coin-wallet-address').html(Address);
 	$('.coin-wallet-address-qr').qrcode(Address);
 
@@ -485,16 +541,6 @@ function GenerateAddress(display)
 		
 	HasPrivateKey = true;
 	
-	if (display)
-		{
-		$('.key-details').fadeIn();
-		$('.print-encryption').fadeIn();
-		
-		$('#private-key-hex').val(PrivKeyHex);
-		$('#private-key-wif').val(PrivKeyWIF);
-		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
-		}
-	
 	var PubKeyHex;
 	var Address;
 	if (display)
@@ -536,12 +582,13 @@ function GenerateAddress(display)
 		}	
 		
 	if (display)
-		{
+		{		
+		$('#private-key-hex').val(PrivKeyHex);
+		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
 		$('#public-key-hex').val(PubKeyHex);
-		$('#public-address').val(Address);
 		
 		$('.coin-wallet').fadeOut(300, function() 
-			{			
+			{
 			DisplayWallet(CoinType, PrivKeyWIF, Address, false);
 			});
 		}

@@ -95,7 +95,7 @@ function InitRNG()
 					{
 					$('.generate-button').removeAttr('disabled').addClass('enabled');
 					
-					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys)
+					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys && !CoinInfo[CurrentCoinType].manual)
 						{
 						$('#private-key-generate').click();
 						if (WhenEntropyPoolFills_GoToPrint)

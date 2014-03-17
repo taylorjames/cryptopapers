@@ -241,9 +241,11 @@ color: green;
 {
 color: red;
 margin-left: 325px;
-top: -10px;
+top: -23px;
 position: relative;
-display:none;
+display: none;
+float: left;
+margin-bottom: -16px;
 }
 #header{
 	width:100%;
@@ -344,7 +346,7 @@ form .row .row > div{
 
 .colinner{
 	padding:20px;
-	overflow:auto;
+	overflow: initial;
 }
 
 .colinner > h3{
@@ -410,6 +412,7 @@ opacity: 0;
 float: left;
 clear: left;
 width: 100%;
+margin-bottom: 15px;
 height: 0px;
 }
 #private-key-encrypted
@@ -1021,6 +1024,15 @@ content: 'Worldcoin';
 content: 'Zetacoin';
 }
 
+.coin-wallets.drk .coin-logo,
+.coin.drk-coin{
+	background-image:url('../images/coin-icons/drk-logo.png');
+}
+.drk .coin-name:after
+{
+content: 'Darkcoin';
+}
+
 
 .key-details .coin
 {
@@ -1091,6 +1103,7 @@ width: 50%;
 }
 .coming-soon{
 
+	width: 90px;
 	position: relative;
 	top: -32px;
 	float: inherit;
@@ -1103,6 +1116,18 @@ width: 50%;
 	font-size: 13px;
 color: white;
 }
+
+.manual-hide
+{
+float: left;
+width: 100%;
+}
+.coming-soon.manual-entry
+{
+width: 76px;
+left: 10px;
+}
+
 .coming-soon.untested
 {
 left: 14px;
@@ -1227,7 +1252,7 @@ position:absolute;
 {
 opacity: 1.0;
 }
-
+.bubble-text,
 .help-bubble
 {
 border:1px solid;
@@ -1242,6 +1267,22 @@ border-color: #ccc;
 width: 100%;
 box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
+
+.private-key-address-manual.bubble-text
+{
+	padding:10px;
+	font-size:12px;
+	text-align: center;
+}
+.private-key-address-manual.address-box
+{
+text-align: center;
+}
+.private-key-address-manual.address-box label
+{
+font-size: 1.6875rem;
+}
+
 
 .help-bubble > span
 {
@@ -1307,6 +1348,7 @@ textarea[readonly]
 	top: 23px;
 	font-weight: bolder;
 	margin-bottom:20px;
+	height: 50px;
 }
 
 #private-key-generate[disabled]{
@@ -1325,7 +1367,8 @@ textarea[readonly]
 }
 
 #private-key-input,
-#decrypt-password
+#decrypt-password,
+#private-key-address-manual
 {
 	display: inline;
 	width: 100%;
@@ -1537,6 +1580,15 @@ left: 120px;
 
 .key-details{
 	display:none;
+	overflow: initial;
+}
+.key-details h3 
+{
+margin-bottom: 58px;
+}
+.manual-hide.compression
+{
+margin-top: -40px;
 }
 
 .pool-status-bar
@@ -2016,7 +2068,7 @@ padding: 9px;
 width: 49%;
 float: left;
 padding-right: 10px;
-min-height: 304px;
+min-height: 342px;
 }
 #print-settings .print-buttons
 {
@@ -2514,6 +2566,12 @@ height: 35px;
 margin-top: -33px;
 margin-bottom: -7px;
 }
+.print-encryption
+{
+width: 41%;
+float: right;
+}
+
 .print-encryption .encrypted
 {
 position: absolute;

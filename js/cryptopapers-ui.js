@@ -45,19 +45,25 @@ function InitPage()
 	
 $.fn.snazzyShow = function(speed, callback) {
 	this.each(function() {
+	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
+		return; // Already visible
 	
 	speed = speed == undefined ?  300 : speed;
 
 	$(this).attr('oldpadding-top') 
 	if ($(this).attr('oldpadding-top') == undefined)
-		$(this).show().animate({height: $(this).getTrueHeight()}, speed, function() {
+		$(this).css('display', 'block').animate({height: $(this).getTrueHeight()}, speed, function() {
 			$(this).animate({opacity: '1'}, speed);
-			$(this).css('height', 'auto');
+			
+			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
+				$(this).css('height', 'inherit');
 		});
 	else
 		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), height: $(this).getTrueHeight()}, speed, function() {
 			$(this).animate({opacity: '1'}, speed, function() { 
-				$(this).css('height', 'auto');
+			
+			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
+					$(this).css('height', 'inherit');
 			});
 			
 		});
@@ -80,7 +86,7 @@ $.fn.snazzyHide = function(speed, callback) {
 			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
 			
 			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
-				$(this).hide();
+				$(this).css('display', 'none');
 				});
 			});
 		});
@@ -92,7 +98,9 @@ $.fn.snazzyHide = function(speed, callback) {
 }
 
 $.fn.getTrueHeight = function() {
-
+	if (this.attr('fixed-height') != undefined)
+		return parseInt(this.attr('fixed-height'));
+		
 	var OldHeight = this.css('height');
 	this.css('height', 'auto');
 	var NewHeight = this.css('height');
@@ -420,9 +428,9 @@ function AddDropdownCoins()
 		var CoinImage = CoinAbbreviation + "-logo.png";
 		
 		var Disabled = (Enabled ? '' : ' disabled');
-		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
+		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING SOON</span>');
 		var Tests = (Enabled && !HasTests(CoinAbbreviation) ? '<span class="coming-soon untested">UNTESTED</span>' : '');
-		var Tests = Manual ? '<span class="coming-soon manual-entry">MANUAL ENTRY</span>' : '';
+		var Tests = Manual ? '<span class="coming-soon manual-entry">IMPORT ONLY</span>' : Tests;
 		var Active = (CoinAbbreviation == DefaultCoin ? ' active' : '');
 		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:left;"' : '');
 		
@@ -444,7 +452,6 @@ function AddDropdownCoins()
 	
 	
 	$('.coins-grid-wrapper').html(coins);
-
 	
 	$('.coin-type .selector.coin:not(disabled)').click(function()
 		{
@@ -464,10 +471,35 @@ function AddDropdownCoins()
 		else if (NewCoinType == 'btc' && CurrentCoinType != 'btc')
 			$('.btc-only').fadeIn(300);
 		
+		if (CoinInfo[NewCoinType].manual)
+			{
+			if ($('#main-menu .menu-key-import').hasClass('active') && !$('#coin-setup-menu #generate').hasClass('active'))
+				{
+				$('#coin-setup-menu #generate').click();
+				}
+				
+			$('#private-key-input').val('');
+			$('.private-key-address-manual').snazzyShow();
+			
+			$('.key-details').snazzyHide();
+			
+			$('.manual-hide').snazzyHide();
+			
+			$('.print-encryption').snazzyHide();
+			$('.warning.manual-keys').snazzyShow();
+			
+			$('#private-key-input').change();
+			}
+		else if (CoinInfo[CurrentCoinType].manual)
+			{
+			$('.warning.manual-keys').snazzyHide();
+			$('.manual-hide').snazzyShow();
+			$('.private-key-address-manual').snazzyHide();
+			
+			$('#private-key-input').change();
+			}
 		
 		CurrentCoinType = NewCoinType;
-
-		console.log(CurrentCoinType);
 		
 		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		
