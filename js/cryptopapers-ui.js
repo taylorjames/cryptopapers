@@ -364,11 +364,14 @@ function AddDropdownCoins()
 		var CoinAbbreviation = CoinInfo[Object.keys(CoinInfo)[i]].name;
 		var CoinFullName = CoinInfo[Object.keys(CoinInfo)[i]].fullName;
 		var Enabled = CoinInfo[Object.keys(CoinInfo)[i]].enabled;
+		var Manual = CoinInfo[Object.keys(CoinInfo)[i]].manual;
+		
 		var CoinImage = CoinAbbreviation + "-logo.png";
 		
 		var Disabled = (Enabled ? '' : ' disabled');
 		var ComingSoon = (Enabled ? '' : '<span class="coming-soon">COMING&nbsp;SOON</span>');
 		var Tests = (Enabled && !HasTests(CoinAbbreviation) ? '<span class="coming-soon untested">UNTESTED</span>' : '');
+		var Tests = Manual ? '<span class="coming-soon manual-entry">MANUAL ENTRY</span>' : '';
 		var Active = (CoinAbbreviation == DefaultCoin ? ' active' : '');
 		var ActiveFloat = (CoinAbbreviation == DefaultCoin ? ' style="float:left;"' : '');
 		

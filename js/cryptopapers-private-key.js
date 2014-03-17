@@ -21,7 +21,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: true,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ltc': {
 		name: 'ltc',
@@ -29,7 +30,8 @@ var CoinInfo = {
 		addressVersion: '30',
 		defaultCompress: true,
 		donateAddress: 'LaPsL7RwrZqzXduiaVBrtLBibyroqujmvr',
-		enabled: true	
+		enabled: true,
+		manual: false
 		},
 	'ppc': {
 		name: 'ppc',
@@ -37,7 +39,8 @@ var CoinInfo = {
 		addressVersion: '37',
 		defaultCompress: false,
 		donateAddress: 'P8r6T77etknGTKKNdB7amRWnEBno3mAxud',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'doge': {
 		name: 'doge',
@@ -45,7 +48,8 @@ var CoinInfo = {
 		addressVersion: '1E',
 		defaultCompress: false,
 		donateAddress: 'DNwWMvq2V9DJbwDK1g8bouqBa23SV34QQ1',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nmc': {
 		name: 'nmc',
@@ -53,7 +57,8 @@ var CoinInfo = {
 		addressVersion: '34',
 		defaultCompress: false,
 		donateAddress: 'N5XHb3UH93WjZuq8XLmRpiM25J4d3djQYG',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nxt': {
 		name: 'nxt',
@@ -61,7 +66,8 @@ var CoinInfo = {
 		addressVersion: '',
 		defaultCompress: false,
 		donateAddress: '',
-		enabled: false
+		enabled: true,
+		manual: true
 		}, 
 	'nem': {
 		name: 'nem',
@@ -69,7 +75,8 @@ var CoinInfo = {
 		addressVersion: '',
 		defaultCompress: false,
 		donateAddress: '',
-		enabled: false
+		enabled: false,
+		manual: false
 		}, 
 	'msc': {
 		name: 'msc',
@@ -77,7 +84,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'xpm': {
 		name: 'xpm',
@@ -85,7 +93,8 @@ var CoinInfo = {
 		addressVersion: '17',
 		defaultCompress: false,
 		donateAddress: 'Aw44AFgoGm4KC5FgVyqbgrMZXKEdZ6iwhJ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'aur': {
 		name: 'aur',
@@ -93,7 +102,8 @@ var CoinInfo = {
 		addressVersion: '17',
 		defaultCompress: false,
 		donateAddress: 'AScmXdw1AEPoutgmMp9vHGMxev8L2bwEMX',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'vtc': {
 		name: 'vtc',
@@ -101,7 +111,8 @@ var CoinInfo = {
 		addressVersion: '47',
 		defaultCompress: false,
 		donateAddress: 'VcQEG8NKd5C3HjBdYcnepsEA7H5yFtQXbv',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'mint': {
 		name: 'mint',
@@ -109,7 +120,8 @@ var CoinInfo = {
 		addressVersion: '33',
 		defaultCompress: false,
 		donateAddress: 'MbFhQX7b6DbuzFmiSYv1MxJpgs9jjH2Hah',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'xcp': {
 		name: 'xcp',
@@ -117,7 +129,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: true,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ftc': {
 		name: 'ftc',
@@ -125,7 +138,8 @@ var CoinInfo = {
 		addressVersion: '0e',
 		defaultCompress: false,
 		donateAddress: '6nCuFhvyWCYibjVT2JjfTftFymzwXvghs6',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'pts': {
 		name: 'pts',
@@ -133,7 +147,8 @@ var CoinInfo = {
 		addressVersion: '38',
 		defaultCompress: false,
 		donateAddress: 'PgzC3bGycHfMG5uPS8rMLovfeogSVMP7bC',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'qrk': {
 		name: 'qrk',
@@ -141,7 +156,8 @@ var CoinInfo = {
 		addressVersion: '3a',
 		defaultCompress: false,
 		donateAddress: 'QVfQ1osZ2eb6txBZUyWzK4UEupCKpDZQB4',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'cgb': {
 		name: 'cgb',
@@ -149,7 +165,8 @@ var CoinInfo = {
 		addressVersion: '0b',
 		defaultCompress: false,
 		donateAddress: '5gfHt9pbZFhM4C7bRUQV42fUugerpXtyvf',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dtc': {
 		name: 'dtc',
@@ -157,7 +174,8 @@ var CoinInfo = {
 		addressVersion: '1e',
 		defaultCompress: false,
 		donateAddress: 'D6Pk6fWVBEVRB4WH93XeQfEubnGnAPSTzZ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dvc': {
 		name: 'dvc',
@@ -165,7 +183,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'dgc': {
 		name: 'dgc',
@@ -181,7 +200,8 @@ var CoinInfo = {
 		addressVersion: '66',
 		defaultCompress: false,
 		donateAddress: 'iGMBJRSY4yHaQ8k2aHBQd3qDoYnFn7hjDg',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'ixc': {
 		name: 'ixc',
@@ -197,7 +217,8 @@ var CoinInfo = {
 		addressVersion: '32',
 		defaultCompress: false,
 		donateAddress: 'ML4rdNofSU4NDuLG5SetAmpowMcUh18NJJ',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'nvc': {
 		name: 'nvc',
@@ -213,7 +234,8 @@ var CoinInfo = {
 		addressVersion: '00',
 		defaultCompress: false,
 		donateAddress: '18445kiESU6kAVHLRjxvHcAtPJ1gvQZX7B',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'wdc': {
 		name: 'wdc',
@@ -221,7 +243,8 @@ var CoinInfo = {
 		addressVersion: '49',
 		defaultCompress: false,
 		donateAddress: 'WmZcammKRsLEAwYyeofZGUQSTkinbmTavx',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	'zet': {
 		name: 'zet',
@@ -229,7 +252,8 @@ var CoinInfo = {
 		addressVersion: '50',
 		defaultCompress: false,
 		donateAddress: 'ZPr2d8DDmRaVFyXRrbfcQjapsat3QpeMry',
-		enabled: true
+		enabled: true,
+		manual: false
 		},
 	};
 var AllCoinTypes = '';
