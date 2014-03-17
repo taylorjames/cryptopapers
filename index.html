@@ -183,6 +183,7 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	-->
 	
+	<script type="text/javascript" src="js/cryptopapers-bip38.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
@@ -275,7 +276,7 @@ $().ready(function ()
 					<b>Zero Trust</b>: You are giving no trust to this element. It could be compromised and malicious and there would still be no way for your coins to be taken.
 					<br><br>
 					Click an item below to see detailed risk information.
-					<br><br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -335,7 +336,7 @@ $().ready(function ()
 					The best thing you can do for your security would be to run this tool on an offline computer and printer.
 					<br>
 					If you can't dedicate a computer to be offline permanently, a Linux Live CD or Live USB is the next best thing.
-					<br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -434,7 +435,7 @@ $().ready(function ()
 					it's strongly recommended that you verify the keys by importing them into a secure wallet
 					<br><br>
 					To be completely assured your coins are safe, use an offline printer or make sure no print history is kept.
-					<br><br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -466,7 +467,7 @@ $().ready(function ()
 					<a href="http://brainwallet.org" target="_blank">brainwallet.org</a>
 					<br><br>
 					To be completely assured your coins are safe, use a QR scanner to verify the private keys and addresses all match up.
-					<br><br>
+					<br>
 					</span>
 				</div>
 				
@@ -637,7 +638,7 @@ $().ready(function ()
 								or click on Generate to generate a new private key from the Random Number Generator pool.
 								<br><br>
 								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
-								<br><br><br><br/><br/></p>
+								<br></p>
 								</span>
 							</div>		
 							<span class="private-key-error"></span>	
@@ -683,7 +684,7 @@ $().ready(function ()
 							of mouse movement to that. 
 							<br><br>
 							The end result is that attempting to predict these keys is no easier than brute-forcing addresses at random.
-							<br/><br/><br/><br/><br/></p>
+							<br/></p>
 							</span>
 						</div>	
 						
@@ -702,9 +703,7 @@ $().ready(function ()
 						<br/>
 						<label class="hide">RNG Pool Data:</label>
 						<div class="help-bubble" style="float:left;">
-							<span>
-								<p>This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.</p>
-							<br>
+							<span>This is the RNG data pool. As you move your mouse around the screen, the data is further randomized.
 							</span>
 						</div>	
 						<textarea id="random-pool" readonly></textarea>
@@ -772,7 +771,7 @@ $().ready(function ()
 						This is the Private Key in Wallet Import Format (WIF). 
 						<br>
 						This is the format most wallet software will export to, and is the format it will import from.
-						<br><br>
+						<br>
 						</span>
 					</div>	
 					<label class="left-label">Private Key WIF:</label>
@@ -798,7 +797,7 @@ $().ready(function ()
 						This is the Private Key Checksum, which is included in the Private Key WIF.
 						<br>
 						This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
-						<br><br>
+						<br>
 						</span>
 					</div>	
 					<label class="left-label">Private CheckSum:</label>
@@ -810,7 +809,7 @@ $().ready(function ()
 						This is the Public Key, which is derived from the public key. The public key
 						<br>
 						Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
-						<br><br>
+						<br>
 						</span>
 					</div>	
 					<label class="left-label">Public Key Hex:</label>
@@ -822,7 +821,7 @@ $().ready(function ()
 						The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
 						<br>
 						Every address's Hash160 is known.
-						<br><br>
+						<br>
 						</span>
 					</div>	
 					<label class="left-label">Hash160:</label>
@@ -834,7 +833,7 @@ $().ready(function ()
 						The Address Checksum is derived from the Public Key and is used to create the Public Address.
 						<br>
 						The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
-						<br><br><br>
+						<br>
 						</span>
 					</div>	
 					<label class="left-label">Address CheckSum:</label>
@@ -905,7 +904,7 @@ $().ready(function ()
 								<br><br>
 								Print the front side first, put it back in the paper tray, making sure to orient it correctly so that the 
 								back is printed on the right side and with the right orientation.
-								<br><br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -924,7 +923,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								Include a second copy of the wallet on the paper, to use as a backup.
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -947,7 +946,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								For printing sample wallets, this will include text on the wallet near the Address QR Code: "SAMPLE WALLET - DO NOT USE"
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -969,7 +968,7 @@ $().ready(function ()
 							<div class="help-bubble" style="float:left;">
 								<span>
 								Use zoom to correct for printer differences and get the wallet to print properly.
-								<br><br>
+								<br>
 								</span>
 							</div>	
 							
@@ -1160,7 +1159,7 @@ $().ready(function ()
 				<input type="radio" name="theme" value="No" id="lights-off" autocomplete="off" />
 				<label for="lights-off">-</label> 
 				
-				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" />
+				<input type="radio" name="theme" value="Yes" id="lights-on" autocomplete="off" checked />
 				<label for="lights-on">+</label>
 
 				<a></a>
