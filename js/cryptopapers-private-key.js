@@ -370,10 +370,16 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	{
-	if (PrivKeyWIF != undefined && PrivKeyWIF != '')
+	if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 		{
 		$('.key-details').snazzyShow();
-		$('.print-encryption').snazzyShow();
+		if (!CoinInfo[CoinType].manual)
+			$('.print-encryption').snazzyShow();			
+		}
+	else
+		{
+		$('.key-details').snazzyHide();
+		$('.print-encryption').snazzyHide();
 		}
 	
 	$('#private-key-wif').val(PrivKeyWIF);
