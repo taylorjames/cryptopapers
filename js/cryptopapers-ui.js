@@ -498,7 +498,7 @@ function AddDropdownCoins()
 		coins += '<div class="coin selector ' + Disabled + Active + '" ' + ActiveFloat + 'data="' + CoinAbbreviation + '">' + '<img src="images/coin-icons/' + CoinAbbreviation + '-logo.png" class="' + CoinAbbreviation + '-coin" />'
 		+ ComingSoon + Tests + '<em>' + CoinFullName + '</em></div>';
 				
-		if ((i+1) % cols == 0)
+		if ((i+1) % cols == 0 && i < Object.keys(CoinInfo).length-1)
 			{
 			coins += '</div>';
 			coins += '<div class="coin-grid-row selector-grid-row">';

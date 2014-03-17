@@ -2526,6 +2526,7 @@ color: #00AD00;
 .print-encryption
 {
 display: none;
+clear: right;
 }
 .print-encryption label
 {
