@@ -287,6 +287,14 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 var CurrentKey = undefined;
 var KeyWallet = [];
 	
+function RemoveKey(Key)
+	{
+	var index = KeyWallet.indexOf(Key);
+	
+	if (index >= 0)
+		KeyWallet.splice(index, 1);
+		
+	}
 function WalletContains(CoinType, Key)
 	{
 	for (var i = 0; i < KeyWallet.length; i++)
@@ -341,13 +349,15 @@ function DisplayWallets()
 		var cointype = $('.coin-type .coin.selector[data=' + CurrentKey.coinType + ']');
 				
 		if (!cointype.hasClass('active'))
-			{
-			CurrentCoinType = CurrentKey.coinType;
+			{			
+			var Width = $('.coin-type').attr('colwidth');
 			
 			$('.coin-type .coin-grid-row.active').removeClass('active');
 			$('.coin-type .coin.active').removeClass('active');
-			cointype.css('height', '').addClass('active');
-			cointype.parent().css('height', '').addClass('active');
+			cointype.css('width', Width).css('height', 'inherit').addClass('active');
+			cointype.parent().css('width', Width).css('height', 'inherit').addClass('active');
+			
+			ChangeCoinType(CurrentKey.coinType, false);
 			}
 		
 		if (CoinInfo[CurrentKey.coinType].manual)
@@ -366,6 +376,7 @@ function DisplayWallets()
 		$(this).addClass('current-key');
 		$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
 			DisplayWallets();
+			$('.key-wallet').removeClass('expand-y')
 			});
 			
 		return false;
@@ -458,6 +469,7 @@ function DisplayWallets()
 			}
 		else
 			{
+			//ClearCurrentKey();
 			
 			var bytes = sr.getBytes(32);
 			sr.seedTime();
@@ -501,6 +513,8 @@ function DisplayWallets()
 			window.onbeforeunload = undefined;
 			$('#coin-setup-menu #print').addClass('disabled');
 			}
+		
+		RemoveKey(CurrentKey);
 		
 		ClearCurrentKey();
 		});
@@ -757,7 +771,9 @@ function ClearCurrentKey()
 	ClearKeyText();		
 
 	CurrentKey = undefined;
+	
 	DisplayWallets();
+	
 	$('.key-wallet.expand-x').click();
 
 	$('#private-key-input').val('');
