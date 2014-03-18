@@ -285,6 +285,8 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	}
 	
 var CurrentKey = undefined;
+var CurrentKey_Updated = false;
+
 var KeyWallet = [];
 	
 function RemoveKey(Key)
@@ -299,7 +301,8 @@ function WalletContains(CoinType, Key)
 	{
 	for (var i = 0; i < KeyWallet.length; i++)
 		{
-		if (KeyWallet[i].key == Key && KeyWallet[i].coinType == CoinType)
+		if (KeyWallet[i].coinType == CoinType &&
+			(KeyWallet[i].key == Key || KeyWallet[i].encryptedKey == Key))
 			{
 			return true;
 			}
@@ -321,6 +324,10 @@ function DisplayWallets()
 		Keys += '<a>';
 		Keys += '<div class="wallet-coin-type ' + Key.coinType + '-coin coin"></div>';
 		Keys += '<div class="address">' + Key.address + '</div>';
+		
+		if (Key.encryptedKey != undefined && Key.encryptedKey != '')
+			Keys += '<div class="encrypted"></div>';
+		
 		Keys += '<div class="print-status"></div>';
 		Keys += '</a>';
 		Keys += '</div>';
@@ -377,7 +384,15 @@ function DisplayWallets()
 		else
 			{
 			$('#private-key-input').val(CurrentKey.key);
+			
 			$('#private-key-input').change();
+			
+			setTimeout(function() {
+			if (CurrentKey.encryptedKey != undefined && CurrentKey.encryptedKey != '')
+				{
+				DisplayWallet(CurrentKey.coinType, CurrentKey.encryptedKey, CurrentKey.address, true);
+				}			
+				},1000);
 			}
 		
 		$('.generate-button').snazzyHide();
@@ -474,7 +489,7 @@ function DisplayWallets()
 			
 			$(this).find('.key:not(.current-key)').snazzyShow();
 					
-			$(this).animate({width: 390}, 300, function() { 
+			$(this).animate({width: 444}, 300, function() { 
 			
 				$(this).addClass('expand-x').addClass('expand-y');
 			
@@ -587,11 +602,11 @@ function DisplayWallets()
 				key: Key,
 				encryptedKey: EncryptedKey
 				};
-				
+			
 			if (!WalletContains(CurrentCoinType, Key))
 				{
 				KeyWallet.push(Wallet);
-				}
+				}			
 			
 			DisplayWallets();
 			
@@ -757,21 +772,23 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('#encryption-key-confirm').val('');
 		$('.private-key-encrypted').snazzyHide();
 		$('#encrypt-remove-button').attr('disabled', '');
-		$('.encryption-details').hide();
-		$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
+		$('.encryption-details').snazzyHide();
+		$('.encrypted').fadeOut(300);
+		$('.encryption-keys').snazzyShow();
 		}
 	else
 		{
 		$('.coin-wallets').addClass('keys-encrypted');
 		$('.print-encryption #encrypted-key').val(PrivKeyWIF);
+		$('#encrypt-remove-button').removeAttr('disabled');
 		$('.private-key-encrypted').snazzyShow();
 		$('.warning-encryption').fadeIn(300);
+		$('.encrypted').fadeIn(300);
 		$('#private-key-encrypted').val(PrivKeyWIF);
-		$('.encryption-details').show().css('height', 'auto').css('opacity','1');
-		$('.encryption-keys').hide();
+		$('.encryption-details').snazzyShow();
+		$('.encryption-keys').snazzyHide();
 		}	
 	
-	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
 	$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
 	$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
 	

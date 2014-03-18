@@ -42,11 +42,17 @@ function InitBIP38()
 		
 		Bitcoin.BIP38.PrivateKeyToEncryptedKeyAsync(WIF, Key, Compressed, Address, function (o, n)
 			{			
+			if (CurrentKey != undefined)
+				{
+				CurrentKey.encryptedKey = o;
+				DisplayWallets();
+				}
+				
 			DisplayWallet(CoinType, o, Address, true);
 			
 			$('.encrypting').fadeOut(300);
 			
-			$('.encrypted').fadeIn(300);
+			$('.encrypted').fadeIn(300);			
 			
 			$('#encrypt-remove-button').removeAttr('disabled');
 			})
@@ -69,8 +75,16 @@ function InitBIP38()
 		$('.encryption-keys').snazzyShow();
 			
 		$('.encrypted').fadeOut(300);
-			
 		
+		CurrentKey_Updated = true;
+		$('#private-key-add').removeAttr('disabled');
+		
+		if (CurrentKey != undefined)
+			{
+			CurrentKey.encryptedKey = undefined;
+			DisplayWallets();
+			}
+			
 		DisplayWallet(CurrentCoinType, WIF, Address, false);
 		});
 		

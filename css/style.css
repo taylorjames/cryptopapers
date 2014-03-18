@@ -2984,9 +2984,21 @@ margin-right: -300px;
 display: none;
 height: 0px;
 opacity: 0;
-width: 300px;
+width: 355px;
 float: left;
 }
+
+.key-wallet .keys .key .encrypted
+{
+display: block;
+width: 20px;
+height: 20px;
+float: left;
+position: absolute;
+left: 388px;
+margin-top: 7px;
+}
+
 .key-wallet.expand-y .keys .key
 {
 display: block;
