@@ -270,25 +270,21 @@ var Backgrounds =
 			
 		SetDesign($(this).attr('data'));
 		});
+	$('.custom.coin-wallet-background').click(function()
+		{
+		
+		});
 		
 		
 	$('#custom-design').change(function(evt)
-		{
-		Log(evt);
-		Log(evt.target);
-		Log(evt.target.files);
-		Log(evt.target.files[0]);
-		
+		{		
 		var fr = new FileReader();
 		
 		fr.onload = (function(theFile) {
-			return function(e) {
-				// Render background.
-				Log(e.target.result);
-				
+			return function(e) {				
+			
 				$('.coin-wallet .coin-wallet-background').attr('src', e.target.result);
-				$('.custom.coin-wallet-background').attr('src', e.target.result);
-				
+				$('.custom.coin-wallet-background').attr('src', e.target.result);				
 				};
 			})(evt.target.files[0]);
 

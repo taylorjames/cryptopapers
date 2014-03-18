@@ -2898,3 +2898,14 @@ width: 36%;
 background: white;
 margin-bottom: 10px;
 }
+
+.show
+{
+display: block !important;
+}
+
+.custom.coin-wallet-background
+{
+width: 100%;
+height: auto;
+}

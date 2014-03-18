@@ -10,6 +10,12 @@
 	$('.hue-shift-reset').click(function () {
 		HueShift = 0;
 		$( "#hue-slider" ).slider('value',0);
+		$( "#custom-design-x-slider" ).slider('value',50);
+		$( "#custom-design-y-slider" ).slider('value',0);
+		$( "#custom-design-zoom-slider" ).slider('value',100);
+		
+		UpdateBackground();
+		
 		ApplyHueShift();
 	});	
 	
@@ -76,7 +82,7 @@
 		});
 	}
 
-function UpdateBackground ()
+function UpdateBackground()
 	{
 	var totalwidth = $('.coin-wallet .coin-wallet-background').css('width');
 	totalwidth = totalwidth.substr(0, totalwidth.length-2);
@@ -94,6 +100,12 @@ function UpdateBackground ()
 		
 		left = left * (LeftPercent/50)  * 100+ '%';
 		}
+	else if (totalwidth >= 1100)
+		{
+		left = ((totalwidth / 1100) - 1) / 2
+		left = -left;
+		left = left * (LeftPercent/50) * 100 + '%';
+		}
 	if (totalheight < 360)
 		{
 		top =  (1-(totalheight / 360)) / 2;		
@@ -107,5 +119,6 @@ function UpdateBackground ()
 	Log(TopPercent)
 	
 	$('.coin-wallet .coin-wallet-background').css('width', width).css('left', left).css('top', top);
+	$('.custom.coin-wallet-background').css('width', width).css('left', left).css('top', top);
 	
 	}
