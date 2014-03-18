@@ -377,7 +377,7 @@ function DisplayWallets()
 		
 		if (CoinInfo[CurrentKey.coinType].manual)
 			{
-			$('#private-key-manul-address').val(CurrentKey.address);
+			$('#private-key-address-manual').val(CurrentKey.address);
 			$('#private-key-input').val(CurrentKey.key);
 			$('#private-key-input').change();
 			}
@@ -568,9 +568,20 @@ function DisplayWallets()
 		var Key = $('#private-key-wif').val();
 		var EncryptedKey = $('#private-key-encrypted').val();
 		
-		var StartLeft =  $('#public-address').offset().left;
-		var StartTop = $('#public-address').offset().top;
-		var StartSize = $('#public-address').css('font-size');
+		var AddressDiv = '';
+		
+		if (CoinInfo[CurrentCoinType].manual)
+			{
+			AddressDiv= '#private-key-address-manual';
+			}
+		else
+			{
+			AddressDiv= '#public-address';
+			}
+			
+		var StartLeft =  $(AddressDiv).offset().left;
+		var StartTop = $(AddressDiv).offset().top;
+		var StartSize = $(AddressDiv).css('font-size');
 		
 		var DisplayKey = $('#private-key-input').val();		
 		
@@ -586,7 +597,7 @@ function DisplayWallets()
 		$('body').parent().prepend('<div class="address-effect key">' + DisplayKey + '</div>');
 		
 		$('#private-key-input').val('');
-		$('#public-address').val('');
+		$(AddressDiv).val('');
 		
 		$('.address-effect.key').css('left', StartLeft2).css('top', StartTop2).css('font-size', StartSize2)
 			.animate({top: EndTop, left: EndLeft, 'font-size': EndSize}, 600, function () 
@@ -627,10 +638,13 @@ function DisplayWallets()
 		});
 	
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
-		{		
-		$(this).change();
-		}
-		);
+		{
+		if (!CoinInfo[CurrentCoinType].manual)
+			{
+			$(this).change();
+			}
+		});
+		
 	$('#private-key-input, #private-key-address-manual').change(function() 
 		{
 		if (CoinInfo[CurrentCoinType].manual)
