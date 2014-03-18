@@ -1609,6 +1609,7 @@ left: 120px;
 }
 
 .key-details{
+	opacity: 0;
 	display:none;
 	overflow: initial;
 }
@@ -1623,12 +1624,9 @@ display: none;
 
 .key-details h3 
 {
-margin-bottom: 58px;
 }
 .manual-hide.compression
 {
-margin-top: -40px;
-margin-bottom: -8px;
 }
 
 .pool-status-bar
@@ -2896,4 +2894,46 @@ position: relative;
 width: 36%;
 background: white;
 margin-bottom: 10px;
+}
+
+#private-key-add
+{
+float: left;
+width: 30%;
+top: 0px;
+margin: 0px;
+margin-bottom: 12px;
+margin-left: 2%
+}
+
+#private-key-remove
+{
+background-color: #BB3B3B;
+float: left;
+width: 30%;
+top: 0px;
+margin: 0px;
+margin-bottom: 12px;
+}
+
+#private-key-remove-yes
+{
+background-color: #BB3B3B;
+float: left;
+width: 14%;
+top: 0px;
+margin: 0px;
+margin-bottom: 12px;
+margin-right: 1%;
+
+}
+
+#private-key-remove-no
+{
+float: left;
+width: 14%;
+top: 0px;
+margin: 0px;
+margin-bottom: 12px;
+margin-right: 1%;
 }

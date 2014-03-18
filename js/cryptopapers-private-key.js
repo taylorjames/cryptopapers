@@ -295,6 +295,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			}
 		else
 			{
+			
 			var bytes = sr.getBytes(32);
 			sr.seedTime();
 			var hex = Crypto.util.bytesToHex(bytes);
@@ -302,12 +303,62 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			$('#private-key-input').val(hex);
 			$('#private-key-input').change();
 			
+			$(this).snazzyHide();
+			
 			$('#security-generate-import-no').click();
 			}
 		});
+		
+	
+	$('#private-key-remove').click(function() 
+		{
+		$(this).fadeOut(300, function() {
+			$('#private-key-remove-yes').fadeIn(300);
+			$('#private-key-remove-no').fadeIn(300);
+			
+			});
+		});
+		
+	$('#private-key-remove-no').click(function() {
+		$('#private-key-remove-yes, #private-key-remove-no').fadeOut(300, function() {
+			$('#private-key-remove').fadeIn(300);
+			});
+		});		
+		
+	$('#private-key-remove-yes').click(function() {
+	
+		$('#private-key-remove-yes, #private-key-remove-no').fadeOut(300, function() {
+			$('#private-key-remove').fadeIn(300);
+			});
+			
+		ClearKeys();
+		
+		$('#private-key-input').val('');
+		$('#private-key-add').attr('disabled', '');
+		$('#private-key-remove').attr('disabled', '');
+		$('.key-details').snazzyHide();
+		$('.print-encryption').snazzyHide();
+		
+		$('.generate-button').snazzyShow();		
+		});
+	$('#private-key-add').click(function() 
+		{
+		var Address = $('#public-address').val();
+		var Key = $('#private-key-wif').val();
+		
+		var StartLeft = $('#public-address').offset().left;
+		var StartTop = $('#public-address').offset().top;
+		var StartSize = $('#public-address').css('font-size');
+		
+		var EndLeft = 10;
+		var EndTop = 10;
+		var EndSize = '12px';
+		
+		$('.generate-button').snazzyShow();
+		});
 	
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
-		{
+		{		
 		$(this).change();
 		}
 		);
@@ -315,17 +366,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		{
 		if (CoinInfo[CurrentCoinType].manual)
 			{
-			$('#private-key-hex').val('');
-			$('#private-key-encrypted').val('');
-			$('.private-key-encrypted').snazzyHide();
-			$('#private-key-checksum').val('');
-			$('#public-key-hex').val('');
-			$('#public-key-hash160').val('');
-			$('#public-key-address-checksum').val('');
-			
-			$('#public-address').val('');
-			$('#public-key-address-checksum').val('');
-			$('#private-key-wif').val('');
+			ClearKeys();
 
 			
 			var Address = $('#private-key-address-manual').val();
@@ -365,19 +406,42 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			}
 		});	 
 	}
-	 
-	 
+	
+	
+function ClearKeys()
+{
+	$('#private-key-hex').val('');
+	$('#private-key-encrypted').val('');
+	$('.private-key-encrypted').snazzyHide();
+	$('#private-key-checksum').val('');
+	$('#public-key-hex').val('');
+	$('#public-key-hash160').val('');
+	$('#public-key-address-checksum').val('');
+	$('#private-key-address-manual').val('');
+	
+	$('#public-address').val('');
+	$('#public-key-address-checksum').val('');
+	$('#private-key-wif').val('');
+	$('#public-address').val('');
+	$('.coin-wallet-address').html('');	
+	$('.coin-wallet-address-qr').html('');
+	$('.coin-wallet-private-key-qr').html('');
+}
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	{
 	if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 		{
+		$('#private-key-add').removeAttr('disabled');
+		$('#private-key-remove').removeAttr('disabled');
 		$('.key-details').snazzyShow();
 		if (!CoinInfo[CoinType].manual)
 			$('.print-encryption').snazzyShow();			
 		}
 	else
 		{
+		$('#private-key-add').attr('disabled', '');
+		$('#private-key-remove').attr('disabled', '');
 		$('.key-details').snazzyHide();
 		$('.print-encryption').snazzyHide();
 		}

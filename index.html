@@ -221,6 +221,19 @@ $().ready(function ()
 			</ul>
 		</div>
 		
+		<div class="key-wallet">
+			<div class="key-count"></div>
+			<div class="wallet-image"></div>
+			<div class="keys">
+				<div class="current-key">
+					<div class="current-key-coin-type"></div>
+					<div class="current-key-address"></div>
+					<div class="current-key-print-status"></div>					
+				</div> 
+				<!-- Dynamically filled -->
+			</div>
+		</div>
+		
 		<a href="http://cryptopapers.com" target="_blank" title="CryptoPapers" alt="CryptoPapers">
 			<img id="logo" src="images/logo.png"/>
 		</a>
@@ -669,7 +682,8 @@ $().ready(function ()
 							<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
 						</div>
 						
-						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate New Key" fixed-height="50px" disabled />
+						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" style="display: none" value="Generate New Key" fixed-height="50px" disabled />
+						
 					</div>
 				</div>			
 				<div class="random-info round-block help-section colfive last">
@@ -723,15 +737,36 @@ $().ready(function ()
 				</div>
 				
 				
-				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
+				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="171">
 					<div class="colinner"> 
 					<div class="coin btc-coin changing-coin"></div>
 					<h3 class="stay">Key Details</h3>
+					
+					<input type="button" id="private-key-remove" class="remove-button manual-hide large-button" value="Remove" fixed-height="50px" />
+					<input type="button" id="private-key-remove-no" class="remove-button-no manual-hide large-button" style="display: none" value="Cancel" fixed-height="50px" />
+					<input type="button" id="private-key-remove-yes" class="remove-button-yes manual-hide large-button" style="display: none" value="Confirm" fixed-height="50px" />
+					<input type="button" id="private-key-add" class="add-button manual-hide large-button" value="Add to Wallet" fixed-height="50px" />
+						
 
 					<div class="coin-wallet-address-qr"></div>
 					<div class="coin-wallet-private-key-qr"></div>
 					
-					<div class="manual-hide compression minimize-hide">
+					
+					<div class="">
+						<span class="key-info-public-address">
+						
+						<div class="help-bubble" style="float:left;">
+							<span>
+							Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+							<br><br>
+							</span>
+						</div>
+						<label class="left-label" for="public-address">Public Address:</label>
+						<input type="text" id="public-address" autocomplete="off" readonly />
+						</span>						
+					</div>
+					
+					<div class="manual-hide compression">
 						<div class="help-bubble" style="float:left;">
 							<span>
 							<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
@@ -755,21 +790,6 @@ $().ready(function ()
 							<a></a>
 						</div>
 					</div>
-					
-					<div class="">
-						<span class="key-info-public-address">
-						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
-							<br><br>
-							</span>
-						</div>
-						<label class="left-label" for="public-address">Public Address:</label>
-						<input type="text" id="public-address" autocomplete="off" readonly />
-						</span>						
-					</div>
-					
 					
 					<div class="manual-hide">
 						<div class="help-bubble" style="float:left;">
