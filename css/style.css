@@ -383,12 +383,12 @@ h1, h2, h3, h4, h5, h6{
 
 .coin-type
 {
-top: 0px;
+top: -42px;
+left: 20px;
 height: 105px;
 background: #fff;
 z-index: 100000;
 position: absolute;
-left: 192px;
 padding: 0px;
 border: 1px solid #e2e2e2;
 border-radius: 5px;
@@ -547,19 +547,6 @@ width: 75%;
 }
 
 
-
-.coins-grid-wrapper .coin em{
-	width:100%;
-	display:inline-block;
-	text-align:center;
-	padding-bottom: 5px;
-	font-style: normal;
-	font-weight: bolder;
-	padding-top: 2px;
-	background: #dddddd;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-}
 
 .coin.selector{
 width: 80px;
@@ -2950,7 +2937,7 @@ border-radius: 14px;
 cursor: pointer;
 position: absolute;
 top: 10px;
-left: 302px;
+left: 190px;
 width: 86px;
 overflow: hidden;
 z-index: 4;
@@ -3018,6 +3005,10 @@ float: left;
 font-size: 12px;
 margin-top: 13px;
 float: left;
+color: #fff;
+margin-left: 5px;
+text-align: center;
+width: 258px;
 }
 
 .key-wallet .keys .key .print-status
@@ -3054,4 +3045,19 @@ border-radius: 10px;
 
 .key-wallet .keys .key.current-key .print-status
 {
+}
+
+.coins-grid-wrapper .coin em{
+	width:100%;
+	display:inline-block;
+	text-align:center;
+	padding-bottom: 5px;
+	font-style: normal;
+	padding-top: 2px;
+	background: #dddddd;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	margin-top: 0px;
+	font-weight: bold;
+	color: #666;
 }

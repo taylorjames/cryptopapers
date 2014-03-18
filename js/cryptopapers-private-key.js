@@ -318,9 +318,11 @@ function DisplayWallets()
 		var IsCurrentKey = (CurrentKey == KeyWallet[i]) ? ' current-key' : '';
 		
 		Keys += '<div class="key' + IsCurrentKey+ '" data="' + i + '">';		
+		Keys += '<a>';
 		Keys += '<div class="wallet-coin-type ' + Key.coinType + '-coin coin"></div>';
 		Keys += '<div class="address">' + Key.address + '</div>';
 		Keys += '<div class="print-status"></div>';
+		Keys += '</a>';
 		Keys += '</div>';
 		}
 		
@@ -332,6 +334,11 @@ function DisplayWallets()
 	else
 		$('.key-wallet').removeClass('empty');	
 		
+	$('.key-wallet .key.current-key').mouseenter(function() 
+	{
+			$(this).parent().find('.key:not(.current-key)').show().animate({height: 36, opacity: 1});
+	});	
+	
 	$('.key-wallet .key').bind('click', function() 
 		{
 		if ($(this).hasClass('current-key'))
@@ -354,8 +361,9 @@ function DisplayWallets()
 			
 			$('.coin-type .coin-grid-row.active').removeClass('active');
 			$('.coin-type .coin.active').removeClass('active');
+			$('.coin-type .coin-grid-row:not(.active)').css('height', '0');
 			cointype.css('width', Width).css('height', 'inherit').addClass('active');
-			cointype.parent().css('width', Width).css('height', 'inherit').addClass('active');
+			cointype.parent().css('height', 'inherit').addClass('active');
 			
 			ChangeCoinType(CurrentKey.coinType, false);
 			}
@@ -372,9 +380,12 @@ function DisplayWallets()
 			$('#private-key-input').change();
 			}
 		
+		$('.generate-button').snazzyHide();
+		
 		$('.key-wallet .key.current-key').removeClass('current-key');
 		$(this).addClass('current-key');
-		$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
+		
+		$(this).parent().find('.key:not(.current-key)').animate({height: 0, opacity: 0}, 300, function() { 
 			DisplayWallets();
 			$('.key-wallet').removeClass('expand-y')
 			});
@@ -385,6 +396,12 @@ function DisplayWallets()
 	
  function InitPrivateKeyPage()
 	{
+	
+	$('.key-wallet .keys').mouseleave(function() 
+	{
+			$('.key-wallet').find('.key:not(.current-key)').show().animate({height: 0, opacity: 0});
+	});
+	
 	$('.key-wallet').click(function() 
 		{
 		if ($(this).hasClass('expand-x'))
@@ -401,6 +418,10 @@ function DisplayWallets()
 				}
 			else
 				{
+				ClearCurrentKey();
+				$(this).removeClass('expand-x').removeClass('expand-y');
+				
+				/*
 				if ($(this).hasClass('expand-y'))
 					{
 					$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
@@ -438,8 +459,8 @@ function DisplayWallets()
 					$(this).css('height', OldHeight).animate({height: NewHeight}, 300, function() { 
 						
 						});
-						*/
 					}
+						*/
 				}
 			}
 		else if (KeyWallet.length != 0)
@@ -458,6 +479,7 @@ function DisplayWallets()
 			}
 		});
 		
+	
 	 
 	$('.generate-button').click(function()
 		{
