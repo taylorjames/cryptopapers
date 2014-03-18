@@ -399,7 +399,13 @@ function DisplayWallets()
 	
 	$('.key-wallet .keys').mouseleave(function() 
 	{
+		if ($('.key-wallet').hasClass('expand-x') && $('.key-wallet').hasClass('expand-y'))
+			{
+			}
+		else
+			{
 			$('.key-wallet').find('.key:not(.current-key)').show().animate({height: 0, opacity: 0});
+			}
 	});
 	
 	$('.key-wallet').click(function() 
@@ -557,9 +563,9 @@ function DisplayWallets()
 		var StartTop2 = $('#private-key-input').offset().top + 15;
 		var StartSize2 = $('#private-key-input').css('font-size');
 		
-		var EndLeft = $('.key-wallet .wallet-image').offset().left - 20;
+		var EndLeft = $('.key-wallet .wallet-image').offset().left - 10;
 		var EndTop = $('.key-wallet .wallet-image').offset().top + 10;		
-		var EndSize = '4px';
+		var EndSize = '1px';
 		
 		$('body').parent().prepend('<div class="address-effect address">' + Address + '</div>');
 		$('body').parent().prepend('<div class="address-effect key">' + DisplayKey + '</div>');
