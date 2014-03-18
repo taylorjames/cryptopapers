@@ -221,24 +221,10 @@ $().ready(function ()
 			</ul>
 		</div>
 		
-		<div class="key-wallet">
-			<div class="key-count"></div>
-			<div class="wallet-image"></div>
-			<div class="keys">
-				<div class="current-key">
-					<div class="current-key-coin-type"></div>
-					<div class="current-key-address"></div>
-					<div class="current-key-print-status"></div>					
-				</div> 
-				<!-- Dynamically filled -->
-			</div>
-		</div>
-		
 		<a href="http://cryptopapers.com" target="_blank" title="CryptoPapers" alt="CryptoPapers">
 			<img id="logo" src="images/logo.png"/>
 		</a>
 		<span class="copyright">&copy; 2014</span>
-		
 		
 		<div class="zero-trust-seal hidden">
 			
@@ -253,6 +239,16 @@ $().ready(function ()
 			</div>
 		</div>
 		
+		<div class="key-wallet empty">
+			<div>
+				<div class="wallet-image"></div>
+				<div class="key-count">0</div>
+				
+				<div class="keys">
+					<!-- Dynamically filled -->
+				</div>
+			</div>
+		</div>		
 	</div>
 </div>
 
@@ -742,10 +738,10 @@ $().ready(function ()
 					<div class="coin btc-coin changing-coin"></div>
 					<h3 class="stay">Key Details</h3>
 					
-					<input type="button" id="private-key-remove" class="remove-button manual-hide large-button" value="Remove" fixed-height="50px" />
-					<input type="button" id="private-key-remove-no" class="remove-button-no manual-hide large-button" style="display: none" value="Cancel" fixed-height="50px" />
-					<input type="button" id="private-key-remove-yes" class="remove-button-yes manual-hide large-button" style="display: none" value="Confirm" fixed-height="50px" />
-					<input type="button" id="private-key-add" class="add-button manual-hide large-button" value="Add to Wallet" fixed-height="50px" />
+					<input type="button" id="private-key-remove" class="remove-button large-button" value="Remove" fixed-height="50px" />
+					<input type="button" id="private-key-remove-no" class="remove-button-no large-button" style="display: none" value="Cancel" fixed-height="50px" />
+					<input type="button" id="private-key-remove-yes" class="remove-button-yes large-button" style="display: none" value="Confirm" fixed-height="50px" />
+					<input type="button" id="private-key-add" class="add-button large-button" value="Save Key" fixed-height="50px" />
 						
 
 					<div class="coin-wallet-address-qr"></div>

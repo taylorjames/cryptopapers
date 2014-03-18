@@ -265,6 +265,7 @@ var CoinInfo = {
 		manual: true
 		},
 	};
+	
 var AllCoinTypes = '';
 var AllCoinTypesFull = '';
 
@@ -283,8 +284,170 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		}
 	}
 	
+var CurrentKey = undefined;
+var KeyWallet = [];
+	
+function WalletContains(CoinType, Key)
+	{
+	for (var i = 0; i < KeyWallet.length; i++)
+		{
+		if (KeyWallet[i].key == Key && KeyWallet[i].coinType == CoinType)
+			{
+			return true;
+			}
+		}
+		
+	return false;
+	}
+	
+function DisplayWallets()
+	{
+	var Keys = '';
+	for (var i = 0; i < KeyWallet.length; i++)
+		{
+		var Key = KeyWallet[i];
+		
+		var IsCurrentKey = (CurrentKey == KeyWallet[i]) ? ' current-key' : '';
+		
+		Keys += '<div class="key' + IsCurrentKey+ '" data="' + i + '">';		
+		Keys += '<div class="wallet-coin-type ' + Key.coinType + '-coin coin"></div>';
+		Keys += '<div class="address">' + Key.address + '</div>';
+		Keys += '<div class="print-status"></div>';
+		Keys += '</div>';
+		}
+		
+	$('.key-wallet .keys').html(Keys);
+	$('.key-wallet .key-count').html(KeyWallet.length);
+	
+	if (KeyWallet.length == 0)
+		$('.key-wallet').addClass('empty');
+	else
+		$('.key-wallet').removeClass('empty');	
+		
+	$('.key-wallet .key').bind('click', function() 
+		{
+		if ($(this).hasClass('current-key'))
+			{
+			if (KeyWallet.length > 1)
+				return true;
+			else
+				return false;
+			}
+			
+		var index = parseInt($(this).attr('data'));
+		
+		CurrentKey = KeyWallet[index];
+		
+		var cointype = $('.coin-type .coin.selector[data=' + CurrentKey.coinType + ']');
+				
+		if (!cointype.hasClass('active'))
+			{
+			CurrentCoinType = CurrentKey.coinType;
+			
+			$('.coin-type .coin-grid-row.active').removeClass('active');
+			$('.coin-type .coin.active').removeClass('active');
+			cointype.css('height', '').addClass('active');
+			cointype.parent().css('height', '').addClass('active');
+			}
+		
+		if (CoinInfo[CurrentKey.coinType].manual)
+			{
+			$('#private-key-manul-address').val(CurrentKey.address);
+			$('#private-key-input').val(CurrentKey.key);
+			$('#private-key-input').change();
+			}
+		else
+			{
+			$('#private-key-input').val(CurrentKey.key);
+			$('#private-key-input').change();
+			}
+		
+		$('.key-wallet .key.current-key').removeClass('current-key');
+		$(this).addClass('current-key');
+		$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
+			DisplayWallets();
+			});
+			
+		return false;
+		});
+	}
+	
  function InitPrivateKeyPage()
-	 {
+	{
+	$('.key-wallet').click(function() 
+		{
+		if ($(this).hasClass('expand-x'))
+			{
+			if (CurrentKey == undefined)
+				{
+				var a = $(this);
+				
+				$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
+					a.animate({width: 86}, 300, function() {
+						a.removeClass('expand-x').removeClass('expand-y');
+						});
+					});
+				}
+			else
+				{
+				if ($(this).hasClass('expand-y'))
+					{
+					$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
+						});
+						
+					//$(this).animate({height: 63}, 300, function() {
+						$(this).removeClass('expand-y');
+					//	});
+					
+					ClearCurrentKey();
+					
+					$(this).animate({width: 86}, 300, function() {
+						$(this).removeClass('expand-x').removeClass('expand-y');
+						});
+					
+					}
+				else
+					{
+					var a = $(this);
+					
+					
+					$(this).find('.key:not(.current-key)').snazzyShow(300, function() { 
+					
+						
+						});
+						a.addClass('expand-y');
+					//a.animate({height: a.getTrueHeight()}, 300);
+					/*
+					var OldHeight = $(this).css('height');
+					
+					$(this).addClass('expand-y');
+					
+					var NewHeight = $(this).css('height');
+					
+					$(this).css('height', OldHeight).animate({height: NewHeight}, 300, function() { 
+						
+						});
+						*/
+					}
+				}
+			}
+		else if (KeyWallet.length != 0)
+			{		
+			
+			$(this).find('.key:not(.current-key)').snazzyShow();
+					
+			$(this).animate({width: 390}, 300, function() { 
+			
+				$(this).addClass('expand-x').addClass('expand-y');
+			
+			//	var NewHeight = $(this).css('height');
+				
+			//	$(this).animate({height: NewHeight}, 300);
+				});
+			}
+		});
+		
+	 
 	$('.generate-button').click(function()
 		{
 		if (VanityEnabled != undefined && VanityEnabled())
@@ -330,31 +493,80 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		$('#private-key-remove-yes, #private-key-remove-no').fadeOut(300, function() {
 			$('#private-key-remove').fadeIn(300);
 			});
-			
-		ClearKeys();
 		
-		$('#private-key-input').val('');
-		$('#private-key-add').attr('disabled', '');
-		$('#private-key-remove').attr('disabled', '');
-		$('.key-details').snazzyHide();
-		$('.print-encryption').snazzyHide();
+		var WalletCount = 0;
 		
-		$('.generate-button').snazzyShow();		
+		if (WalletCount == 0)
+			{
+			window.onbeforeunload = undefined;
+			$('#coin-setup-menu #print').addClass('disabled');
+			}
+		
+		ClearCurrentKey();
 		});
+		
 	$('#private-key-add').click(function() 
 		{
 		var Address = $('#public-address').val();
 		var Key = $('#private-key-wif').val();
+		var EncryptedKey = $('#private-key-encrypted').val();
 		
-		var StartLeft = $('#public-address').offset().left;
+		var StartLeft =  $('#public-address').offset().left;
 		var StartTop = $('#public-address').offset().top;
 		var StartSize = $('#public-address').css('font-size');
 		
-		var EndLeft = 10;
-		var EndTop = 10;
-		var EndSize = '12px';
+		var DisplayKey = $('#private-key-input').val();		
 		
-		$('.generate-button').snazzyShow();
+		var StartLeft2 =  $('#private-key-input').offset().left + 100;
+		var StartTop2 = $('#private-key-input').offset().top + 15;
+		var StartSize2 = $('#private-key-input').css('font-size');
+		
+		var EndLeft = $('.key-wallet .wallet-image').offset().left - 20;
+		var EndTop = $('.key-wallet .wallet-image').offset().top + 10;		
+		var EndSize = '4px';
+		
+		$('body').parent().prepend('<div class="address-effect address">' + Address + '</div>');
+		$('body').parent().prepend('<div class="address-effect key">' + DisplayKey + '</div>');
+		
+		$('#private-key-input').val('');
+		$('#public-address').val('');
+		
+		$('.address-effect.key').css('left', StartLeft2).css('top', StartTop2).css('font-size', StartSize2)
+			.animate({top: EndTop, left: EndLeft, 'font-size': EndSize}, 600, function () 
+			{
+			$(this).remove();			
+			});
+		$('.address-effect.address').css('left', StartLeft).css('top', StartTop).css('font-size', StartSize)
+			.animate({top: EndTop, left: EndLeft, 'font-size': EndSize}, 600, function ()
+			{
+			var Wallet = { 
+				coinType: CurrentCoinType,
+				address: Address,
+				key: Key,
+				encryptedKey: EncryptedKey
+				};
+				
+			if (!WalletContains(CurrentCoinType, Key))
+				{
+				KeyWallet.push(Wallet);
+				}
+			
+			DisplayWallets();
+			
+			$(this).remove();
+			
+			ClearKeyText();		
+			
+			$('#private-key-input').val('');
+			$('#private-key-address-manual').val('');
+			$('#private-key-add').attr('disabled', '');
+			$('#private-key-remove').attr('disabled', '');
+			$('.print-encryption').snazzyHide();
+			$('.key-details').snazzyHide(300, function() { 
+				if (!CoinInfo[CurrentCoinType].manual)
+					$('.generate-button').snazzyShow();	
+				});
+			});
 		});
 	
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
@@ -366,7 +578,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		{
 		if (CoinInfo[CurrentCoinType].manual)
 			{
-			ClearKeys();
+			ClearKeyText();
 
 			
 			var Address = $('#private-key-address-manual').val();
@@ -408,7 +620,7 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 	}
 	
 	
-function ClearKeys()
+function ClearKeyText()
 {
 	$('#private-key-hex').val('');
 	$('#private-key-encrypted').val('');
@@ -417,7 +629,6 @@ function ClearKeys()
 	$('#public-key-hex').val('');
 	$('#public-key-hash160').val('');
 	$('#public-key-address-checksum').val('');
-	$('#private-key-address-manual').val('');
 	
 	$('#public-address').val('');
 	$('#public-key-address-checksum').val('');
@@ -428,11 +639,26 @@ function ClearKeys()
 	$('.coin-wallet-private-key-qr').html('');
 }
 
+function closeEditorWarning(){
+    return 'You have possibly unsaved private keys stored. If you close this window, those private keys will be lost forever unless you have them backed up. \nAre you sure you want to close this window?'
+}
+
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	{
 	if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 		{
-		$('#private-key-add').removeAttr('disabled');
+
+		window.onbeforeunload = closeEditorWarning;
+		
+		if (!WalletContains(CoinType, PrivKeyWIF))
+			{
+			$('#private-key-add').removeAttr('disabled');
+			}
+		else
+			{
+			$('#private-key-add').attr('disabled', '');
+			}
+			
 		$('#private-key-remove').removeAttr('disabled');
 		$('.key-details').snazzyShow();
 		if (!CoinInfo[CoinType].manual)
@@ -525,7 +751,25 @@ function GetAddressPrefixHex(CoinType)
 	
 	return CoinInfo[CoinType].addressVersion;
 	}
-	
+
+function ClearCurrentKey()
+	{
+	ClearKeyText();		
+
+	CurrentKey = undefined;
+	DisplayWallets();
+	$('.key-wallet.expand-x').click();
+
+	$('#private-key-input').val('');
+	$('#private-key-address-manual').val('');
+	$('#private-key-add').attr('disabled', '');
+	$('#private-key-remove').attr('disabled', '');
+	$('.print-encryption').snazzyHide();
+	$('.key-details').snazzyHide(300, function() { 
+		if (!CoinInfo[CurrentCoinType].manual)
+			$('.generate-button').snazzyShow();	
+		});
+	}
 
 function Log(Text)
 	{

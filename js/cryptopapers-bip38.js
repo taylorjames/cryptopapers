@@ -56,6 +56,7 @@ function InitBIP38()
 		{		
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
+		$('#private-key-encrypted').val('');
 		
 		var WIF = $('#unencrypted-key').val();
 		var Address = $('#public-address').val();

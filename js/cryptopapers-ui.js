@@ -106,7 +106,7 @@ $.fn.snazzyHide = function(speed, callback) {
 	setTimeout(function() {
 	if (callback)
 		callback();
-		}, speed*2+1);
+		}, speed);
 }
 
 $.fn.getTrueHeight = function() {
