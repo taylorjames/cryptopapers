@@ -1062,39 +1062,10 @@ left: -38px;
 text-shadow: 1px 1px 1px white;
 font-size: 11px;
 }
-.coin-wallet-write-area
-{
-display: none;
-height: 200px;
-width: 331px;
-background: white;
-top: 44px;
-position: relative;
-left: 703px;
-border-radius: 13px;
-opacity: 0.86;
-text-align: center;
-}
 
 .coin-type .coin:hover{
 	border-radius:5px;
 	background-color:#e2e2e2;
-}
-
-.back .coin-wallet-write-area
-{
-display: block;
-}
-.coin-wallet-write-area h1
-{
-font-size: 30px;
-margin-bottom: 0px;
-}
-.coin-wallet-write-area h2
-{
-font-size: 15px;
-float: left;
-width: 50%;
 }
 
 .coin.disabled {
@@ -1929,64 +1900,6 @@ padding: 20px;
 	margin-top: 90px;
 }
 
-.coin-wallet-left
-{
-	float: left;
-	width: 331px;
-	text-align: center;
-	margin-left: 6px;
-	margin-top: 9px;
-}
-
-.coin-wallet-right
-{
-	float: right;
-	width: 218px;
-	text-align: center;
-	padding-top: 45px;
-	padding-right: 0px;
-
-}
-
-.coin-wallet-address
-{
-	font-size: 14px;
-	color: white;
-	background-color: rgba(0,0,0,0.7);
-	padding: 2px;
-}
-
-.coin-wallet-address-qr
-{
-	margin-top: 77px;
-	margin-left: 19px;
-	margin-bottom: 68px;
-	text-align: left;
-}
-.coin-wallet-address-qr canvas
-{
-	width: 103px;
-	height: 103px;
-}
-
-.coin-wallet-private-key
-{
-	font-size: 9pt;
-	color: white;
-	background-color: rgba(0,0,0,0.7);
-	padding: 2px;
-}
-
-.coin-wallet-private-key-qr
-{
-	margin-top: 23px;
-	margin-bottom: 25px;
-}
-.coin-wallet-private-key-qr canvas
-{
-	width: 132px;
-	height: 132px;
-}
 .hue-shift
 {
 float: left;
@@ -1994,9 +1907,9 @@ width: 100%;
 }
 .hue-shift-amount
 {
-position: absolute;
-top: 275px;
-left: 264px;
+position: relative;
+top: -10px;
+left: -246px;
 }
 .hue-shift-reset
 {
@@ -2616,8 +2529,10 @@ float: right;
 .print-encryption .encrypted
 {
 position: absolute;
-left: 355px;
-top: 1px;
+left: 55px;
+top: 25px;
+width: 26px;
+height: 32px;
 }
 .coin-wallet .encrypted
 {
