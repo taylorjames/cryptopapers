@@ -70,32 +70,13 @@ var Frames =
 			'</ol>'
 	},
 	'Frame-6': {
-		Active: true,
-		Name: 'Standard Wallet V2',
-		Creator: 'CryptoPapers',
-		Difficulty: 'Intermediate',
-		Description: 'Simple yet attractive twist on the classic wallet.',
-		Instructions: '<ol>' + 
-			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
-			'<li>Fold along the vertical dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li>Fold the remaining flaps downward, fully enclosing the private key.</li>' +
-			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
-			'</ol>'
+		Active: false
 	},
 	'Frame-7': {
 		Active: false
 	},
 	'Frame-8': {
-		Active: true,
-		Name: 'Standard Wallet',
-		Creator: 'Whoever invented the rectangle',
-		Difficulty: 'Beginner',
-		Description: 'This wallet frame is great if you hate cutting things out!',
-		Instructions: '<ol>' + 
-			'<li>Cut the wallet out using the front side as a guide, discarding any excess background on the back side</li>' +
-			'<li>Fold along the dotted lines so that the Public Address and small coin logo on the front display outwards, keeping the private keys secured in the middle.</li>' +
-			'<li><b>Two Tape Spots:</b> Apply tape or holographic stickers along the top and bottom of the fold-out portion of the wallet.</li>' + 
-			'</ol>'
+		Active: false
 	},
 	'Frame-9': {
 		Active: true,
