@@ -673,10 +673,13 @@ $().ready(function ()
 						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate New Key" fixed-height="50px" disabled />
 					</div>
 				</div>			
-				<div class="random-info round-block help-section colfive last">
+				
+				<div class="random-info round-block help-section colfive last minimizable minimized" minimized-height="97">
 					<div class="colinner">
-						<h3>RNG Entropy</h3>
-						<img src="images/check.png" class="entropy-satisfied">
+						<h3>
+							<img src="images/check.png" class="entropy-satisfied">
+							RNG Entropy
+						</h3>
 						
 						<div class="rng-status">
 							<label>
@@ -722,7 +725,48 @@ $().ready(function ()
 						<textarea id="random-pool" readonly></textarea>
 					</div>
 				</div>
-				
+								
+				<div class="print-encryption round-block colfive last help-section">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						<div class="encrypted"></div>
+						
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
+							<br><br>
+							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
+							<br>
+							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
+							<br><br>
+							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
+							This makes brute-forcing BIP38 keys very difficult.
+							<br>
+							</span>
+						</div>	
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" autocomplete="off" />
+							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">		
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">			
+							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label" for="encrypted-key">Encrypted:</label>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+							<div class="encrypting progress"></div>
+						</div>
+					</div>
+				</div>	
+
 				<div class="vanity-addresses round-block help-section colseven first minimizable minimized">
 					<div class="colinner">
 					
@@ -783,51 +827,9 @@ $().ready(function ()
 
 							<a></a>
 						</div>
-						
 					</div>
 				</div>
 				
-				<div class="print-encryption round-block colfive last help-section">
-					<div class="colinner">	
-						<h3>BIP38 Wallet Encryption</h3>
-						<div class="encrypted"></div>
-						
-						<div class="help-bubble hide" style="float:left;">
-							<span>
-							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
-							<br><br>
-							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
-							<br>
-							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
-							<br><br>
-							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
-							This makes brute-forcing BIP38 keys very difficult.
-							<br>
-							</span>
-						</div>	
-						
-						<div class="encryption-keys">
-							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" autocomplete="off" />
-							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" autocomplete="off" />
-						</div>
-						
-						<div class="encryption-buttons">		
-							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
-							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
-						</div>
-						
-						<div class="encryption-details hide">			
-							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
-							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label" for="encrypted-key">Encrypted:</label>
-							<input type="text" id="encrypted-key" autocomplete="off" readonly />
-							<div class="encrypting progress"></div>
-						</div>
-					</div>
-				</div>	
-
 				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
 					<div class="colinner"> 
 					<div class="coin btc-coin changing-coin"></div>
@@ -975,10 +977,7 @@ $().ready(function ()
 					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
 					-->
 					</div>
-				</div>	
-
-				
-				
+				</div>
 					
 			</div>
 			<div class="sub-section coin-setup-print">
