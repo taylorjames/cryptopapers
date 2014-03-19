@@ -626,6 +626,12 @@ $().ready(function ()
 
 			<div class="sub-section coin-setup-keys no-print row">
 				
+				<div class="coin-type selector-grid no-print" rowheight="105px" colwidth="100px">
+					<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+						<!-- Dynamically filled -->
+					</div>
+				</div>
+				
 				<div class="key-import round-block help-section colseven first">
 					<div class="colinner">
 						<div class="private-key-address-manual bubble-text hide">
@@ -640,12 +646,6 @@ $().ready(function ()
 						<div class="private-key-address-manual address-box hide">
 								<label for="private-key-address-manual">Address</label>
 								<input type="text" id="private-key-address-manual" maxlength="40" autocomplete="off" />	
-						</div>
-						
-						<div class="coin-type selector-grid no-print" rowheight="105px" colwidth="100px">
-							<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-								<!-- Dynamically filled -->
-							</div>
 						</div>
 						
 						<h3>Private Key</h3>
@@ -737,11 +737,12 @@ $().ready(function ()
 					<div class="coin btc-coin changing-coin"></div>
 					<h3 class="stay">Key Details</h3>
 					
-					<input type="button" id="private-key-remove" class="remove-button large-button" value="Remove" fixed-height="50px" />
-					<input type="button" id="private-key-remove-no" class="remove-button-no large-button" style="display: none" value="Cancel" fixed-height="50px" />
-					<input type="button" id="private-key-remove-yes" class="remove-button-yes large-button" style="display: none" value="Confirm" fixed-height="50px" />
-					<input type="button" id="private-key-add" class="add-button large-button" value="Save Key" fixed-height="50px" />
-						
+					<div class="save-remove-buttons">
+						<input type="button" id="private-key-remove" class="remove-button large-button" value="Remove" fixed-height="50px" />
+						<input type="button" id="private-key-remove-no" class="remove-button-no large-button" style="display: none" value="Cancel" fixed-height="50px" />
+						<input type="button" id="private-key-remove-yes" class="remove-button-yes large-button" style="display: none" value="Confirm" fixed-height="50px" />
+						<input type="button" id="private-key-add" class="add-button large-button" value="Save Key" fixed-height="50px" />
+					</div>
 
 					<div class="coin-wallet-address-qr"></div>
 					<div class="coin-wallet-private-key-qr"></div>
@@ -760,6 +761,20 @@ $().ready(function ()
 						<label class="left-label" for="public-address">Public Address:</label>
 						<input type="text" id="public-address" autocomplete="off" readonly />
 						</span>						
+					</div>
+					
+					
+					<div class="">
+						<div class="help-bubble" style="float:left;">
+							<span>
+							This is the Private Key in Wallet Import Format (WIF). 
+							<br>
+							This is the format most wallet software will export to, and is the format it will import from.
+							<br>
+							</span>
+						</div>	
+						<label class="left-label" for="private-key-wif">Private Key WIF:</label>
+						<input type="text" id="private-key-wif" autocomplete="off" readonly />
 					</div>
 					
 					<div class="manual-hide compression">
@@ -798,18 +813,6 @@ $().ready(function ()
 						<input type="text" id="private-key-hex" autocomplete="off" readonly />
 					</div>
 					
-					<div class="">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the Private Key in Wallet Import Format (WIF). 
-							<br>
-							This is the format most wallet software will export to, and is the format it will import from.
-							<br>
-							</span>
-						</div>	
-						<label class="left-label" for="private-key-wif">Private Key WIF:</label>
-						<input type="text" id="private-key-wif" autocomplete="off" readonly />
-					</div>
 					
 					<div class="private-key-encrypted manual-hide">
 						

@@ -394,8 +394,9 @@ function DisplayWallets()
 				}			
 				},1000);
 			}
-		
-		$('.generate-button').snazzyHide();
+			
+		if (Multiple_Wallets)
+			$('.generate-button').snazzyHide();
 		
 		$('.key-wallet .key.current-key').removeClass('current-key');
 		$(this).addClass('current-key');
@@ -521,7 +522,8 @@ function DisplayWallets()
 			$('#private-key-input').val(hex);
 			$('#private-key-input').change();
 			
-			$(this).snazzyHide();
+			if (Multiple_Wallets)
+				$(this).snazzyHide();
 			
 			$('#security-generate-import-no').click();
 			}

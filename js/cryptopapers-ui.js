@@ -1,5 +1,7 @@
 
 
+var Multiple_Wallets = true;
+
 var InitPremium;
 
 function InitPage()
@@ -29,7 +31,9 @@ function InitPage()
 	
 	InitDismissable();
 	InitMinimizable();
-	 
+	
+	InitWallets();
+		
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
 	$('#run-self-tests').click(function() {
@@ -134,6 +138,21 @@ $.fn.getTrueHeight = function() {
 	return NewHeight;
 }
 
+function InitWallets()
+	{
+	if (Multiple_Wallets)
+		{
+		$('.key-wallet').show();
+		$('#private-key-add').show();
+		$('#private-key-remove').show();
+		}
+	else
+		{
+		$('.key-wallet').hide();
+		$('#private-key-add').hide();
+		$('#private-key-remove').hide();
+		}
+	}
 
 function InitMinimizable()
 	{
