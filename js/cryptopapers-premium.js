@@ -23,3 +23,40 @@
 		}
 		});
 	}
+
+DictionaryWords_Split = false;
+
+function InitDictionary()
+	{
+	if (!DictionaryWords_Split)
+		{
+		DictionaryWords = SplitWordArray(DictionaryWords);
+		DictionaryWords_Split = true;
+		}
+	}
+	
+function SplitWordArray(Words)
+	{
+	var Out = {};
+	for (var i = 0; i < Words.length; i++)
+		{
+		var Word = Words[i];
+		var Char = Words[i][0];
+		
+		if (Word.length >= 1)
+			{
+			if (Out[Char] == undefined)
+				Out[Char] = new Array();
+			
+			if (Word.length > 1)
+				Out[Char].push(Word.substr(1));
+			}
+		}
+	
+	for (var j = 0; j < Object.keys(Out).length; j++)
+		{
+		Out[Object.keys(Out)[j]] = SplitWordArray(Out[Object.keys(Out)[j]]);
+		}
+	
+	return Out;
+	}

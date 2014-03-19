@@ -1996,7 +1996,8 @@ a:hover, a:active, a:focus {
   border:none;
 }
 
-.key-details .left-label
+.key-details .left-label,
+.vanity-addresses .left-label
 {
 	font-size: 12px;
 	margin-top: 0px;
@@ -2004,18 +2005,41 @@ a:hover, a:active, a:focus {
 	padding-bottom: 9px;
 	padding-right: 5px;
 }
+
 #print-settings
 {
 float: left;
 width: 100%;
 position: relative;
 }
+
+.vanity-address-buttons
+{
+float: right;
+width: 44%;
+}
+#vanity-address-test
+{
+	
+}
+
+#vanity-address-start
+{
+
+}
+
+#vanity-address-stop
+{
+
+}
+
 #print-settings .left-label
 {
 width: 117px;
 margin-top: 0px;
 padding: 9px;
 }
+
 #print-settings .print-buttons
 {
 width: 49%;
@@ -2023,11 +2047,13 @@ float: left;
 padding-right: 10px;
 min-height: 342px;
 }
+
 #print-settings .print-buttons
 {
 float: left;
 width: 50%;
 }
+
 .sample .coin-wallet-address-qr:after
 {
 content: 'SAMPLE WALLET DO NOT USE';
@@ -2040,12 +2066,14 @@ text-align: center;
 text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
 background: rgba(0,0,0,0.5);
 }
+
 .frame-1.sample .coin-wallet-address-qr:after,
 .frame-2.sample .coin-wallet-address-qr:after
 {
 margin-left: -138px;
 margin-top: -58px;
 }
+
 .frame-3.sample .coin-wallet-address-qr:after,
 .frame-4.sample .coin-wallet-address-qr:after,
 .frame-5.sample .coin-wallet-address-qr:after
@@ -2053,6 +2081,7 @@ margin-top: -58px;
 margin-left: 10px;
 margin-top: 35px;
 }
+
 .frame-6.sample .coin-wallet-address-qr:after,
 .frame-7.sample .coin-wallet-address-qr:after,
 .frame-8.sample .coin-wallet-address-qr:after

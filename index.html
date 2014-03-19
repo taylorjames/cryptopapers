@@ -185,6 +185,7 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	
 	<script type="text/javascript" src="js/cryptopapers-bip38.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-dictionary.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
@@ -722,7 +723,111 @@ $().ready(function ()
 					</div>
 				</div>
 				
+				<div class="vanity-addresses round-block help-section colseven first minimizable minimized">
+					<div class="colinner">
+					
+						<div class="vanity-address-buttons">
+							<input type="button" id="vanity-address-test" class="vanity-test-performance-button manual-hide large-button" value="Test Performance" fixed-height="50px" />
+							<div class="vanity-test-result hide">
+								<div class="vanity-generate-speed hide"></div>
+								<div class="vanity-estimate hide"></div>
+							</div>
+							
+							<input type="button" id="vanity-address-start" class="vanity-start-button manual-hide large-button" value="Start Searching" fixed-height="50px" disabled />
+							<input type="button" id="vanity-address-stop" class="vanity-stop-button manual-hide large-button" value="Stop Searching" fixed-height="50px" disabled />
+						</div>
+						
+						<h3>Vanity Addresses</h3>
+						
+						<label class="left-label">Numbers:</label>
+						<div class="switch-toggle vanity-numbers switch-2 switch-candy ">
+							<input type="radio" name="vanity-numbers" value="No" id="vanity-numbers-less" autocomplete="off" />
+							<label for="vanity-numbers-less">No</label> 
+							
+							<input type="radio" name="vanity-numbers" value="Yes" id="vanity-numbers-more" autocomplete="off" checked />
+							<label for="vanity-numbers-more">Yes</label>
+
+							<a></a>
+						</div>
+						
+						<label class="left-label">Capital Letters:</label>
+						<div class="switch-toggle vanity-caps switch-2 switch-candy ">
+							<input type="radio" name="vanity-caps" value="No" id="vanity-caps-less" autocomplete="off" />
+							<label for="vanity-caps-less">No</label> 
+							
+							<input type="radio" name="vanity-caps" value="Yes" id="vanity-caps-more" autocomplete="off" checked />
+							<label for="vanity-caps-more">Yes</label>
+
+							<a></a>
+						</div>
+						
+						<label class="left-label">Lowercase Letters:</label>
+						<div class="switch-toggle vanity-caps switch-2 switch-candy ">
+							<input type="radio" name="vanity-lower" value="No" id="vanity-lower-less" autocomplete="off" />
+							<label for="vanity-lower-less">No</label> 
+							
+							<input type="radio" name="vanity-lower" value="Yes" id="vanity-lower-more" autocomplete="off" checked />
+							<label for="vanity-lower-more">Yes</label>
+
+							<a></a>
+						</div>
+						
+						
+						<label class="left-label">Dictionary Words:</label>
+						<div class="switch-toggle vanity-words switch-2 switch-candy ">
+							<input type="radio" name="vanity-words" value="No" id="vanity-words-off" autocomplete="off" checked />
+							<label for="vanity-words-off">No</label> 
+							
+							<input type="radio" name="vanity-words" value="Yes" id="vanity-words-on" autocomplete="off"  />
+							<label for="vanity-words-on">Yes</label>
+
+							<a></a>
+						</div>
+						
+					</div>
+				</div>
 				
+				<div class="print-encryption round-block colfive last help-section">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						<div class="encrypted"></div>
+						
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
+							<br><br>
+							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
+							<br>
+							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
+							<br><br>
+							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
+							This makes brute-forcing BIP38 keys very difficult.
+							<br>
+							</span>
+						</div>	
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" autocomplete="off" />
+							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">		
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">			
+							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label" for="encrypted-key">Encrypted:</label>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+							<div class="encrypting progress"></div>
+						</div>
+					</div>
+				</div>	
+
 				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
 					<div class="colinner"> 
 					<div class="coin btc-coin changing-coin"></div>
@@ -872,46 +977,6 @@ $().ready(function ()
 					</div>
 				</div>	
 
-				<div class="print-encryption round-block colfive last help-section">
-					<div class="colinner">	
-						<h3>BIP38 Wallet Encryption</h3>
-						<div class="encrypted"></div>
-						
-						<div class="help-bubble hide" style="float:left;">
-							<span>
-							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
-							<br><br>
-							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
-							<br>
-							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
-							<br><br>
-							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
-							This makes brute-forcing BIP38 keys very difficult.
-							<br>
-							</span>
-						</div>	
-						
-						<div class="encryption-keys">
-							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" autocomplete="off" />
-							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" autocomplete="off" />
-						</div>
-						
-						<div class="encryption-buttons">		
-							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
-							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
-						</div>
-						
-						<div class="encryption-details hide">			
-							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
-							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label" for="encrypted-key">Encrypted:</label>
-							<input type="text" id="encrypted-key" autocomplete="off" readonly />
-							<div class="encrypting progress"></div>
-						</div>
-					</div>
-				</div>	
 				
 				
 					
