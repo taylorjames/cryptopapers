@@ -1,25 +1,185 @@
 
-
 .coin-wallets
 {
 	.cryptopapers-logo
 	{
-	background: url("../images/logo2.png");
-	width: 146px;
-	height: 38px;
-	background-size: 100%;
-	position: absolute;
-	top: 123px;
-	left: 259px;
-	z-index: 101;
-	opacity: 1;
-	background-color: rgba(17, 17, 17, 0.47);
-	border-radius: 10px;
+		background: url("../images/logo2.png");
+		width: 146px;
+		height: 38px;
+		background-size: 100%;
+		position: absolute;
+		top: 88px;
+		left: 259px;
+		z-index: 101;
+		opacity: 1;
+		background-color: rgba(17, 17, 17, 0.47);
+		border-radius: 10px;
 	}
 
+	.coin-wallet-address-qr, 
+	.coin-wallet-private-key-qr
+	{
+		padding: 7px;
+		border-radius: 10px;
+		background-color: rgba(255,255,255, 1);
+	}
+
+	.coin-wallet-write-area
+	{
+		display: none;
+		height: 200px;
+		width: 331px;
+		background: white;
+		top: 76px;
+		position: absolute;
+		left: 713px;
+		border-radius: 13px;
+		opacity: 0.86;
+		text-align: center;
+		
+		h1
+		{
+			font-size: 30px;
+			margin-bottom: 0px;
+		}
+		h2
+		{
+			font-size: 15px;
+			float: left;
+			width: 50%;
+		}
+	}
+	
+	.coin-wallet-left
+	{
+		float: left;
+		width: 331px;
+		text-align: center;
+		margin-left: 6px;
+		margin-top: 9px;
+
+		.coin-wallet-address
+		{
+			font-size: 14px;
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+			padding: 2px;
+		}
+		.coin-wallet-address-qr
+		{
+			margin-top: 77px;
+			margin-left: 19px;
+			margin-bottom: 68px;
+			text-align: left;
+			width: 117px;
+			
+			canvas
+			{
+			width: 100px;
+			height: 100px;
+			}
+		}
+	}
+
+	.coin-wallet-right
+	{
+		float: right;
+		width: 218px;
+		text-align: center;
+		padding-top: 45px;
+		padding-right: 0px;
+		
+
+		.coin-wallet-private-key
+		{
+			font-size: 9pt;
+			color: white;
+			background-color: rgba(0,0,0,0.7);
+			padding: 2px;
+		}
+		.coin-wallet-private-key-qr
+		{
+			width: 147px;
+			margin-top: 23px;
+			margin-bottom: 25px;
+			
+			canvas
+			{
+			width: 132px;
+			height: 132px;
+			}
+		}
+	}
+
+	.coin-wallet-address-qr:before,
+	.coin-wallet-private-key-qr:before,
+	.coin-wallet-address-qr:after,
+	.coin-wallet-private-key-qr:after
+	{
+	color: black;
+	font-weight: bold;
+	background-color: rgba(0, 0, 0, 0.35);
+	font-size: 12px;
+	position: relative;
+	display: block;
+	margin-top: 0px;
+	margin-left: -7px;
+	margin-right: -7px;
+	margin-bottom: 6px;
+	text-align: center;
+	margin-top: -7px;
+	padding-top: 2px;
+	padding-bottom: 2px;
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+	}
+	.coin-wallet-address-qr:before,
+	.coin-wallet-private-key-qr:before
+	{
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.54);
+	}
+	.coin-wallet-address-qr:after,
+	.coin-wallet-private-key-qr:after
+	{
+	border-bottom-left-radius: 10px;
+	border-bottom-right-radius: 10px;
+	border-top: 1px solid rgba(0, 0, 0, 0.54);
+	margin-bottom: -7px;
+	margin-top: 6px;
+	}
+
+	.coin-wallet-address-qr:before
+	{
+	content: 'Public Address';
+	width: 117px;
+	}
+
+	.coin-wallet-private-key-qr:before
+	{
+	content: 'Private Key';
+	width: 147px;
+	}
+
+	.coin-wallet-address-qr:after
+	{
+	content: 'Scan to Deposit';
+	width: 117px;
+	}
+
+	.coin-wallet-private-key-qr:after
+	{
+	content: 'Scan to Withdraw';
+	width: 147px;
+	}
 	
 	&.back
 	{
+		.coin-wallet-write-area
+		{
+		display: block;
+		}
+
 		.cryptopapers-logo
 		{
 		display: none;
@@ -119,15 +279,26 @@
 		}
 		.coin-wallet-address-qr
 		{
-			margin-left: 87px;
+			margin-left: 79px;
+			margin-top: 56px;
+			
 		}
 		.coin-wallet-private-key-qr
 		{
+			margin-left: 52px;
+			margin-top: 18px;
+			width: 114px;
+			height: 150px;
+			
 			canvas
 			{
-				padding: 7px;
-				border-radius: 10px;
-				background-color: white;
+				width:100px;
+				height:100px;
+			}
+			&:before,
+			&:after
+			{
+				width:114px;
 			}
 		}
 		.coin-wallet-address
@@ -162,7 +333,7 @@
 		{
 		display: block;
 		left: 310px;
-		top: 124px;
+		top: 205px;
 		zoom: 112%;
 		-moz-transform-origin: left top;
 		-moz-transform: scale(1.12)  !important;
@@ -206,26 +377,36 @@
 		}
 		.coin-wallet-address-qr
 		{
-			margin-left: 88px;
+			margin-left: 79px;
+			margin-top: 56px;
 			
+		}
+		.coin-wallet-private-key-qr
+		{
+			margin-left: 46px;
+			margin-top: 18px;
+			width: 114px;
+			height: 150px;
+			
+			canvas
+			{
+				width:100px;
+				height:100px;
+			}
+			&:before,
+			&:after
+			{
+				width:114px;
+			}
 		}
 		.cryptopapers-logo
 		{
 		display: block;
 		left: 748px;
-		top: 127px;
+		top: 211px;
 		zoom: 112%;
 		-moz-transform-origin: left top;
 		-moz-transform: scale(1.12)  !important;
-		}
-		.coin-wallet-private-key-qr
-		{
-			canvas
-			{
-				padding: 7px;
-				border-radius: 10px;
-				background-color: white;
-			}
 		}
 		.coin-wallet-address span
 		{
@@ -270,6 +451,10 @@
 	
 	&.back
 	{
+		.coin-wallet-write-area
+		{
+		top: 95px;
+		}
 		.cryptopapers-logo
 		{
 		display: none;
@@ -329,11 +514,19 @@
 			height: 185px;
 			background-size: 100%;
 		}
+		.coin-wallet-address-qr
+		{
+			margin-top: 41px;
+			margin-left: 19px;
+			margin-bottom: 59px;
+			text-align: left;
+			width: 117px;
+		}
 		.cryptopapers-logo
 		{
 		display: block;
 		left: 768px;
-		top: 131px;
+		top: 198px;
 		zoom: 112%;
 		-moz-transform-origin: left top;
 		-moz-transform: scale(1.12)  !important;
@@ -357,9 +550,9 @@
 			{
 				display: block;
 				float: left;
-				padding-top: 76px;
+				padding-top: 53px;
 				padding-left: initial;
-				left: 43px;
+				left: 51px;
 				position: relative;
 				
 				canvas
@@ -378,6 +571,8 @@
 				{
 					margin-top: 5px;
 					margin-bottom: 5px;
+					width: 114px;
+					margin-left: 55px;
 				}
 			}
 		}
@@ -413,7 +608,7 @@
 		.coin-wallet-left
 		{
 			margin-top: 37px;
-			margin-left: 56px;
+			margin-left: 59px;
 			width: 320px;
 		}
 		.coin-wallet-right
@@ -423,9 +618,15 @@
 		}
 		.coin-wallet-address-qr
 		{
-			margin-top: 44px;
-			margin-left: 54px;
-			margin-bottom: 31px;
+			margin-top: 17px;
+			margin-left: 13px;
+			margin-bottom: 19px;
+		}
+		.coin-wallet-private-key-qr
+		{
+			margin-left: 35px;
+			margin-top: 4px;
+			margin-bottom: 6px;
 		}
 		.coin-logo
 		{
@@ -452,7 +653,7 @@
 		{
 		display: block;
 		left: 170px;
-		top: 124px;
+		top: 208px;
 		zoom: 112%;
 		-moz-transform-origin: left top;
 		-moz-transform: scale(1.12)  !important;
@@ -504,9 +705,21 @@
 		}
 		.coin-wallet-address-qr
 		{
-			margin-top: 44px;
-			margin-left: 54px;
-			margin-bottom: 31px;
+			margin-top: 14px;
+			margin-left: 12px;
+			margin-bottom: 14px;
+		}
+		.coin-wallet-private-key-qr
+		{
+			width: 130px;
+			margin-top: 0px;
+			margin-bottom: 2px;
+			margin-left: 28px;			
+			&:after,
+			&:before
+			{
+				width: 130px;
+			}
 		}
 		.coin-logo
 		{
@@ -540,7 +753,7 @@
 			{
 			display: block;
 			left: 194px;
-			top: 135px;
+			top: 208px;
 			zoom: 112%;
 			-moz-transform-origin: left top;
 			-moz-transform: scale(1.12)  !important;
@@ -658,7 +871,7 @@
 		.cryptopapers-logo
 		{
 			left: 842px;
-			top: 149px;
+			top: 231px;
 		}
 		.encrypted {
 			position: absolute;
@@ -682,6 +895,27 @@
 			margin-right: 415px;
 			padding-top: 39px;
 
+		}
+		.coin-wallet-address-qr
+		{
+			margin-left: 87px;
+			margin-top: 72px;
+		}
+		.coin-wallet-private-key-qr
+		{
+			margin-left: 53px;
+			width: 115px;
+			
+			&:before,
+			&:after
+			{
+				width: 115px;
+			}
+			canvas
+			{
+				width: 100px;
+				height: 100px;
+			}
 		}
 		.coin-wallet-address,
 		.coin-wallet-private-key
@@ -709,15 +943,6 @@
 		{
 			margin-left: 87px;
 			margin-top: 92px;
-		}
-		.coin-wallet-private-key-qr
-		{
-			canvas
-			{
-				padding: 7px;
-				border-radius: 10px;
-				background-color: white;
-			}
 		}
 		.coin-wallet-address
 		{
@@ -820,5 +1045,4 @@
 		}
 	}
 }
-
 

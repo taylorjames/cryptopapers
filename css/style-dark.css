@@ -64,6 +64,10 @@ body.dark-theme .trust-items .trust-item {
 body.dark-theme .trust-items .trust-item em {
   background-color: #666666;
 }
+body.dark-theme .private-key-address-manual.bubble-text {
+  background-color: #222;
+  color: white;
+}
 body.dark-theme .warning {
   color: #ffffff;
   background-color: #630000;
@@ -130,6 +134,12 @@ body.dark-theme .instructions .subtext {
 body.dark-theme .selecting .frame-grid-row-header:hover {
   background-color: #444;
 }
+body.dark-theme .minimizable .minimize-button {
+  background-image: url('../images/minus_dark.png');
+}
+body.dark-theme .minimizable.minimized .minimize-button {
+  background-image: url('../images/plus_dark.png');
+}
 body.dark-theme .dismissable .close-button {
   background-image: url('../images/close_dark.png');
 }
@@ -159,13 +169,4 @@ body.dark-theme textarea {
 body.dark-theme .frame-type,
 body.dark-theme .design-type {
   background-color: #222;
-}
-
-body.dark-theme .minimizable .minimize-button
-{
-background-image: url('../images/minus_dark.png');
-}
-body.dark-theme .minimizable.minimized .minimize-button
-{
-background-image: url('../images/plus_dark.png');
 }
