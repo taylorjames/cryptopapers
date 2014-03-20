@@ -16,7 +16,7 @@ var VanityMostNumbers = false;
 
 var Vanity_TimeMS = 0;
 
-var VanityLoopTimeout = 50;
+var VanityLoopTimeout = 5;
 
 var Vanity_Stop = false;
 
@@ -34,7 +34,7 @@ var Vanity_AtTheStart = true;
 	$('.vanity-addresses.minimized').click(function() {
 		if (!DictionaryWords_Split)
 			{
-			$('.vanity-addresses .progress').fadeIn();
+			$('.vanity-addresses h3 .progress').fadeIn();
 			
 			setTimeout(function()
 				{
@@ -56,6 +56,9 @@ var Vanity_AtTheStart = true;
 	
 		
 	$('#vanity-address-start').click(function() {
+		
+		$('.vanity-addresses > div > .progress').fadeIn();
+		
 		Vanity_Stop = false;
 		GenerateVanity(false, 
 			function(KeyBytes, KeyAddress) { // Good
@@ -80,6 +83,8 @@ var Vanity_AtTheStart = true;
 			function(KeyBytes, KeyAddress) { // Perfect
 				Vanity_Stop = true;
 				
+				$('.vanity-addresses > div > .progress').fadeOut();
+				
 				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
 				
 				$('.vanity-good-results .best').removeClass('best');
@@ -94,6 +99,8 @@ var Vanity_AtTheStart = true;
 				});
 	});
 	$('#vanity-address-stop').click(function() {
+	
+		$('.vanity-addresses > div > .progress').fadeOut();
 		Vanity_Stop = true;
 	});
 	
