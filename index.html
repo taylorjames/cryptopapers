@@ -187,6 +187,7 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-dictionary.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-premium-vanity.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
 	
@@ -770,18 +771,49 @@ $().ready(function ()
 				<div class="vanity-addresses round-block help-section colseven first minimizable minimized">
 					<div class="colinner">
 						
-						<h3>Vanity Addresses</h3>
+						<h3>
+							<div class="progress hide"></div>
+							Vanity Addresses
+						</h3>
 					
 						<div class="vanity-address-buttons">
-							<input type="button" id="vanity-address-test" class="vanity-test-performance-button manual-hide large-button" value="Test Performance" fixed-height="50px" />
-							<div class="vanity-test-result hide">
-								<div class="vanity-generate-speed hide"></div>
-								<div class="vanity-estimate hide"></div>
+							<div class="vanity-test-result">
+								<div class="vanity-generate-speed"></div>
+								<div class="vanity-generate-guesses"></div>
+								<div class="vanity-generate-estimate"></div>
+								<div class="vanity-generated"></div>
 							</div>
 							
 							<input type="button" id="vanity-address-start" class="vanity-start-button manual-hide large-button" value="Start Searching" fixed-height="50px" disabled />
 							<input type="button" id="vanity-address-stop" class="vanity-stop-button manual-hide large-button" value="Stop Searching" fixed-height="50px" disabled />
 						</div>
+						
+						
+						<label class="left-label">Custom Text:</label>
+						<input type="text" id="vanity-custom-text" maxlength="64" autocomplete="off" />
+						
+						<label class="left-label">Case Sensitive:</label>
+						<div class="switch-toggle vanity-case-sensitive switch-2 switch-candy ">
+							<input type="radio" name="vanity-case-sensitive" value="No" id="vanity-case-sensitive-less" autocomplete="off" checked />
+							<label for="vanity-case-sensitive-less">No</label> 
+							
+							<input type="radio" name="vanity-case-sensitive" value="Yes" id="vanity-case-sensitive-more" autocomplete="off" />
+							<label for="vanity-case-sensitive-more">Yes</label>
+
+							<a></a>
+						</div>
+						
+						<label class="left-label">1337:</label>
+						<div class="switch-toggle vanity-leet switch-2 switch-candy ">
+							<input type="radio" name="vanity-leet" value="No" id="vanity-leet-off" autocomplete="off" checked />
+							<label for="vanity-leet-off">No</label> 
+							
+							<input type="radio" name="vanity-leet" value="Yes" id="vanity-leet-on" autocomplete="off"  />
+							<label for="vanity-leet-on">Yes</label>
+
+							<a></a>
+						</div>
+						
 						
 						<label class="left-label">Numbers:</label>
 						<div class="switch-toggle vanity-numbers switch-2 switch-candy ">
@@ -819,13 +851,17 @@ $().ready(function ()
 						
 						<label class="left-label">Dictionary Words:</label>
 						<div class="switch-toggle vanity-words switch-2 switch-candy ">
-							<input type="radio" name="vanity-words" value="No" id="vanity-words-off" autocomplete="off" checked />
+							<input type="radio" name="vanity-words" value="No" id="vanity-words-off" autocomplete="off" />
 							<label for="vanity-words-off">No</label> 
 							
 							<input type="radio" name="vanity-words" value="Yes" id="vanity-words-on" autocomplete="off"  />
 							<label for="vanity-words-on">Yes</label>
 
 							<a></a>
+						</div>
+						
+						<div class="vanity-good-results">
+							
 						</div>
 					</div>
 				</div>

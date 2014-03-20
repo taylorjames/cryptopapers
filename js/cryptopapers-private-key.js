@@ -12,8 +12,6 @@ var HasPrivateKey = false;
 var DefaultCoin = 'btc';
 var CurrentCoinType = DefaultCoin;
 
-var VanityEnabled = undefined;
-
 var CoinInfo = {
 	'btc': {
 		name: 'btc',
@@ -283,18 +281,11 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 		}
 	}
 	
+
  function InitPrivateKeyPage()
 	 {
 	$('.generate-button').click(function()
 		{
-		if (VanityEnabled != undefined && VanityEnabled())
-			{
-			var AddressStart = '-----';
-			
-			GenerateVanity();
-			}
-		else
-			{
 			var bytes = sr.getBytes(32);
 			sr.seedTime();
 			var hex = Crypto.util.bytesToHex(bytes);
@@ -303,7 +294,6 @@ for (var i =0 ; i < Object.keys(CoinInfo).length; i++)
 			$('#private-key-input').change();
 			
 			$('#security-generate-import-no').click();
-			}
 		});
 	
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
