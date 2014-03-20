@@ -446,12 +446,15 @@
   margin-left: 59px;
   width: 320px;
 }
+.frame-4 .coin-wallet .coin-wallet-left .coin-wallet-address.top {
+  display: none;
+}
 .frame-4 .coin-wallet .coin-wallet-right {
   margin-right: 388px;
   padding-top: 33px;
 }
 .frame-4 .coin-wallet .coin-wallet-address-qr {
-  margin-top: 17px;
+  margin-top: 5px;
   margin-left: 13px;
   margin-bottom: 19px;
 }
