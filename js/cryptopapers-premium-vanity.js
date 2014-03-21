@@ -4,8 +4,6 @@ var VanityCaseSensitive = false;
 
 var VanityAllowLeet = false;
 
-var VanityDictionary = false;
-
 var VanityLeastCaps = false;
 var VanityMostCaps = false;
 var VanityLeastLower = false;
@@ -20,42 +18,26 @@ var VanityLoopTimeout = 5;
 
 var Vanity_Stop = false;
 
-// Need buttons
+var VanityDictionary = false;
 var VanityDictionary_AllowCaps = true;
 var VanityDictionary_AllowLower = true;
 var VanityDictionary_AllowTitle = true;
-var VanityDictionary_AllowMixed = true;
+var VanityDictionary_AllowMixed = false;
 var VanityDictionary_MinLetters = 4;
+
+var VanityDictionary_Position = 'start'; // 'end' 'both'
 
 var Vanity_AtTheStart = true;
 
  function InitVanity()
 	{
 	$('.vanity-addresses.minimized').click(function() {
-		if (!DictionaryWords_Split)
-			{
-			$('.vanity-addresses h3 .progress').fadeIn();
-			
-			setTimeout(function()
-				{
-				// Test vanity generation time
-				VanityMostNumbers = true;
-				GenerateVanity(true)
-				VanityMostNumbers = false;
-				
-				UpdateVantiyOptions();
-				
-				DictionaryWords = SplitWordArray(DictionaryWords);
-				DictionaryWords_Split = true;
-			
-				$('.vanity-addresses .progress').fadeOut();
-				}, 300);
-			
-			}
 		});
 	
 		
 	$('#vanity-address-start').click(function() {
+				
+		InitDictionary();
 		
 		$('.vanity-addresses > div > .progress').fadeIn();
 		
@@ -64,10 +46,10 @@ var Vanity_AtTheStart = true;
 			function(KeyBytes, KeyAddress) { // Good
 				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
 				
-				$('.vanity-good-results').append('<div class="result">' +
+				$('.vanity-good-results').insertAt(1, '<div class="result">' +
 					'<div class="result-address">' + KeyAddress + '</div>' + 
 					'<div class="result-key">' + KeyHex + '</div>' + 
-					'</div>');
+					'</div>', 1);
 				},
 			function(KeyBytes, KeyAddress) { // New Best
 				
@@ -104,22 +86,67 @@ var Vanity_AtTheStart = true;
 		Vanity_Stop = true;
 	});
 	
-	$('input[name=vanity-numbers]').change(function() {
-		UpdateVantiyOptions();
+	$('input[name=vanity-type]').change(function() {
+		var Type = $('input[name=vanity-type]:checked').val();
+		if (Type == 'text')
+			{
+			$('.vanity-text-options').show();
+			$('.vanity-characters-options').hide();
+			$('.vanity-dictionary-options').hide();
+			}
+		else if (Type == 'characters')
+			{
+			$('.vanity-text-options').hide();
+			$('.vanity-characters-options').show();
+			$('.vanity-dictionary-options').hide();
+			}
+		else if (Type == 'dictionary')
+			{
+			$('.vanity-text-options').hide();
+			$('.vanity-characters-options').hide();
+			$('.vanity-dictionary-options').show();
+			}
+		/*
+		if (Type == 'text')
+			{
+			$('.vanity-characters-options').fadeOut(300);
+			$('.vanity-dictionary-options').fadeOut(300, function() 
+				{
+				$(this).hide();
+				$('.vanity-text-options').show().fadeIn(300);
+				});
+			}
+		else if (Type == 'characters')
+			{
+			$('.vanity-text-options').fadeOut(300);
+			$('.vanity-dictionary-options').fadeOut(300, function() 
+				{
+				$(this).hide();
+				$('.vanity-characters-options').show().fadeIn(300);
+				});
+			}
+		else if (Type == 'dictionary')
+			{
+			$('.vanity-text-options').fadeOut(300);
+			$('.vanity-characters-options').fadeOut(300, function() 
+				{
+				$(this).hide();
+				$('.vanity-dictionary-options').show().fadeIn(300);
+				});
+			}
+			*/
 	});
-	$('input[name=vanity-caps]').change(function() {
-		UpdateVantiyOptions();
-	});
-	$('input[name=vanity-lower]').change(function() {
-		UpdateVantiyOptions();
-	});
-	$('input[name=vanity-case-sensitive]').change(function() {
-		UpdateVantiyOptions();
-	});
-	$('input[name=vanity-leet]').change(function() {
-		UpdateVantiyOptions();
-	});
-	$('input[name=vanity-words]').change(function() {
+	$('input[name=vanity-numbers], ' +
+		'input[name=vanity-caps], ' +
+		'input[name=vanity-lower], ' +
+		'input[name=vanity-case-sensitive], ' + 
+		'input[name=vanity-leet], ' + 
+		'input[name=vanity-dictionary-caps], ' + 
+		'input[name=vanity-dictionary-lower], ' + 
+		'input[name=vanity-dictionary-title], ' + 
+		'input[name=vanity-dictionary-mixed], ' + 
+		'input[name=vanity-dictionary-length], ' +
+		'input[name=vanity-words]').change(function() {
 		UpdateVantiyOptions();
 	});
 	$('#vanity-custom-text').keyup(function() {
@@ -128,6 +155,19 @@ var Vanity_AtTheStart = true;
 	}
 	
 DictionaryWords_Split = false;
+
+function InitDictionary()
+	{
+	if (!DictionaryWords_Split)
+		{
+		UpdateVantiyOptions();
+	
+		DictionaryWordsHash = SplitWordArray(DictionaryWords);
+		DictionaryWordsHashReverse = SplitWordArray(DictionaryWords, true);
+		
+		DictionaryWords_Split = true;
+		}
+	}
 
 var VanityEnabled = undefined;
 
@@ -141,6 +181,14 @@ function UpdateVantiyOptions()
 	VanityAllowLeet = $('input[name=vanity-leet]:checked').val() == 'Yes';
 	
 	VanityDictionary = $('input[name=vanity-words]:checked').val() == 'Yes';
+	
+	VanityDictionary_AllowCaps = $('input[name=vanity-dictionary-caps]:checked').val() == 'Yes';
+	VanityDictionary_AllowLower = $('input[name=vanity-dictionary-lower]:checked').val() == 'Yes';
+	VanityDictionary_AllowTitle = $('input[name=vanity-dictionary-title]:checked').val() == 'Yes';
+	VanityDictionary_AllowMixed = $('input[name=vanity-dictionary-mixed]:checked').val() == 'Yes';
+	VanityDictionary_MinLetters = parseInt($('input[name=vanity-dictionary-length]:checked').val());
+		
+	VanityDictionary_Position = $('input[name=vanity-dictionary-position]:checked').val();
 	
 	Vanity = $('#vanity-custom-text').val();
 	
@@ -603,12 +651,33 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			}
 		}
 	else if (VanityDictionary)
-		{
-		var Result = BeginsWithDictionaryWord(DictionaryWords, Address, VanityDictionary_MinLetters);
-		var Result2 = BeginsWithDictionaryWord(DictionaryWords, Address.substr(1), VanityDictionary_MinLetters);
-		if (Result[0] || Result2[1])
+		{		
+		var Result = null;
+		var Result2 = null;
+		var Result3 = null;
+		
+		if (VanityDictionary_Position == 'start' || VanityDictionary_Position == 'both')
 			{
-			var CountWordLength = Result[0] ? Result[1] : Result2[1];
+			Result = BeginsWithDictionaryWord(DictionaryWordsHash, Address);
+			Result2 = BeginsWithDictionaryWord(DictionaryWordsHash, Address.substr(1));
+			}
+		if (VanityDictionary_Position == 'end' || VanityDictionary_Position == 'both')
+			{
+			Result3 = EndsWithDictionaryWord(DictionaryWordsHashReverse, Address);
+			}
+		
+		if ((Result != null && Result[0]) || (Result2 != null && Result2[0]) || (Result3 != null && Result3[0]))
+			{
+			var CountWordLength = 0;
+			
+			if (Result != null && Result[0])
+				CountWordLength = Result[1];
+			if (Result2 != null && Result2[0] && CountWordLength < Result2[1])
+				CountWordLength = Result2[1];
+			if (Result3 != null && Result3[0] && CountWordLength < Result3[1])
+				CountWordLength = Result3[1];
+			
+			Log(CountWordLength);
 			
 			if (Count_Best == -1 || CountWordLength > Count_Best)
 				{
@@ -858,8 +927,14 @@ function ReplaceLeet(Str)
 	return Str;
 	}
 	
-function BeginsWithDictionaryWord(DictionaryWords, Address)
+function EndsWithDictionaryWord(DictionaryWords, Address)
 	{
+	return BeginsWithDictionaryWord(DictionaryWords, Address, true);
+	}
+function BeginsWithDictionaryWord(DictionaryWords, Address, Ends)
+	{
+	var FoundWord = '';
+	var FoundWordEnd = '';
 	// Address = Address.toLowerCase();
 	
 	if (VanityAllowLeet)
@@ -868,12 +943,17 @@ function BeginsWithDictionaryWord(DictionaryWords, Address)
 	var Out = [false, 0];
 	var Cursor = DictionaryWords;
 	
-	var Goal_Upper = true;
-	var Goal_Lower = true;
-	var Goal_Title = true;
+	var Goal_Upper = VanityDictionary_AllowCaps;
+	var Goal_Lower = VanityDictionary_AllowLower;
+	var Goal_Title = VanityDictionary_AllowTitle;
 	
-	for (var i = 0; i < Address.length; i++)
+	var i = Ends ? Address.length-1 : 0;
+	var inc = Ends ? -1 : 1;
+	
+	for (i = i; (Ends? (i >= 0) : (i < Address.length)); i += inc)
 		{
+		var Length = Ends ? Address.length - i : (i + 1);
+		
 		var Char = Address[i];
 		
 		if (Char != Char.toLowerCase())
@@ -885,36 +965,59 @@ function BeginsWithDictionaryWord(DictionaryWords, Address)
 			Goal_Upper = false;
 			}
 		
-		if (i == 0 && Char != Char.toUpperCase())
+		if (Ends)
 			{
+			// Fix
 			Goal_Title = false;
 			}
-		else if (i > 0 && Char != Char.toLowerCase())
+		else
 			{
-			Goal_Title = false;
+			if (i == 0 && Char != Char.toUpperCase())
+				{
+				Goal_Title = false;
+				}
+			else if (i > 0 && Char != Char.toLowerCase())
+				{
+				Goal_Title = false;
+				}
 			}
 			
 		if (!VanityDictionary_AllowMixed && !Goal_Upper && !Goal_Lower && !Goal_Title)
+			{
+			FoundWord = '';
 			break;
+			}
 
 		Cursor = Cursor[Char.toLowerCase()];
 		if (Cursor != undefined)
 			{
-			if (Cursor['WORD'] == true && (i+1) >= VanityDictionary_MinLetters)
+			FoundWord += Char.toLowerCase();
+			
+			if (Cursor['WORD'] == true && Length >= VanityDictionary_MinLetters)
 				{
-				Out = [true, (i+1)];
+				FoundWordEnd = FoundWord;
+				Out = [true, Length];
 				}
 			}
 		else
 			{
+			FoundWord = '';
 			break;
 			}
+		}
+	
+	if (FoundWordEnd != '')
+		{
+		if (Ends)
+			Log(FoundWordEnd.split("").reverse().join(""));
+		else
+			Log(FoundWordEnd);
 		}
 		
 	return Out;
 	}
 	
-function SplitWordArray(Words)
+function SplitWordArray(Words, Reverse)
 	{
 	var Out = {};
 	for (var i = 0; i < Words.length; i++)
@@ -926,8 +1029,13 @@ function SplitWordArray(Words)
 			Out['WORD'] = true;
 			continue;
 			}
-			
-		var Char = Words[i][0];
+		
+		if (Reverse)
+			{
+			Word = Word.split("").reverse().join("");
+			}
+		
+		var Char = Word[0];
 		
 		if (Word.length >= 1)
 			{
@@ -944,7 +1052,8 @@ function SplitWordArray(Words)
 	for (var j = 0; j < Object.keys(Out).length; j++)
 		{
 		if (Object.keys(Out)[j] != 'WORD')
-			Out[Object.keys(Out)[j]] = SplitWordArray(Out[Object.keys(Out)[j]]);
+			Out[Object.keys(Out)[j]] = SplitWordArray(Out[Object.keys(Out)[j]], 
+			false /* Only reverse on the first iteration */ );
 		}
 	
 	return Out;
