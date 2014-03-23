@@ -1,18 +1,8 @@
 
-function InitQRRead
+var sayCheese;
+
+function InitQRRead()
 	{
-	$('#run-self-tests').click(function() {
-		var Result = RunTests();
-		Log(Result);
-		
-		// Get a better display box.
-		alert(Result);		
-	});
-	
-	if (InitPremium)
-		InitPremium();
-		
-		
 	$('.qr-icon').click(function () {
 		
 		if($(this).attr('for') != undefined && $(this).attr('for') != '')
@@ -66,6 +56,12 @@ function InitQRRead
 								
 								$(Input).val(Decode);
 								
+								SnapShotLoop_Stop = true;
+								
+								sayCheese.stop();
+								
+								sayCheese = undefined;
+								
 								$('.qr-webcam .close-button').click();
 								
 								$(Input).change();
@@ -92,14 +88,16 @@ function InitQRRead
 			
 		});
 		
-	$('.qr-webcam .close-button').click(function() {
-		if (sayCheese)
+	$('.qr-webcam .close-button').bind('click', function() {
+		
+		Log(sayCheese);
+		if (sayCheese != undefined)
 			{
 			SnapShotLoop_Stop = true;
 			
 			sayCheese.stop();
 			
-		//	sayCheese = undefined;
+			sayCheese = undefined;
 			}
 		});
 	
@@ -114,8 +112,17 @@ var SnapShotLoop_Stop = false;
 
 function SnapShotLoop()
 	{
-	if (SnapShotLoop_Stop)
+	if (!$('.qr-webcam').allVisible() || SnapShotLoop_Stop)
+		{		
+		if (sayCheese)		
+			{
+			sayCheese.stop();		
+			sayCheese = undefined;
+			}
+			
 		return;
+		}
+		
 	
 	sayCheese.takeSnapshot(640,480);
 		

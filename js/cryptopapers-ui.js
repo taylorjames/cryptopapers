@@ -1,8 +1,6 @@
 
 var InitPremium;
 
-var sayCheese;
-
 function InitPage()
 	{
 	AddDropdownCoins();
@@ -35,6 +33,17 @@ function InitPage()
 	InitMinimizable();
 	 
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
+	
+	$('#run-self-tests').click(function() {
+		var Result = RunTests();
+		Log(Result);
+		
+		// Get a better display box.
+		alert(Result);		
+	});
+	
+	if (InitPremium)
+		InitPremium();
 	}
 	
 function InitMinimizable()
@@ -82,6 +91,7 @@ function InitDismissable()
 	
 	$('.dismissable .close-button').click(function() {
 		$(this).parent().snazzyHide();
+		return true;
 	});	
 	}
 	

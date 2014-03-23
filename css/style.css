@@ -1614,6 +1614,15 @@ margin-bottom: -20px;
 top: 8px;
 cursor: default;
 }
+.key-import .qr-icon:hover:before
+{
+content: 'Scan QR Code';
+font-size: 11px;
+position:absolute;
+top:-22px;
+left:-55px;
+}
+
 .webcam-area
 {
 width: 435px;
