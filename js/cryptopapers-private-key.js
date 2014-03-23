@@ -14,7 +14,6 @@ var CurrentCoinType = DefaultCoin;
 
 var VanityEnabled = undefined;
 
-	
  function InitPrivateKeyPage()
 	 {
 	$('.generate-button').click(function()
