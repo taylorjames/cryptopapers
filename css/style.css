@@ -240,12 +240,13 @@ color: green;
 .private-key-error
 {
 color: red;
-margin-left: 325px;
-top: -23px;
+top: 45px;
 position: relative;
 display: none;
 float: left;
 margin-bottom: -16px;
+text-align: center;
+width: 100%;
 }
 #header{
 	width:100%;
@@ -315,6 +316,7 @@ div.inner{
 	Columns
 ***************/
 .row{
+		position: relative;
 		display:block;
 		max-width:100%;
 		width:100%;
@@ -335,7 +337,7 @@ form .row .row > div{
 }
 
 .colone, .coltwo, .colthree, .colfour, .colfive, .colsix, .colseven, .coleight, .colnine, .colten, .coleleven, .coltwelve{
-			display:block;
+			display: inline-block;
 			float:left;
 			overflow:auto;
 			margin-left:1%;
@@ -1585,9 +1587,71 @@ left: 1px;
 	width: 100%;
 }
 
-.key-details{
-	display:none;
+.key-details
+{
+	opacity: 0;
 	overflow: initial;
+}
+.qr-webcam
+{
+max-height: none;
+display: none;
+height: inherit;
+opacity: 0;
+height: 0;
+position: absolute;
+top: -53px;
+z-index: 6;
+margin: 0 auto;
+margin-left: 33%;
+margin-right: 33%;
+box-shadow: 0px 0px 202px black;
+}
+.qr-webcam .qr-icon
+{
+left: -30%;
+margin: auto;
+margin-bottom: -20px;
+top: 8px;
+cursor: default;
+}
+.webcam-area
+{
+width: 435px;
+height: 364px;
+
+background: rgba(0,0,0,0.1);
+border-radius: 18px;
+margin-bottom: 10px;
+text-align: center;
+
+}
+.webcam-area .connecting
+{
+top: 47%;
+position: absolute;
+z-index: 2;
+margin: auto;
+left: 22%;
+width: 300px;
+}
+
+.webcam-area .result
+{
+font-size: 11px;
+}
+
+.webcam-area canvas,
+.webcam-area video
+{
+width: 100%;
+z-index: 3;
+margin-top: 18px;
+position: relative;
+}
+.webcam-area canvas
+{
+display: none;
 }
 .key-details.minimized
 {
@@ -1622,7 +1686,22 @@ margin-bottom: -8px;
 	background-color: #205D82;
 	border-radius:5px;
 }
-
+.qr-icon
+{
+position: relative;
+width: 20px;
+height: 20px;
+background-image: url('../images/qr-small.png');
+cursor: pointer;
+left: 95%;
+top: -50px;
+background-size: 100%;
+margin-bottom: -20px;
+}
+.private-key-address-manual .qr-icon
+{
+top: -29px;
+}
 .random-info label:first-child{
 	padding-top:0px;
 }
