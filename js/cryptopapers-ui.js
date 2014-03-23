@@ -133,8 +133,7 @@ $.fn.getTrueHeight = function() {
 		
 	return NewHeight;
 }
-
-
+	
 function InitMinimizable()
 	{
 	$('.minimizable').prepend('<div class="minimize-button"></div>');
@@ -510,7 +509,7 @@ function AddDropdownCoins()
 	
 	$('.coins-grid-wrapper').html(coins);
 	
-	$('.coin-type .selector.coin:not(disabled)').click(function()
+	$('.coin-type .selector.coin:not(.disabled)').click(function()
 		{
 		var NewCoinType = $(this).attr('data');
 		var CurrentCoinType_Persist = CurrentCoinType;
@@ -538,8 +537,6 @@ function AddDropdownCoins()
 			$('#private-key-input').val('');
 			$('.private-key-address-manual').snazzyShow();
 			
-			$('.key-details').snazzyHide();
-			
 			$('.manual-hide').snazzyHide();
 			
 			$('.print-encryption').snazzyHide();
@@ -552,6 +549,12 @@ function AddDropdownCoins()
 			$('.warning.manual-keys').snazzyHide();
 			$('.manual-hide').snazzyShow();
 			$('.private-key-address-manual').snazzyHide();
+			
+			if (!CoinInfo[NewCoinType].manual)
+				{
+				$('#private-key-input').val('');
+				$('#private-key-address-manual').val('');
+				}
 			
 			$('#private-key-input').change();
 			}

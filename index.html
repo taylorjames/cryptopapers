@@ -85,17 +85,18 @@ Donate: 1NiNja1bUmhSoTXozBRBEtR8LeF9TGbZBN
 
 CryptoPapers libraries:
 
+cryptopapers-coin-info			Data about each type of coin supported.
 cryptopapers-private-key		All methods that generate addresses and handle private keys are either here or in an external library.
-											Javascript UI for the Private Key page
-cryptopapers-test-cases		Javascript Test cases to verify key -> address generation
-cryptopapers-security			Javascript UI for the Security page
-cryptopapers-print				Javascript UI for the Print page
-cryptopapers-premium			Javascript functions for Premium content
-cryptopapers-ui						Javascript UI for the whole application
+											JavaScript UI for the Private Key page
+cryptopapers-test-cases		JavaScript Test cases to verify key -> address generation
+cryptopapers-security			JavaScript UI for the Security page
+cryptopapers-bip38				JavaScript UI for the BIP38 encryption interface
+cryptopapers-print				JavaScript UI for the Print page
+cryptopapers-ui						JavaScript UI for the whole application
+cryptopapers-premium			JavaScript functions for Premium content
+cryptopapers-common 			Miscellaneous common functions used in the application
 
 cryptopapers-test					Test functions - not included in release
-
-jquery-animate-auto				Custom script: animateAuto function for smooth visual effects	
 
 ----------------------------------------------------------------------------------------
 
@@ -171,11 +172,12 @@ jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/r
 	<script type="text/javascript" src="include-js/jsSHA/sha256.js"></script>
 	<script type="text/javascript" src="include-js/jsSHA/sha512.js"></script>
 	 -->
-	 
-	<script type="text/javascript" src="js/jquery-animate-auto.js"></script>
 	
-	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
+	<script type="text/javascript" src="js/cryptopapers-common.js"></script>
+	
+	<script type="text/javascript" src="js/cryptopapers-coin-info.js"></script>	
 	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
 	
 	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	

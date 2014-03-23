@@ -1584,8 +1584,9 @@ left: 1px;
 	width: 100%;
 }
 
-.key-details{
-	display:none;
+.key-details
+{
+	opacity: 0;
 	overflow: initial;
 }
 .key-details.minimized
