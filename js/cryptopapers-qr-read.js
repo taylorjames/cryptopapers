@@ -52,15 +52,24 @@ function InitQRRead()
 							var Decode = qrcode.decode();
 							
 							Log('decode: ' + Decode);
-							$('.qr-webcam .result').html('Found: <b>' + Decode + '</b>');
+							
+							var confirm = (Decode == VerifyResult && Decode == VerifyResult2 && Decode  == VerifyResult3) ? 4 :
+								(Decode == VerifyResult && Decode  == VerifyResult2) ? 3 : 
+								(Decode == VerifyResult) ? 2 : 1;
+								
+							$('.qr-webcam .result').html('Found (' + confirm + '/4): <b>' + Decode + '</b>');
 														
 							setTimeout(function()
 								{
 								var Input = '#' + $('.qr-webcam').attr('sender');
 								
 								// Require 3 identical reads to validate the QR. This really helps with bad scans.
-								if (Decode != '' && VerifyResult == Decode && VerifyResult2 == Decode && VerifyResult3 == Decode)
+								if (Decode != '' && confirm == 4)
 									{
+									VerifyResult = '';
+									VerifyResult2 = '';
+									VerifyResult3 = '';
+									
 									$('.qr-webcam .result').html('');
 									
 									$(Input).val(Decode);
