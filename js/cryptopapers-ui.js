@@ -5,14 +5,15 @@ var sayCheese;
 
 function InitPage()
 	{
-	Log(1);
 	AddDropdownCoins();
 	
-	Log(2);
 	AddFrames();
 	AddBackgrounds();
 	
 	InitPrivateKeyPage();
+	
+	InitQRRead();
+	
 	InitSecurityPage();
 	InitPrintPage();
 	
@@ -34,220 +35,7 @@ function InitPage()
 	InitMinimizable();
 	 
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
-	
-	$('#run-self-tests').click(function() {
-		var Result = RunTests();
-		Log(Result);
-		
-		// Get a better display box.
-		alert(Result);		
-	});
-	
-	if (InitPremium)
-		InitPremium();
-		
-		
-	$('.qr-icon').click(function () {
-		
-		if($(this).attr('for') != undefined && $(this).attr('for') != '')
-			{
-			if (sayCheese == undefined)
-				{
-				sayCheese = new SayCheese('.webcam-area', { snapshots: true });
-					
-				sayCheese.on('start', function() {
-					 // do something when started
-					Log('started');
-					
-					SnapShotLoop_Stop = false;
-					SnapShotLoop();
-					});
-
-				sayCheese.on('stop', function() {
-					 // do something when started
-					
-					Log('stopped');
-					
-					SnapShotLoop_Stop = true;
-					});
-
-					
-				sayCheese.on('error', function(error) {
-					 // handle errors, such as when a user denies the request to use the webcam,
-					 // or when the getUserMedia API isn't supported
-					 Log(error);
-					});
-
-				sayCheese.on('snapshot', function(snapshot) {
-					Log(snapshot);
-					$('.webcam-area #qr-canvas').remove();
-					$('.webcam-area').append(snapshot);
-					
-					setTimeout(function() {
-					
-						try
-							{
-							var Decode = qrcode.decode();
-							
-							Log('decode: ' + Decode);
-							$('.qr-webcam .result').html('Found: <b>' + Decode + '</b>');
-														
-							setTimeout(function()
-								{
-								var Input = '#' + $('.qr-webcam').attr('sender');
-								
-								$('.qr-webcam .result').html('');
-								
-								$(Input).val(Decode);
-								
-								$('.qr-webcam .close-button').click();
-								
-								$(Input).change();
-								
-								}, 700);
-							}
-						catch(ex)
-							{
-							Log('decode error' + ex);
-							}
-						
-						}, 3);
-					});
-				}
-				
-			$('.qr-webcam').snazzyShow(200);
-			$('.qr-webcam').attr('sender',$(this).attr('for'));
-		
-			sayCheese.start();
-			
-			$('.webcam-area video').remove();
-			$('.webcam-area #qr-canvas').remove();
-			}
-			
-		});
-		
-	$('.qr-webcam .close-button').click(function() {
-		if (sayCheese)
-			{
-			SnapShotLoop_Stop = true;
-			
-			sayCheese.stop();
-			
-		//	sayCheese = undefined;
-			}
-		});
-	
-/*
-	$('#qr-scan-button').click(function() {
-		sayCheese.takeSnapshot(640,480);
-	});
-*/
 	}
-
-
-var SnapShotLoop_Stop = false;
-
-function SnapShotLoop()
-	{
-	if (SnapShotLoop_Stop)
-		return;
-	
-	sayCheese.takeSnapshot(640,480);
-		
-	setTimeout(function() {
-		SnapShotLoop();
-		}, 500);
-	}
-
-$.fn.snazzyShow = function(speed, callback) {
-	this.each(function() {
-	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
-		{
-		$(this).show();
-		return; // Already visible
-		}
-	
-	speed = speed == undefined ?  300 : speed;
-	
-	var minimized = $(this).hasClass('minimized')
-	var height = minimized ? $(this).attr('minimized-height') : $(this).getTrueHeight();
-	
-	$(this).attr('oldpadding-top') 
-	if ($(this).attr('oldpadding-top') == undefined)
-		$(this).css('display', 'block').animate({'height': height}, speed, function() {
-			$(this).animate({opacity: '1'}, speed);
-			
-			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
-				if (!minimized)
-					$(this).css('height', 'inherit');
-		});
-	else
-		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), 'height': height}, speed, function() {
-			$(this).animate({opacity: '1'}, speed, function() { 
-			
-			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
-				if (!minimized)
-					$(this).css('height', 'inherit');
-			});
-			
-		});
-	});
-	
-	if (callback)
-		callback();
-}
-
-$.fn.snazzyHide = function(speed, callback) {
-	this.each(function() {
-		if ($(this).css('height') == '0px')
-			{
-			$(this).hide();
-			return;
-			}
-			
-		speed = speed == undefined ?  300 : speed;
-		
-		$(this).animate({opacity: '0'}, speed, function() {
-		
-			$(this).attr('oldpadding-top', $(this).css('padding-top'));
-			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
-			
-			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
-				$(this).css('display', 'none');
-				});
-			});
-		});
-	
-	setTimeout(function() {
-	if (callback)
-		callback();
-		}, speed*2+1);
-}
-
-$.fn.getTrueHeight = function() {
-	if (this.attr('fixed-height') != undefined)
-		return parseInt(this.attr('fixed-height'));
-		
-	var OldHeight = this.css('height');
-	var OldMaxHeight = this.css('max-height');
-	this.css('height', 'auto');
-	this.css('max-height', 'auto');
-	var NewHeight = this.css('height');
-	
-	if (NewHeight != OldHeight)
-		this.css('height', OldHeight);
-		
-	this.css('max-height', OldMaxHeight);
-	
-	if ($(this).attr('oldpadding-top') != undefined)
-		{
-		NewHeight = parseInt(NewHeight.substring(0, NewHeight.length-2));
-		NewHeight +=  parseInt($(this).attr('oldpadding-top').substring(0, $(this).attr('oldpadding-top').length-2));
-		NewHeight +=  parseInt($(this).attr('oldpadding-bottom').substring(0, $(this).attr('oldpadding-bottom').length-2));
-		}
-		
-	return NewHeight;
-}
 	
 function InitMinimizable()
 	{
@@ -422,45 +210,6 @@ function InitTheme()
 
 function InitSelectorGrid()
 	{
-		/*
-		$('#coin-selected').click(function(e){
-			e.preventDefault();
-			if ($(this).hasClass('active'))
-				{
-				$('div.coin-type').fadeOut('fast');	
-				$(this).removeClass('active');			
-				}
-			else
-				{
-				$('div.coin-type').fadeIn('fast');
-				$(this).addClass('active');
-				}
-		});
-	
-		$('div.coin.selector').click(function(e){
-			e.preventDefault();
-			var abbrev = $(this).attr('data');
-			$('#coin-selected img').attr('src', 'images/coin-icons/' + abbrev + '-logo.png');
-			$('#coin-selected em').html(abbrev);
-			$('div.coin-type').fadeOut('fast');
-			$('#coin-selected.active').removeClass('active');
-
-		});
-
-		$('div.frame-type .frame-grid-row .frame').click(function(){
-			var newFrame = $(this).attr('data').toString();
-			var newLabel = $(this).siblings('.frame-grid-row-header').html();
-			$('#current-frame img').attr('src', 'images/wallet-frames/' + newFrame + '.png');
-			$('#current-frame-label').html(newLabel);
-
-			$('div.frame-type').fadeOut('fast');
-		});
-
-		$('#current-frame img').click(function(){
-			$('.frame-type, #black-out').fadeIn('fast');
-		});
-		*/
-
 	 $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 	 	{
 	 	e.preventDefault();
