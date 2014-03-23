@@ -4,11 +4,23 @@ function Log(Text)
 	if (true) // LOG?
 		console.log(Text);
 	}
+
+$.fn.allVisible = 	function() {
+	var Out = true;
 	
+	this.each(function() {
+		if ($(this).css('height') == undefined || parseFloat($(this).css('opacity')) <= 0 || $(this).css('display') == 'none')
+			{
+			Out = false;
+			return;
+			}
+		});
+		
+	return Out;
+	}
 
 $.fn.snazzyShow = function(speed, callback) {
-	this.each(function() {
-	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
+	if (this.allVisible())
 		{
 		$(this).show();
 		return; // Already visible
@@ -38,18 +50,17 @@ $.fn.snazzyShow = function(speed, callback) {
 			});
 			
 		});
-	});
 	
 	if (callback)
 		callback();
-}
+	};
 
 $.fn.snazzyHide = function(speed, callback) {
 	this.each(function() {
-		if ($(this).css('height') == '0px')
+		if (!$(this).allVisible())
 			{
 			$(this).hide();
-			return;
+			return; // Already hidden
 			}
 			
 		speed = speed == undefined ?  300 : speed;
@@ -69,7 +80,7 @@ $.fn.snazzyHide = function(speed, callback) {
 	if (callback)
 		callback();
 		}, speed*2+1);
-}
+};
 
 $.fn.getTrueHeight = function() {
 	if (this.attr('fixed-height') != undefined)
