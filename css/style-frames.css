@@ -1,3 +1,6 @@
+.coin-wallets {
+  font-family: courier, "courier new", monospace !important;
+}
 .coin-wallets .cryptopapers-logo {
   background: url("../images/logo2.png");
   width: 146px;
