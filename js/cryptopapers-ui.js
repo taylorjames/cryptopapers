@@ -1,5 +1,4 @@
 
-
 var InitPremium;
 
 function InitPage()
@@ -10,6 +9,9 @@ function InitPage()
 	AddBackgrounds();
 	
 	InitPrivateKeyPage();
+	
+	InitQRRead();
+	
 	InitSecurityPage();
 	InitPrintPage();
 	
@@ -44,109 +46,6 @@ function InitPage()
 		InitPremium();
 	}
 	
-$.fn.insertAt = function(index, element) {
-  var lastIndex = this.children().size()
-  if (index < 0) {
-    index = Math.max(0, lastIndex + 1 + index)
-  }
-  this.append(element)
-  if (index < lastIndex) {
-    this.children().eq(index).before(this.children().last())
-  }
-  return this;
-}
-	
-$.fn.snazzyShow = function(speed, callback) {
-	this.each(function() {
-	if ($(this).css('height') != undefined && parseFloat($(this).css('opacity')) > 0 && $(this).css('display') != 'none')
-		{
-		$(this).show();
-		return; // Already visible
-		}
-	
-	speed = speed == undefined ?  300 : speed;
-	
-	var minimized = $(this).hasClass('minimized')
-	var height = minimized ? $(this).attr('minimized-height') : $(this).getTrueHeight();
-	
-	$(this).attr('oldpadding-top') 
-	if ($(this).attr('oldpadding-top') == undefined)
-		$(this).css('display', 'block').animate({'height': height}, speed, function() {
-			$(this).animate({opacity: '1'}, speed);
-			
-			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
-				if (!minimized)
-					$(this).css('height', 'inherit');
-		});
-	else
-		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), 'height': height}, speed, function() {
-			$(this).animate({opacity: '1'}, speed, function() { 
-			
-			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
-				if (!minimized)
-					$(this).css('height', 'inherit');
-			});
-			
-		});
-	});
-	
-	if (callback)
-		callback();
-}
-
-$.fn.snazzyHide = function(speed, callback) {
-	this.each(function() {
-		if ($(this).css('height') == '0px')
-			{
-			$(this).hide();
-			return;
-			}
-			
-		speed = speed == undefined ?  300 : speed;
-		
-		$(this).animate({opacity: '0'}, speed, function() {
-		
-			$(this).attr('oldpadding-top', $(this).css('padding-top'));
-			$(this).attr('oldpadding-bottom', $(this).css('padding-bottom'));
-			
-			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
-				$(this).css('display', 'none');
-				});
-			});
-		});
-	
-	setTimeout(function() {
-	if (callback)
-		callback();
-		}, speed*2+1);
-}
-
-$.fn.getTrueHeight = function() {
-	if (this.attr('fixed-height') != undefined)
-		return parseInt(this.attr('fixed-height'));
-		
-	var OldHeight = this.css('height');
-	var OldMaxHeight = this.css('max-height');
-	this.css('height', 'auto');
-	this.css('max-height', 'auto');
-	var NewHeight = this.css('height');
-	
-	if (NewHeight != OldHeight)
-		this.css('height', OldHeight);
-		
-	this.css('max-height', OldMaxHeight);
-	
-	if ($(this).attr('oldpadding-top') != undefined)
-		{
-		NewHeight = parseInt(NewHeight.substring(0, NewHeight.length-2));
-		NewHeight +=  parseInt($(this).attr('oldpadding-top').substring(0, $(this).attr('oldpadding-top').length-2));
-		NewHeight +=  parseInt($(this).attr('oldpadding-bottom').substring(0, $(this).attr('oldpadding-bottom').length-2));
-		}
-		
-	return NewHeight;
-}
-
-
 function InitMinimizable()
 	{
 	$('.minimizable').prepend('<div class="minimize-button"></div>');
@@ -192,6 +91,7 @@ function InitDismissable()
 	
 	$('.dismissable .close-button').click(function() {
 		$(this).parent().snazzyHide();
+		return true;
 	});	
 	}
 	
@@ -320,45 +220,6 @@ function InitTheme()
 
 function InitSelectorGrid()
 	{
-		/*
-		$('#coin-selected').click(function(e){
-			e.preventDefault();
-			if ($(this).hasClass('active'))
-				{
-				$('div.coin-type').fadeOut('fast');	
-				$(this).removeClass('active');			
-				}
-			else
-				{
-				$('div.coin-type').fadeIn('fast');
-				$(this).addClass('active');
-				}
-		});
-	
-		$('div.coin.selector').click(function(e){
-			e.preventDefault();
-			var abbrev = $(this).attr('data');
-			$('#coin-selected img').attr('src', 'images/coin-icons/' + abbrev + '-logo.png');
-			$('#coin-selected em').html(abbrev);
-			$('div.coin-type').fadeOut('fast');
-			$('#coin-selected.active').removeClass('active');
-
-		});
-
-		$('div.frame-type .frame-grid-row .frame').click(function(){
-			var newFrame = $(this).attr('data').toString();
-			var newLabel = $(this).siblings('.frame-grid-row-header').html();
-			$('#current-frame img').attr('src', 'images/wallet-frames/' + newFrame + '.png');
-			$('#current-frame-label').html(newLabel);
-
-			$('div.frame-type').fadeOut('fast');
-		});
-
-		$('#current-frame img').click(function(){
-			$('.frame-type, #black-out').fadeIn('fast');
-		});
-		*/
-
 	 $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 	 	{
 	 	e.preventDefault();
@@ -482,6 +343,7 @@ function InitSelectorGrid()
 	 	});	
 	}
 
+	
 function AddDropdownCoins()
 	{
 	var cols = 7;
@@ -522,7 +384,7 @@ function AddDropdownCoins()
 	
 	$('.coins-grid-wrapper').html(coins);
 	
-	$('.coin-type .selector.coin:not(disabled)').click(function()
+	$('.coin-type .selector.coin:not(.disabled)').click(function()
 		{
 		var NewCoinType = $(this).attr('data');
 		var CurrentCoinType_Persist = CurrentCoinType;
@@ -550,8 +412,6 @@ function AddDropdownCoins()
 			$('#private-key-input').val('');
 			$('.private-key-address-manual').snazzyShow();
 			
-			$('.key-details').snazzyHide();
-			
 			$('.manual-hide').snazzyHide();
 			
 			$('.print-encryption').snazzyHide();
@@ -564,6 +424,12 @@ function AddDropdownCoins()
 			$('.warning.manual-keys').snazzyHide();
 			$('.manual-hide').snazzyShow();
 			$('.private-key-address-manual').snazzyHide();
+			
+			if (!CoinInfo[NewCoinType].manual)
+				{
+				$('#private-key-input').val('');
+				$('#private-key-address-manual').val('');
+				}
 			
 			$('#private-key-input').change();
 			}

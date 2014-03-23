@@ -1,4 +1,6 @@
 
+var PersistPassword = undefined;
+
 function InitBIP38()
 	{
 	$('#encryption-key, #encryption-key-confirm').keyup(function()
@@ -27,10 +29,20 @@ function InitBIP38()
 		
 		var CoinType = CurrentCoinType;
 		var Address = $('#public-address').val();
-		var Key = $('#encryption-key').val();
+		var Password = $('#encryption-key').val();
+		var PasswordConfirm = $('#encryption-key-confirm').val();
+		
+		if (Password != PasswordConfirm)
+			return;
+		
 		var WIF = $('#unencrypted-key').val();
 		var Compressed = $('input[name=compression]:checked').val() == "Yes";
-				
+
+		if ($('#encryption-key-persist').is(':checked'))
+			{
+			PersistPassword = Password;
+			}
+		
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
 		
@@ -40,7 +52,7 @@ function InitBIP38()
 		
 		$('.encrypting').fadeIn(300);
 		
-		Bitcoin.BIP38.PrivateKeyToEncryptedKeyAsync(WIF, Key, Compressed, Address, function (o, n)
+		Bitcoin.BIP38.PrivateKeyToEncryptedKeyAsync(WIF, Password, Compressed, Address, function (o, n)
 			{			
 			DisplayWallet(CoinType, o, Address, true);
 			
@@ -54,6 +66,8 @@ function InitBIP38()
 		
 	$('#encrypt-remove-button').click(function()
 		{		
+		PersistPassword = '';
+		
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
 		
@@ -90,10 +104,7 @@ function InitBIP38()
 		$('#private-key-decrypt').attr('disabled', '');
 		$('.decrypt-key .progress').fadeIn(300);
 		
-		$(".decrypt-key .key-error").fadeOut(300, function ()
-			{
-			$(this).hide();
-			});
+		$(".decrypt-key .key-error").fadeOut(300);
 		
 		var Key = $('#private-key-input').val();
 		var Password = $('#decrypt-password').val();
@@ -113,7 +124,7 @@ function InitBIP38()
 						n = Crypto.util.bytesToHex(n);
 						
 					// success
-					$('.key-success').fadeIn(300, function()
+					$('.key-success').css('display', 'block').animate({opacity:1}, 300, function()
 						{
 						setTimeout(function()
 							{
@@ -128,7 +139,7 @@ function InitBIP38()
 					}
 				else
 					{
-					$(".decrypt-key .key-error").show().fadeIn(300);
+					$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300);
 					}
 				})
 			}
@@ -136,7 +147,7 @@ function InitBIP38()
 			{
 			$('#private-key-decrypt').removeAttr('disabled');
 			Log(k);
-			$(".decrypt-key .key-error").show().fadeIn(300);
+			$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300);
 			}
 		});
 		
