@@ -1,6 +1,10 @@
 
 var sayCheese;
 
+var VerifyResult = undefined;
+var VerifyResult2 = undefined;
+var VerifyResult3 = undefined;
+
 function InitQRRead()
 	{
 	$('.qr-icon').click(function () {
@@ -14,6 +18,8 @@ function InitQRRead()
 				sayCheese.on('start', function() {
 					 // do something when started
 					Log('started');
+					
+					FirstResult = undefined;
 					
 					SnapShotLoop_Stop = false;
 					SnapShotLoop();
@@ -52,19 +58,29 @@ function InitQRRead()
 								{
 								var Input = '#' + $('.qr-webcam').attr('sender');
 								
-								$('.qr-webcam .result').html('');
-								
-								$(Input).val(Decode);
-								
-								SnapShotLoop_Stop = true;
-								
-								sayCheese.stop();
-								
-								sayCheese = undefined;
-								
-								$('.qr-webcam .close-button').click();
-								
-								$(Input).change();
+								// Require 3 identical reads to qualify a QR. This really helps with bad scans.
+								if (Decode != '' && VerifyResult == Decode && VerifyResult2 == Decode && VerifyResult3 == Decode)
+									{
+									$('.qr-webcam .result').html('');
+									
+									$(Input).val(Decode);
+									
+									SnapShotLoop_Stop = true;
+									
+									sayCheese.stop();
+									
+									sayCheese = undefined;
+									
+									$('.qr-webcam .close-button').click();
+									
+									$(Input).change();
+									}
+								else
+									{
+									VerifyResult3 = VerifyResult2;
+									VerifyResult2 = VerifyResult;
+									VerifyResult = Decode;
+									}
 								
 								}, 700);
 							}
