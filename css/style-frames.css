@@ -1,6 +1,3 @@
-.coin-wallets {
-  font-family: courier, "courier new", monospace !important;
-}
 .coin-wallets .cryptopapers-logo {
   background: url("../images/logo2.png");
   width: 146px;
@@ -13,6 +10,10 @@
   opacity: 1;
   background-color: rgba(17, 17, 17, 0.47);
   border-radius: 10px;
+}
+.coin-wallets .coin-wallet-address,
+.coin-wallets .coin-wallet-private-key {
+  font-family: courier, "courier new", monospace !important;
 }
 .coin-wallets .coin-wallet-address-qr,
 .coin-wallets .coin-wallet-private-key-qr {
@@ -616,10 +617,6 @@
   margin-right: 415px;
   padding-top: 39px;
 }
-.frame-9 .coin-wallet .coin-wallet-address-qr {
-  margin-left: 87px;
-  margin-top: 72px;
-}
 .frame-9 .coin-wallet .coin-wallet-private-key-qr {
   margin-left: 53px;
   width: 115px;
@@ -650,7 +647,7 @@
 }
 .frame-9 .coin-wallet .coin-wallet-address-qr {
   margin-left: 87px;
-  margin-top: 92px;
+  margin-top: 66px;
 }
 .frame-9 .coin-wallet .coin-wallet-address span {
   font: 16px;

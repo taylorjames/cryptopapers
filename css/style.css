@@ -2059,40 +2059,33 @@ float: left;
 width: 50%;
 }
 
+.sample .coin-wallet-address-qr:before
+{
+content: 'SAMPLE WALLET' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
+}
+
 .sample .coin-wallet-address-qr:after
 {
-content: 'SAMPLE WALLET DO NOT USE';
-color: red;
-font-weight: bolder;
-font-size: 18px;
-position: absolute;
-width: 171px;
-text-align: center;
-text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-background: rgba(0,0,0,0.5);
+content: 'DO NOT USE' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
 }
 
-.frame-1.sample .coin-wallet-address-qr:after,
-.frame-2.sample .coin-wallet-address-qr:after
+
+.sample .coin-wallet-private-key-qr:before
 {
-margin-left: -138px;
-margin-top: -58px;
+content: 'SAMPLE KEY' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
 }
 
-.frame-3.sample .coin-wallet-address-qr:after,
-.frame-4.sample .coin-wallet-address-qr:after,
-.frame-5.sample .coin-wallet-address-qr:after
+.sample .coin-wallet-private-key-qr:after
 {
-margin-left: 10px;
-margin-top: 35px;
-}
-
-.frame-6.sample .coin-wallet-address-qr:after,
-.frame-7.sample .coin-wallet-address-qr:after,
-.frame-8.sample .coin-wallet-address-qr:after
-{
-margin-left: 18px;
-margin-top: -43px;
+content: 'DO NOT USE' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
 }
 
 .donate-keys
