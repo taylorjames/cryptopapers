@@ -94,7 +94,7 @@ cryptopapers-bip38				JavaScript UI for the BIP38 encryption interface
 cryptopapers-print				JavaScript UI for the Print page
 cryptopapers-ui						JavaScript UI for the whole application
 cryptopapers-premium			JavaScript functions for Premium content
-cryptopapers-common 			Miscellaneous common functions used in the application
+cryptopapers-common 			Miscellaneous common functions and extensions used in the application
 
 cryptopapers-test					Test functions - not included in release
 
@@ -759,6 +759,7 @@ $().ready(function ()
 					<div class="coin-wallet-address-qr"></div>
 					<div class="coin-wallet-private-key-qr"></div>
 					
+					<div class="encrypted top"></div>
 					<div class="manual-hide compression minimize-hide">
 						<div class="help-bubble" style="float:left;">
 							<span>
@@ -947,6 +948,8 @@ $().ready(function ()
 							<input type="password" id="encryption-key" autocomplete="off" />
 							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
 							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
+							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
 						</div>
 						
 						<div class="encryption-buttons">		
@@ -1184,6 +1187,7 @@ $().ready(function ()
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
 								<div class="encrypted"></div>
+								<div class="encrypting progress"></div>
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>
@@ -1209,6 +1213,7 @@ $().ready(function ()
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
 								<div class="encrypted"></div>
+								<div class="encrypting progress"></div>
 								<div class="coin-wallet-private-key-qr"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>		

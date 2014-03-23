@@ -58,7 +58,7 @@ function InitQRRead()
 								{
 								var Input = '#' + $('.qr-webcam').attr('sender');
 								
-								// Require 3 identical reads to qualify a QR. This really helps with bad scans.
+								// Require 3 identical reads to validate the QR. This really helps with bad scans.
 								if (Decode != '' && VerifyResult == Decode && VerifyResult2 == Decode && VerifyResult3 == Decode)
 									{
 									$('.qr-webcam .result').html('');

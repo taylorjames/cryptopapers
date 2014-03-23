@@ -153,16 +153,28 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			{
 			$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
 			$('.print-encryption #encrypted-key').val('');
+			
 			$('.encrypted').fadeOut(300);
 			$('.warning-encryption').fadeOut(300);
 			
 			$('.coin-wallets').removeClass('keys-encrypted');
-			$('#encryption-key').val('');
-			$('#encryption-key-confirm').val('');
 			$('.private-key-encrypted').snazzyHide();
 			$('#encrypt-remove-button').attr('disabled', '');
-			$('.encryption-details').hide();
-			$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
+			
+			if (PersistPassword != undefined && PersistPassword != '')
+				{
+				$('#encryption-key').val(PersistPassword);
+				$('#encryption-key-confirm').val(PersistPassword);
+				$('#encrypt-button').click();
+				}
+			else
+				{
+				$('#encryption-key').val('');
+				$('#encryption-key-confirm').val('');
+			
+				$('.encryption-details').hide();
+				$('.encryption-keys').show().css('opacity','1').css('height', 'auto');
+				}
 			}
 		else
 			{

@@ -228,6 +228,11 @@ font-weight: 500;
 {
 width: 100%;
 margin: 5px;
+color: red;
+margin-bottom: -21px;
+top: -32px;
+position: relative !important;
+opacity: 0;
 }
 .key-error
 {
@@ -349,6 +354,7 @@ form .row .row > div{
 .colinner{
 	padding:20px;
 	overflow: initial;
+	position: relative;
 }
 
 .colinner > h3{
@@ -381,7 +387,54 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-
+.coin-wallets .encrypting.progress
+{
+width: 150px;
+height: 150px;
+background-size: 100%;
+margin-bottom: -150px;
+position: absolute;
+}
+.coin-wallets.frame-1 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 115px;
+left: 359px;
+}
+.coin-wallets.frame-2 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 115px;
+left: 612px;
+}
+.coin-wallets.frame-3 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 92px;
+left: 55px;
+}
+.coin-wallets.frame-4 .encrypting.progress
+{
+top: 97px;
+left: 504px;
+}
+.coin-wallets.frame-5 .encrypting.progress
+{
+top: 108px;
+left: 518px;
+width: 131px;
+height: 131px;
+}
+.coin-wallets.frame-9 .encrypting.progress
+{
+top: 113px;
+left: 497px;
+height: 115px;
+width: 115px;
+}
 
 .coin-type
 {
@@ -1670,6 +1723,15 @@ height: 165px;
 display: none;
 }
 
+#encryption-key-persist
+{
+zoom: 3.0;
+}
+.print-encryption label.encryption-key-persist
+{
+width: 89%;
+}
+
 .key-details h3 
 {
 margin-bottom: 58px;
@@ -2607,6 +2669,11 @@ width: 28px;
 height: 35px;
 margin-top: -33px;
 margin-bottom: -7px;
+}
+.key-details .encrypted.top
+{
+top: -47px;
+margin-bottom: 0px;
 }
 .print-encryption
 {
