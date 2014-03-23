@@ -236,6 +236,11 @@ margin-top:-60px;
 {
 width: 100%;
 margin: 5px;
+color: red;
+margin-bottom: -21px;
+top: -32px;
+position: relative !important;
+opacity: 0;
 }
 .key-error
 {
@@ -248,12 +253,13 @@ color: green;
 .private-key-error
 {
 color: red;
-margin-left: 325px;
-top: -23px;
+top: 45px;
 position: relative;
 display: none;
 float: left;
 margin-bottom: -16px;
+text-align: center;
+width: 100%;
 }
 #header{
 	width:100%;
@@ -323,6 +329,7 @@ div.inner{
 	Columns
 ***************/
 .row{
+		position: relative;
 		display:block;
 		max-width:100%;
 		width:100%;
@@ -343,7 +350,7 @@ form .row .row > div{
 }
 
 .colone, .coltwo, .colthree, .colfour, .colfive, .colsix, .colseven, .coleight, .colnine, .colten, .coleleven, .coltwelve{
-			display:block;
+			display: inline-block;
 			float:left;
 			overflow:auto;
 			margin-left:1%;
@@ -355,6 +362,7 @@ form .row .row > div{
 .colinner{
 	padding:20px;
 	overflow: initial;
+	position: relative;
 }
 
 .colinner > h3{
@@ -387,7 +395,54 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
-
+.coin-wallets .encrypting.progress
+{
+width: 150px;
+height: 150px;
+background-size: 100%;
+margin-bottom: -150px;
+position: absolute;
+}
+.coin-wallets.frame-1 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 115px;
+left: 359px;
+}
+.coin-wallets.frame-2 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 115px;
+left: 612px;
+}
+.coin-wallets.frame-3 .encrypting.progress
+{
+width: 114px;
+height: 114px;
+top: 92px;
+left: 55px;
+}
+.coin-wallets.frame-4 .encrypting.progress
+{
+top: 97px;
+left: 504px;
+}
+.coin-wallets.frame-5 .encrypting.progress
+{
+top: 108px;
+left: 518px;
+width: 131px;
+height: 131px;
+}
+.coin-wallets.frame-9 .encrypting.progress
+{
+top: 113px;
+left: 497px;
+height: 115px;
+width: 115px;
+}
 
 .coin-type
 {
@@ -1588,6 +1643,76 @@ left: 1px;
 	display:none;
 	overflow: initial;
 }
+.qr-webcam
+{
+max-height: none;
+display: none;
+height: inherit;
+opacity: 0;
+height: 0;
+position: absolute;
+top: -53px;
+z-index: 6;
+margin: 0 auto;
+margin-left: 33%;
+margin-right: 33%;
+box-shadow: 0px 0px 202px black;
+}
+.qr-webcam .qr-icon
+{
+left: -30%;
+margin: auto;
+margin-bottom: -20px;
+top: 8px;
+cursor: default;
+}
+.key-import .qr-icon:hover:before
+{
+content: 'Scan QR Code';
+font-size: 11px;
+position:absolute;
+top:-22px;
+left:-55px;
+}
+
+.webcam-area
+{
+width: 435px;
+height: 364px;
+
+background: rgba(0,0,0,0.1);
+border-radius: 18px;
+margin-bottom: 10px;
+text-align: center;
+
+}
+.webcam-area .connecting
+{
+top: 47%;
+position: absolute;
+z-index: 2;
+margin: auto;
+left: 22%;
+width: 300px;
+}
+
+.webcam-area .result
+{
+font-size: 11px;
+}
+
+.webcam-area canvas,
+.webcam-area video
+{
+width: 100%;
+z-index: 3;
+margin-top: 18px;
+position: relative;
+}
+.webcam-area canvas
+{
+display: none;
+}
 .key-details.minimized
 {
 height: 165px;
@@ -1595,6 +1720,15 @@ height: 165px;
 .key-details.minimized .minimize-hide
 {
 display: none;
+}
+
+#encryption-key-persist
+{
+zoom: 3.0;
+}
+.print-encryption label.encryption-key-persist
+{
+width: 89%;
 }
 
 .key-details h3 
@@ -1619,7 +1753,22 @@ margin-bottom: 60px;
 	background-color: #205D82;
 	border-radius:5px;
 }
-
+.qr-icon
+{
+position: relative;
+width: 20px;
+height: 20px;
+background-image: url('../images/qr-small.png');
+cursor: pointer;
+left: 95%;
+top: -50px;
+background-size: 100%;
+margin-bottom: -20px;
+}
+.private-key-address-manual .qr-icon
+{
+top: -29px;
+}
 .random-info label:first-child{
 	padding-top:0px;
 }
@@ -2517,6 +2666,11 @@ width: 28px;
 height: 35px;
 margin-top: -33px;
 margin-bottom: -7px;
+}
+.key-details .encrypted.top
+{
+top: -47px;
+margin-bottom: 0px;
 }
 .print-encryption
 {
