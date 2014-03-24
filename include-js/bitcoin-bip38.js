@@ -135,15 +135,82 @@ Bitcoin.BIP38 = {
 		{
 			//var r = new Bitcoin.ECKey(l);
 			//r.setCompressed(k);
-			var e = GetAddressFromKeyUnknown(CurrentCoinType, l, k); //Address; //r.getBitcoinAddress();
 			
-			i = Bitcoin.Util.dsha256(e);
-			if (i[0] != f[3] || i[1] != f[4] || i[2] != f[5] || i[3] != f[6])
-			{
-				m(new Error("Incorrect Passphrase"));
-				return
-			}
-			m(l, k);
+			// Backwards compatibility for invalid BIP38 uncompressed alt-coins
+			if (l[l.length-1] == 0)
+				{
+				for (var z = 0; z < 256; z++)
+					{
+					l[l.length-1] = z;
+					
+					var x= GetAddressFromKeyUnknown(CurrentCoinType, l, true);
+					var x2 = GetAddressFromKeyUnknown(CurrentCoinType, l, false);
+							
+					var v = Bitcoin.Util.dsha256(x);
+					var v2 = Bitcoin.Util.dsha256(x2);
+					
+					if (z == 125)
+						{
+						Log('x ' + x);
+						Log('x2 ' + x2);
+						Log('f ' + f);
+						Log('v ' + v2);
+						Log('v2 ' + v2);
+						}
+						
+					if (v[0] != f[3] || v[1] != f[4] || v[2] != f[5] || v[3] != f[6])
+						{
+						if (v2[0] != f[3] || v2[1] != f[4] || v2[2] != f[5] || v2[3] != f[6])
+							{
+							m(new Error("Incorrect Passphrase"));
+							continue;
+							}
+						else
+							{
+							k = false;
+							}
+						}
+					else
+						{
+						k = true;
+						}
+						
+					m(l, k);
+					return;
+					}
+				}
+			else
+				{
+				// Test both compressed an uncompressed keys.
+				var e = GetAddressFromKeyUnknown(CurrentCoinType, l, true);
+				var e2 = GetAddressFromKeyUnknown(CurrentCoinType, l, false); //Address; //r.getBitcoinAddress();
+				
+				Log(l);
+				Log(e);
+				Log(e2);
+				
+				i = Bitcoin.Util.dsha256(e);
+				i2 = Bitcoin.Util.dsha256(e2);
+				
+					
+				if (i[0] != f[3] || i[1] != f[4] || i[2] != f[5] || i[3] != f[6])
+					{
+					if (i2[0] != f[3] || i2[1] != f[4] || i2[2] != f[5] || i2[3] != f[6])
+						{
+						m(new Error("Incorrect Passphrase"));
+						return
+						}
+					else
+						{
+						k = false;
+						}
+					}
+				else
+					{
+					k = true;
+					}
+				m(l, k);
+				}
 		};
 		if (!g)
 		{
