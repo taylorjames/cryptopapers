@@ -1279,12 +1279,47 @@ left: 8px;
 top: 8px;
 cursor: pointer;
 opacity: 0.5;
+z-index: 1;
 }
 .minimizable.minimized .minimize-button
 {
 background-image: url('../images/plus.png');
 }
-
+.private-key-error-correction
+{
+display: block;
+max-height: none;
+padding-top: 0px;
+padding-bottom: 0px;
+opacity: 1;
+height: inherit;
+background: rgba(0,0,0,0.05);
+border-radius: 38px;
+margin-top: 66px;
+padding: 23px;
+padding-bottom: 96px;
+}
+.error-correct-options
+{
+text-align: center;
+margin:10px;
+}
+.error-correct-options > div
+{
+display: inline-block;
+width: 360px;
+}
+.error-correct-options label
+{
+float: left;
+clear: right;
+font-weight: bold;
+}
+.error-correct-options input
+{
+float: left;
+clear: left;
+}
 .help-toggle
 {
 background-image: url('../images/help.png');
@@ -1297,6 +1332,18 @@ top: 8px;
 right: 8px;
 position:absolute;
 }
+#private-key-recover-no
+{
+width: 45%;
+float: left;
+}
+#private-key-recover-yes
+{
+width: 45%;
+float: right;
+}
+
+
 .help-active .help-toggle
 {
 opacity: 1.0;
@@ -2967,4 +3014,9 @@ position: relative;
 width: 36%;
 background: white;
 margin-bottom: 10px;
+}
+
+.hide
+{
+display: none;
 }

@@ -117,11 +117,20 @@ function InitBIP38()
 				{	
 				$('#private-key-decrypt').removeAttr('disabled');
 				$('.decrypt-key .progress').fadeOut(300);
-									
+				
 				if (n != null && n.length > 0)
 					{
 					if (n.length == 32)
 						n = Crypto.util.bytesToHex(n);
+					
+					if (o && !$('#compressed').is(':checked'))
+						{
+						$('#compressed').click();
+						}
+					else if (!o && $('#compressed').is(':checked'))
+						{
+						$('#decompressed').click();
+						}
 						
 					// success
 					$('.key-success').css('display', 'block').animate({opacity:1}, 300, function()
