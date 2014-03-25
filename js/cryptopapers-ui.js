@@ -42,6 +42,20 @@ function InitPage()
 		alert(Result);		
 	});
 	
+	// Enter redirection for text boxes. Looks for the 'enter-button' attribute to match a button ID.
+	$('input').keypress(function(e) 
+		{
+		if (e.which == 13 
+			&& $(this).attr('enter-button') != '' 
+			&& $(this).attr('enter-button') != undefined 
+			&& $('#' + $(this).attr('enter-button')).length == 1)
+			{
+			$('#' + $(this).attr('enter-button')).click();
+			
+			e.preventDefault();
+			}
+		});
+		
 	if (InitPremium)
 		InitPremium();
 	}
@@ -416,8 +430,6 @@ function AddDropdownCoins()
 			
 			$('.print-encryption').snazzyHide();
 			$('.warning.manual-keys').snazzyShow();
-			
-			$('#private-key-input').change();
 			}
 		else if (CoinInfo[CurrentCoinType].manual)
 			{
@@ -430,14 +442,13 @@ function AddDropdownCoins()
 				$('#private-key-input').val('');
 				$('#private-key-address-manual').val('');
 				}
-			
-			$('#private-key-input').change();
 			}
 		
 		CurrentCoinType = NewCoinType;
 		
 		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 		
+		LastInput = '';
 		$('#private-key-input').change();
 		});
 	}
