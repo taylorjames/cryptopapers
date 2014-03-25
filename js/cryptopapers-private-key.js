@@ -375,12 +375,21 @@ function GenerateAddress(display)
 		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
 		PrivKeyHex = PrivateKeyWIFToHex(CoinType, PrivKeyWIF);
 		
-		if (Compressed && !Default_Compress)
-			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, false);
-		if (!Compressed && Default_Compress)
-			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, true);
-			
-		Compressed = Default_Compress;
+		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Compressed);
+		
+		if (PrivKeyWIF != PrivKey)
+			throw new Error('Private Key did not match');
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
 		}
 	else if (PrivKey.length == 0)
 		{
