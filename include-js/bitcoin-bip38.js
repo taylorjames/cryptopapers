@@ -27,7 +27,7 @@ window.UAParser    		   MIT License
 
 Framework             License			NOT INCLUDED
 *******************   **************
-Boostrap              Apache License
+Bootstrap              Apache License
 
 The bit2factor.org software is available under The MIT License (MIT)
 Copyright (c) 2013 bit2factor.org
