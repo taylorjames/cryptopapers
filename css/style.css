@@ -1595,6 +1595,8 @@ input[type=button]:disabled
 background-color: #A5A5A5;
 box-shadow: 0 2px 0px #87939B, inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
+
+
 input[type=button].error
 {
 	background-color:#BB3B3B;
@@ -3044,4 +3046,11 @@ display: none;
 {
 width: 100%;
 height: auto;
+}
+
+*:disabled,
+input:disabled,
+label:disabled
+{
+background-color: #A5A5A5;
 }
