@@ -1270,6 +1270,7 @@ right: 8px;
 top: 8px;
 cursor: pointer;
 opacity: 0.5;
+z-index: 1;
 }
 .minimizable
 {
@@ -1501,6 +1502,7 @@ width: 450px;
 {
 margin: auto;
 width: 200px;
+margin-top: 10px;
 }
 .decrypt-key .progress
 {
