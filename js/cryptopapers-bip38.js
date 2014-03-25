@@ -36,7 +36,7 @@ function InitBIP38()
 			return;
 		
 		var WIF = $('#unencrypted-key').val();
-		var Compressed = $('input[name=compression]:checked').val() == "Yes";
+		var Compressed =  GetPrivateKeyCompressed(CoinType, WIF); // $('input[name=compression]:checked').val() == "Yes";
 
 		if ($('#encryption-key-persist').is(':checked'))
 			{
@@ -51,22 +51,48 @@ function InitBIP38()
 		$('.encryption-details').snazzyShow();
 		
 		$('.encrypting').fadeIn(300);
+		$('#verified-encrypted-key').val('');
 		
 		Bitcoin.BIP38.PrivateKeyToEncryptedKeyAsync(WIF, Password, Compressed, Address, function (o, n)
-			{			
-			if (CurrentKey != undefined)
-				{
-				CurrentKey.encryptedKey = o;
-				DisplayWallets();
-				}
+			{
+			var EncWIF = o;
+			
+			$('.verifying.progress').fadeIn(300, function() {
 				
-			DisplayWallet(CoinType, o, Address, true);
-			
-			$('.encrypting').fadeOut(300);
-			
-			$('.encrypted').fadeIn(300);			
-			
-			$('#encrypt-remove-button').removeAttr('disabled');
+				Bitcoin.BIP38.EncryptedKeyToByteArrayAsync(EncWIF, Password, function (p, q)
+					{	
+					$('#private-key-decrypt').removeAttr('disabled');
+					$('.verifying.progress').fadeOut(300);
+					
+					if (n != null && n.length > 0 && WIF == PrivateKeyHexToWIF(CoinType, Crypto.util.bytesToHex(p), q))
+						{
+						$('#verified-encrypted-key').val('Yes');
+						
+						if (CurrentKey != undefined)
+							{
+							CurrentKey.encryptedKey = o;
+							DisplayWallets();
+							}
+						
+						$('.encrypting').fadeOut(300);
+						
+						$('.encrypted').fadeIn(300);			
+						
+						DisplayWallet(CoinType, EncWIF, Address, true);
+						
+						$('.encrypting').fadeOut(300);
+						
+						$('.encrypted').fadeIn(300);
+						}
+					else
+						{
+						$('#verified-encrypted-key').val('ERROR');
+						}
+						
+					$('#encrypt-remove-button').removeAttr('disabled');
+					});
+				
+				});
 			})
 		});
 		
@@ -132,11 +158,20 @@ function InitBIP38()
 				{	
 				$('#private-key-decrypt').removeAttr('disabled');
 				$('.decrypt-key .progress').fadeOut(300);
-									
+				
 				if (n != null && n.length > 0)
 					{
 					if (n.length == 32)
 						n = Crypto.util.bytesToHex(n);
+					
+					if (o && !$('#compressed').is(':checked'))
+						{
+						$('#compressed').click();
+						}
+					else if (!o && $('#compressed').is(':checked'))
+						{
+						$('#decompressed').click();
+						}
 						
 					// success
 					$('.key-success').css('display', 'block').animate({opacity:1}, 300, function()
@@ -154,7 +189,14 @@ function InitBIP38()
 					}
 				else
 					{
-					$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300);
+					$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300, function() 
+						{
+						setTimeout(function() 
+							{
+							$(".decrypt-key .key-error").fadeOut(300);
+		
+							}, 1000);
+						});
 					}
 				})
 			}
@@ -162,7 +204,14 @@ function InitBIP38()
 			{
 			$('#private-key-decrypt').removeAttr('disabled');
 			Log(k);
-			$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300);
+			$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300, function() 
+				{
+				setTimeout(function() 
+					{
+					$(".decrypt-key .key-error").fadeOut(300);
+
+					}, 1000);
+				});
 			}
 		});
 		

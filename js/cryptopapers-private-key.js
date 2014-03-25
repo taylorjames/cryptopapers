@@ -236,7 +236,6 @@ function DisplayWallets()
 	 
 	$('.generate-button').click(function()
 		{
-		
 		if (VanityEnabled != undefined && VanityEnabled())
 			{
 			var AddressStart = '-----';
@@ -261,8 +260,7 @@ function DisplayWallets()
 			$('#security-generate-import-no').click();
 			}
 		});
-		
-	
+			
 	$('#private-key-remove').click(function() 
 		{
 		$(this).fadeOut(300, function() {
@@ -372,6 +370,13 @@ function DisplayWallets()
 			});
 		});
 	
+	$('input[name=compression]').change(function() 
+		{
+		Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
+
+		$('#private-key-input').change();
+		});
+		
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
 		if (!CoinInfo[CurrentCoinType].manual)
@@ -414,16 +419,85 @@ function DisplayWallets()
 				{
 				$('.decrypt-key').snazzyHide();
 				}
-		
-			var Address = GenerateAddress(true);	
 			
-			// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
-			$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+			// Invalid WIF error correction
+			var InputKey = $('#private-key-input').val();
+			var FirstChar = InputKey[0];
 			
-			SetLettering();
+			if (FirstChar != undefined &&
+				CoinInfo[CurrentCoinType].uncompressedKeyStart.indexOf(FirstChar) < 0 &&
+				CoinInfo[CurrentCoinType].compressedKeyStart.indexOf(FirstChar) < 0 &&
+				(InputKey.length == 50 || InputKey.length == 51 || InputKey.length == 52 || InputKey.length == 53))
+				{
+				var KeyBytes = Bitcoin.Base58.decode(InputKey);
+				
+				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
+				
+				var Option1Key = KeyHex.substr(1, 64);
+				var Option1Address = GetAddressFromKeyUnknown(CurrentCoinType, Option1Key, true);
+				var Option2Key = KeyHex.substr(2, 64);
+				var Option2Address = GetAddressFromKeyUnknown(CurrentCoinType, Option2Key, true);
+				var Option3Key = KeyHex.substr(3, 64);
+				var Option3Address = GetAddressFromKeyUnknown(CurrentCoinType, Option3Key, true);
+				var Option4Key = KeyHex.substr(1, 64);
+				var Option4Address = GetAddressFromKeyUnknown(CurrentCoinType, Option4Key, false);
+				var Option5Key = KeyHex.substr(2, 64);
+				var Option5Address = GetAddressFromKeyUnknown(CurrentCoinType, Option5Key, false);
+				var Option6Key = KeyHex.substr(3, 64);
+				var Option6Address = GetAddressFromKeyUnknown(CurrentCoinType, Option6Key, false);
+				
+				var Options =
+					'<div><input type="radio" id="error-correct-1" name="error-correct" value="' + Option1Key + '">' + 
+					'<label for="error-correct-1">' + Option1Address + '</label></div>' + 
+					'<div><input type="radio" id="error-correct-2" name="error-correct" value="' + Option2Key + '">' + 
+					'<label for="error-correct-2">' + Option2Address + '</label></div>' + 
+					'<div><input type="radio" id="error-correct-3" name="error-correct" value="' + Option3Key + '">' + 
+					'<label for="error-correct-3">' + Option3Address + '</label></div>' + 
+					'<div><input type="radio" id="error-correct-4" name="error-correct" value="' + Option4Key + '">' + 
+					'<label for="error-correct-4">' + Option4Address + '</label></div>' + 
+					'<div><input type="radio" id="error-correct-5" name="error-correct" value="' + Option5Key + '">' + 
+					'<label for="error-correct-5">' + Option5Address + '</label></div>' + 
+					'<div><input type="radio" id="error-correct-6" name="error-correct" value="' + Option6Key + '">' + 
+					'<label for="error-correct-6">' + Option6Address + '</label></div>';
+				
+				$('.error-correct-options').html(Options);
+				
+				$('input[name=error-correct]').change(function() 
+					{
+					$('#private-key-recover-yes').removeAttr('disabled');
+					});
+					
+				$('#private-key-recover-yes').attr('disabled', '');
+				
+				$('.private-key-error-correction').snazzyShow();
+				}
+			else
+				{				
+				$('.private-key-error-correction').snazzyHide();
+				
+				var Address = GenerateAddress(true);	
+				
+				// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+				$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+				
+				SetLettering();
+				}
 				
 			}
-		});	 
+		});
+	$('#private-key-recover-no').click(function()
+		{
+			$('.private-key-error-correction').snazzyHide();
+		});
+	$('#private-key-recover-yes').click(function()
+		{
+			// Discard the WIF enclosure and extract the raw key.
+			KeyHex = $('input[name=error-correct]:checked').val();
+			
+			$('#private-key-input').val(KeyHex);
+			
+			$('.private-key-error-correction').snazzyHide();
+		});
 	}
 	
 	
@@ -612,18 +686,32 @@ function GetDefaultCompress(CoinType)
 	}
 	
 function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
-	{
-	if (CoinType == 'nmc')
+	{	
+	var WIFKeyChar = PrivateKeyWIF[0];
+	
+	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) >= 0)
 		{
-		var t = PrivateKeyWIF.substr(0, 1);
-		return t == 'L' || t == 'K';
+		return false;
 		}
-		
+	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) >= 0)
+		{
+		return true;
+		}
+	else
+		{
+		throw new Error('Invalid WIF - could not determine key compression');
+		// ?????
+		}
+	/*
 	var res = ParseBase58PrivateKey(PrivateKeyWIF); 
 	var version = res[0];
 	var payload = res[1];
+	var PubKey =  res[1]
+	
+	
 	var Compressed = (payload.length > 32);
 	return Compressed;
+	*/
 	}
 	
 function GenerateAddress(display)
@@ -655,14 +743,27 @@ function GenerateAddress(display)
 	
 		PrivKeyHex = PrivKey;
 		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
+		
+		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
 		}
-	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52)
+	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
 		{
 		$('.private-key-error').fadeOut(300);
 		
 		PrivKeyWIF = PrivKey;
 		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
-		PrivKeyHex = PrivateKeyWIFToHex(PrivKeyWIF);
+		PrivKeyHex = PrivateKeyWIFToHex(CoinType, PrivKeyWIF);
 		
 		if (Compressed && !Default_Compress)
 			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, false);
@@ -826,7 +927,7 @@ function GetAddressFromKeyUnknown(CoinType, PrivateKey, Compressed)
 	
 function GetAddressFromKeyWIF(CoinType, PrivateKeyWIF, Compressed)
 	{
-	return GetAddressFromKeyHex(CoinType, PrivateKeyWIFToHex(PrivateKeyWIF), Compressed);
+	return GetAddressFromKeyHex(CoinType, PrivateKeyWIFToHex(CoinType, PrivateKeyWIF), Compressed);
 	}
 	
 function GetAddressFromKeyHex(CoinType, PrivateKeyHex, Compressed)
@@ -890,7 +991,15 @@ function GetVersionHex(CoinType)
 	var AddressPrefixInt = parseInt('0x' + AddressPrefix);
 	AddressPrefixInt += 128;
 	
-	return AddressPrefixInt.toString(16);
+	var Out = AddressPrefixInt.toString(16);
+	
+	// Versions that are greater than 0x80 produce a prefix longer than 2 bytes, the least significant bytes are kept.
+	if (Out.length > 2)
+		{
+		//Out = Out.substr(1);
+		}
+		
+	return Out;
 	}
 	
 function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
@@ -959,13 +1068,24 @@ function CurveMultiply(PubKeyHex1, ECKey)
 	return PubKeyOut;	
 	}
 	
-function PrivateKeyWIFToHex(PrivateKeyWIF)
+function PrivateKeyWIFToHex(CoinType, PrivateKeyWIF)
 	{
 	var PrivateKeyBase58 = Bitcoin.Base58.decode(PrivateKeyWIF);
 	PrivateKeyBase58 = Crypto.util.bytesToHex(PrivateKeyBase58);
 	PrivateKeyBase58 = PrivateKeyBase58.substr(0, PrivateKeyBase58.length - 8);
 	PrivateKeyBase58 = PrivateKeyBase58.substr(2);
 	
+	if (GetPrivateKeyCompressed(CoinType, PrivateKeyWIF))
+		{
+		var res = ParseBase58PrivateKey(PrivateKeyWIF); 
+		var version = res[0];
+		var payload = res[1];
+		
+		payload.pop();
+		
+		return Crypto.util.bytesToHex(payload);
+		}
+	/*
 	var res = ParseBase58PrivateKey(PrivateKeyWIF); 
 	var version = res[0];
 	var payload = res[1];
@@ -975,6 +1095,7 @@ function PrivateKeyWIFToHex(PrivateKeyWIF)
 		compressed = true;
 		return Crypto.util.bytesToHex(payload);
 		}
+	*/
 		
 	return PrivateKeyBase58;
 	}
