@@ -685,6 +685,22 @@ $().ready(function ()
 								</div>
 							</div>
 						</div>
+						
+						<div class="private-key-error-correction hide">
+							<p>
+								This private key doesn't match the expected format for this coin type.
+								<br> Which of the following matches the address you're trying to recover?
+								
+							</p>
+							
+							<div class="error-correct-options">
+								<!-- Dynamically filled -->
+							</div>
+							
+							<input type="button" id="private-key-recover-no" class="manual-hide large-button" value="None" fixed-height="50px" />
+							<input type="button" id="private-key-recover-yes" class="manual-hide large-button" value="Recover" fixed-height="50px" disabled />
+						</div>
+						
 						<div class="decrypt-key hide">
 							<span>This private key is encrypted. Please enter password to decrypt:</span>
 							<input type="password" id="decrypt-password" autocomplete="off" />
@@ -939,9 +955,10 @@ $().ready(function ()
 							<br/><br/>
 							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
 							This makes brute-forcing BIP38 keys very difficult.
-							<br/>
+							<br/><br/>
+							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
 							</span>
-						</div>	
+						</div>
 						
 						<div class="encryption-keys">
 							<label class="left-label" for="encryption-key">Password:</label>
@@ -963,6 +980,9 @@ $().ready(function ()
 							<label class="left-label" for="encrypted-key">Encrypted:</label>
 							<input type="text" id="encrypted-key" autocomplete="off" readonly />
 							<div class="encrypting progress"></div>
+							<label class="left-label" for="verified-encrypted-key">Verified:</label>
+							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
+							<div class="verifying progress"></div>
 						</div>
 					</div>
 				</div>	
