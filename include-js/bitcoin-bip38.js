@@ -54,7 +54,8 @@ Bitcoin.BIP38 = {
 	isBIP38Format: function (a)
 	{
 		a = a.toString();
-		return (/^6P[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{56}$/.test(a))
+		return (/^6P[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{56}$/.test(a) 
+		|| /^3w[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{62}$/.test(a))
 	},
 	EncryptedKeyToByteArrayAsync: function (c, q, m)
 	{
@@ -243,7 +244,7 @@ Bitcoin.BIP38 = {
 					w = Bitcoin.Util.dsha256(r)
 				}
 				var u = new Bitcoin.ECKey(w);
-				u.setCompressed(true);
+				u.setCompressed(k);
 				var e = u.getPub();
 				var t = f.slice(23, 23 + 16);
 				var v = f.slice(3, 3 + 12);
@@ -306,6 +307,8 @@ Bitcoin.BIP38 = {
 	},
 	PrivateKeyToEncryptedKeyAsync: function (a, i, c, Address, g)
 	{
+		
+		Log(c);
 		var e = null;
 		if (!c) ///^5[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{50}$/.test(a))
 		{

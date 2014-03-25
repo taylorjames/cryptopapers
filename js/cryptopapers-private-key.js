@@ -18,7 +18,6 @@ var VanityEnabled = undefined;
 	 {
 	$('.generate-button').click(function()
 		{
-		
 		if (VanityEnabled != undefined && VanityEnabled())
 			{
 			var AddressStart = '-----';
@@ -38,7 +37,14 @@ var VanityEnabled = undefined;
 			$('#security-generate-import-no').click();
 			}
 		});
-	
+		
+	$('input[name=compression]').change(function() 
+		{
+		Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
+
+		$('#private-key-input').change();
+		});
+		
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
 		$(this).change();
@@ -141,7 +147,7 @@ var VanityEnabled = undefined;
 				$('.private-key-error-correction').snazzyShow();
 				}
 			else
-				{
+				{				
 				$('.private-key-error-correction').snazzyHide();
 				
 				var Address = GenerateAddress(true);	
@@ -293,11 +299,11 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	{	
 	var WIFKeyChar = PrivateKeyWIF[0];
 	
-	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) > 0)
+	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) >= 0)
 		{
 		return false;
 		}
-	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) > 0)
+	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) >= 0)
 		{
 		return true;
 		}
@@ -347,6 +353,19 @@ function GenerateAddress(display)
 	
 		PrivKeyHex = PrivKey;
 		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
+		
+		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
 		}
 	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
 		{
@@ -668,6 +687,10 @@ function PrivateKeyWIFToHex(CoinType, PrivateKeyWIF)
 	
 	if (GetPrivateKeyCompressed(CoinType, PrivateKeyWIF))
 		{
+		var res = ParseBase58PrivateKey(PrivateKeyWIF); 
+		var version = res[0];
+		var payload = res[1];
+		
 		payload.pop();
 		
 		return Crypto.util.bytesToHex(payload);

@@ -955,9 +955,10 @@ $().ready(function ()
 							<br/><br/>
 							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
 							This makes brute-forcing BIP38 keys very difficult.
-							<br/>
+							<br/><br/>
+							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
 							</span>
-						</div>	
+						</div>
 						
 						<div class="encryption-keys">
 							<label class="left-label" for="encryption-key">Password:</label>
@@ -979,6 +980,9 @@ $().ready(function ()
 							<label class="left-label" for="encrypted-key">Encrypted:</label>
 							<input type="text" id="encrypted-key" autocomplete="off" readonly />
 							<div class="encrypting progress"></div>
+							<label class="left-label" for="verified-encrypted-key">Verified:</label>
+							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
+							<div class="verifying progress"></div>
 						</div>
 					</div>
 				</div>	

@@ -148,6 +148,16 @@ p{
 	margin:0px;
 }
 
+
+.verifying.progress
+{
+display: none;
+position: relative;
+top: -43px;
+left: 77px;
+margin-bottom:-16px;
+}
+
 p em{font-size:14px;font-weight:regular;}
 
 #dark-box{
@@ -1332,6 +1342,7 @@ opacity: 0.5;
 top: 8px;
 right: 8px;
 position:absolute;
+z-index: 1;
 }
 #private-key-recover-no
 {
