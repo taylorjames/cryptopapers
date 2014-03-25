@@ -170,13 +170,6 @@ var Backgrounds =
 		$('.coin-wallet').attr('style', '');
 		window.print();
 		});
-		
-	$('input[name=compression]').change(function() 
-		{
-		Default_Compress = !Default_Compress;
-
-		$('#private-key-input').change();
-		});
 	
 	$('input[name=wallet-backup]').change(function()
 		{
