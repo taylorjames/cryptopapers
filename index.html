@@ -711,7 +711,7 @@ $().ready(function ()
 						
 						<div class="decrypt-key hide">
 							<span>This private key is encrypted. Please enter password to decrypt:</span>
-							<input type="password" id="decrypt-password" autocomplete="off" />
+							<input type="password" id="decrypt-password" autocomplete="off" enter-button="private-key-decrypt" />
 							<div class="progress hide"></div>
 							<span class="key-error hide">Error - incorrect private key or password</span>
 							<span class="key-success hide">Success!</span>
@@ -1007,9 +1007,9 @@ $().ready(function ()
 						
 						<div class="encryption-keys">
 							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" autocomplete="off" />
+							<input type="password" id="encryption-key" enter-button="encrypt-button" autocomplete="off" />
 							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" autocomplete="off" />
+							<input type="password" id="encryption-key-confirm" enter-button="encrypt-button" autocomplete="off" />
 							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
 							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
 						</div>

@@ -1028,7 +1028,7 @@ function GetVersionHex(CoinType)
 	// Versions that are greater than 0x80 produce a prefix longer than 2 bytes, the least significant bytes are kept.
 	if (Out.length > 2)
 		{
-		//Out = Out.substr(1);
+		Out = Out.substr(1);
 		}
 		
 	return Out;
