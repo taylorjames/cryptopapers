@@ -14,7 +14,6 @@ var CurrentCoinType = DefaultCoin;
 
 var VanityEnabled = undefined;
 
-	
 var CurrentKey = undefined;
 var CurrentKey_Updated = false;
 
@@ -141,6 +140,8 @@ function DisplayWallets()
 		});
 	}
 	
+var LastInput = '';
+
  function InitPrivateKeyPage()
 	{
 	
@@ -373,7 +374,17 @@ function DisplayWallets()
 	$('input[name=compression]').change(function() 
 		{
 		Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
-
+		
+		// If a WIF was entered, we must convert it to Hex in order to compute the other comressed/uncompressed version
+		var PrivKey = $('#private-key-input').val();
+		
+		if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
+			{
+			$('#private-key-input').val($('#private-key-hex').val());
+			}
+			
+		// Force refresh
+		LastInput = '';
 		$('#private-key-input').change();
 		});
 		
@@ -386,7 +397,7 @@ function DisplayWallets()
 		});
 		
 	$('#private-key-input, #private-key-address-manual').change(function() 
-		{
+		{		
 		if (CoinInfo[CurrentCoinType].manual)
 			{
 			ClearKeyText();
@@ -423,6 +434,12 @@ function DisplayWallets()
 			// Invalid WIF error correction
 			var InputKey = $('#private-key-input').val();
 			var FirstChar = InputKey[0];
+			
+			if (LastInput == InputKey)
+				{
+				return;
+				}
+			LastInput = InputKey;
 			
 			if (FirstChar != undefined &&
 				CoinInfo[CurrentCoinType].uncompressedKeyStart.indexOf(FirstChar) < 0 &&
@@ -736,7 +753,7 @@ function GenerateAddress(display)
 	var PrivKeyHex = '';
 	var PrivKeyWIF = '';
 	
-		
+	
 	if (PrivKey.length == 64)
 		{
 		$('.private-key-error').fadeOut(300);
@@ -756,21 +773,36 @@ function GenerateAddress(display)
 			$('#decompressed').click();
 			return;
 			}
+			
+		//$('.switch-toggle.compression input').removeAttr('disabled');
+		//$('.switch-toggle.compression a').removeAttr('disabled');
 		}
 	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
 		{
+		//$('.switch-toggle.compression input').attr('disabled', '');
+		//$('.switch-toggle.compression a').attr('disabled', '');
+	
 		$('.private-key-error').fadeOut(300);
 		
 		PrivKeyWIF = PrivKey;
 		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
 		PrivKeyHex = PrivateKeyWIFToHex(CoinType, PrivKeyWIF);
 		
-		if (Compressed && !Default_Compress)
-			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, false);
-		if (!Compressed && Default_Compress)
-			PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, true);
-			
-		Compressed = Default_Compress;
+		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Compressed);
+		
+		if (PrivKeyWIF != PrivKey)
+			throw new Error('Private Key did not match');
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
 		}
 	else if (PrivKey.length == 0)
 		{
