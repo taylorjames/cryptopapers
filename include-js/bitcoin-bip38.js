@@ -149,15 +149,6 @@ Bitcoin.BIP38 = {
 							
 					var v = Bitcoin.Util.dsha256(x);
 					var v2 = Bitcoin.Util.dsha256(x2);
-					
-					if (z == 125)
-						{
-						Log('x ' + x);
-						Log('x2 ' + x2);
-						Log('f ' + f);
-						Log('v ' + v2);
-						Log('v2 ' + v2);
-						}
 						
 					if (v[0] != f[3] || v[1] != f[4] || v[2] != f[5] || v[3] != f[6])
 						{
