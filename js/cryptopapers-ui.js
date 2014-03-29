@@ -79,6 +79,7 @@ function InitMinimizable()
 			$(this).parent().find('h3:not(.stay)').animate({'margin-top': 0 }, 300);
 			$(this).parent().find('.help-toggle').fadeIn(300);
 			$(this).parent().find('.minimize-hide').fadeIn(300);
+			$(this).parent().find('.maximize-hide').fadeOut(300);
 			if ($(this).parent().hasClass('help-active'))
 				$(this).parent().find('.help-bubble').snazzyShow();
 			$(this).parent().removeClass('minimized');
@@ -90,6 +91,7 @@ function InitMinimizable()
 			$(this).parent().find('h3:not(.stay)').animate({'margin-top': -20 }, 300);
 			$(this).parent().find('.help-toggle').fadeOut(300);
 			$(this).parent().find('.minimize-hide').fadeOut(300);
+			$(this).parent().find('.maximize-hide').fadeIn(300);
 			$(this).parent().find('.help-bubble').snazzyHide();
 			$(this).parent().addClass('minimized');
 			}
@@ -236,11 +238,16 @@ function InitSelectorGrid()
 	{
 	 $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 	 	{
+			
 	 	e.preventDefault();
 		
 	 	var ParentRow = $(this).parents('.selector-grid-row');
 	 	var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
 	 	var ParentGrid = $(this).parents('.selector-grid');
+		
+		if (ParentGrid.hasClass('disabled'))
+			return;
+			
 	 	var Fade = ParentGrid.attr('fade') == 'true';
 	 	var Scroll = ParentGrid.attr('scroll') == 'true';
 		var Effect = ParentGrid.attr('effect') != 'false';

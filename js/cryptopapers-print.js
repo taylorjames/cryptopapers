@@ -90,6 +90,18 @@ var Frames =
 			'<li><b>Glue:</b> Lay one of the larger circle sections face down, so that the anti-candling grid is shown.' +
 			' Lay the private key down in the center of the circle and apply glue around the outer edge. Lay the other side down, and allow it to dry.</li>' + 
 			'</ol>'
+	},
+	'Frame-10': {
+		Active: false,
+		Name: 'Chain Paper Wallet',
+		Creator: 'CryptoPapers',
+		Difficulty: 'Easy',
+		Description: '',
+		Instructions: '<ol>' + 
+			'<li></li>' +
+			'<li></li>' +
+			'<li></li>' +
+			'</ol>'
 	}
 	};
 	
@@ -209,6 +221,8 @@ var Backgrounds =
 		
 	$('.frame.selector').click(function()
 		{
+		if ($('.frame-type').hasClass('disabled'))
+			return;
 		if (!$('.frame-type').hasClass('selecting'))
 			return;
 		if ($(this).hasClass('active'))

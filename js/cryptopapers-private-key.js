@@ -11,13 +11,94 @@ var Default_Compress = undefined;
 var HasPrivateKey = false;
 var DefaultCoin = 'btc';
 var CurrentCoinType = DefaultCoin;
+var ArmoryMode = false;
 
 var VanityEnabled = undefined;
 
 var LastInput = '';
+var LastInput_Armory = '';
 
+
+
+    function ConvertFromEasy16(Str)
+		{
+		var Keys = Str.split('\n');
+		var Out = [];
+		
+		for (var i = 0; i < Keys.length; i++)
+			{
+			var Key = Keys[i].replace(' ','');
+			
+			var KeyBytes = Crypto.util.hexToBytes(armory_map(Key, armory_f, armory_t));
+			
+			data = KeyBytes.slice(0, 16);
+			Out = Out.concat(data);
+			}
+			
+		return Out;
+		}
+
+    function ConvertToEasy16(Bytes)
+		{
+        var Keys = armory_encode_keys(Bytes,[]);
+        var Lines = Keys.split('\n');
+		
+        var Out = [];
+		
+        for (var i = 0; i < Lines.length; i++)
+			{
+			if (Lines[i].trim(' ').split(' ').length == 9)
+				Out.push(Lines[i]);
+			}
+			
+        return Out.join('\n');
+		}
+
+    function IsEasy16(str) {
+      return !/[^asdfghjkwertuion \r\n]+/i.test(str) &&
+		str.replace(/[ :,\n]+/g,'').trim().length == 72;
+    }
+	
+	
+	
  function InitPrivateKeyPage()
-	 {
+	{
+	$('#private-key-armory').mask('xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx\n' + 
+												'xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx');
+	
+	$('#private-key-armory').keyup(function() 
+		{
+		$('#private-key-armory').change();
+		});
+		
+	$('#private-key-armory').change(function() 
+		{
+		if (ArmoryMode)
+			{
+			var InputArmory = $('#private-key-armory').val();
+			
+			if (LastInput_Armory == InputArmory)
+				{
+				return;
+				}
+			LastInput_Armory = InputArmory;
+			
+			ShowArmory(true, true, false);
+			}
+		});
+		
+	$('.armory-icon.toggle').click(function()
+		{
+		if ($(this).hasClass('selected'))
+			{
+			ShowArmory(false, false, false);
+			}
+		else
+			{
+			ShowArmory(true, false, true);
+			}
+		});
+		
 	$('.generate-button').click(function()
 		{
 		if (VanityEnabled != undefined && VanityEnabled())
@@ -117,7 +198,23 @@ var LastInput = '';
 				}
 			LastInput = InputKey;
 			
-			if (FirstChar != undefined &&
+			if (IsEasy16(InputKey))
+				{
+				
+				var Sections = InputKey.split(' ');
+				
+				if (Sections.length == 18)
+					{
+					InputKey = Sections.slice(0, 9).join(' ') + '\n' + 
+						Sections.slice(9, 18).join(' ');
+						
+					$('#private-key-armory').val(InputKey);
+					
+					ShowArmory(true, true, false);
+					}
+				return;
+				}
+			else if (FirstChar != undefined &&
 				CoinInfo[CurrentCoinType].uncompressedKeyStart.indexOf(FirstChar) < 0 &&
 				CoinInfo[CurrentCoinType].compressedKeyStart.indexOf(FirstChar) < 0 &&
 				(InputKey.length == 50 || InputKey.length == 51 || InputKey.length == 52 || InputKey.length == 53))
@@ -170,6 +267,9 @@ var LastInput = '';
 				
 				var Address = GenerateAddress(true);	
 				
+				if (ArmoryMode)
+					ShowArmory(true, false, true);
+					
 				// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
 				$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
 				
@@ -192,15 +292,98 @@ var LastInput = '';
 			$('.private-key-error-correction').snazzyHide();
 		});
 	}
-	 
-	 
+	
+function ShowArmory(Show, ArmoryChange, PKChange)
+	{
+	var Switch = false;
+	if (Show)
+		{
+		if (!ArmoryMode)
+			Switch = true;
+			
+		ArmoryMode = true;
+		
+		$('.key-import .armory').snazzyShow();
+		$('.armory-icon.toggle').animate({opacity: 1}, 300);
+		$('.armory-icon.toggle').addClass('selected');
+		
+	//	$('.switch-toggle.compression input').attr('disabled', '');
+	//	$('.switch-toggle.compression a').attr('disabled', '');
+
+		if (PKChange && $('#private-key-hex').val().length == 64 && 
+			($('#private-key-armory').val().length == 0  || 
+			$('#private-key-armory').val().length == 89))
+			{
+			var Easy16Key = ConvertToEasy16(Crypto.util.hexToBytes($('#private-key-hex').val()));
+
+			if ($('#private-key-armory').val() != Easy16Key)
+				{
+				$('#private-key-armory').val(Easy16Key);
+			//	$('#private-key-armory').change();
+				}
+			}
+
+		if (ArmoryChange && $('#private-key-armory').val().length == 89
+			&& $('#private-key-armory').val().indexOf('_') < 0)
+			{
+			var HexKey = Crypto.util.bytesToHex(ConvertFromEasy16($('#private-key-armory').val()));
+			
+			if ($('#private-key-input').val() != HexKey)
+				{
+				$('#private-key-input').val(HexKey);
+				}
+			}
+			
+		if ($('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}			
+			
+		if (Switch)
+			{
+			LastInput = '';
+			$('#private-key-input').change();
+			}
+		}
+	else
+		{
+		if (ArmoryMode)
+			Switch = true;
+			
+		ArmoryMode = false;
+		$('.key-import .armory').snazzyHide();
+		$('.armory-icon.toggle').animate({opacity: 0.3}, 300);
+		$('.armory-icon.toggle').removeClass('selected');
+		
+		if (Switch)
+			{
+			LastInput = '';
+			$('#private-key-input').change();
+			}
+
+	//	$('.switch-toggle.compression input').removeAttr('disabled');
+	//	$('.switch-toggle.compression a').removeAttr('disabled');
+		}
+	}
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	{
 	$('.coin-wallet').animate({opacity: 0}, 300);	
-	
+		
 	$('.key-details').animate({opacity: 0}, 300, function()
 		{
+		if (ArmoryMode)
+			{
+			$('.key-details .chain-keys').show();
+			$('.key-details .single-key').hide();
+			}
+		else
+			{
+			$('.key-details .chain-keys').hide();
+			$('.key-details .single-key').show();
+			}
+			
 		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 			{
 			if (!CoinInfo[CoinType].manual)
@@ -215,10 +398,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('#private-key-wif').val(PrivKeyWIF);
 			
 		$('#public-address').val(Address);
-		$('.coin-wallet-address').html(Address);
-		
-		$('.coin-wallet-address').html(Address);
-		$('.coin-wallet-address-qr').qrcode(Address);
+		$('.coin-wallet-address.address-1').html(Address);
 
 		var split = Encrypted ? 29 : 26;
 		
@@ -239,8 +419,8 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.coin-wallets').removeClass(AllCoinTypes);
 		$('.coin-wallets').addClass(CoinType);
 		
-		$('.coin-wallet-address-qr').html('');
-		$('.coin-wallet-address-qr').qrcode(Address, QRErrorCorrectLevel.H);
+		$('.coin-wallet-address-qr.qr-1').html('');
+		$('.coin-wallet-address-qr.qr-1').qrcode(Address, QRErrorCorrectLevel.H);
 		
 		if (!Encrypted)
 			{
@@ -280,12 +460,59 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.encryption-keys').hide();
 			}	
 		
-		$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
-		$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
-		$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
+		if (ArmoryMode)
+			{
+			$('.coin-wallets').addClass('key-chain');
+			$('.coin-wallets').addClass('armory');
+			SetFrame('Frame-10');
+			$('.frame-type.selector-grid').addClass('disabled');
+						
+			var ArmoryKey = $('#private-key-armory').val();
+			
+			var KeyIndex = 1;
+			
+			$('.coin-wallet-private-key.top').html(ArmoryKey.replace('\n', '<br>'));
+			$('.coin-wallet-private-key.bottom').html(ArmoryKey.replace('\n', '<br>'));
 		
-		$('.coin-wallet-private-key-qr').html('');
-		$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF, QRErrorCorrectLevel.H);
+			$('.coin-wallet-private-key-qr.qr-master').html('');
+			$('.coin-wallet-private-key-qr.qr-master').qrcode(ArmoryKey, QRErrorCorrectLevel.H);
+			
+			Armory.gen(ArmoryKey, 6, eval('0x' + CoinInfo[CoinType].addressVersion), 
+			function(Key) 
+				{ // Update
+				var Address = Key[0];
+				var WIF = Key[1];
+				
+				Log(Key);
+				$('.chain-key.' + KeyIndex + ' #chain-public-address-' + KeyIndex).val(Address);
+				$('.chain-key.' + KeyIndex + ' #chain-private-key-wif-' + KeyIndex).val(WIF);
+				
+				$('.coin-wallet-address.address-' + KeyIndex).html(Address);
+				
+				$('.coin-wallet-address-qr.qr-' + KeyIndex).html('');
+				$('.coin-wallet-address-qr.qr-' + KeyIndex).qrcode(Address, QRErrorCorrectLevel.H);
+				
+				$('.coin-wallet-private-key-qr.qr-' + KeyIndex).html('');
+				$('.coin-wallet-private-key-qr.qr-' + KeyIndex).qrcode(WIF, QRErrorCorrectLevel.H);
+				KeyIndex++;
+				},
+			function() 
+				{ // Success
+				});
+			}
+		else
+			{
+			$('.coin-wallets').removeClass('key-chain');
+			$('.coin-wallets').removeClass('armory');
+			SetFrame(DefaultFrame);
+			$('.frame-type.selector-grid').removeClass('disabled');
+			
+			$('.coin-wallet-private-key.top').html(PrivKeyWIF_Part1);
+			$('.coin-wallet-private-key.bottom').html(PrivKeyWIF_Part2);
+			
+			$('.coin-wallet-private-key-qr').html('');
+			$('.coin-wallet-private-key-qr').qrcode(PrivKeyWIF, QRErrorCorrectLevel.H);
+			}
 		
 		SetLettering();
 	
@@ -354,11 +581,23 @@ function GenerateAddress(display)
 	
 	if (Default_Compress == undefined)
 		{
-		Default_Compress = GetDefaultCompress(CoinType);
+		Default_Compress = !ArmoryMode && GetDefaultCompress(CoinType);
 		}
 	
-	var Compressed = Default_Compress;
+	var Compressed = !ArmoryMode && Default_Compress;
 	
+	if (ArmoryMode)
+		{
+		Compressed = false;
+		Default_Compress = false;
+		
+		if ($('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
+		}
+		
 	var PrivKey = $("#private-key-input").val();
 	
 	var PrivKeyHex = '';
