@@ -96,7 +96,7 @@ var Frames =
 		Name: 'Chain Paper Wallet',
 		Creator: 'CryptoPapers',
 		Difficulty: 'Easy',
-		Description: '',
+		Description: '"The Nuke"',
 		Instructions: '<ol>' + 
 			'<li></li>' +
 			'<li></li>' +

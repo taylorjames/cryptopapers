@@ -18,51 +18,39 @@ var VanityEnabled = undefined;
 var LastInput = '';
 var LastInput_Armory = '';
 
+var ChainSet = 0;
 
-
-    function ConvertFromEasy16(Str)
-		{
-		var Keys = Str.split('\n');
-		var Out = [];
-		
-		for (var i = 0; i < Keys.length; i++)
-			{
-			var Key = Keys[i].replace(' ','');
-			
-			var KeyBytes = Crypto.util.hexToBytes(armory_map(Key, armory_f, armory_t));
-			
-			data = KeyBytes.slice(0, 16);
-			Out = Out.concat(data);
-			}
-			
-		return Out;
-		}
-
-    function ConvertToEasy16(Bytes)
-		{
-        var Keys = armory_encode_keys(Bytes,[]);
-        var Lines = Keys.split('\n');
-		
-        var Out = [];
-		
-        for (var i = 0; i < Lines.length; i++)
-			{
-			if (Lines[i].trim(' ').split(' ').length == 9)
-				Out.push(Lines[i]);
-			}
-			
-        return Out.join('\n');
-		}
-
-    function IsEasy16(str) {
-      return !/[^asdfghjkwertuion \r\n]+/i.test(str) &&
-		str.replace(/[ :,\n]+/g,'').trim().length == 72;
-    }
-	
-	
-	
- function InitPrivateKeyPage()
+function InitPrivateKeyPage()
 	{
+	$('.chain-set-last').click(function() 
+		{
+		if ($('.chain-set-buttons').hasClass('set-1'))
+			return;
+			
+		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
+		
+		ChainSet--;
+		
+		LastInput = '';
+		$('#private-key-input').change();
+		
+		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
+		$('.chain-set-buttons .chain-set-number').html((ChainSet+1));
+		});
+		
+	$('.chain-set-next').click(function() 
+		{
+		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
+		
+		ChainSet++;
+		
+		LastInput = '';
+		$('#private-key-input').change();
+		
+		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
+		$('.chain-set-buttons .chain-set-number').html((ChainSet+1));
+		});
+	
 	$('#private-key-armory').mask('xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx\n' + 
 												'xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx');
 	
@@ -319,7 +307,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 			if ($('#private-key-armory').val() != Easy16Key)
 				{
 				$('#private-key-armory').val(Easy16Key);
-			//	$('#private-key-armory').change();
+				Switch = true;
 				}
 			}
 
@@ -331,6 +319,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 			if ($('#private-key-input').val() != HexKey)
 				{
 				$('#private-key-input').val(HexKey);
+				Switch = true;
 				}
 			}
 			
@@ -386,7 +375,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			
 		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 			{
-			if (!CoinInfo[CoinType].manual)
+			if (!CoinInfo[CoinType].manual && !ArmoryMode)
 				$('.print-encryption').snazzyShow();			
 			}
 		else
@@ -477,24 +466,41 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.coin-wallet-private-key-qr.qr-master').html('');
 			$('.coin-wallet-private-key-qr.qr-master').qrcode(ArmoryKey, QRErrorCorrectLevel.H);
 			
-			Armory.gen(ArmoryKey, 6, eval('0x' + CoinInfo[CoinType].addressVersion), 
+			$('.chain-key.1 h4').html('Address ' + ((ChainSet * 6) + 1));
+			$('.chain-key.2 h4').html('Address ' + ((ChainSet * 6) + 2));
+			$('.chain-key.3 h4').html('Address ' + ((ChainSet * 6) + 3));
+			$('.chain-key.4 h4').html('Address ' + ((ChainSet * 6) + 4));
+			$('.chain-key.5 h4').html('Address ' + ((ChainSet * 6) + 5));
+			$('.chain-key.6 h4').html('Address ' + ((ChainSet * 6) + 6));
+			
+			var Current = 0;
+			
+			var Total = (ChainSet+1)*6;
+			var Begin = (ChainSet*6);
+			
+			Armory.gen(ArmoryKey, Total, eval('0x' + CoinInfo[CoinType].addressVersion),			
 			function(Key) 
 				{ // Update
-				var Address = Key[0];
-				var WIF = Key[1];
-				
-				Log(Key);
-				$('.chain-key.' + KeyIndex + ' #chain-public-address-' + KeyIndex).val(Address);
-				$('.chain-key.' + KeyIndex + ' #chain-private-key-wif-' + KeyIndex).val(WIF);
-				
-				$('.coin-wallet-address.address-' + KeyIndex).html(Address);
-				
-				$('.coin-wallet-address-qr.qr-' + KeyIndex).html('');
-				$('.coin-wallet-address-qr.qr-' + KeyIndex).qrcode(Address, QRErrorCorrectLevel.H);
-				
-				$('.coin-wallet-private-key-qr.qr-' + KeyIndex).html('');
-				$('.coin-wallet-private-key-qr.qr-' + KeyIndex).qrcode(WIF, QRErrorCorrectLevel.H);
-				KeyIndex++;
+				if (Current >= Begin)
+					{
+					var Address = Key[0];
+					var WIF = Key[1];
+					
+					Log(Key);
+					$('.chain-key.' + KeyIndex + ' #chain-public-address-' + KeyIndex).val(Address);
+					$('.chain-key.' + KeyIndex + ' #chain-private-key-wif-' + KeyIndex).val(WIF);
+					
+					$('.coin-wallet-address.address-' + KeyIndex).html(Address);
+					
+					$('.coin-wallet-address-qr.qr-' + KeyIndex).html('');
+					$('.coin-wallet-address-qr.qr-' + KeyIndex).qrcode(Address, QRErrorCorrectLevel.H);
+					
+					$('.coin-wallet-private-key-qr.qr-' + KeyIndex).html('');
+					$('.coin-wallet-private-key-qr.qr-' + KeyIndex).qrcode(WIF, QRErrorCorrectLevel.H);
+					KeyIndex++;
+					}
+					
+				Current++;
 				},
 			function() 
 				{ // Success

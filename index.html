@@ -113,6 +113,10 @@ prng4							Pseudo-random generator, entropy modified from 			http://bitcoinpape
 bitcoin-bip38					BIP38 encryption of wallet import keys 							http://www.bit2factor.org/
 crypto-scrypt					Scrypt implementation for BIP38									http://www.bit2factor.org/
 
+armory							Armory chain generation												http://brainwallet.org/js/armory.js
+electrum						Electrum chain generation											http://brainwallet.org/js/electrum.js
+mnemonic						mnemonic for Electrum chain conversion to words			http://brainwallet.org/js/mnemonic.js
+
 ed25519						Curve25519 implementation for NXT addresses				http://www.flownet.com/ron/code/djbec.js
 jsSHA							dependency of ed25519												https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
 
@@ -187,6 +191,10 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="include-js/jsqrcode/alignpat.js"></script>
 	<script type="text/javascript" src="include-js/jsqrcode/databr.js"></script>
 	
+	<script type="text/javascript" src="include-js/armory.js"></script>
+	<script type="text/javascript" src="include-js/electrum.js"></script>
+	<script type="text/javascript" src="include-js/mnemonic.js"></script>
+	
 	<!-- NXT Support
 	<script type="text/javascript" src="include-js/ed25519.js"></script>
 	<script type="text/javascript" src="include-js/jsSHA/sha.js"></script>
@@ -213,8 +221,6 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
-	
-	<script type="text/javascript" src="include-js/armory.js"></script>
 	
 	<script type="text/javascript" src="js/omnicoin.eckey.js"></script>
 	<script type="text/javascript" src="js/omnicoin.address.js"></script>
@@ -682,9 +688,14 @@ $().ready(function ()
 								</span>
 							</div>	
 							<div class="armory-icon toggle"></div>
+							<div class="electrum-icon toggle"></div>
 							<div class="armory snazzy-hide">
 								<textarea id="private-key-armory" autocomplete="off" ></textarea>
 								<div class="qr-icon qr-armory"  for="private-key-armory"></div>
+							</div>	
+							<div class="electrum snazzy-hide">
+								<input type="text"  id="private-key-electrum" autocomplete="off" />
+								<div class="qr-icon qr-electrum"  for="private-key-electrum"></div>
 							</div>	
 							<span class="private-key-error"></span>	
 							<div class="private-key"> 
@@ -780,6 +791,13 @@ $().ready(function ()
 						<div class="chain-keys"> 
 							<div class="coin btc-coin changing-coin"></div>
 							<h3 class="stay">Key Chain Details</h3>
+							
+							<div class="chain-set-buttons set-1">
+								<h1 class="chain-set-text">Set:</h1>
+								<div class="chain-set-last"></div>
+								<div class="chain-set-number">1</div>
+								<div class="chain-set-next"></div>
+							</div>
 							
 							<div class="coin-wallet-private-key-qr qr-master"></div>
 							

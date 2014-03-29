@@ -334,3 +334,44 @@ if (typeof require != 'undefined' && require.main === module) {
 
   Armory.gen(codes, 5, function(r) { console.log(r[0]); } );
 }
+
+
+function ConvertFromEasy16(Str)
+	{
+	var Keys = Str.split('\n');
+	var Out = [];
+	
+	for (var i = 0; i < Keys.length; i++)
+		{
+		var Key = Keys[i].replace(' ','');
+		
+		var KeyBytes = Crypto.util.hexToBytes(armory_map(Key, armory_f, armory_t));
+		
+		data = KeyBytes.slice(0, 16);
+		Out = Out.concat(data);
+		}
+		
+	return Out;
+	}
+
+function ConvertToEasy16(Bytes)
+	{
+	var Keys = armory_encode_keys(Bytes,[]);
+	var Lines = Keys.split('\n');
+	
+	var Out = [];
+	
+	for (var i = 0; i < Lines.length; i++)
+		{
+		if (Lines[i].trim(' ').split(' ').length == 9)
+			Out.push(Lines[i]);
+		}
+		
+	return Out.join('\n');
+	}
+
+function IsEasy16(str)
+	{
+	return !/[^asdfghjkwertuion \r\n]+/i.test(str) &&
+	str.replace(/[ :,\n]+/g,'').trim().length == 72;
+	}

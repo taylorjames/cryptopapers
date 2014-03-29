@@ -1229,6 +1229,7 @@ top: 0px;
 left: 0px;
 z-index: 1;
 max-height:358px;
+width: 100%;
 }
 .design-type .coin-wallet-background
 {
@@ -1845,6 +1846,33 @@ background-size: 100%;
 margin-bottom: -20px;
 }
 
+.electrum-icon.toggle
+{
+background-image: url('../images/electrum.png');
+background-size: 30px;
+width: 30px;
+height: 40px;
+position: relative;
+top: -10px;
+opacity: 0.3;
+cursor: pointer;
+padding-left: 116px;
+background-repeat: no-repeat;
+background-color: rgba(0,0,0,0.2);
+border-radius: 5px;
+background-position-x: 5px;
+background-position-y: 5px;
+float: left;
+}
+.electrum-icon.toggle:after
+{
+content: 'Electrum';
+left: 39px;
+position: absolute;
+top: 11px;
+font-weight: bold;
+font-size: 17px;
+}
 .armory-icon.toggle
 {
 background-image: url('../images/armory.png');
@@ -1861,6 +1889,8 @@ background-color: rgba(0,0,0,0.2);
 border-radius: 5px;
 background-position-x: 5px;
 background-position-y: 5px;
+float: left;
+margin-right: 10px;
 }
 .armory-icon.toggle:after
 {
@@ -1884,11 +1914,11 @@ margin-bottom: 15px;
 }
 .qr-icon.qr-armory
 {
-top: -47px;
+top: -50px;
 }
 .qr-icon.qr-armory:before
 {
-margin-top:-7px;
+margin-top:-6px;
 }
 .private-key-address-manual .qr-icon
 {
@@ -3105,7 +3135,7 @@ left: 183px;
 {
 display: block;
 top: -35px;
-
+left: 182px;
 }
 
 .key-details.minimized .chain-keys .coin-wallet-private-key-qr
@@ -3209,6 +3239,10 @@ padding: 4px;
 {
 background: url('../images/wallet-frames/armory-frame.png') !important;
 }
+.coin-wallets.back.key-chain .wallet-frame
+{
+background: url('../images/wallet-frames/armory-frame-back.png') !important;
+}
 .coin-wallets.key-chain .coin-wallet-left
 {
 margin: 0px !important;
@@ -3225,7 +3259,7 @@ width: 359px;
 }
 .coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr
 {
-left: 178px;
+left: 191px;
 position: relative;
 top: 30px;
 }
@@ -3242,11 +3276,11 @@ font-weight: bold;
 }
 .coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.top
 {
-left: 721px;
+left: 741px;
 }
 .coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.bottom
 {
-left: 905px;
+left: 913px;
 }
 
 
@@ -3295,7 +3329,7 @@ top: 16px;
 .minimized .chain-keys .coin-wallet-private-key-qr.qr-master
 {
 display: block;
-left: 360px;
+left: 10px;
 top: 30px;
 zoom: 1.5;
 }
@@ -3333,7 +3367,7 @@ left: 26px;
 
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-1:before
 {
-content: '⇐ Address 1' !important;
+content: '⇚ Address 1' !important;
 }
 .coin-wallets.key-chain .coin-wallet-address.address-2
 {
@@ -3349,7 +3383,7 @@ left: 36px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-2:before
 {
-content: 'Address 2 ⇒' !important;
+content: 'Address 2 ⇛' !important;
 }
 .coin-wallets.key-chain .coin-wallet-address.address-3
 {
@@ -3365,7 +3399,7 @@ left: 185px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-3:before
 {
-content: '⇐ Address 3' !important;
+content: '⇚ Address 3' !important;
 }
 
 .coin-wallets.key-chain .coin-wallet-address.address-4
@@ -3382,7 +3416,7 @@ left: 199px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-4:before
 {
-content: 'Address 4 ⇒' !important;
+content: 'Address 4 ⇛' !important;
 }
 
 .coin-wallets.key-chain .coin-wallet-address.address-5
@@ -3395,11 +3429,11 @@ left: 202px;
 {
 display: block;
 top: 29px;
-left: 345px;
+left: 347px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-5:before
 {
-content: '⇐ Address 5' !important;
+content: '⇚ Address 5' !important;
 }
 
 .coin-wallets.key-chain .coin-wallet-address.address-6
@@ -3412,11 +3446,11 @@ left: 328px;
 {
 display: block;
 top: 193px;
-left: 357px;
+left: 355px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-6:before
 {
-content: 'Address 6 ⇒' !important;
+content: 'Address 6 ⇛' !important;
 }
 
 .coin-wallets.key-chain .coin-logo.coin-name
@@ -3437,11 +3471,11 @@ display:none;
 .coin-wallets.key-chain .chain-logo
 {
 display: block;
-width: 100px;
-height: 100px;
+width: 120px;
+height: 120px;
 position: absolute;
-left: 510px;
-top: 189px;
+left: 50px;
+top: 109px;
 }
 .coin-wallets.key-chain.armory .chain-logo
 {
@@ -3449,6 +3483,18 @@ background: url('../images/armory.png');
 background-size: 100%;
 background-color: rgba(255,255,255,0.5);
 border-radius: 22px;
+display: none;
+}
+.coin-wallets.back.key-chain .coin-logo 
+{
+width: 200px;
+height: 200px;
+left: 269px;
+top: 73px;
+}
+.coin-wallets.back.key-chain.armory .chain-logo
+{
+display: block;
 }
 .coin-wallets.key-chain .coin-wallet-private-key-qr:after
 {
@@ -3457,4 +3503,61 @@ margin-top: 13px;
 .coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr canvas
 {
 margin-top: 5px;
+}
+
+.chain-set-buttons
+{
+position: absolute;
+right: 29px;
+top: 8px;
+width: 151px;
+background: rgba(0,0,0,0.1);
+padding: 10px;
+border-radius: 14px;
+}
+.chain-set-buttons h1
+{
+float: left;
+font-size: 26px;
+margin-right: 10px;
+margin-top: 0px;
+margin-bottom: 0px;
+}
+.chain-set-buttons .chain-set-last
+{
+float: left;
+z-index:1;
+background-image: url('../images/minus.png');
+width: 14px;
+height: 14px;
+background-size: 100%;
+cursor: pointer;
+z-index: 1;
+margin-top: 12px;
+}
+.chain-set-buttons.set-1 .chain-set-last
+{
+cursor: default;
+opacity: 0.5;
+}
+.chain-set-buttons .chain-set-number
+{
+float: left;
+font-size: 26px;
+margin-bottom: 0px;
+margin-top: 6px;
+margin-left: 5px;
+margin-right: 5px;
+}
+.chain-set-buttons .chain-set-next
+{
+float: left;
+z-index:1;
+background-image: url('../images/plus.png');
+width: 14px;
+height: 14px;
+background-size: 100%;
+cursor: pointer;
+z-index: 1;
+margin-top: 12px;
 }
