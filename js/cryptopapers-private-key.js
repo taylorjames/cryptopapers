@@ -77,7 +77,7 @@ function InitPrivateKeyPage()
 		});
 	$('#private-key-electrum').keyup(function() 
 		{
-		$('#private-key-electrum').change();
+		//$('#private-key-electrum').change();
 		});
 		
 	$('#private-key-electrum').change(function() 
@@ -365,7 +365,7 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 		$('.electrum-icon.toggle').animate({opacity: 1}, 300);
 		$('.electrum-icon.toggle').addClass('selected');
 
-		if ($('#private-key-input').val().length == 64)
+		if ($('#private-key-electrum-root').val().length == 0 && $('#private-key-input').val().length == 64)
 			{
 			if ($('#private-key-electrum-root').val() != $('#private-key-input').val().substr(0,32))
 				{
@@ -375,13 +375,11 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 			}
 		else
 			{
-			return;
 			}
 		
-		
-		if (PKChange && $('#private-key-hex').val().length == 64)
+		if (PKChange && $('#private-key-electrum-root').val().length == 32)
 			{
-			var NewKey = $('#private-key-input').val().substr(0,32);
+			var NewKey = $('#private-key-electrum-root').val();
 			
 			var Mnemonic = mn_encode(NewKey);
 
@@ -402,14 +400,11 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 			var NewMnemonic = $('#private-key-electrum').val();
 			
 			var NewKey = mn_decode(NewMnemonic);
-
+			
+			Log(NewKey.length);
+			
 			if (NewKey.length == 32)
-				{
-				if ($('#private-key-electrum').val() != Mnemonic)
-					{
-					$('#private-key-electrum').val(Mnemonic);
-					}
-					
+				{					
 				if ($('#private-key-electrum-root').val() != NewKey)
 					{
 					$('#private-key-electrum-root').val(NewKey);
