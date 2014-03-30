@@ -636,6 +636,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			{						
 			var ArmoryKey = $('#private-key-armory').val();
 			
+			$('.chain-keys').addClass('armory');
 			$('.coin-wallets').addClass('armory');
 			
 			var KeyIndex = 1;
@@ -709,6 +710,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			var ElectrumKey = $('#private-key-electrum').val();
 			var ElectrumKeyRoot = $('#private-key-electrum-root').val();
 			
+			$('.chain-keys').addClass('electrum');
 			$('.coin-wallets').addClass('electrum');
 			
 			var KeyIndex = 1;
@@ -788,6 +790,8 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.coin-wallets').removeClass('key-chain');
 			$('.coin-wallets').removeClass('armory');
 			$('.coin-wallets').removeClass('electrum');
+			$('.chain-keys').removeClass('armory');
+			$('.chain-keys').removeClass('electrum');
 			
 			SetFrame(DefaultFrame);
 			$('.frame-type.selector-grid').removeClass('disabled');
