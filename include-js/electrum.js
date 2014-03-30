@@ -65,7 +65,23 @@ var Electrum = new function () {
                 seed = Crypto.SHA256(seed.concat(oldseed), {asBytes: true});
             rounds += portion;
             if (rounds < seedRounds) {
-                timeout = setTimeout(calcSeed, 0);
+                calcSeed();
+            } else {
+                privKey = seed;
+                pubKey = electrum_get_pubkey(privKey);
+                onSuccess(privKey);
+            }
+        }
+	}
+    function calcSeedAsync() {
+        if (rounds < seedRounds) {
+            var portion = seedRounds / 100;
+            onUpdate(rounds * 100 / seedRounds, seed);
+            for (var i = 0; i < portion; i++)
+                seed = Crypto.SHA256(seed.concat(oldseed), {asBytes: true});
+            rounds += portion;
+            if (rounds < seedRounds) {
+                timeout = setTimeout(calcSeedAsync, 0);
             } else {
                 privKey = seed;
                 pubKey = electrum_get_pubkey(privKey);
@@ -85,6 +101,7 @@ var Electrum = new function () {
             calcAddr(version);
         }
     }
+	
     function calcAddrAsync(version) {
         var r = electrum_extend_chain(pubKey, privKey, counter % range, counter >= range, true, version);
         onUpdate(r);
@@ -95,7 +112,7 @@ var Electrum = new function () {
         } else {
             timeout = setTimeout(function () 
 				{
-				calcAddr(version);
+				calcAddrAsync(version);
 				}, 0);
         }
     }
@@ -107,10 +124,10 @@ var Electrum = new function () {
         onUpdate = update;
         onSuccess = success;
         clearTimeout(timeout);
-        calcSeed();
+        calcSeedAsync();
     };
 
-    this.gen = function(_range, update, success, useChange, version) {
+    this.gen = function(_range, useChange, version, update, success) {
         addChange = useChange;
         range = _range;
         counter = 0;

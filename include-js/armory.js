@@ -159,7 +159,7 @@ var Armory = new function () {
         if (counter < range) {
             timeout = setTimeout(function() 
 				{
-				calcAddr(version);
+				calcAddrAsync(version);
 				}, 0);
         } else {
             if (onSuccess)
@@ -179,7 +179,7 @@ var Armory = new function () {
         onUpdate = update;
         onSuccess = success;
         clearTimeout(timeout);
-        calcAddr(version);
+        calcAddrAsync(version);
         return [armory_encode_keys(privKey,chainCode) , armory_get_wallet_uid(pubKey)];
     };
 
