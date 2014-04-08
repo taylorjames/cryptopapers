@@ -126,7 +126,6 @@ var SayCheese = (function() {
     snapshot.width  = width;
     snapshot.height = height;
 
-	Log(this.video);
     ctx.drawImage(this.video, 0, 0, width, height);
 
     this.snapshots.push(snapshot);

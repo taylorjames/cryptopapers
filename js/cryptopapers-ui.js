@@ -38,12 +38,21 @@ function InitPage()
 		
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
+	$('#open-self-tests').click(function() {
+		$('.test-window').snazzyShow();
+	});
 	$('#run-self-tests').click(function() {
-		var Result = RunTests();
-		Log(Result);
-		
-		// Get a better display box.
-		alert(Result);		
+		RunTests();
+	});
+	$('#stop-self-tests').click(function() {
+		if (!TestStop)
+			{
+			Armory.stop();
+			Electrum.stop();
+			
+			TestStatus('')
+			TestFail('Tests stopped.')
+			}
 	});
 	
 	// Enter redirection for text boxes. Looks for the 'enter-button' attribute to match a button ID.
@@ -99,6 +108,7 @@ function InitMinimizable()
 			$(this).parent().find('h3:not(.stay)').animate({'margin-top': 0 }, 300);
 			$(this).parent().find('.help-toggle').fadeIn(300);
 			$(this).parent().find('.minimize-hide').fadeIn(300);
+			$(this).parent().find('.maximize-hide').fadeOut(300);
 			if ($(this).parent().hasClass('help-active'))
 				$(this).parent().find('.help-bubble').snazzyShow();
 			$(this).parent().removeClass('minimized');
@@ -110,6 +120,7 @@ function InitMinimizable()
 			$(this).parent().find('h3:not(.stay)').animate({'margin-top': -20 }, 300);
 			$(this).parent().find('.help-toggle').fadeOut(300);
 			$(this).parent().find('.minimize-hide').fadeOut(300);
+			$(this).parent().find('.maximize-hide').fadeIn(300);
 			$(this).parent().find('.help-bubble').snazzyHide();
 			$(this).parent().addClass('minimized');
 			}
@@ -256,11 +267,16 @@ function InitSelectorGrid()
 	{
 	 $('.selector-grid-wrapper .selector:not(.disabled)').click(function(e)
 	 	{
+			
 	 	e.preventDefault();
 		
 	 	var ParentRow = $(this).parents('.selector-grid-row');
 	 	var ParentGridWrapper = $(this).parents('.selector-grid-wrapper');
 	 	var ParentGrid = $(this).parents('.selector-grid');
+		
+		if (ParentGrid.hasClass('disabled'))
+			return;
+			
 	 	var Fade = ParentGrid.attr('fade') == 'true';
 	 	var Scroll = ParentGrid.attr('scroll') == 'true';
 		var Effect = ParentGrid.attr('effect') != 'false';
@@ -423,6 +439,7 @@ function AddDropdownCoins()
 		var NewCoinType = $(this).attr('data');
 		var CurrentCoinType_Persist = CurrentCoinType;
 		
+		ChangeCoinType(NewCoinType, true);
 		});
 	}
 
@@ -459,8 +476,15 @@ function ChangeCoinType(NewCoinType, Clear)
 			
 			$('.print-encryption').snazzyHide();
 			$('.warning.manual-keys').snazzyShow();
-			}
+			$('.chain-buttons').snazzyHide();
 			
+			if (ElectrumMode)
+				ShowElectrum(false, false, false);
+				
+			if (ArmoryMode)
+				ShowArmory(false, false, false);
+			}
+		
 		if (Clear)
 			$('#private-key-input').val('');
 			
@@ -470,6 +494,15 @@ function ChangeCoinType(NewCoinType, Clear)
 			{
 			$('#private-key-input').val('');
 			$('#private-key-address-manual').val('');
+			
+			if (!CoinInfo[NewCoinType].manual)
+				{
+				$('.chain-buttons').snazzyShow();
+				$('#private-key-input').val('');
+				$('#private-key-address-manual').val('');
+				$('#private-key-electrum').val('');
+				$('#private-key-electrum-chain-key').val('');
+				}
 			}
 		
 		$('.key-details').snazzyHide();
@@ -510,7 +543,7 @@ function AddDonateCoins()
 			donate += '<div class="donate-key">';
 			donate += '<div class="coin ' + CoinAbbreviation + '-coin">';
 			donate += '<div class="donate-address">' + CoinInfo[Object.keys(CoinInfo)[i]].donateAddress + '</div>';
-			donate += '</div>';				
+			donate += '</div>';
 			donate += '</div>';
 			}
 		}

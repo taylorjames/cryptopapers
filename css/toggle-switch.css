@@ -171,6 +171,18 @@
       left: 60%; }
     .switch-toggle.switch-5 input:checked:last-of-type ~ a {
       left: 80%; }
+    .switch-toggle.switch-6 label, .switch-toggle.switch-6 a {
+      width: 16.66%; }
+    .switch-toggle.switch-6 input:checked:nth-of-type(2) ~ a {
+      left: 16.66%; }
+    .switch-toggle.switch-6 input:checked:nth-of-type(3) ~ a {
+      left: 33.33%; }
+    .switch-toggle.switch-6 input:checked:nth-of-type(4) ~ a {
+      left: 50%; }
+    .switch-toggle.switch-6 input:checked:nth-of-type(5) ~ a {
+      left: 66.66%; }
+    .switch-toggle.switch-6 input:checked:last-of-type ~ a {
+      left: 83.33%; }
   .switch-candy {
     background-color: #13374E;
     border-radius: 3px;
