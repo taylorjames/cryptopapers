@@ -23,7 +23,7 @@ var LastInput_Armory = '';
 var LastInput_Electrum = '';
 var LastInput_ElectrumRoot = '';
 
-var ChainSet = 49;
+var ChainSet = 0;
 
 function InitPrivateKeyPage()
 	{
