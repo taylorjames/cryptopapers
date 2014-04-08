@@ -4,6 +4,19 @@ function Log(Text)
 	if (true) // LOG?
 		console.log(Text);
 	}
+	
+function IsHex(Str)
+	{	
+	for (i=0; i< Str.length; i++)
+		{
+		if (isNaN(parseInt(Str.charAt(i), 16)))
+			{
+			return false;
+			}
+		}
+		
+	return true;
+	}
 
 $.fn.allVisible = 	function() {
 	var Out = true;

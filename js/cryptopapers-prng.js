@@ -26,8 +26,8 @@ sr.poolSize = 256;
 sr.pptr = 0;
 
 sr.pointsKeepCollecting = true;
-sr.pointsRequiredMin = Config == 'dev' ? 100 :300;
-sr.pointsRequiredMax = Config == 'dev' ? 200 :400;
+sr.pointsRequiredMin = Config == 'dev' ? 50 :300;
+sr.pointsRequiredMax = Config == 'dev' ? 100 :400;
 sr.pointsRequired = Math.round(Math.random() * (sr.pointsRequiredMax - sr.pointsRequiredMin)) + sr.pointsRequiredMin;
 sr.pointsCaptured = 0;
 sr.lastCaptureTime = new Date().getTime();
@@ -84,10 +84,10 @@ function InitRNG()
 				
 				$('.rng-move-mouse').snazzyHide();
 					
+				$('.generate-button').removeAttr('disabled').addClass('enabled');
+				
 				if (!HasPrivateKey)
-					{
-					$('.generate-button').removeAttr('disabled').addClass('enabled');
-					
+					{					
 					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys && !CoinInfo[CurrentCoinType].manual)
 						{
 						$('#private-key-generate').click();

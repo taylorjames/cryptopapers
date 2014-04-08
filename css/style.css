@@ -121,6 +121,13 @@
 	{
 		margin:0px;
 	}
+	.coin-wallets.key-chain .coin-wallet-address-qr
+	{
+	}
+	.coin-wallets.key-chain .coin-wallet-address
+	{
+		margin-left:-13px !important;
+	}
 }
 
 @-moz-document url-prefix() {
@@ -493,6 +500,11 @@ width: 75%;
 	border-radius: 5px;
 	margin: 3px;
 	background-color: #eeeeee;
+}
+.selector-grid[disabled],
+.selector-grid[disabled] .selector
+{
+cursor: default;
 }
 .selector-grid-wrapper
 {
@@ -1478,7 +1490,11 @@ textarea[readonly]
 
 #private-key-input,
 #decrypt-password,
-#private-key-address-manual
+#private-key-address-manual,
+#private-key-armory,
+#private-key-electrum,
+#private-key-electrum-root,
+#private-key-electrum-chain-key
 {
 	display: inline;
 	width: 100%;
@@ -1491,6 +1507,20 @@ textarea[readonly]
 	margin-bottom: 0px;
 	text-align: center;
 }
+.input-key .electrum .left-label
+{
+width: 185px;
+padding: 9px;
+}
+body.dark-theme input[readonly]
+{
+background-color: #444 !important;
+}
+input[readonly]
+{
+background-color: #f3f3f3;
+}
+
 #private-key-input
 {
 	margin-bottom: 20px;
@@ -1757,7 +1787,7 @@ top: 47%;
 position: absolute;
 z-index: 2;
 margin: auto;
-left: 22%;
+left: 19%;
 width: 300px;
 }
 
@@ -1832,6 +1862,113 @@ top: -50px;
 background-size: 100%;
 margin-bottom: -20px;
 }
+
+.electrum-icon.toggle
+{
+background-image: url('../images/electrum.png');
+background-size: 30px;
+width: 30px;
+height: 40px;
+position: relative;
+top: -10px;
+opacity: 0.3;
+cursor: pointer;
+padding-left: 116px;
+background-repeat: no-repeat;
+background-color: rgba(0,0,0,0.2);
+border-radius: 5px;
+background-position-x: 5px;
+background-position-y: 5px;
+float: left;
+margin-right:10px;
+}
+.electrum-icon.toggle:after
+{
+content: 'Electrum';
+left: 39px;
+position: absolute;
+top: 11px;
+font-weight: bold;
+font-size: 17px;
+}
+.armory-icon.toggle
+{
+background-image: url('../images/armory.png');
+background-size: 30px;
+width: 30px;
+height: 40px;
+position: relative;
+top: -10px;
+opacity: 0.3;
+cursor: pointer;
+padding-left: 106px;
+background-repeat: no-repeat;
+background-color: rgba(0,0,0,0.2);
+border-radius: 5px;
+background-position-x: 5px;
+background-position-y: 5px;
+float: left;
+margin-right: 10px;
+}
+.chain-keys .chain-type-icon
+{
+background-size: 100%;
+width: 35px;
+height: 35px;
+position: absolute;
+left: 142px;
+top: 24px;
+}
+.chain-keys.armory .chain-type-icon
+{
+background-image: url('../images/armory.png');
+}
+.chain-keys.electrum .chain-type-icon
+{
+background-image: url('../images/electrum.png');
+}
+
+.armory-icon.toggle:after
+{
+content: 'Armory';
+left: 39px;
+position: absolute;
+top: 11px;
+font-weight: bold;
+font-size: 17px;
+}
+#private-key-electrum,
+#private-key-electrum-root
+{
+margin-bottom: 15px;
+}
+.qr-icon.qr-electrum
+{
+top: -46px;
+}
+.chain-progress
+{
+margin-left: 10px;
+}
+#private-key-armory
+{
+min-width: 629px;
+max-width: 629px;
+min-height: 52px;
+max-height: 52px;
+text-align: center;
+font-family: monospace;
+font-size:14px;
+margin-bottom: 15px;
+}
+.qr-icon.qr-armory
+{
+top: -50px;
+}
+.qr-icon.qr-armory:before
+{
+margin-top:-6px;
+}
 .private-key-address-manual .qr-icon
 {
 top: -29px;
@@ -1841,7 +1978,6 @@ top: -29px;
 }
 
 div.rng-status{
-	
 	border-radius:5px;
 }
 
@@ -2248,33 +2384,6 @@ min-height: 342px;
 float: left;
 width: 50%;
 }
-.sample .coin-wallet-address-qr:before
-{
-content: 'SAMPLE WALLET' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
-}
-.sample .coin-wallet-address-qr:after
-{
-content: 'DO NOT USE' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
-}
-
-
-.sample .coin-wallet-private-key-qr:before
-{
-content: 'SAMPLE KEY' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
-}
-.sample .coin-wallet-private-key-qr:after
-{
-content: 'DO NOT USE' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
-}
-
 
 .donate-keys
 {
@@ -2299,6 +2408,9 @@ float: left;
 width: 36%;
 }
 
+
+.chain-keys .coin-wallet-private-key-qr,
+.chain-keys .coin-wallet-address-qr,
 .key-details .coin-wallet-private-key-qr,
 .key-details .coin-wallet-address-qr
 {
@@ -2313,6 +2425,7 @@ position: absolute;
 top: 40px;
 left: 555px;
 }
+.chain-keys .coin-wallet-private-key-qr:before,
 .key-details .coin-wallet-private-key-qr:before
 {
 content: 'Private Key';
@@ -2321,12 +2434,12 @@ top: -20px;
 font-size: 11px;
 text-decoration: underline;
 }
-
 .key-details .coin-wallet-address-qr
 {
 top: 40px;
 left: 460px;
 }
+.chain-keys .coin-wallet-address-qr:before,
 .key-details .coin-wallet-address-qr:before
 {
 content: 'Public Address';
@@ -2336,6 +2449,9 @@ font-size: 11px;
 text-decoration: underline;
 }
 
+
+.chain-keys .coin-wallet-private-key-qr canvas,
+.chain-keys .coin-wallet-address-qr canvas,
 .key-details .coin-wallet-private-key-qr canvas,
 .key-details .coin-wallet-address-qr canvas
 {
@@ -3016,7 +3132,7 @@ font-size: 12px;
 margin-top: 0px;
 }
 
-#run-self-tests
+#open-self-tests
 {
 float: right;
 margin-top: 27px;
@@ -3043,6 +3159,12 @@ display: block !important;
 {
 display: none;
 }
+.snazzy-hide
+{
+opacity: 0;
+height: 0px;
+display: none;
+}
 
 .custom.coin-wallet-background
 {
@@ -3056,3 +3178,648 @@ label:disabled
 {
 background-color: #A5A5A5;
 }
+
+
+
+.chain-keys
+{
+	margin: 0px;
+	text-align: center;
+}
+
+.chain-keys .coin
+{
+left: 183px;
+}
+
+.key-details.minimized .chain-keys .coin-wallet-address-qr
+{
+display: block;
+top: -35px;
+left: 182px;
+}
+
+.key-details.minimized .chain-keys .coin-wallet-private-key-qr
+{
+display: none;
+float: left;
+}
+
+.single-key
+{
+text-align: center;
+}
+
+.chain-keys h3
+{
+margin-bottom: 10px;
+}
+
+.minimized .chain-keys h3
+{
+margin-bottom: 58px;
+}
+
+.chain-keys .chain-key
+{
+margin-bottom: 20px;
+}
+
+.minimized .chain-keys .coin-wallet-address-qr
+{
+float: left;
+}
+
+.chain-keys .coin-wallet-address-qr
+{
+position: relative;
+float: right;
+top: 36px;
+left: 0px;
+}
+
+.chain-keys .coin-wallet-address-qr:before
+{
+top: -10px;
+}
+.minimized .chain-keys .coin-wallet-address-qr:before
+{
+left: 10px;
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-1:before
+{
+content: "Address 1" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-2:before
+{
+content: "Address 2";
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-3:before
+{
+content: "Address 3";
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-4:before
+{
+content: "Address 4";
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-5:before
+{
+content: "Address 5";
+}
+.minimized .chain-keys .coin-wallet-address-qr.qr-6:before
+{
+content: "Address 6";
+}
+
+.chain-keys .coin-wallet-address-qr.change:before
+{
+background-color: rgba(255,255, 0, 0.6);
+}
+.chain-keys .coin-wallet-private-key-qr.change:before
+{
+background-color: rgba(255,255, 0, 0.6);
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-1:before
+{
+content: "Change 1" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-2:before
+{
+content: "Change 2" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-3:before
+{
+content: "Change 3" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-4:before
+{
+content: "Change 4" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-5:before
+{
+content: "Change 5" !important;
+}
+
+
+.chain-keys .coin-wallet-private-key-qr
+{
+position: relative;
+float: right;
+top: 36px;
+left: 0px;
+}
+.chain-keys .coin-wallet-private-key-qr:before
+{
+top: -10px;
+}
+.chain-keys .left-label
+{
+width: 103px;
+padding-right: 6px;
+height: 30px;
+padding-top: 9px;
+}
+.chain-keys .chain-key input
+{
+width: 375px;
+margin-bottom: 10px;
+font-size: 12px;
+padding: 4px;
+}
+.coin-wallets.key-chain .wallet-frame
+{
+background: url('../images/wallet-frames/armory-frame.png') !important;
+}
+.coin-wallets.back.key-chain .wallet-frame
+{
+background: url('../images/wallet-frames/armory-frame-back.png') !important;
+}
+.coin-wallets.key-chain .coin-wallet-left
+{
+margin: 0px !important;
+position: absolute !important;
+top: 0px !important;
+left: 11px !important;
+}
+.coin-wallets.key-chain .coin-wallet-right
+{
+margin: 0px;
+top: 0px;
+padding: 0px;
+width: 359px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr
+{
+left: 191px;
+position: relative;
+top: 30px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key
+{
+transform: rotate(-90deg);
+-ms-transform: rotate(-90deg);
+-webkit-transform: rotate(-90deg);
+top: 166px;
+position: absolute;
+width: 313px;
+font-size: 11px;
+font-weight: bold;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.top
+{
+left: 741px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.bottom
+{
+left: 913px;
+}
+
+
+
+.coin-wallets.key-chain .coin-wallet-address
+{
+transform:rotate(-90deg);
+-ms-transform:rotate(-90deg); /* IE 9 */
+-webkit-transform:rotate(-90deg); /* Opera, Chrome, and Safari */
+position: absolute;
+display: block !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.bottom
+{
+display: none !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr
+{
+position: absolute;
+margin: 0px !important;
+width: 100px !important;
+height: 132px !important;
+}
+
+.coin-wallets .coin-wallet-address-qr.qr-2,
+.coin-wallets .coin-wallet-address-qr.qr-3,
+.coin-wallets .coin-wallet-address-qr.qr-4,
+.coin-wallets .coin-wallet-address-qr.qr-5,
+.coin-wallets .coin-wallet-address-qr.qr-6,
+.coin-wallet-address.address-2,
+.coin-wallet-address.address-3,
+.coin-wallet-address.address-4,
+.coin-wallet-address.address-5,
+.coin-wallet-address.address-6
+{
+display: none;
+}
+
+
+.chain-keys .coin-wallet-private-key-qr.qr-master
+{
+position: absolute;
+left: 46px;
+top: 16px;
+}
+.minimized .chain-keys .coin-wallet-private-key-qr.qr-master
+{
+display: block;
+left: 10px;
+top: 30px;
+zoom: 1.5;
+}
+
+.chain-keys .coin-wallet-private-key-qr.qr-master:before
+{
+content: 'Master Key';
+}
+
+.coin-wallets.key-chain .coin-wallet-address-qr:before
+{
+width: 100px !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr:after
+{
+width: 100px !important;
+font-size: 11px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr canvas
+{
+width: 85px !important;
+height: 85px !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-1
+{
+display: block;
+left: -121px;
+top: 169px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-1
+{
+top: 29px;
+left: 26px;
+}
+
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-1:before
+{
+content: '⇚ Address 1' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-2
+{
+display: block;
+top: 169px;
+left: 6px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-2
+{
+display: block;
+top: 193px;
+left: 36px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-2:before
+{
+content: 'Address 2 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-3
+{
+display: block;
+top: 169px;
+left: 38px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-3
+{
+display: block;
+top: 29px;
+left: 185px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-3:before
+{
+content: '⇚ Address 3' !important;
+}
+
+.coin-wallets.key-chain .coin-wallet-address.address-4
+{
+display: block;
+top: 169px;
+left: 170px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-4
+{
+display: block;
+top: 193px;
+left: 199px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-4:before
+{
+content: 'Address 4 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-4:before
+{
+content: 'Change 1 ⇛' !important;
+}
+
+.coin-wallets.key-chain .coin-wallet-address.address-5
+{
+display: block;
+top: 169px;
+left: 202px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-5
+{
+display: block;
+top: 29px;
+left: 347px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-5:before
+{
+content: '⇚ Address 5' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-5:before
+{
+content: '⇚ Change 1' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-5:before
+{
+content: '⇚ Change 2' !important;
+}
+
+.coin-wallets.key-chain .coin-wallet-address.address-6
+{
+display: block;
+top: 169px;
+left: 328px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-6
+{
+display: block;
+top: 193px;
+left: 355px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-6:before
+{
+content: 'Address 6 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-6:before
+{
+content: 'Change 1 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-6:before
+{
+content: 'Change 2 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-3.qr-6:before
+{
+content: 'Change 3 ⇛' !important;
+}
+
+.coin-wallets.key-chain .coin-logo.coin-name
+{
+left: 509px;
+top: 31px;
+}
+
+.coin-wallets.key-chain .cryptopapers-logo
+{
+left: 486px;
+top: 293px;
+}
+.chain-logo
+{
+display:none;
+}
+.coin-wallets.key-chain .chain-logo
+{
+display: block;
+width: 120px;
+height: 120px;
+position: absolute;
+left: 50px;
+top: 109px;
+}
+.coin-wallets.key-chain.armory .chain-logo
+{
+background: url('../images/armory.png');
+background-size: 100%;
+background-color: rgba(255,255,255,0.5);
+}
+.coin-wallets.key-chain.electrum .chain-logo
+{
+background: url('../images/electrum.png');
+background-size: 100%;
+}
+.coin-wallets.key-chain .chain-logo
+{
+border-radius: 22px;
+display: none;
+}
+.coin-wallets.back.key-chain .coin-logo 
+{
+width: 200px;
+height: 200px;
+left: 269px;
+top: 73px;
+}
+.coin-wallets.back.key-chain .chain-set
+{
+display: none;
+}
+
+.coin-wallets.back.key-chain .chain-logo
+{
+display: block;
+}
+.coin-wallets.key-chain .coin-wallet-private-key-qr:after
+{
+margin-top: 13px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr canvas
+{
+margin-top: 5px;
+}
+
+.chain-set-buttons
+{
+position: absolute;
+right: 29px;
+top: 8px;
+width: 151px;
+background: rgba(0,0,0,0.1);
+padding: 10px;
+border-radius: 14px;
+}
+.chain-set-buttons h1
+{
+float: left;
+font-size: 26px;
+margin-right: 10px;
+margin-top: 0px;
+margin-bottom: 0px;
+}
+.dark-theme .chain-set-buttons h1
+{
+color: white;
+}
+.dark-theme .chain-set-buttons .chain-set-last
+{
+background-image: url('../images/minus_dark.png');
+}
+.dark-theme .chain-set-buttons .chain-set-next
+{
+background-image: url('../images/plus_dark.png');
+}
+.chain-set-buttons .chain-set-last
+{
+float: left;
+z-index:1;
+background-image: url('../images/minus.png');
+width: 14px;
+height: 14px;
+background-size: 100%;
+cursor: pointer;
+z-index: 1;
+margin-top: 12px;
+}
+.chain-set-buttons.set-1 .chain-set-last
+{
+cursor: default;
+opacity: 0.5;
+}
+.chain-set-buttons .chain-set-number
+{
+float: left;
+font-size: 26px;
+margin-bottom: 0px;
+margin-top: 6px;
+margin-left: 5px;
+margin-right: 5px;
+}
+.chain-set-buttons .chain-set-next
+{
+float: left;
+z-index:1;
+background-image: url('../images/plus.png');
+width: 14px;
+height: 14px;
+background-size: 100%;
+cursor: pointer;
+z-index: 1;
+margin-top: 12px;
+}
+
+.coin-wallets .chain-set
+{
+display: none;
+}
+
+.coin-wallets.key-chain .chain-set
+{
+display: block;
+position: absolute;
+top: 200px;
+left: 500px;
+background-color: rgba(255,255,255,0.7);
+border-radius: 15px;
+padding: 5px;
+color: black;
+font-weight: bold;
+}
+.coin-wallets.key-chain .chain-set h1
+{
+font-size: 30px;
+float: left;
+margin: 0;
+color: black;
+font-weight: bold;
+}
+.coin-wallets.key-chain .chain-set .chain-set-number
+{
+font-size: 30px;
+float: left;
+margin-top: 6px;
+margin-left: 11px;
+margin-right: 11px;
+}
+
+.coin-wallets.key-chain .coin-wallet-address-qr.change:after,
+.coin-wallets.key-chain .coin-wallet-address-qr.change:before
+{
+background-color: rgba(255, 255, 0, 0.6);
+}
+
+.test-window
+{
+display: none;
+opacity: 0;
+position: fixed;
+width: 800px;
+height: 600px;
+background: #eee;
+padding: 20px;
+left: 23%;
+top: 50px;
+z-index: 100000;
+border-radius: 21px;
+box-shadow: 0px 0px 130px #000000;
+}
+.test-window h1
+{
+font-size: 24px;
+}
+.test-window small
+{
+float: left;
+position: absolute;
+top: 131px;
+}
+.test-window textarea
+{
+min-height: 270px;
+max-height: 270px
+}
+.test-window .left-label
+{
+min-height: 30px;
+padding: 9px;
+}
+#run-self-tests
+{
+margin-left: 36px;
+padding: 16px;
+height: inherit;
+margin-top: 10px;
+margin-right: 61px;
+}
+#stop-self-tests
+{
+height: inherit;
+padding: 16px;
+width: 106px;
+}
+.test-details
+{
+float: right;
+width: 49%;
+background-color: rgba(0,0,0,0.15);
+padding: 5px;
+border-radius: 10px;
+}
+.test-details ul
+{
+font-size: 12px;
+}
+.lengthy-tests
+{
+display: block;
+width: 361px;
+height: 176px;
+background-color: rgba(0,0,0,0.15);
+border-radius: 10px;
+float: left;
+clear: left;
+padding: 5px;
+margin-bottom: 10px;
+}
+.lengthy-tests p
+{
+font-size: 14px;
+text-align: center;
+margin: 6px;
+font-weight: bold;
+}
+
