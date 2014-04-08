@@ -39,6 +39,8 @@ function InitBIP38()
 		
 		var Compressed =  GetPrivateKeyCompressed(CoinType, WIF); // $('input[name=compression]:checked').val() == "Yes";
 
+		var CoinVersion = eval('0x' + CoinInfo[CoinType].addressVersion);
+		
 		if ($('#encryption-key-persist').is(':checked'))
 			{
 			PersistPassword = Password;
@@ -60,12 +62,12 @@ function InitBIP38()
 			
 			$('.verifying.progress').fadeIn(300, function() {
 				
-				Bitcoin.BIP38.EncryptedKeyToByteArrayAsync(EncWIF, Password, function (p, q)
+				Bitcoin.BIP38.EncryptedKeyToByteArrayAsync(EncWIF, Password, CoinVersion, function (p, q)
 					{	
 					$('#private-key-decrypt').removeAttr('disabled');
 					$('.verifying.progress').fadeOut(300);
 					
-					if (n != null && n.length > 0 && WIF == PrivateKeyHexToWIF(CoinType, Crypto.util.bytesToHex(p), q))
+					if (n != null && n.length > 0 && WIF == new Omnicoin.ECKey(Crypto.util.bytesToHex(p), CoinVersion, q).getDetails().privateKeyWIF)
 						{
 						$('#verified-encrypted-key').val('Yes');
 						
@@ -185,7 +187,7 @@ function InitBIP38()
 		catch (k)
 			{
 			$('#private-key-decrypt').removeAttr('disabled');
-			Log(k);
+			
 			$(".decrypt-key .key-error").css('display', 'block').animate({opacity:1}, 300, function() 
 				{
 				setTimeout(function() 

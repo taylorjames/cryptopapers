@@ -87,37 +87,42 @@ CryptoPapers libraries:
 
 cryptopapers-coin-info			Data about each type of coin supported.
 cryptopapers-private-key		All methods that generate addresses and handle private keys are either here or in an external library.
-											JavaScript UI for the Private Key page
+										JavaScript UI for the Private Key page
 cryptopapers-test-cases		JavaScript Test cases to verify key -> address generation
 cryptopapers-security			JavaScript UI for the Security page
 cryptopapers-bip38				JavaScript UI for the BIP38 encryption interface
 cryptopapers-print				JavaScript UI for the Print page
-cryptopapers-ui						JavaScript UI for the whole application
+cryptopapers-ui					JavaScript UI for the whole application
 cryptopapers-premium			JavaScript functions for Premium content
 cryptopapers-common 			Miscellaneous common functions and extensions used in the application
 
-cryptopapers-test					Test functions - not included in release
+cryptopapers-test				Test functions - not included in release
 
 ----------------------------------------------------------------------------------------
 
 External libraries:
 
-jquery-2.1.0																									http://code.jquery.com/jquery-2.1.0.js
-jquery-ui-1.10.4			For hue-shift slider													http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
-jquery.lettering				For text rotations on circular wallets							https://github.com/davatron5000/Lettering.js
+jquery-2.1.0					jQuery library, used throughout										http://code.jquery.com/jquery-2.1.0.js
+jquery-ui-1.10.4				For hue-shift slider														http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
+jquery.lettering				For text rotations on circular wallets								https://github.com/davatron5000/Lettering.js
+jquery.maskedinput-1.3	Input masking (used in armory input text)						http://digitalbush.com/projects/masked-input-plugin/
 
-crypto-js						Cryptographic library (SHA256)									https://code.google.com/p/crypto-js/
-bitcoinjs-lib					Bitcoin-JS library														https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
-prng4							Pseudo-random generator, entropy modified from 	http://bitcoinpaperwallet.com, http://bitaddress.org
-bitcoin-bip38					BIP38 encryption of wallet import keys 						http://www.bit2factor.org/
-crypto-scrypt				Scrypt implementation for BIP38								http://www.bit2factor.org/
+crypto-js						Cryptographic library (SHA256)										https://code.google.com/p/crypto-js/
+bitcoinjs-lib					Bitcoin-JS library															https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
+prng4							Pseudo-random generator, entropy modified from 			http://bitcoinpaperwallet.com, http://bitaddress.org
+bitcoin-bip38					BIP38 encryption of wallet import keys 							http://www.bit2factor.org/
+crypto-scrypt					Scrypt implementation for BIP38									http://www.bit2factor.org/
 
-ed25519						Curve25519 implementation for NXT addresses			http://www.flownet.com/ron/code/djbec.js
-jsSHA							dependency of ed25519											https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
+armory							Armory chain generation												http://brainwallet.org/js/armory.js
+electrum						Electrum chain generation											http://brainwallet.org/js/electrum.js
+mnemonic						mnemonic for Electrum chain conversion to words			http://brainwallet.org/js/mnemonic.js
 
-jquery-qrcode				JQuery script for generating QR codes						https://github.com/lrsjng/jQuery.qrcode
-say-cheese					JQuery HTML5 Webcam library									https://github.com/leemachin/say-cheese
-jsqrcode						JavaScript QR code reader											https://github.com/LazarSoft/jsqrcode
+ed25519						Curve25519 implementation for NXT addresses				http://www.flownet.com/ron/code/djbec.js
+jsSHA							dependency of ed25519												https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
+
+jquery-qrcode					JQuery script for generating QR codes							https://github.com/lrsjng/jQuery.qrcode
+say-cheese						JQuery HTML5 Webcam library										https://github.com/leemachin/say-cheese
+jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/jsqrcode
 
 -->
 
@@ -132,10 +137,10 @@ jsqrcode						JavaScript QR code reader											https://github.com/LazarSoft/j
 	<script type="text/javascript">
 		var Config = 'dev';
 	</script>
-
 	<script type="text/javascript" src="include-js/jquery-2.1.0.js"></script>
 	<script type="text/javascript" src="include-js/jquery-ui/jquery-ui-1.10.4.js"></script>
 	<script type="text/javascript" src="include-js/jquery.lettering.js"></script>
+	<script type="text/javascript" src="include-js/jquery.maskedinput-1.3.js"></script>
 
 	<script type="text/javascript" src="include-js/big-integer.js"></script>
 	<script type="text/javascript" src="include-js/bitcoin-js/crypto-js/crypto.js"></script>
@@ -186,6 +191,10 @@ jsqrcode						JavaScript QR code reader											https://github.com/LazarSoft/j
 	<script type="text/javascript" src="include-js/jsqrcode/alignpat.js"></script>
 	<script type="text/javascript" src="include-js/jsqrcode/databr.js"></script>
 	
+	<script type="text/javascript" src="include-js/armory.js"></script>
+	<script type="text/javascript" src="include-js/electrum.js"></script>
+	<script type="text/javascript" src="include-js/mnemonic.js"></script>
+	
 	<!-- NXT Support
 	<script type="text/javascript" src="include-js/ed25519.js"></script>
 	<script type="text/javascript" src="include-js/jsSHA/sha.js"></script>
@@ -201,8 +210,6 @@ jsqrcode						JavaScript QR code reader											https://github.com/LazarSoft/j
 	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
 	
-	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
-	
 	<!--
 	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	-->
@@ -215,6 +222,11 @@ jsqrcode						JavaScript QR code reader											https://github.com/LazarSoft/j
 	<script type="text/javascript" src="js/cryptopapers-premium-vanity.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
+	
+	<script type="text/javascript" src="js/omnicoin.eckey.js"></script>
+	<script type="text/javascript" src="js/omnicoin.address.js"></script>
+	
+	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -240,7 +252,6 @@ $().ready(function ()
 		
 		<div id="main-menu" class="menu no-print">
 			<ul>
-
 				<li section="donate" class="menu-key-donate right">Donate</li>
 				<li section="how-to" class="menu-key-how-to disabled">How To</li>
 				<li section="security" class="menu-key-security">Security</li>
@@ -678,11 +689,49 @@ $().ready(function ()
 								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
 								<br/></p>
 								</span>
-							</div>		
+							</div>
+							
+							<div class="chain-buttons">
+								<div class="armory-icon toggle"></div>
+								<div class="electrum-icon toggle"></div>
+								<div class="chain-progress"></div>
+							</div>
+							
+							<div class="armory snazzy-hide">
+								<textarea id="private-key-armory" autocomplete="off" ></textarea>
+								<div class="qr-icon qr-armory"  for="private-key-armory"></div>
+							</div>	
+							
+							<div class="electrum snazzy-hide">
+								<input type="text"  id="private-key-electrum" autocomplete="off" />
+								<div class="qr-icon qr-electrum"  for="private-key-electrum"></div>
+								<input type="text" id="private-key-electrum-root" maxlength="32" autocomplete="off" />
+								<div class="qr-icon qr-electrum"  for="private-key-electrum-root"></div>
+								
+								<label class="left-label">Change Addresses / Set:</label>
+								<div class="switch-toggle electrum-change switch-4 switch-candy ">
+									<input type="radio" name="electrum-change" id="electrum-change-0" value="0" autocomplete="off" />
+									<label for="electrum-change-0">0</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-1" value="1" autocomplete="off" />
+									<label for="electrum-change-1">1</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-2" value="2" autocomplete="off" />
+									<label for="electrum-change-2">2</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-3" value="3" autocomplete="off" checked />
+									<label for="electrum-change-3">3</label>
+
+									<a></a>
+								</div>
+								
+								<input type="text" id="private-key-electrum-chain-key" maxlength="64" autocomplete="off" readonly />
+							</div>
+							
 							<span class="private-key-error"></span>	
 							<div class="private-key"> 
 								<div id="coin-key">
-									<input type="text" id="private-key-input" maxlength="64" autocomplete="off" />
+									<input type="text" id="private-key-input" maxlength="90" autocomplete="off" />
 									<div class="qr-icon" for="private-key-input"></div>
 								</div>
 							</div>
@@ -977,151 +1026,281 @@ $().ready(function ()
 				
 				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
 					<div class="colinner"> 
-					<div class="coin btc-coin changing-coin"></div>
-					<h3 class="stay">Key Details</h3>
-
-					<div class="coin-wallet-address-qr"></div>
-					<div class="coin-wallet-private-key-qr"></div>
-					
-					<div class="encrypted top"></div>
-					<div class="manual-hide compression minimize-hide">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
-							<br/>
-							Doing this saves space in the block chain by making the Public Key smaller.
-							<br/>
-							Be careful! Some alternate coins don't support compressed keys for imports!
-							<br/>Make sure to test all your keys before sending substantial amounts.
-							<br/>
-							</span>
-						</div>
-					
-						<label class="left-label">Compression:</label>
-						<div class="switch-toggle compression switch-2 switch-candy ">
-							<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
-							<label for="decompressed">No</label> 
+						<div class="chain-keys"> 
+							<div class="chain-type-icon"></div>
+							<div class="coin btc-coin changing-coin"></div>
+							<h3 class="stay">Key Chain Details</h3>
 							
-							<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
-							<label for="compressed">Yes</label>
+							<div class="chain-set-buttons set-1">
+								<h1 class="chain-set-text">Set:</h1>
+								<div class="chain-set-last"></div>
+								<div class="chain-set-number">1</div>
+								<div class="chain-set-next"></div>
+							</div>
+							
+							<div class="coin-wallet-private-key-qr qr-master"></div>
+							
+							<div class="coin-wallet-private-key-qr qr-1"></div>
+							<div class="coin-wallet-address-qr qr-1"></div>
+							
+							<div class="chain-key 1 minimize-hide">
+								<h4>Address 1</h4>
+								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-1">Public Address:</label>
+									<input type="text" id="chain-public-address-1" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-1">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-1" autocomplete="off" readonly />
+								</div>
+							</div>
+							
+							<div class="coin-wallet-private-key-qr qr-2"></div>
+							<div class="coin-wallet-address-qr qr-2"></div>
+							
+							<div class="chain-key 2 minimize-hide">
+								<h4>Address 2</h4>
+								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-2">Public Address:</label>
+									<input type="text" id="chain-public-address-2" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-2">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-2" autocomplete="off" readonly />
+								</div>
+							</div>		
+							
+							<div class="coin-wallet-private-key-qr qr-3"></div>
+							<div class="coin-wallet-address-qr qr-3"></div>
+							
+							<div class="chain-key 3 minimize-hide">
+								<h4>Address 3</h4>
+								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-3">Public Address:</label>
+									<input type="text" id="chain-public-address-3" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-3">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-3" autocomplete="off" readonly />
+								</div>
+							</div>		
+							
+							<div class="coin-wallet-private-key-qr qr-4"></div>
+							<div class="coin-wallet-address-qr qr-4"></div>
+							
+							<div class="chain-key 4 minimize-hide">
+								<h4>Address 4</h4>
+								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-4">Public Address:</label>
+									<input type="text" id="chain-public-address-4" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-4">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-4" autocomplete="off" readonly />
+								</div>
+							</div>
+							
+							<div class="coin-wallet-private-key-qr qr-5"></div>
+							<div class="coin-wallet-address-qr qr-5"></div>
+							
+							<div class="chain-key 5 minimize-hide">
+								<h4>Address 5</h4>
+								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-5">Public Address:</label>
+									<input type="text" id="chain-public-address-5" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-5">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-5" autocomplete="off" readonly />
+								</div>
+							</div>
+							
+							<div class="coin-wallet-private-key-qr qr-6"></div>
+							<div class="coin-wallet-address-qr qr-6"></div>
+							
+							<div class="chain-key 6 minimize-hide">
+								<h4>Address 6</h4>								
+								<div class="">
+									<span class="key-info-public-address">
+									<label class="left-label" for="chain-public-address-6">Public Address:</label>
+									<input type="text" id="chain-public-address-6" autocomplete="off" readonly />
+									</span>						
+								</div>
+								
+								<div class="">
+									<label class="left-label" for="chain-private-key-wif-6">Private Key WIF:</label>
+									<input type="text" id="chain-private-key-wif-6" autocomplete="off" readonly />
+								</div>
+							</div>
+						</div>
+					
+						<div class="single-key">
+							<div class="coin btc-coin changing-coin"></div>
+							<h3 class="stay">Key Details</h3>
 
-							<a></a>
+							<div class="coin-wallet-address-qr qr-1"></div>
+							<div class="coin-wallet-private-key-qr qr-1"></div>
+							
+							<div class="encrypted top"></div>
+							<div class="manual-hide compression minimize-hide">
+								<div class="help-bubble" style="float:left;">
+									<span>
+									<span class="coin-full-name"></span> Addresses can be compressed or uncompressed.
+									<br/>
+									Doing this saves space in the block chain by making the Public Key smaller.
+									<br/>
+									Be careful! Some alternate coins don't support compressed keys for imports!
+									<br/>Make sure to test all your keys before sending substantial amounts.
+									<br/>
+									</span>
+								</div>
+							
+								<label class="left-label">Compression:</label>
+								<div class="switch-toggle compression switch-2 switch-candy ">
+									<input type="radio" name="compression" value="No" id="decompressed" autocomplete="off" />
+									<label for="decompressed">No</label> 
+									
+									<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
+									<label for="compressed">Yes</label>
+
+									<a></a>
+								</div>
+							</div>
+							
+							<div class="">
+								<span class="key-info-public-address">
+								
+								<div class="help-bubble" style="float:left;">
+									<span>
+									Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
+									<br/><br/>
+									</span>
+								</div>
+								<label class="left-label" for="public-address">Public Address:</label>
+								<input type="text" id="public-address" autocomplete="off" readonly />
+								</span>						
+							</div>
+							
+							
+							<div class="manual-hide">
+								<div class="help-bubble" style="float:left;">
+									<span>
+									This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
+									<br/>
+									</span>
+								</div>
+								<label class="left-label " for="private-key-hex">Private Key Hex:</label>
+								<input type="text" id="private-key-hex" autocomplete="off" readonly />
+							</div>
+							
+							<div class="">
+								<div class="help-bubble" style="float:left;">
+									<span>
+									This is the Private Key in Wallet Import Format (WIF). 
+									<br/>
+									This is the format most wallet software will export to, and is the format it will import from.
+									<br/>
+									</span>
+								</div>	
+								<label class="left-label" for="private-key-wif">Private Key WIF:</label>
+								<input type="text" id="private-key-wif" autocomplete="off" readonly />
+							</div>
+							
+							<div class="private-key-encrypted manual-hide">
+								
+								<div class="help-bubble" style="float:left;">
+									<span>
+									This is the Encrypted Private Key, which is the Private Key WIF encrypted using BIP38 and the password you provided.
+									<br/>
+									<br/><br/>
+									</span>
+								</div>
+								<label class="left-label" for="private-key-encrypted">Private Key Encrypted:</label>
+								<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
+								<div class="encrypted"></div>
+							</div>
+							
+							<div class="manual-hide">
+								<div class="help-bubble" style="float:left;">
+									<span>
+									This is the Private Key Checksum, which is included in the Private Key WIF.
+									<br/>
+									This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
+									<br/>
+									</span>
+								</div>	
+								<label class="left-label" for="private-key-checksum">Private CheckSum:</label>
+								<input type="text" id="private-key-checksum" autocomplete="off" readonly />
+							</div>
+							
+							<div class="manual-hide">
+								<div class="help-bubble" style="float:left;">
+									<span>
+									This is the Public Key, which is derived from the public key. The public key
+									<br/>
+									Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
+									<br/>
+									</span>
+								</div>	
+								<label class="left-label" for="public-key-hex">Public Key Hex:</label>
+								<input type="text" id="public-key-hex" autocomplete="off" readonly />
+							</div>
+							
+							<div class="manual-hide">					
+								<div class="help-bubble" style="float:left;">
+									<span>
+									The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
+									<br/>
+									Every address's Hash160 is known.
+									<br/>
+									</span>
+								</div>	
+								<label class="left-label" for="public-key-hash160">Hash160:</label>
+								<input type="text" id="public-key-hash160" autocomplete="off" readonly />
+							</div>
+							
+							<div class="manual-hide">					
+								<div class="help-bubble hide" style="float:left;">
+									<span>
+									The Address Checksum is derived from the Public Key and is used to create the Public Address.
+									<br/>
+									The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
+									<br/>
+									</span>
+								</div>	
+								<label class="left-label" for="public-key-address-checksum">Address CheckSum:</label>
+								<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
+							</div>
+							<!--
+							<div class="help-bubble" style="float:left;">
+								<span>
+								This wallet address has been verified by bitcoin-js.
+								<br/>
+								</span>
+							</div>	
+							<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
+							-->
 						</div>
-					</div>
-					
-					<div class="">
-						<span class="key-info-public-address">
-						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							Your public address is where funds are sent. It is derived from the SHA-256 hash of the Public Key
-							<br/><br/>
-							</span>
-						</div>
-						<label class="left-label" for="public-address">Public Address:</label>
-						<input type="text" id="public-address" autocomplete="off" readonly />
-						</span>						
-					</div>
-					
-					
-					<div class="manual-hide">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the raw, Hexadecimal private key. Most wallets don't accept this for imports.
-							<br/>
-							</span>
-						</div>
-						<label class="left-label " for="private-key-hex">Private Key Hex:</label>
-						<input type="text" id="private-key-hex" autocomplete="off" readonly />
-					</div>
-					
-					<div class="">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the Private Key in Wallet Import Format (WIF). 
-							<br/>
-							This is the format most wallet software will export to, and is the format it will import from.
-							<br/>
-							</span>
-						</div>	
-						<label class="left-label" for="private-key-wif">Private Key WIF:</label>
-						<input type="text" id="private-key-wif" autocomplete="off" readonly />
-					</div>
-					
-					<div class="private-key-encrypted manual-hide">
-						
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the Encrypted Private Key, which is the Private Key WIF encrypted using BIP38 and the password you provided.
-							<br/>
-							<br/><br/>
-							</span>
-						</div>
-						<label class="left-label" for="private-key-encrypted">Private Key Encrypted:</label>
-						<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
-						<div class="encrypted"></div>
-					</div>
-					
-					<div class="manual-hide">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the Private Key Checksum, which is included in the Private Key WIF.
-							<br/>
-							This Checksum is used to verify a private key is valid and no errors were made when scanning or typing it in.
-							<br/>
-							</span>
-						</div>	
-						<label class="left-label" for="private-key-checksum">Private CheckSum:</label>
-						<input type="text" id="private-key-checksum" autocomplete="off" readonly />
-					</div>
-					
-					<div class="manual-hide">
-						<div class="help-bubble" style="float:left;">
-							<span>
-							This is the Public Key, which is derived from the public key. The public key
-							<br/>
-							Your Public Key is exposed to the blockchain once you've made any kind of transaction out of the account.
-							<br/>
-							</span>
-						</div>	
-						<label class="left-label" for="public-key-hex">Public Key Hex:</label>
-						<input type="text" id="public-key-hex" autocomplete="off" readonly />
-					</div>
-					
-					<div class="manual-hide">					
-						<div class="help-bubble" style="float:left;">
-							<span>
-							The Address Hash160 is computed from the Public Key. You can think of it as the Public Address in its raw format.
-							<br/>
-							Every address's Hash160 is known.
-							<br/>
-							</span>
-						</div>	
-						<label class="left-label" for="public-key-hash160">Hash160:</label>
-						<input type="text" id="public-key-hash160" autocomplete="off" readonly />
-					</div>
-					
-					<div class="manual-hide">					
-						<div class="help-bubble hide" style="float:left;">
-							<span>
-							The Address Checksum is derived from the Public Key and is used to create the Public Address.
-							<br/>
-							The Checksum is used to verify an address is valid and no errors were made when scanning or typing it in.
-							<br/>
-							</span>
-						</div>	
-						<label class="left-label" for="public-key-address-checksum">Address CheckSum:</label>
-						<input type="text" id="public-key-address-checksum" autocomplete="off" readonly />
-					</div>
-					<!--
-					<div class="help-bubble" style="float:left;">
-						<span>
-						This wallet address has been verified by bitcoin-js.
-						<br/>
-						</span>
-					</div>	
-					<label class="left-label">Verified:</label><input type="text" id="coin-address-verify" autocomplete="off" readonly />
-					-->
 					</div>
 				</div>	
 
@@ -1139,7 +1318,14 @@ $().ready(function ()
 								<small>
 								Your browser may have asked for
 								<br/>permission to access your webcam.
-								<br/>Click 'Allow' to begin QR Scanning</small>
+								<br/>Click 'Allow' to begin QR Scanning
+								<br/><br/><br/><br/>
+								Problems with Chrome? <br/>
+								Chrome doesn't allow locally executed HTML files to access the webcam unless you<br>
+								<a href="http://www.chrome-allow-file-access-from-file.com/" target="_blank">
+									Run chrome with the --allow-file-access-from-files option
+								</a>
+								</small>
 								</div>
 							<div class="result"></div>
 						</div>						
@@ -1402,19 +1588,39 @@ $().ready(function ()
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="cryptopapers-logo"></div>
+							<div class="chain-logo"></div>
+							<div class="chain-set set-1">
+								<h1 class="chain-set-text">Set:</h1>
+								<div class="chain-set-number">1</div>
+							</div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
 							<div class="coin-wallet-left">
-								<div class="coin-wallet-address top">&nbsp;</div>
-								<div class="coin-wallet-address-qr"></div>
-								<div class="coin-wallet-address bottom">&nbsp;</div>
+								<div class="coin-wallet-address address-1 top">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-1"></div>
+								<div class="coin-wallet-address address-1 bottom">&nbsp;</div>
+								
+								<div class="coin-wallet-address address-2">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-2"></div>
+								
+								<div class="coin-wallet-address address-3">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-3"></div>
+								
+								<div class="coin-wallet-address address-4">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-4"></div>
+								
+								<div class="coin-wallet-address address-5">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-5"></div>
+								
+								<div class="coin-wallet-address address-6">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-6"></div>
 							</div>
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
 								<div class="encrypted"></div>
 								<div class="encrypting progress"></div>
-								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key-qr qr-master"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>
 							<div class="coin-wallet-write-area">
@@ -1428,19 +1634,39 @@ $().ready(function ()
 						<img class="coin-wallet-background" />
 						<div class="wallet-frame">
 							<div class="cryptopapers-logo"></div>
+							<div class="chain-logo"></div>
+							<div class="chain-set set-1">
+								<h1 class="chain-set-text">Set:</h1>
+								<div class="chain-set-number">1</div>
+							</div>
 							<div class="zero-trust-wallet-seal"></div>
 							<div class="coin-logo coin-name"></div>
 							<div class="coin-logo coin-logo-2 hide"></div>
 							<div class="coin-wallet-left">
-								<div class="coin-wallet-address top">&nbsp;</div>
-								<div class="coin-wallet-address-qr"></div>
-								<div class="coin-wallet-address bottom">&nbsp;</div>
+								<div class="coin-wallet-address address-1 top">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-1"></div>
+								<div class="coin-wallet-address address-1 bottom">&nbsp;</div>
+								
+								<div class="coin-wallet-address address-2">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-2"></div>
+								
+								<div class="coin-wallet-address address-3">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-3"></div>
+								
+								<div class="coin-wallet-address address-4">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-4"></div>
+								
+								<div class="coin-wallet-address address-5">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-5"></div>
+								
+								<div class="coin-wallet-address address-6">&nbsp;</div>
+								<div class="coin-wallet-address-qr qr-6"></div>
 							</div>
 							<div class="coin-wallet-right">
 								<div class="coin-wallet-private-key top">&nbsp;</div>
 								<div class="encrypted"></div>
 								<div class="encrypting progress"></div>
-								<div class="coin-wallet-private-key-qr"></div>
+								<div class="coin-wallet-private-key-qr qr-master"></div>
 								<div class="coin-wallet-private-key bottom">&nbsp;</div>
 							</div>		
 							<div class="coin-wallet-write-area">
@@ -1478,6 +1704,98 @@ $().ready(function ()
 				</div>
 			</div>
 		</div>
+	
+		<div class="test-window dismissable">
+			<h1>Self Tests</h1>
+			
+			<label class="left-label">Coin Tests:</label>
+			<div class="switch-toggle coin-tests switch-2 switch-candy ">
+				
+				<input type="radio" name="coin-test" value="No" id="coin-test-no" autocomplete="off"  />
+				<label for="coin-test-no">No</label>
+				
+				<input type="radio" name="coin-test" value="Yes" id="coin-test-yes" autocomplete="off" checked />
+				<label for="coin-test-yes">Yes</label>
+				
+				<a></a>
+			</div>
+			
+			<div class="test-details">
+				All coins are tested with:
+				<ul>
+					<li>
+						<b>Private Key WIF, Public Key, Address creation:</b>
+						<br>20 (10x2) compressed, uncompressed tests per coin
+					</li>
+					<li>
+						<b>BIP38 Encryption tests:</b>
+						<br>4 (2x2) tests per coin - compressed, uncompressed for all characters, extremely long password
+					</li>
+					<li>
+						<b>Armory Private Key WIF, Address:</b>
+						<br>600 (300x2) tests per coin
+					</li>
+					<li>
+						<b>Electrum Private Key WIF, Address:</b>
+						<br>600 (150 addresses, 150 change x 2) tests per coin
+					</li>
+				</ul>
+			</div>
+			
+			<div class="lengthy-tests">
+				<p>These tests will take a long time to complete.</p>
+				
+				<label class="left-label">
+					Encryption Tests:<br>
+				</label>
+				<div class="switch-toggle encryption-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="encryption-test" value="No" id="encryption-test-no" autocomplete="off" checked />
+					<label for="encryption-test-no">No</label>
+					
+					<input type="radio" name="encryption-test" value="Yes" id="encryption-test-yes" autocomplete="off" />
+					<label for="encryption-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">
+					Armory Tests:
+				</label>
+				<div class="switch-toggle armory-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="armory-test" value="No" id="armory-test-no" autocomplete="off" checked />
+					<label for="armory-test-no">No</label>
+					
+					<input type="radio" name="armory-test" value="Yes" id="armory-test-yes" autocomplete="off" />
+					<label for="armory-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">
+					Electrum Tests:
+				</label>
+				<div class="switch-toggle electrum-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="electrum-test" value="No" id="electrum-test-no" autocomplete="off" checked />
+					<label for="electrum-test-no">No</label>
+					
+					<input type="radio" name="electrum-test" value="Yes" id="electrum-test-yes" autocomplete="off"  />
+					<label for="electrum-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+			</div>
+			
+			<div class="button" id="run-self-tests">Run Self Tests</div>
+			
+			<div class="button" id="stop-self-tests" disabled='disabled'>STOP</div>
+			
+			<input type="text" disabled readonly id="self-test-current" />
+			<textarea id="self-test-summary" readonly></textarea>
+		</div>
+		
 	</div>
 	
 <div class="footer no-print medColor-bkg">
@@ -1492,7 +1810,7 @@ $().ready(function ()
 				<a></a>
 	</div>
 	
-	<input class="button" id="run-self-tests" Value="Run Self Tests" autocomplete="off" >
+	<input class="button" id="open-self-tests" Value="Self Tests" autocomplete="off" >
 	
 	<p>
 	&copy; Copyright 2014 CryptoPapers
@@ -1500,15 +1818,9 @@ $().ready(function ()
 	The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
 	reused or distributed, modified or unmodified, without permission.
 	</p>
-
-
 </div>
 
 </div>
 </form>
-
-
-
-
 </body>
 </html>
