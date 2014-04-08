@@ -941,10 +941,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 	}
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{
-	Log(PrivKeyWIF);
-	$('.coin-wallet').animate({opacity: 0}, 300);
-	
+	{	
 	Armory.stop();
 	Electrum.stop();
 	
@@ -966,7 +963,8 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		
 	$('#public-address').val(Address);
 	
-	$('.key-details').snazzyShow(300 , function()
+	$('.coin-wallet').animate({opacity: 0}, 300);	
+	$('.key-details').animate({opacity: 0}, 300, function()
 		{
 		Log(Address);
 		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && !Address != undefined && Address != '' || ElectrumMode)
@@ -1146,7 +1144,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			
 				if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 					{
-					$('.key-details').snazzyShow();
+					$('.key-details').animate({opacity: 1}, 300);
 					$('.coin-wallet').animate({opacity: 1}, 300);
 					}
 				});
@@ -1271,7 +1269,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 					
 						if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
 							{
-							$('.key-details').snazzyShow();
+							$('.key-details').animate({opacity: 1}, 300);
 							$('.coin-wallet').animate({opacity: 1}, 300);
 							}
 						});
@@ -1319,7 +1317,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		
 		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && (!CoinInfo[CoinType].manual || (Address != undefined && Address != '')))
 			{
-			$('.key-details').snazzyShow();
+			$('.key-details').animate({opacity: 1}, 300);
 			$('.coin-wallet').animate({opacity: 1}, 300);
 			}
 		});

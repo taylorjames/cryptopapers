@@ -1,5 +1,5 @@
 
-var Multiple_Wallets = true;
+var Multiple_Wallets = false;
 
 var InitPremium;
 
