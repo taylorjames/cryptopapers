@@ -54,10 +54,9 @@ Bitcoin.BIP38 = {
 	isBIP38Format: function (a)
 	{
 		a = a.toString();
-		return (/^6P[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{56}$/.test(a) 
-		|| /^3w[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{62}$/.test(a))
+		return (/^6P[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{56}$/.test(a));
 	},
-	EncryptedKeyToByteArrayAsync: function (c, q, m)
+	EncryptedKeyToByteArrayAsync: function (c, q, version, m)
 	{
 		var f;
 		try
@@ -144,8 +143,8 @@ Bitcoin.BIP38 = {
 					{
 					l[l.length-1] = z;
 					
-					var x= GetAddressFromKeyUnknown(CurrentCoinType, l, true);
-					var x2 = GetAddressFromKeyUnknown(CurrentCoinType, l, false);
+					var x= new Omnicoin.ECKey(Crypto.util.bytesToHex(l), version, true).getDetails().address;
+					var x2 = new Omnicoin.ECKey(Crypto.util.bytesToHex(l), version, false).getDetails().address;
 							
 					var v = Bitcoin.Util.dsha256(x);
 					var v2 = Bitcoin.Util.dsha256(x2);
@@ -174,12 +173,8 @@ Bitcoin.BIP38 = {
 			else
 				{
 				// Test both compressed an uncompressed keys.
-				var e = GetAddressFromKeyUnknown(CurrentCoinType, l, true);
-				var e2 = GetAddressFromKeyUnknown(CurrentCoinType, l, false); //Address; //r.getBitcoinAddress();
-				
-				Log(l);
-				Log(e);
-				Log(e2);
+				var e= new Omnicoin.ECKey(Crypto.util.bytesToHex(l), version, true).getDetails().address;
+				var e2 = new Omnicoin.ECKey(Crypto.util.bytesToHex(l), version, false).getDetails().address;
 				
 				i = Bitcoin.Util.dsha256(e);
 				i2 = Bitcoin.Util.dsha256(e2);
@@ -298,8 +293,6 @@ Bitcoin.BIP38 = {
 	},
 	PrivateKeyToEncryptedKeyAsync: function (a, i, c, Address, g)
 	{
-		
-		Log(c);
 		var e = null;
 		if (!c) ///^5[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{50}$/.test(a))
 		{

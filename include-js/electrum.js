@@ -31,7 +31,7 @@ function electrum_extend_chain(pubKey, privKey, n, forChange, fromPrivKey, versi
     var newPub = pt.getEncoded();
     var h160 = Bitcoin.Util.sha256ripe160(newPub);
     var addr = new Omnicoin.Address(h160, version);
-    var sec = secexp ? new Omnicoin.Address(newPriv, version + 128) : '';
+    var sec = secexp ? new Omnicoin.Address(newPriv, Omnicoin.ECKey.versionShiftUp(version)) : '';
 
     return [addr.toString(), sec.toString(), newPub, newPriv];
 }
@@ -134,7 +134,7 @@ var Electrum = new function () {
         onUpdate = update;
         onSuccess = success;
         clearTimeout(timeout);
-        calcAddr(version);
+        calcAddrAsync(version);
     };
 
     this.stop = function () {

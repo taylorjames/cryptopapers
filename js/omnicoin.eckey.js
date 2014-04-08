@@ -1,3 +1,11 @@
+
+var MissingPrivKeyError = 'Error: Private key cannot be empty';
+var InvalidAddressVersionError = 'Error: Address version must be from 0 to 255.';
+var InvalidPrivateKeyError = 'Error: Invalid private key';
+var BadWIFChecksumError = 'Error: Invalid WIF checksum';
+var AddressVersionMismatchError = 'Error: WIF Address version did not match supplied version';
+var CompressionMismatchError = 'Error: WIF Compression status did not match';
+
 window.Omnicoin = {}
 
 Omnicoin.ECKey = (function()
@@ -8,15 +16,18 @@ Omnicoin.ECKey = (function()
 
 	var ECKey = function(input, version, compressed)
 		{
-			this.version = version ? version : 0x00;
+			if (input == undefined || input == '')
+				throw MissingPrivKeyError;
+				
+			if (version < 0 || version > 255)
+				throw InvalidAddressVersionError;
 			
-			if (!input)
-			{
-				// Generate new key
-				var n = ecparams.getN();
-				this.priv = ECDSA.getBigRandom(n);
-			}
-			else if (input instanceof BigInteger)
+			if (version != undefined)
+				this.version = version;
+			else
+				this.version = 0x00;
+			
+			if (input instanceof BigInteger)
 			{
 				// Version must be supplied.
 				this.version = version;
@@ -36,6 +47,9 @@ Omnicoin.ECKey = (function()
 			{
 				if (input.length == 64)
 				{
+					if (!IsHex(input))
+						throw InvalidPrivateKeyError;
+					
 					// Version must be supplied.
 					// 32 hex bytes
 					input = Crypto.util.hexToBytes(input);
@@ -43,23 +57,38 @@ Omnicoin.ECKey = (function()
 				}
 				else
 				{
-					// Version taken from key
-					this.version = Omnicoin.ECKey.getVersion(input);
+					// Detects compression based on the size of the WIF.
+					if (input.length == 50 || input.length == 51)
+						{
+						if (compressed == undefined)
+							compressed = false;
+						else if (compressed != false)
+							throw CompressionMismatchError;
+						}
+					else if (input.length == 52)
+						{
+						if (compressed == undefined)
+							compressed = true;
+						else if (compressed != true)
+							throw CompressionMismatchError;
+						}
+					else
+						{
+						throw InvalidPrivateKeyError;
+						}
+						
+					this.priv = BigInteger.fromByteArrayUnsigned(Omnicoin.ECKey.decodeString(input, version));
 					
-				//	if (input.length == 51 && input[0] == '5')
-				//	{
-						// Base58 encoded private key
-						this.priv = BigInteger.fromByteArrayUnsigned(Omnicoin.ECKey.decodeString(input));
-				//	}
-				//	else
-				//	{
-						// Prepend zero byte to prevent interpretation as negative integer
-				//		this.priv = BigInteger.fromByteArrayUnsigned(Crypto.util.base64ToBytes(input));
-				//	}
+					// Version is taken from key
+					this.version = Omnicoin.ECKey.getVersion(input);
 				}
 			}
-			Log(this.priv);
-			this.compressed = compressed != undefined ? compressed : !! ECKey.compressByDefault;
+			else
+			{
+			throw InvalidPrivateKeyError;
+			}
+			
+			this.setCompressed(compressed);
 		};
 
 	/**
@@ -116,9 +145,16 @@ Omnicoin.ECKey = (function()
 	ECKey.prototype.getExportedPrivateKey = function()
 	{
 		var hash = this.priv.toByteArrayUnsigned();
+		
 		while (hash.length < 32) hash.unshift(0);
 		
-		hash.unshift((this.version + 128) & 255);
+		if (this.compressed)
+			{
+			hash.push(0x01);
+			}			
+		
+		hash.unshift(ECKey.versionShiftUp(this.version));
+		
 		
 		var checksum = Crypto.SHA256(Crypto.SHA256(hash, {
 			asBytes: true
@@ -138,11 +174,19 @@ Omnicoin.ECKey = (function()
 	{
 		if (format === "base64")
 		{
-			return Crypto.util.bytesToBase64(this.priv.toByteArrayUnsigned());
+			var privKey = this.priv.toByteArrayUnsigned();
+			while (privKey.length < 32) privKey.unshift(0);
+			privKey = Crypto.util.bytesToBase64(privKey);
+			
+			return privKey;
 		}
 		else
 		{
-			return Crypto.util.bytesToHex(this.priv.toByteArrayUnsigned());
+			var privKey = this.priv.toByteArrayUnsigned();
+			while (privKey.length < 32) privKey.unshift(0);
+			privKey = Crypto.util.bytesToHex(privKey);
+		
+			return privKey;
 		}
 	};
 
@@ -158,18 +202,38 @@ Omnicoin.ECKey = (function()
 	
 	ECKey.prototype.getDetails = function()
 	{
+		// Prepends '0's to bytes if the private key is not long enough.
+		// This happens if the private key starts with any number of 0 bytes.
+		var privKey = this.priv.toByteArrayUnsigned();
+		while (privKey.length < 32) privKey.unshift(0);
+		privKey = Crypto.util.bytesToHex(privKey);
+		
 		return {
-			privateKey: Crypto.util.bytesToHex(this.priv.toByteArrayUnsigned()),
+			privateKey: privKey,
 			privateKeyWIF: this.getExportedPrivateKey(),
 			privateKeyChecksum: Crypto.util.bytesToHex(Bitcoin.Base58.decode(this.getExportedPrivateKey()).slice(28,32)),
 			compressed: this.compressed,
 			publicKey: Crypto.util.bytesToHex(this.getPub()),
 			publicKeyHash: Crypto.util.bytesToHex(this.getPubKeyHash()),
 			addressChecksum: Crypto.util.bytesToHex(Bitcoin.Base58.decode(this.getOmnicoinAddress().toString()).slice(16,20)),
+			addressVersion: this.version,
 			address: this.getOmnicoinAddress().toString()
-			}
+			};
 	};
-
+	
+	ECKey.versionShiftUp = function(version)
+		{
+		return ((version + 128) & 255);
+		};
+		
+	ECKey.versionShiftDown = function(version)
+		{
+		if (version >= 128)
+			return version - 128;
+		else
+			return version + 128;
+		};
+		
 	ECKey.getVersion = function(input)
 		{
 		var bytes = input;
@@ -179,13 +243,15 @@ Omnicoin.ECKey = (function()
 			bytes = Bitcoin.Base58.decode(bytes);
 			}
 		
-		return bytes.shift() - 128;
+		var versioncode = bytes.shift();
+		
+		return ECKey.versionShiftDown(versioncode);
 		};
 	
 	/**
 	 * Parse an exported private key contained in a string.
 	 */
-	ECKey.decodeString = function(string)
+	ECKey.decodeString = function(string, expectedVersion)
 	{
 		var bytes = Bitcoin.Base58.decode(string);
 
@@ -197,24 +263,19 @@ Omnicoin.ECKey = (function()
 		}), {
 			asBytes: true
 		});
-		
-		Log(Crypto.util.bytesToHex(checksum.slice(0,4)));
-		Log(Crypto.util.bytesToHex(bytes));
-		
+				
 		if (checksum[0] != bytes[end] || 
-		checksum[1] != bytes[end+1] || 
-		checksum[2] != bytes[end+2] || 
-		checksum[3] != bytes[end+3])
-		{
-			throw "Checksum validation failed!";
-		}
+			checksum[1] != bytes[end+1] || 
+			checksum[2] != bytes[end+2] || 
+			checksum[3] != bytes[end+3])
+			throw BadWIFChecksumError;
 
 		var version = hash.shift();
 
-		if (version != 0x80)
-		{
-//			throw "Version " + version + " not supported!";
-		}
+		if (expectedVersion != undefined && version != ECKey.versionShiftUp(expectedVersion))
+			{
+			throw AddressVersionMismatchError;
+			}
 
 		hash = hash.slice(0, 32);
 		

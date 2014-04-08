@@ -33,10 +33,14 @@ function armory_extend_chain(pubKey, chainCode, privKey, fromPrivKey, version) {
     }
 
     var newPriv = secexp ? secexp.toByteArrayUnsigned() : [];
+	
+	// Keys with leading 0 bytes are returned with them missing. Add back the leading 0 byte(s).
+	while (newPriv.length < 32) newPriv.unshift(0);
+		
     var newPub = pt.getEncoded();
     var h160 = Bitcoin.Util.sha256ripe160(newPub);
     var addr = new Omnicoin.Address(h160, version);
-    var sec = secexp ? new Omnicoin.Address(newPriv, version + 128) : '';
+    var sec = secexp ? new Omnicoin.Address(newPriv, Omnicoin.ECKey.versionShiftUp(version)) : '';
  //   if (secexp)
  //       sec.version = 128;
 

@@ -210,7 +210,6 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
 	
-	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	<!--
 	<script type="text/javascript" src="js/cryptopapers-test.js"></script>
 	-->
@@ -224,6 +223,8 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	
 	<script type="text/javascript" src="js/omnicoin.eckey.js"></script>
 	<script type="text/javascript" src="js/omnicoin.address.js"></script>
+	
+	<script type="text/javascript" src="js/cryptopapers-testcases.js"></script>
 	
 	<link rel="stylesheet" type="text/css" href="css/jquery-ui/jquery-ui-1.10.4.css" />
 	<link rel="stylesheet" type="text/css" href="css/normalize.css" />
@@ -686,21 +687,45 @@ $().ready(function ()
 								(Hex Private Keys, Wallet Import Format (WIF), compressed or uncompressed, and BIP38 Encrypted are all supported)
 								<br/></p>
 								</span>
-							</div>	
-							<div class="armory-icon toggle"></div>
-							<div class="electrum-icon toggle"></div>
-							<div class="chain-progress"></div>
+							</div>
+							
+							<div class="chain-buttons">
+								<div class="armory-icon toggle"></div>
+								<div class="electrum-icon toggle"></div>
+								<div class="chain-progress"></div>
+							</div>
 							
 							<div class="armory snazzy-hide">
 								<textarea id="private-key-armory" autocomplete="off" ></textarea>
 								<div class="qr-icon qr-armory"  for="private-key-armory"></div>
 							</div>	
+							
 							<div class="electrum snazzy-hide">
 								<input type="text"  id="private-key-electrum" autocomplete="off" />
 								<div class="qr-icon qr-electrum"  for="private-key-electrum"></div>
 								<input type="text" id="private-key-electrum-root" maxlength="32" autocomplete="off" />
 								<div class="qr-icon qr-electrum"  for="private-key-electrum-root"></div>
-							</div>	
+								
+								<label class="left-label">Change Addresses / Set:</label>
+								<div class="switch-toggle electrum-change switch-4 switch-candy ">
+									<input type="radio" name="electrum-change" id="electrum-change-0" value="0" autocomplete="off" />
+									<label for="electrum-change-0">0</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-1" value="1" autocomplete="off" />
+									<label for="electrum-change-1">1</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-2" value="2" autocomplete="off" />
+									<label for="electrum-change-2">2</label>
+									
+									<input type="radio" name="electrum-change" id="electrum-change-3" value="3" autocomplete="off" checked />
+									<label for="electrum-change-3">3</label>
+
+									<a></a>
+								</div>
+								
+								<input type="text" id="private-key-electrum-chain-key" maxlength="64" autocomplete="off" readonly />
+							</div>
+							
 							<span class="private-key-error"></span>	
 							<div class="private-key"> 
 								<div id="coin-key">
@@ -1472,6 +1497,98 @@ $().ready(function ()
 				</div>
 			</div>
 		</div>
+	
+		<div class="test-window dismissable">
+			<h1>Self Tests</h1>
+			
+			<label class="left-label">Coin Tests:</label>
+			<div class="switch-toggle coin-tests switch-2 switch-candy ">
+				
+				<input type="radio" name="coin-test" value="No" id="coin-test-no" autocomplete="off"  />
+				<label for="coin-test-no">No</label>
+				
+				<input type="radio" name="coin-test" value="Yes" id="coin-test-yes" autocomplete="off" checked />
+				<label for="coin-test-yes">Yes</label>
+				
+				<a></a>
+			</div>
+			
+			<div class="test-details">
+				All coins are tested with:
+				<ul>
+					<li>
+						<b>Private Key WIF, Public Key, Address creation:</b>
+						20 (10x2) compressed, uncompressed tests per coin
+					</li>
+					<li>
+						<b>BIP38 Encryption tests:</b>
+						4 (2x2) tests per coin - compressed, uncompressed for all characters, extremely long password
+					</li>
+					<li>
+						<b>Armory Private Key WIF, Address:</b>
+						600 (300x2) tests per coin
+					</li>
+					<li>
+						<b>Electrum Private Key WIF, Address:</b>
+						600 (300x2) tests per coin
+					</li>
+				</ul>
+			</div>
+			
+			<div class="lengthy-tests">
+				<p>These tests will take a long time to complete.</p>
+				
+				<label class="left-label">
+					Encryption Tests:<br>
+				</label>
+				<div class="switch-toggle encryption-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="encryption-test" value="No" id="encryption-test-no" autocomplete="off" checked />
+					<label for="encryption-test-no">No</label>
+					
+					<input type="radio" name="encryption-test" value="Yes" id="encryption-test-yes" autocomplete="off" />
+					<label for="encryption-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">
+					Armory Tests:
+				</label>
+				<div class="switch-toggle armory-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="armory-test" value="No" id="armory-test-no" autocomplete="off" checked />
+					<label for="armory-test-no">No</label>
+					
+					<input type="radio" name="armory-test" value="Yes" id="armory-test-yes" autocomplete="off" />
+					<label for="armory-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+				
+				<label class="left-label">
+					Electrum Tests:
+				</label>
+				<div class="switch-toggle electrum-tests switch-2 switch-candy ">
+					
+					<input type="radio" name="electrum-test" value="No" id="electrum-test-no" autocomplete="off" checked />
+					<label for="electrum-test-no">No</label>
+					
+					<input type="radio" name="electrum-test" value="Yes" id="electrum-test-yes" autocomplete="off"  />
+					<label for="electrum-test-yes">Yes</label>
+					
+					<a></a>
+				</div>
+			</div>
+			
+			<div class="button" id="run-self-tests">Run Self Tests</div>
+			
+			<div class="button" id="stop-self-tests" disabled='disabled'>STOP</div>
+			
+			<input type="text" disabled readonly id="self-test-current" />
+			<textarea id="self-test-summary" readonly></textarea>
+		</div>
+		
 	</div>
 	
 <div class="footer no-print medColor-bkg">
@@ -1486,7 +1603,7 @@ $().ready(function ()
 				<a></a>
 	</div>
 	
-	<input class="button" id="run-self-tests" Value="Run Self Tests" autocomplete="off" >
+	<input class="button" id="open-self-tests" Value="Self Tests" autocomplete="off" >
 	
 	<p>
 	&copy; Copyright 2014 CryptoPapers
@@ -1494,15 +1611,9 @@ $().ready(function ()
 	The Application code, look-and-feel, style, CryptoPapers.com logo, and folding wallet designs are copyrighted and may not be
 	reused or distributed, modified or unmodified, without permission.
 	</p>
-
-
 </div>
 
 </div>
 </form>
-
-
-
-
 </body>
 </html>

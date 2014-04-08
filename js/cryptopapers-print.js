@@ -261,18 +261,10 @@ var Backgrounds =
 		
 		
 	$('#custom-design').change(function(evt)
-		{
-		Log(evt);
-		Log(evt.target);
-		Log(evt.target.files);
-		Log(evt.target.files[0]);
-		
+		{		
 		var fr = new FileReader();
 		var	filecontent = fr.readAsArrayBuffer(evt.target.files[0]);
 		var binary = window.btoa(filecontent);
-		
-		Log(filecontent);
-		Log(binary);
 		
 	//	$('.coin-wallet').css('background-image', 'url("' + '' + '")');
 		});

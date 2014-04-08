@@ -23,10 +23,16 @@ var LastInput_Armory = '';
 var LastInput_Electrum = '';
 var LastInput_ElectrumRoot = '';
 
-var ChainSet = 0;
+var ChainSet = 49;
 
 function InitPrivateKeyPage()
 	{
+	$('input[name=electrum-change]').change(function()
+		{
+		LastInput = '';
+		$('#private-key-input').change();		
+		});
+		
 	$('.chain-set-last').click(function() 
 		{
 		if ($('.chain-set-buttons').hasClass('set-1'))
@@ -275,17 +281,17 @@ function InitPrivateKeyPage()
 				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
 				
 				var Option1Key = KeyHex.substr(1, 64);
-				var Option1Address = GetAddressFromKeyUnknown(CurrentCoinType, Option1Key, true);
+				var Option1Address = new Omnicoin.ECKey(Option1Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
 				var Option2Key = KeyHex.substr(2, 64);
-				var Option2Address = GetAddressFromKeyUnknown(CurrentCoinType, Option2Key, true);
+				var Option2Address = new Omnicoin.ECKey(Option2Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
 				var Option3Key = KeyHex.substr(3, 64);
-				var Option3Address = GetAddressFromKeyUnknown(CurrentCoinType, Option3Key, true);
+				var Option3Address = new Omnicoin.ECKey(Option3Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
 				var Option4Key = KeyHex.substr(1, 64);
-				var Option4Address = GetAddressFromKeyUnknown(CurrentCoinType, Option4Key, false);
+				var Option4Address = new Omnicoin.ECKey(Option4Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
 				var Option5Key = KeyHex.substr(2, 64);
-				var Option5Address = GetAddressFromKeyUnknown(CurrentCoinType, Option5Key, false);
+				var Option5Address = new Omnicoin.ECKey(Option5Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
 				var Option6Key = KeyHex.substr(3, 64);
-				var Option6Address = GetAddressFromKeyUnknown(CurrentCoinType, Option6Key, false);
+				var Option6Address = new Omnicoin.ECKey(Option6Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
 				
 				var Options =
 					'<div><input type="radio" id="error-correct-1" name="error-correct" value="' + Option1Key + '">' + 
@@ -379,6 +385,10 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 		
 		if (PKChange && $('#private-key-electrum-root').val().length == 32)
 			{
+			// Forces keys to regenerate only if codes are changed
+			$('#private-key-electrum-chain-key').val('');
+			$('#private-key-electrum-chain-key').attr('for-code', '');
+			
 			var NewKey = $('#private-key-electrum-root').val();
 			
 			var Mnemonic = mn_encode(NewKey);
@@ -386,6 +396,7 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 			if ($('#private-key-electrum').val() != Mnemonic)
 				{
 				$('#private-key-electrum').val(Mnemonic);
+				Switch = true;
 				}
 				
 			if ($('#private-key-electrum-root').val() != NewKey)
@@ -397,11 +408,13 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 
 		if (ElectrumChange && $('#private-key-electrum').val().length > 0)
 			{
+			// Forces keys to regenerate only if codes are changed
+			$('#private-key-electrum-chain-key').val('');
+			$('#private-key-electrum-chain-key').attr('for-code', '');
+			
 			var NewMnemonic = $('#private-key-electrum').val();
 			
 			var NewKey = mn_decode(NewMnemonic);
-			
-			Log(NewKey.length);
 			
 			if (NewKey.length == 32)
 				{					
@@ -471,7 +484,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 		if (PKChange && $('#private-key-hex').val().length == 64 && 
 			($('#private-key-armory').val().length == 0  || 
 			$('#private-key-armory').val().length == 89))
-			{
+			{			
 			var Easy16Key = ConvertToEasy16(Crypto.util.hexToBytes($('#private-key-hex').val()));
 
 			if ($('#private-key-armory').val() != Easy16Key)
@@ -484,6 +497,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 		if (ArmoryChange && $('#private-key-armory').val().length == 89
 			&& $('#private-key-armory').val().indexOf('_') < 0)
 			{
+			
 			var HexKey = Crypto.util.bytesToHex(ConvertFromEasy16($('#private-key-armory').val()));
 			
 			if ($('#private-key-input').val() != HexKey)
@@ -528,11 +542,15 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 	}
 
 function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{
+	{	
+	Armory.stop();
+	Electrum.stop();
+	
 	$('.coin-wallet').animate({opacity: 0}, 300);	
 		
 	$('.key-details').animate({opacity: 0}, 300, function()
 		{
+		
 		if (ChainMode)
 			{
 			$('.key-details .chain-keys').show();
@@ -544,7 +562,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.key-details .single-key').show();
 			}
 			
-		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
+		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '' || ElectrumMode)
 			{
 			if (!CoinInfo[CoinType].manual && !ChainMode)
 				$('.print-encryption').snazzyShow();			
@@ -575,7 +593,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			{
 			$('.coin-wallet-2').css('display', 'none');
 			}
-			
+		
 		$('.coin-wallets').removeClass(AllCoinTypes);
 		$('.coin-wallets').addClass(CoinType);
 		
@@ -632,6 +650,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			var ArmoryKey = $('#private-key-armory').val();
 			
 			$('.chain-keys').addClass('armory');
+			$('.chain-keys').removeClass('electrum');
 			$('.coin-wallets').addClass('armory');
 			
 			var KeyIndex = 1;
@@ -658,10 +677,17 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			var Total = (ChainSet+1)*6;
 			var Begin = (ChainSet*6);
 			
+			var Debug = '				[\'' + $('#private-key-input').val() + '\',\n' +
+					'					\'' + ArmoryKey.replace('\n', '\\n') + '\',\n' + 
+					'					[\n';
+			
 			Armory.gen(ArmoryKey, Total, eval('0x' + CoinInfo[CoinType].addressVersion),			
 			function(Key) 
 				{ // Update
 				var Percent  = Math.round((Current +1) * 100 / Total);
+				
+				Debug += '					[\'' + Key[1] + '\',\n' +
+					'						\'' + Key[0] + '\'],\n';
 				
 				$('.chain-progress').html(Percent + '%');
 					
@@ -670,7 +696,6 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 					var Address = Key[0];
 					var WIF = Key[1];
 					
-					Log(Key);
 					$('.chain-key.' + KeyIndex + ' #chain-public-address-' + KeyIndex).val(Address);
 					$('.chain-key.' + KeyIndex + ' #chain-private-key-wif-' + KeyIndex).val(WIF);
 					
@@ -690,6 +715,11 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 				{ // Success
 				$('.chain-progress').html('');
 				
+				Debug += '					],\n' + 
+				'				],';
+				
+				Log(Debug);
+				
 				SetLettering();
 			
 				if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
@@ -701,11 +731,12 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			return
 			}
 		else if (ElectrumMode)
-			{
+			{			
 			var ElectrumKey = $('#private-key-electrum').val();
 			var ElectrumKeyRoot = $('#private-key-electrum-root').val();
 			
 			$('.chain-keys').addClass('electrum');
+			$('.chain-keys').removeClass('armory');
 			$('.coin-wallets').addClass('electrum');
 			
 			var KeyIndex = 1;
@@ -729,24 +760,48 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		
 			var Current = 0;
 			
-			var Total = (ChainSet+1)*6;
-			var Begin = (ChainSet*6);
+			var ChangeCount = parseInt($('input[name=electrum-change]:checked').val());
+			var AddressCount = 6 - ChangeCount;
 			
-			Electrum.init(ElectrumKeyRoot, 
-				function(a) 
-				{ // Update
-					$('.chain-progress').html((a) + '%');
-				},
-				function(a) 
+			var TotalAddress = (ChainSet+1)*AddressCount;
+			var BeginAddress = (ChainSet*AddressCount);
+			var TotalChange = (ChainSet+1)*ChangeCount;
+			var BeginChange = BeginAddress + AddressCount + (ChainSet*ChangeCount);
+			
+			var Success = function(a) 
 				{ // Success
 					$('.chain-progress').html('');
 					
-					var ChainCode = a;
+					var ChainCode = Crypto.util.bytesToHex(a);
 					
-					Electrum.gen(Total, 0, eval('0x' + CoinInfo[CoinType].addressVersion), 
+					var Debug = '				[\'' + ElectrumKeyRoot + '\',\n' +
+							'					\'' + ElectrumKey + '\',\n' + 
+							'					\'' + ChainCode + '\',\n' + 
+							'					[\n';
+						
+					$('#private-key-electrum-chain-key').val(ChainCode);
+					
+					$('#private-key-electrum-chain-key').attr('for-code', $('#private-key-electrum').val());
+					
+					Electrum.gen(TotalAddress, TotalChange, eval('0x' + CoinInfo[CoinType].addressVersion), 
 						function(a)
 						{	// Update
-						if (Current >= Begin)
+						var Change = false;
+						
+						if (KeyIndex > AddressCount)
+							{
+							Change = true;
+							}
+							
+						Debug += '					[\'' + a[1] + '\',\n' +
+							'						\'' + a[0] + '\'],\n';
+							
+						var Percent  = Math.round((Current +1) * 100 / (TotalAddress + TotalChange));
+						
+						$('.chain-progress').html(Percent + '%');
+						
+						if ((!Change && Current >= BeginAddress) ||
+							(Change && Current >= BeginChange))
 							{
 							var Address = a[0];
 							var WIF = a[1];
@@ -756,11 +811,27 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 							
 							$('.coin-wallet-address.address-' + KeyIndex).html(Address);
 							
+							if (Change)
+								{
+								$('.chain-key.' + KeyIndex + ' h4').html('Change Address ' + (KeyIndex - AddressCount));
+								$('.coin-wallet-address-qr.qr-' + KeyIndex).removeClass('change-1 change-2 change-3 change-4 change-5');
+								$('.coin-wallet-address-qr.qr-' + KeyIndex).addClass('change-' + (KeyIndex - AddressCount));
+								$('.coin-wallet-private-key.qr-' + KeyIndex).removeClass('change-1 change-2 change-3 change-4 change-5');
+								$('.coin-wallet-private-key.qr-' + KeyIndex).addClass('change-' + (KeyIndex - AddressCount));
+								}
+							else
+								{
+								$('.chain-key.' + KeyIndex + ' h4').html('Address ' + KeyIndex);
+								}
+								
 							$('.coin-wallet-address-qr.qr-' + KeyIndex).html('');
+							$('.coin-wallet-address-qr.qr-' + KeyIndex).toggleClass('change', Change);
 							$('.coin-wallet-address-qr.qr-' + KeyIndex).qrcode(Address, QRErrorCorrectLevel.H);
 							
 							$('.coin-wallet-private-key-qr.qr-' + KeyIndex).html('');
+							$('.coin-wallet-private-key-qr.qr-' + KeyIndex).toggleClass('change', Change);
 							$('.coin-wallet-private-key-qr.qr-' + KeyIndex).qrcode(WIF, QRErrorCorrectLevel.H);
+							
 							KeyIndex++;
 							}
 							
@@ -768,6 +839,12 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 						},
 						function(a)
 						{  // Success
+						$('.chain-progress').html('');
+						
+						Debug += '					],\n' + 
+						'				],';
+						Log(Debug);
+						
 						SetLettering();
 					
 						if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
@@ -776,7 +853,25 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 							$('.coin-wallet').animate({opacity: 1}, 300);
 							}
 						});
-				});
+				}			
+			
+			var ChainKey = $('#private-key-electrum-chain-key').val();
+			
+			if (ChainKey.length == 64 && $('#private-key-electrum-chain-key').attr('for-code') == $('#private-key-electrum').val())
+				{				
+				Success(Crypto.util.hexToBytes(ChainKey));
+				}
+			else
+				{				
+				Electrum.init(ElectrumKeyRoot, 
+					function(a, b) 
+					{ // Update
+						$('.chain-progress').html((a) + '%');
+						
+						$('#private-key-electrum-chain-key').val(Crypto.util.bytesToHex(b));
+					},
+					Success);
+				}
 				
 			return;
 			}
@@ -807,51 +902,6 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			}
 		});
 	}
-
-// Only used for 'FigureOutCoinAddressVersion' function
-var OverrideAddressPrefix = undefined;
-	
-function GetAddressPrefixHex(CoinType)
-	{
-	if (OverrideAddressPrefix != undefined)
-		return OverrideAddressPrefix;
-	
-	return CoinInfo[CoinType].addressVersion;
-	}
-	
-function GetDefaultCompress(CoinType)
-	{
-	return CoinInfo[CoinType].defaultCompress;	
-	}
-	
-function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
-	{	
-	var WIFKeyChar = PrivateKeyWIF[0];
-	
-	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) >= 0)
-		{
-		return false;
-		}
-	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) >= 0)
-		{
-		return true;
-		}
-	else
-		{
-		throw new Error('Invalid WIF - could not determine key compression');
-		// ?????
-		}
-	/*
-	var res = ParseBase58PrivateKey(PrivateKeyWIF); 
-	var version = res[0];
-	var payload = res[1];
-	var PubKey =  res[1]
-	
-	
-	var Compressed = (payload.length > 32);
-	return Compressed;
-	*/
-	}
 	
 function GenerateAddress(display)
 	{
@@ -865,7 +915,7 @@ function GenerateAddress(display)
 	
 	if (Default_Compress == undefined)
 		{
-		Default_Compress = !ArmoryMode && !ElectrumMode && GetDefaultCompress(CoinType);
+		Default_Compress = !ArmoryMode && !ElectrumMode && CoinInfo[CoinType].defaultCompress;
 		}
 	
 	var Compressed = !ArmoryMode && !ElectrumMode && Default_Compress;
@@ -887,66 +937,79 @@ function GenerateAddress(display)
 	var PrivKeyHex = '';
 	var PrivKeyWIF = '';
 	
+	var KeyDetails = undefined;
 	
-	if (PrivKey.length == 64)
-		{
-		$('.private-key-error').fadeOut(300);
-	
-		PrivKeyHex = PrivKey;
-		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Default_Compress);
-		
-		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
-		
-		if (Compressed && !$('#compressed').is(':checked'))
-			{
-			$('#compressed').click();
-			return;
-			}
-		else if (!Compressed && $('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
-			return;
-			}
-			
-		//$('.switch-toggle.compression input').removeAttr('disabled');
-		//$('.switch-toggle.compression a').removeAttr('disabled');
-		}
-	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
-		{
-		//$('.switch-toggle.compression input').attr('disabled', '');
-		//$('.switch-toggle.compression a').attr('disabled', '');
-	
-		$('.private-key-error').fadeOut(300);
-		
-		PrivKeyWIF = PrivKey;
-		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
-		PrivKeyHex = PrivateKeyWIFToHex(CoinType, PrivKeyWIF);
-		
-		PrivKeyWIF = PrivateKeyHexToWIF(CoinType, PrivKeyHex, Compressed);
-		
-		if (PrivKeyWIF != PrivKey)
-			throw new Error('Private Key did not match');
-		
-		if (Compressed && !$('#compressed').is(':checked'))
-			{
-			$('#compressed').click();
-			return;
-			}
-		else if (!Compressed && $('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
-			return;
-			}
-		}
-	else if (PrivKey.length == 0)
+	if (PrivKey.length == 0)
 		{
 		$('.private-key-error').fadeOut(300);
 		return;
-		}		
+		}
+	
+	try
+		{
+		if (PrivKey.length == 64)
+			{
+			KeyDetails = new Omnicoin.ECKey(PrivKey, eval('0x' + CoinInfo[CoinType].addressVersion), Default_Compress).getDetails();
+			}
+		else
+			{
+			KeyDetails = new Omnicoin.ECKey(PrivKey, eval('0x' + CoinInfo[CoinType].addressVersion)).getDetails();
+			}
+		
+		$('.private-key-error').fadeOut(300);
+		}
+	catch (ex)
+		{
+		$('.private-key-error').fadeIn(300);
+		$('.private-key-error').html(ex);
+		return;
+		}
+	
+	if (PrivKey.length == 64)
+		{
+		PrivKeyHex = KeyDetails.privateKey;
+		PrivKeyWIF = KeyDetails.privateKeyWIF;
+		
+		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
+		}
+	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
+		{		
+		Compressed = GetPrivateKeyCompressed(CoinType, KeyDetails.privateKeyWIF);
+		
+		PrivKeyHex = KeyDetails.privateKey;		
+		PrivKeyWIF = KeyDetails.privateKeyWIF;
+		
+		if (PrivKeyWIF != PrivKey)
+			throw 'Private Key did not match'
+		
+		if (Compressed && !$('#compressed').is(':checked'))
+			{
+			$('#compressed').click();
+			return;
+			}
+		else if (!Compressed && $('#compressed').is(':checked'))
+			{
+			$('#decompressed').click();
+			return;
+			}
+		}
 	else
 		{
 		$('.private-key-error').fadeIn(300).html('Error: Unknown wallet format');
+		
 		Log("Unknown format: Size " + PrivKey.length);
+		
 		return;
 		}
 		
@@ -954,54 +1017,92 @@ function GenerateAddress(display)
 	
 	var PubKeyHex;
 	var Address;
-	if (display)
-		{
-		var PubKeyHex = GetPublicKey(Crypto.util.hexToBytes(PrivKeyHex), Compressed);
-		
-		var Address = GetAddress(CoinType, PubKeyHex);
-		}
-	else
-		{
-		var PubKeyBytes = GetPublicKeyBytes(Crypto.util.hexToBytes(PrivKeyHex), Compressed);
-		
-		var Address = GetAddressFromBytes(CoinType, PubKeyBytes);
-		}
-		
 	
-	if (true || CoinType == 'btc')
-		{
-		/*
-		// Verify
-		var BitcoinAddress = new Bitcoin.ECKey(PrivKeyWIF);
-		//BitcoinAddress.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
-		Log(BitcoinAddress.version);
-		var VerifyPrivKeyWIF = BitcoinAddress.toString();
-		Log(VerifyPrivKeyWIF);
-		
-		var BitcoinECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
-		BitcoinECKey.compressed = Compressed;
-		BitcoinECKey.version = eval('0x' + CoinInfo[CoinType].addressVersion) + 128;
-		
-		/*
-		var VerifyAddressECKey = new Bitcoin.ECKey(Crypto.util.hexToBytes(PrivKeyHex));
-		VerifyAddressECKey.compressed = Compressed;
-		var VerifyAddress = VerifyAddressECKey.getBitcoinAddress().toString();
-		var Verified = (PrivKeyHex != '') && (VerifyPrivKeyWIF == PrivKeyWIF && Address == VerifyAddress);
-		
-		$('#coin-address-verify').val(Verified ? 'Yes' : 'No');
-		*/
-		}	
+	var PubKeyHex = KeyDetails.publicKey;
+	var Address = KeyDetails.address;
 		
 	if (display)
-		{		
+		{
 		$('#private-key-hex').val(PrivKeyHex);
 		$('#private-key-compressed').val(Compressed ? 'Yes' : 'No');
 		$('#public-key-hex').val(PubKeyHex);
+		$('#private-key-checksum').val(KeyDetails.privateKeyChecksum);
+		$('#public-key-hash160').val(KeyDetails.publicKeyHash);
+		$('#public-key-address-checksum').val(KeyDetails.addressChecksum);
 		
 		DisplayWallet(CoinType, PrivKeyWIF, Address, false);
 		}
 	
 	return Address;
+	}
+	
+	
+function CurveAdd(PubKeyHex1, PubKeyHex2)
+	{
+	var ECCurve = getSECCurveByName("secp256k1");
+	
+	var Curve = ECCurve.getCurve();
+	
+	var ECPoint1 = Curve.decodePointHex(PubKeyHex1);
+	var ECPoint2 = Curve.decodePointHex(PubKeyHex2);
+	
+	if (ECPoint1.equals(ECPoint2))
+		return null;
+	
+	var Compressed = (ECPoint1.compressed && ECPoint2.compressed);
+	
+	var PubKeyOut = ECPoint1.add(ECPoint2).getEncoded(Compressed);
+	
+	return PubKeyOut;	
+	}
+function CurveMultiply(PubKeyHex1, ECKey)
+	{
+	var ECCurve = getSECCurveByName("secp256k1");
+	var ECPoint = ECCurve.getCurve().decodePointHex(pubKeyHex);
+	
+	var Compressed = (ECPoint.compressed && ECKey.compressed);
+	
+	ECKey.setCompressed(false);
+	
+	if (ECPoint.equals(ECKey.getPubPoint()))
+		{
+		return null;
+		}
+	
+	var BigInt = ECKey.priv;
+	
+	var PubKeyOut = ECPoint.multiply(BigInt).getEncoded(Compressed);
+	
+	return PubKeyOut;	
+	}
+	
+function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
+	{	
+	var WIFKeyChar = PrivateKeyWIF[0];
+	
+	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) >= 0)
+		{
+		return false;
+		}
+	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) >= 0)
+		{
+		return true;
+		}
+	else
+		{
+		throw new Error('Invalid WIF - could not determine key compression');
+		// ?????
+		}
+	}
+	
+/* Obsolete - replaced by Omnicoin
+
+function GetAddressPrefixHex(CoinType)
+	{
+	if (OverrideAddressPrefix != undefined)
+		return OverrideAddressPrefix;
+	
+	return CoinInfo[CoinType].addressVersion;
 	}
 	
 	
@@ -1195,45 +1296,6 @@ function PrivateKeyHexToWIF(CoinType, PrivateKeyHex, Compressed)
 	return PrivateKeyBase58;
 	}
 	
-function CurveAdd(PubKeyHex1, PubKeyHex2)
-	{
-	var ECCurve = getSECCurveByName("secp256k1");
-	
-	var Curve = ECCurve.getCurve();
-	
-	var ECPoint1 = Curve.decodePointHex(PubKeyHex1);
-	var ECPoint2 = Curve.decodePointHex(PubKeyHex2);
-	
-	if (ECPoint1.equals(ECPoint2))
-		return null;
-	
-	var Compressed = (ECPoint1.compressed && ECPoint2.compressed);
-	
-	var PubKeyOut = ECPoint1.add(ECPoint2).getEncoded(Compressed);
-	
-	return PubKeyOut;	
-	}
-function CurveMultiply(PubKeyHex1, ECKey)
-	{
-	var ECCurve = getSECCurveByName("secp256k1");
-	var ECPoint = ECCurve.getCurve().decodePointHex(pubKeyHex);
-	
-	var Compressed = (ECPoint.compressed && ECKey.compressed);
-	
-	ECKey.setCompressed(false);
-	
-	if (ECPoint.equals(ECKey.getPubPoint()))
-		{
-		return null;
-		}
-	
-	var BigInt = ECKey.priv;
-	
-	var PubKeyOut = ECPoint.multiply(BigInt).getEncoded(Compressed);
-	
-	return PubKeyOut;	
-	}
-	
 function PrivateKeyWIFToHex(CoinType, PrivateKeyWIF)
 	{
 	var PrivateKeyBase58 = Bitcoin.Base58.decode(PrivateKeyWIF);
@@ -1251,18 +1313,9 @@ function PrivateKeyWIFToHex(CoinType, PrivateKeyWIF)
 		
 		return Crypto.util.bytesToHex(payload);
 		}
-	/*
-	var res = ParseBase58PrivateKey(PrivateKeyWIF); 
-	var version = res[0];
-	var payload = res[1];
-	if (payload.length > 32)
-		{
-		payload.pop();
-		compressed = true;
-		return Crypto.util.bytesToHex(payload);
-		}
-	*/
 		
 	return PrivateKeyBase58;
 	}
+*/
+
 	

@@ -16,9 +16,7 @@ function InitQRRead()
 				sayCheese = new SayCheese('.webcam-area', { snapshots: true });
 					
 				sayCheese.on('start', function() {
-					 // do something when started
-					Log('started');
-					
+					 // do something when started					
 					FirstResult = undefined;
 					
 					SnapShotLoop_Stop = false;
@@ -27,8 +25,6 @@ function InitQRRead()
 
 				sayCheese.on('stop', function() {
 					 // do something when started
-					
-					Log('stopped');
 					
 					SnapShotLoop_Stop = true;
 					});
@@ -41,7 +37,6 @@ function InitQRRead()
 					});
 
 				sayCheese.on('snapshot', function(snapshot) {
-					Log(snapshot);
 					$('.webcam-area #qr-canvas').remove();
 					$('.webcam-area').append(snapshot);
 					
@@ -50,8 +45,6 @@ function InitQRRead()
 						try
 							{
 							var Decode = qrcode.decode();
-							
-							Log('decode: ' + Decode);
 							
 							var confirm = (Decode == VerifyResult && Decode == VerifyResult2 && Decode  == VerifyResult3) ? 4 :
 								(Decode == VerifyResult && Decode  == VerifyResult2) ? 3 : 
@@ -114,8 +107,7 @@ function InitQRRead()
 		});
 		
 	$('.qr-webcam .close-button').bind('click', function() {
-		
-		Log(sayCheese);
+	
 		if (sayCheese != undefined)
 			{
 			SnapShotLoop_Stop = true;

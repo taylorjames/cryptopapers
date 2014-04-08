@@ -1493,7 +1493,8 @@ textarea[readonly]
 #private-key-address-manual,
 #private-key-armory,
 #private-key-electrum,
-#private-key-electrum-root
+#private-key-electrum-root,
+#private-key-electrum-chain-key
 {
 	display: inline;
 	width: 100%;
@@ -1506,6 +1507,20 @@ textarea[readonly]
 	margin-bottom: 0px;
 	text-align: center;
 }
+.input-key .electrum .left-label
+{
+width: 185px;
+padding: 9px;
+}
+body.dark-theme input[readonly]
+{
+background-color: #444 !important;
+}
+input[readonly]
+{
+background-color: #f3f3f3;
+}
+
 #private-key-input
 {
 	margin-bottom: 20px;
@@ -3116,7 +3131,7 @@ font-size: 12px;
 margin-top: 0px;
 }
 
-#run-self-tests
+#open-self-tests
 {
 float: right;
 margin-top: 27px;
@@ -3243,6 +3258,36 @@ content: "Address 5";
 {
 content: "Address 6";
 }
+
+.chain-keys .coin-wallet-address-qr.change:before
+{
+background-color: rgba(255,255, 0, 0.6);
+}
+.chain-keys .coin-wallet-private-key-qr.change:before
+{
+background-color: rgba(255,255, 0, 0.6);
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-1:before
+{
+content: "Change 1" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-2:before
+{
+content: "Change 2" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-3:before
+{
+content: "Change 3" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-4:before
+{
+content: "Change 4" !important;
+}
+.minimized .chain-keys .coin-wallet-address-qr.change.change-5:before
+{
+content: "Change 5" !important;
+}
+
 
 .chain-keys .coin-wallet-private-key-qr
 {
@@ -3452,6 +3497,10 @@ left: 199px;
 {
 content: 'Address 4 ⇛' !important;
 }
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-4:before
+{
+content: 'Change 1 ⇛' !important;
+}
 
 .coin-wallets.key-chain .coin-wallet-address.address-5
 {
@@ -3469,6 +3518,14 @@ left: 347px;
 {
 content: '⇚ Address 5' !important;
 }
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-5:before
+{
+content: '⇚ Change 1' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-5:before
+{
+content: '⇚ Change 2' !important;
+}
 
 .coin-wallets.key-chain .coin-wallet-address.address-6
 {
@@ -3485,6 +3542,18 @@ left: 355px;
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-6:before
 {
 content: 'Address 6 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-6:before
+{
+content: 'Change 1 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-6:before
+{
+content: 'Change 2 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-3.qr-6:before
+{
+content: 'Change 3 ⇛' !important;
 }
 
 .coin-wallets.key-chain .coin-logo.coin-name
@@ -3653,5 +3722,92 @@ float: left;
 margin-top: 6px;
 margin-left: 11px;
 margin-right: 11px;
+}
+
+.coin-wallets.key-chain .coin-wallet-address-qr.change:after,
+.coin-wallets.key-chain .coin-wallet-address-qr.change:before
+{
+background-color: rgba(255, 255, 0, 0.6);
+}
+
+.test-window
+{
+display: none;
+opacity: 0;
+position: fixed;
+width: 800px;
+height: 600px;
+background: #eee;
+padding: 20px;
+left: 23%;
+top: 50px;
+z-index: 100000;
+border-radius: 21px;
+box-shadow: 0px 0px 130px #000000;
+}
+.test-window h1
+{
+font-size: 24px;
+}
+.test-window small
+{
+float: left;
+position: absolute;
+top: 131px;
+}
+.test-window textarea
+{
+min-height: 270px;
+max-height: 270px
+}
+.test-window .left-label
+{
+min-height: 30px;
+padding: 9px;
+}
+#run-self-tests
+{
+margin-left: 36px;
+padding: 16px;
+height: inherit;
+margin-top: 10px;
+margin-right: 61px;
+}
+#stop-self-tests
+{
+height: inherit;
+padding: 16px;
+width: 106px;
+}
+.test-details
+{
+float: right;
+width: 49%;
+background-color: rgba(0,0,0,0.15);
+padding: 5px;
+border-radius: 10px;
+}
+.test-details ul
+{
+font-size: 12px;
+}
+.lengthy-tests
+{
+display: block;
+width: 361px;
+height: 176px;
+background-color: rgba(0,0,0,0.15);
+border-radius: 10px;
+float: left;
+clear: left;
+padding: 5px;
+margin-bottom: 10px;
+}
+.lengthy-tests p
+{
+font-size: 14px;
+text-align: center;
+margin: 6px;
+font-weight: bold;
 }
 
