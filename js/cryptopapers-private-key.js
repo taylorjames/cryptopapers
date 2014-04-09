@@ -12,392 +12,20 @@ var HasPrivateKey = false;
 var DefaultCoin = 'btc';
 var CurrentCoinType = DefaultCoin;
 
-var ChainMode = false;
-var ArmoryMode = false;
-var ElectrumMode = false;
-
 var VanityEnabled = undefined;
 
-var CurrentKey = undefined;
-var CurrentKey_Updated = false;
-
-var KeyWallet = [];
-	
-function RemoveKey(Key)
-	{
-	var index = KeyWallet.indexOf(Key);
-	
-	if (index >= 0)
-		KeyWallet.splice(index, 1);
-		
-	}
-function WalletContains(CoinType, Key)
-	{
-	for (var i = 0; i < KeyWallet.length; i++)
-		{
-		if (KeyWallet[i].coinType == CoinType &&
-			(KeyWallet[i].key == Key || KeyWallet[i].encryptedKey == Key))
-			{
-			return true;
-			}
-		}
-		
-	return false;
-	}
-	
-function DisplayWallets()
-	{
-	var Keys = '';
-	for (var i = 0; i < KeyWallet.length; i++)
-		{
-		var Key = KeyWallet[i];
-		
-		var IsCurrentKey = (CurrentKey == KeyWallet[i]) ? ' current-key' : '';
-		
-		Keys += '<div class="key' + IsCurrentKey+ '" data="' + i + '">';		
-		Keys += '<a>';
-		Keys += '<div class="wallet-coin-type ' + Key.coinType + '-coin coin"></div>';
-		Keys += '<div class="address">' + Key.address + '</div>';
-		
-		if (Key.encryptedKey != undefined && Key.encryptedKey != '')
-			Keys += '<div class="encrypted"></div>';
-		
-		Keys += '<div class="print-status"></div>';
-		Keys += '</a>';
-		Keys += '</div>';
-		}
-		
-	$('.key-wallet .keys').html(Keys);
-	$('.key-wallet .key-count').html(KeyWallet.length);
-	
-	if (KeyWallet.length == 0)
-		$('.key-wallet').addClass('empty');
-	else
-		$('.key-wallet').removeClass('empty');	
-		
-	$('.key-wallet .key.current-key').mouseenter(function() 
-	{
-			$(this).parent().find('.key:not(.current-key)').show().animate({height: 36, opacity: 1});
-	});	
-	
-	$('.key-wallet .key').bind('click', function() 
-		{
-		if ($(this).hasClass('current-key'))
-			{
-			if (KeyWallet.length > 1)
-				return true;
-			else
-				return false;
-			}
-			
-		var index = parseInt($(this).attr('data'));
-		
-		CurrentKey = KeyWallet[index];
-		
-		var cointype = $('.coin-type .coin.selector[data=' + CurrentKey.coinType + ']');
-				
-		if (!cointype.hasClass('active'))
-			{			
-			var Width = $('.coin-type').attr('colwidth');
-			
-			$('.coin-type .coin-grid-row.active').removeClass('active');
-			$('.coin-type .coin.active').removeClass('active');
-			$('.coin-type .coin-grid-row:not(.active)').css('height', '0');
-			cointype.css('width', Width).css('height', 'inherit').addClass('active');
-			cointype.parent().css('height', 'inherit').addClass('active');
-			
-			ChangeCoinType(CurrentKey.coinType, false);
-			}
-		
-		if (CoinInfo[CurrentKey.coinType].manual)
-			{
-			$('#private-key-address-manual').val(CurrentKey.address);
-			$('#private-key-input').val(CurrentKey.key);
-			$('#private-key-input').change();
-			}
-		else
-			{
-			$('#private-key-remove').html('Remove Key');
-			
-			$('#private-key-input').val(CurrentKey.key);
-			
-			$('#private-key-input').change();
-			
-			setTimeout(function() {
-			if (CurrentKey.encryptedKey != undefined && CurrentKey.encryptedKey != '')
-				{
-				DisplayWallet(CurrentKey.coinType, CurrentKey.encryptedKey, CurrentKey.address, true);
-				}			
-				},1000);
-			}
-			
-		if (Multiple_Wallets)
-			$('.generate-button').snazzyHide();
-		
-		$('.key-wallet .key.current-key').removeClass('current-key');
-		$(this).addClass('current-key');
-		
-		$(this).parent().find('.key:not(.current-key)').animate({height: 0, opacity: 0}, 300, function() { 
-			DisplayWallets();
-			$('.key-wallet').removeClass('expand-y')
-			});
-			
-		return false;
-		});
-	}
-	
 var LastInput = '';
-var LastInput_Armory = '';
-var LastInput_Electrum = '';
-var LastInput_ElectrumRoot = '';
-
-var ChainSet = 0;
 
 function InitPrivateKeyPage()
 	{	
-	$('.key-wallet .keys').mouseleave(function() 
-	{
-		if ($('.key-wallet').hasClass('expand-x') && $('.key-wallet').hasClass('expand-y'))
-			{
-			}
-		else
-			{
-			$('.key-wallet').find('.key:not(.current-key)').show().animate({height: 0, opacity: 0});
-			}
-	});
+	InitKeyChains();
+	InitKeyWallet();
 	
-	$('.key-wallet').click(function() 
-		{
-		if ($(this).hasClass('expand-x'))
-			{
-			if (CurrentKey == undefined)
-				{
-				var a = $(this);
-				
-				$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
-					a.animate({width: 86}, 300, function() {
-						a.removeClass('expand-x').removeClass('expand-y');
-						});
-					});
-				}
-			else
-				{
-				ClearCurrentKey();
-				$(this).removeClass('expand-x').removeClass('expand-y');
-				
-				/*
-				if ($(this).hasClass('expand-y'))
-					{
-					$(this).find('.key:not(.current-key)').snazzyHide(300, function() { 
-						});
-						
-					//$(this).animate({height: 63}, 300, function() {
-						$(this).removeClass('expand-y');
-					//	});
-					
-					ClearCurrentKey();
-					
-					$(this).animate({width: 86}, 300, function() {
-						$(this).removeClass('expand-x').removeClass('expand-y');
-						});
-					
-					}
-				else
-					{
-					var a = $(this);
-					
-					
-					$(this).find('.key:not(.current-key)').snazzyShow(300, function() { 
-					
-						
-						});
-						a.addClass('expand-y');
-					//a.animate({height: a.getTrueHeight()}, 300);
-					/*
-					var OldHeight = $(this).css('height');
-					
-					$(this).addClass('expand-y');
-					
-					var NewHeight = $(this).css('height');
-					
-					$(this).css('height', OldHeight).animate({height: NewHeight}, 300, function() { 
-						
-						});
-					}
-						*/
-				}
-			}
-		else if (KeyWallet.length != 0)
-			{		
-			
-			$(this).find('.key:not(.current-key)').snazzyShow();
-					
-			$(this).animate({width: 444}, 300, function() { 
-			
-				$(this).addClass('expand-x').addClass('expand-y');
-			
-			//	var NewHeight = $(this).css('height');
-				
-			//	$(this).animate({height: NewHeight}, 300);
-				});
-			}
-		});
-	
-	$('input[name=electrum-change]').change(function()
-		{
-		LastInput = '';
-		$('#private-key-input').change();		
-		});
-		
-	$('.chain-set-last').click(function() 
-		{
-		if ($('.chain-set-buttons').hasClass('set-1'))
-			return;
-			
-		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
-		
-		ChainSet--;
-		
-		LastInput = '';
-		$('#private-key-input').change();
-		
-		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
-		$('.chain-set-number').html((ChainSet+1));
-		});
-		
-	$('.chain-set-next').click(function() 
-		{
-		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
-		
-		ChainSet++;
-		
-		LastInput = '';
-		$('#private-key-input').change();
-		
-		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
-		});
-	
-	$('#private-key-electrum-root').keyup(function() 
-		{
-		$('#private-key-electrum-root').change();
-		});
-		
-	$('#private-key-electrum-root').change(function() 
-		{
-		if (ElectrumMode)
-			{
-			var InputElectrumRoot = $('#private-key-electrum-root').val();
-			
-			if (LastInput_ElectrumRoot == InputElectrumRoot)
-				{
-				return;
-				}
-			LastInput_ElectrumRoot = InputElectrumRoot;
-			
-			ShowElectrum(true, false, true);
-			}
-		});
-	$('#private-key-electrum').keyup(function() 
-		{
-		//$('#private-key-electrum').change();
-		});
-		
-	$('#private-key-electrum').change(function() 
-		{
-		if (ElectrumMode)
-			{
-			var InputElectrum = $('#private-key-electrum').val();
-			
-			if (LastInput_Electrum == InputElectrum)
-				{
-				return;
-				}
-			LastInput_Electrum = InputElectrum;
-			
-			ShowElectrum(true, true, false);
-			}
-		});
-		
-	$('.electrum-icon.toggle').click(function()
-		{
-		if ($(this).hasClass('selected'))
-			{
-			ShowElectrum(false, false, false);
-			}
-		else
-			{
-			ShowElectrum(true, false, true);
-			}
-		});
-		
-	$('#private-key-armory').mask('xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx\n' + 
-												'xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx');
-	
-	$('#private-key-armory').keyup(function() 
-		{
-		$('#private-key-armory').change();
-		});
-		
-	$('#private-key-armory').change(function() 
-		{
-		if (ArmoryMode)
-			{
-			var InputArmory = $('#private-key-armory').val();
-			
-			if (LastInput_Armory == InputArmory)
-				{
-				return;
-				}
-			LastInput_Armory = InputArmory;
-			
-			ShowArmory(true, true, false);
-			}
-		});
-		
-	$('.armory-icon.toggle').click(function()
-		{
-		if ($(this).hasClass('selected'))
-			{
-			ShowArmory(false, false, false);
-			}
-		else
-			{
-			ShowArmory(true, false, true);
-			}
-		});
-		
 	$('.generate-button').click(function()
 		{
 		GenerateButton_Click(this);
 		});
 			
-	$('#private-key-remove').click(function() 
-		{
-		$(this).fadeOut(300, function()
-			{
-			$('#private-key-remove-yes').fadeIn(300);
-			$('#private-key-remove-no').fadeIn(300);
-			});
-		});
-		
-	$('#private-key-remove-no').click(function()
-		{
-		$('#private-key-remove-yes, #private-key-remove-no').fadeOut(300, function()
-			{
-			$('#private-key-remove').fadeIn(300);
-			});
-		});		
-		
-	$('#private-key-remove-yes').click(function()
-		{
-		PrivateKeyRemoveYes_Click(this);
-		});
-		
-	$('#private-key-add').click(function() 
-		{
-		PrivateKeyAdd_Click(this);
-		});
-	
 	$('input[name=compression]').change(function() 
 		{
 		Compression_Change(this);
@@ -405,16 +33,14 @@ function InitPrivateKeyPage()
 		
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
-		if (!CoinInfo[CurrentCoinType].manual)
-			{
-			$(this).change();
-			}
+		PrivateKeyInput_KeyUp(this);
 		});
 		
 	$('#private-key-input, #private-key-address-manual').change(function() 
 		{
 		PrivateKeyInput_Change(this);
 		});
+	
 	$('#private-key-recover-no').click(function()
 		{
 		PrivateKeyRecoverNo_Click(this);
@@ -424,11 +50,9 @@ function InitPrivateKeyPage()
 		PrivateKeyRecoverYes_Click(this);
 		});
 	}
-	
+
 function GenerateButton_Click(sender)
-	{
-	Log(sender);
-	
+	{	
 	if (VanityEnabled != undefined && VanityEnabled())
 		{
 		var AddressStart = '-----';
@@ -442,7 +66,7 @@ function GenerateButton_Click(sender)
 		var hex = Crypto.util.bytesToHex(bytes);
 					
 		$('#private-key-input').val(hex);
-		$('#private-key-remove').html('New Key');
+		$('#private-key-remove').val('New Key');
 		
 		if (ElectrumMode)
 			{
@@ -457,117 +81,6 @@ function GenerateButton_Click(sender)
 		}
 	}
 	
-function PrivateKeyRemoveYes_Click(sender)
-	{
-	$('#private-key-remove-yes, #private-key-remove-no').fadeOut(300, function() {
-		$('#private-key-remove').fadeIn(300);
-		});
-	
-	var WalletCount = 0;
-	
-	if (WalletCount == 0)
-		{
-		window.onbeforeunload = undefined;
-		$('#coin-setup-menu #print').addClass('disabled');
-		}
-		
-	RemoveKey(CurrentKey);
-	
-	ClearCurrentKey(function()
-		{
-		DisplayWallets();
-		
-		$('#private-key-input').val('');
-		$('#private-key-address-manual').val('');
-		$('#private-key-add').attr('disabled', '');
-		$('#private-key-remove').attr('disabled', '');
-		$('.print-encryption').snazzyHide();
-		$('.key-details').snazzyHide(300, function() { 
-			if (!CoinInfo[CurrentCoinType].manual && !Multiple_Wallets)
-				$('.generate-button').snazzyShow();
-					
-			GenerateButton_Click($('.generate-button').get());
-			});
-		});
-	}
-
-function PrivateKeyAdd_Click(sender)
-	{
-	var Address = $('#public-address').val();
-	var Key = $('#private-key-wif').val();
-	var EncryptedKey = $('#private-key-encrypted').val();
-	
-	var AddressDiv = '';
-	
-	if (CoinInfo[CurrentCoinType].manual)
-		{
-		AddressDiv= '#private-key-address-manual';
-		}
-	else
-		{
-		AddressDiv= '#public-address';
-		}
-		
-	var StartLeft =  $(AddressDiv).offset().left;
-	var StartTop = $(AddressDiv).offset().top;
-	var StartSize = $(AddressDiv).css('font-size');
-	
-	var DisplayKey = $('#private-key-input').val();		
-	
-	var StartLeft2 =  $('#private-key-input').offset().left + 100;
-	var StartTop2 = $('#private-key-input').offset().top + 15;
-	var StartSize2 = $('#private-key-input').css('font-size');
-	
-	var EndLeft = $('.key-wallet .wallet-image').offset().left - 10;
-	var EndTop = $('.key-wallet .wallet-image').offset().top + 10;		
-	var EndSize = '1px';
-	
-	$('body').parent().prepend('<div class="address-effect address">' + Address + '</div>');
-	$('body').parent().prepend('<div class="address-effect key">' + DisplayKey + '</div>');
-	
-	$('#private-key-input').val('');
-	$(AddressDiv).val('');
-	
-	$('.address-effect.key').css('left', StartLeft2).css('top', StartTop2).css('font-size', StartSize2)
-		.animate({top: EndTop, left: EndLeft, 'font-size': EndSize}, 600, function () 
-		{
-		$(this).remove();			
-		});
-	$('.address-effect.address').css('left', StartLeft).css('top', StartTop).css('font-size', StartSize)
-		.animate({top: EndTop, left: EndLeft, 'font-size': EndSize}, 600, function ()
-		{
-		var Wallet = { 
-			coinType: CurrentCoinType,
-			address: Address,
-			key: Key,
-			encryptedKey: EncryptedKey
-			};
-		
-		if (!WalletContains(CurrentCoinType, Key))
-			{
-			KeyWallet.push(Wallet);
-			}			
-		
-		DisplayWallets();
-		
-		$(this).remove();
-		
-		ClearKeyText();		
-		
-		$('#private-key-input').val('');
-		$('#private-key-address-manual').val('');
-		$('#private-key-add').attr('disabled', '');
-		$('#private-key-remove').attr('disabled', '');
-		$('.print-encryption').snazzyHide();
-		$('.key-details').snazzyHide(300, function() { 
-			if (!CoinInfo[CurrentCoinType].manual && !Multiple_Wallets)
-				$('.generate-button').snazzyShow();
-			
-			GenerateButton_Click($('.generate-button').get());
-			});
-		});
-	}
-
 function Compression_Change(sender)
 	{
 	Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
@@ -584,6 +97,14 @@ function Compression_Change(sender)
 	LastInput = '';
 	$('#private-key-input').change();
 	}
+	
+function PrivateKeyInput_KeyUp(sender)
+	{
+	if (!CoinInfo[CurrentCoinType].manual)
+		{
+		$(this).change();
+		}
+	}
 
 function PrivateKeyInput_Change(sender)
 	{
@@ -594,7 +115,7 @@ function PrivateKeyInput_Change(sender)
 		var Address = $('#private-key-address-manual').val();
 		var Key = $('#private-key-input').val();
 		
-		DisplayWallet(CurrentCoinType, Key, Address, false);	
+		DisplayWallet(CurrentCoinType, Key, Address, undefined);	
 		
 		if (Key.length == 0 || Address.length == 0)
 			{
@@ -602,7 +123,7 @@ function PrivateKeyInput_Change(sender)
 			}
 		else
 			{
-			$('.key-details').snazzyShow();
+			$('.key-details').animate({opacity: 1}, 300);
 			$('#coin-setup-menu #print').removeClass('disabled');
 			}
 		}
@@ -749,199 +270,10 @@ function CloseWindowWarning()
 		'Are you sure you want to close this window?';
 	}
 
-function ShowElectrum(Show, ElectrumChange, PKChange)
+function DisplayWallet(CoinType, PrivKeyWIF, Address, EncryptedKey)
 	{
-	var Switch = false;
-	if (Show)
-		{		
-		if (!ElectrumMode)
-			Switch = true;
-		
-		if (ArmoryMode)
-			{
-			ShowArmory(false, false, false);
-			}
-			
-		ChainMode = true;
-		ElectrumMode = true;
-		
-		$('.key-import .private-key').snazzyHide();
-		$('.key-import .electrum').snazzyShow();
-		$('.electrum-icon.toggle').animate({opacity: 1}, 300);
-		$('.electrum-icon.toggle').addClass('selected');
-		
-		if ($('#private-key-electrum-root').val().length == 0 && $('#private-key-input').val().length == 64)
-			{
-			if ($('#private-key-electrum-root').val() != $('#private-key-input').val().substr(0,32))
-				{
-				PKChange = true;
-				$('#private-key-electrum-root').val($('#private-key-input').val().substr(0,32));
-				}
-			}
-		else
-			{
-			}
-		
-		if (PKChange && $('#private-key-electrum-root').val().length == 32)
-			{
-			// Forces keys to regenerate only if codes are changed
-			$('#private-key-electrum-chain-key').val('');
-			$('#private-key-electrum-chain-key').attr('for-code', '');
-			
-			var NewKey = $('#private-key-electrum-root').val();
-			
-			var Mnemonic = mn_encode(NewKey);
-
-			if ($('#private-key-electrum').val() != Mnemonic)
-				{
-				$('#private-key-electrum').val(Mnemonic);
-				Switch = true;
-				}
-				
-			if ($('#private-key-electrum-root').val() != NewKey)
-				{
-				$('#private-key-electrum-root').val(NewKey);
-				Switch = true;
-				}
-			}
-
-		if (ElectrumChange && $('#private-key-electrum').val().length > 0)
-			{
-			// Forces keys to regenerate only if codes are changed
-			$('#private-key-electrum-chain-key').val('');
-			$('#private-key-electrum-chain-key').attr('for-code', '');
-			
-			var NewMnemonic = $('#private-key-electrum').val();
-			
-			var NewKey = mn_decode(NewMnemonic);
-			
-			if (NewKey.length == 32)
-				{					
-				if ($('#private-key-electrum-root').val() != NewKey)
-					{
-					$('#private-key-electrum-root').val(NewKey);
-					Switch = true;
-					}
-				}
-			}
-			
-		if ($('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
-			return;
-			}			
-			
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
-			}
-		}
-	else
-		{
-		if (ElectrumMode)
-			Switch = true;
-			
-		ChainMode = false;
-		ElectrumMode = false;
-		$('.key-import .private-key').snazzyShow();
-		$('.key-import .electrum').snazzyHide();
-		$('.electrum-icon.toggle').animate({opacity: 0.3}, 300);
-		$('.electrum-icon.toggle').removeClass('selected');
-		
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
-			}
-		}
-	}
-
-function ShowArmory(Show, ArmoryChange, PKChange)
-	{	
-	var Switch = false;
-	if (Show)
-		{
-		if (ElectrumMode)
-			{
-			ShowElectrum(false, false, false);
-			}
-			
-		if (!ArmoryMode)
-			Switch = true;
-		
-		ChainMode = true;
-		ArmoryMode = true;
-		
-		$('.key-import .armory').snazzyShow();
-		$('.armory-icon.toggle').animate({opacity: 1}, 300);
-		$('.armory-icon.toggle').addClass('selected');
-		
-	//	$('.switch-toggle.compression input').attr('disabled', '');
-	//	$('.switch-toggle.compression a').attr('disabled', '');
-
-		if (PKChange && $('#private-key-hex').val().length == 64 && 
-			($('#private-key-armory').val().length == 0  || 
-			$('#private-key-armory').val().length == 89))
-			{			
-			var Easy16Key = ConvertToEasy16(Crypto.util.hexToBytes($('#private-key-hex').val()));
-
-			if ($('#private-key-armory').val() != Easy16Key)
-				{
-				$('#private-key-armory').val(Easy16Key);
-				Switch = true;
-				}
-			}
-
-		if (ArmoryChange && $('#private-key-armory').val().length == 89
-			&& $('#private-key-armory').val().indexOf('_') < 0)
-			{
-			
-			var HexKey = Crypto.util.bytesToHex(ConvertFromEasy16($('#private-key-armory').val()));
-			
-			if ($('#private-key-input').val() != HexKey)
-				{
-				$('#private-key-input').val(HexKey);
-				Switch = true;
-				}
-			}
-			
-		if ($('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
-			return;
-			}			
-			
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
-			}
-		}
-	else
-		{
-		if (ArmoryMode)
-			Switch = true;
-			
-		ChainMode = false;
-		ArmoryMode = false;
-		$('.key-import .armory').snazzyHide();
-		$('.armory-icon.toggle').animate({opacity: 0.3}, 300);
-		$('.armory-icon.toggle').removeClass('selected');
-		
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
-			}
-
-	//	$('.switch-toggle.compression input').removeAttr('disabled');
-	//	$('.switch-toggle.compression a').removeAttr('disabled');
-		}
-	}
-
-function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{	
+	Log(EncryptedKey);
+	
 	Armory.stop();
 	Electrum.stop();
 	
@@ -958,7 +290,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.key-details .single-key').show();
 		}
 	
-	if (!Encrypted)
+	if (EncryptedKey != undefined)
 		$('#private-key-wif').val(PrivKeyWIF);
 		
 	$('#public-address').val(Address);
@@ -966,7 +298,6 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 	$('.coin-wallet').animate({opacity: 0}, 300);	
 	$('.key-details').animate({opacity: 0}, 300, function()
 		{
-		Log(Address);
 		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && !Address != undefined && Address != '' || ElectrumMode)
 			{
 			window.onbeforeunload = CloseWindowWarning;
@@ -996,7 +327,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		
 		$('.coin-wallet-address.address-1').html(Address);
 
-		var split = Encrypted ? 29 : 26;
+		var split = EncryptedKey != undefined ? 29 : 26;
 		
 		var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
 		var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
@@ -1018,7 +349,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.coin-wallet-address-qr.qr-1').html('');
 		$('.coin-wallet-address-qr.qr-1').qrcode(Address, QRErrorCorrectLevel.H);
 		
-		if (!Encrypted)
+		if (EncryptedKey == undefined)
 			{
 			$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
 			$('.print-encryption #encrypted-key').val('');
@@ -1030,7 +361,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.private-key-encrypted').snazzyHide();
 			$('#encrypt-remove-button').attr('disabled', '');
 			
-			if (PersistPassword != undefined && PersistPassword != '')
+			if (PersistPassword != undefined && PersistPassword != '' && !ArmoryMode && !ElectrumMode)
 				{
 				$('#encryption-key').val(PersistPassword);
 				$('#encryption-key-confirm').val(PersistPassword);
@@ -1049,6 +380,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			}
 		else
 			{
+			$('#encrypt-remove-button').removeAttr('disabled');
 			$('.coin-wallets').addClass('keys-encrypted');
 			$('.print-encryption #encrypted-key').val(PrivKeyWIF);
 			$('.private-key-encrypted').snazzyShow();
@@ -1346,7 +678,7 @@ function ClearCurrentKey(OnFinish)
 	$('#private-key-add').attr('disabled', '');
 	$('#private-key-remove').attr('disabled', '');
 	$('.print-encryption').snazzyHide();
-	$('.key-details').snazzyHide(300, function()
+	$('.key-details').animate({opacity: 0}, 300, function()
 		{ 
 		if (!CoinInfo[CurrentCoinType].manual && !Multiple_Wallets)
 			$('.generate-button').snazzyShow();	
@@ -1359,35 +691,6 @@ function ClearCurrentKey(OnFinish)
 function GetDefaultCompress(CoinType)
 	{
 	return CoinInfo[CoinType].defaultCompress;	
-	}
-	
-function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
-	{	
-	var WIFKeyChar = PrivateKeyWIF[0];
-	
-	if (CoinInfo[CoinType].uncompressedKeyStart.indexOf(WIFKeyChar) >= 0)
-		{
-		return false;
-		}
-	else if (CoinInfo[CoinType].compressedKeyStart.indexOf(WIFKeyChar) >= 0)
-		{
-		return true;
-		}
-	else
-		{
-		throw new Error('Invalid WIF - could not determine key compression');
-		// ?????
-		}
-	/*
-	var res = ParseBase58PrivateKey(PrivateKeyWIF); 
-	var version = res[0];
-	var payload = res[1];
-	var PubKey =  res[1]
-	
-	
-	var Compressed = (payload.length > 32);
-	return Compressed;
-	*/
 	}
 	
 function GenerateAddress(display)
@@ -1516,7 +819,7 @@ function GenerateAddress(display)
 		$('#public-key-hash160').val(KeyDetails.publicKeyHash);
 		$('#public-key-address-checksum').val(KeyDetails.addressChecksum);
 		
-		DisplayWallet(CoinType, PrivKeyWIF, Address, false);
+		DisplayWallet(CoinType, PrivKeyWIF, Address, undefined);
 		}
 	
 	return Address;
@@ -1577,12 +880,12 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	else
 		{
 		throw new Error('Invalid WIF - could not determine key compression');
-		// ?????
 		}
 	}
 	
 /* Obsolete - replaced by Omnicoin
 
+	
 function GetAddressPrefixHex(CoinType)
 	{
 	if (OverrideAddressPrefix != undefined)

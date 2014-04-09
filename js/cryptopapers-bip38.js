@@ -80,7 +80,7 @@ function InitBIP38()
 						
 						$('.encrypted').fadeIn(300);			
 						
-						DisplayWallet(CoinType, EncWIF, Address, true);
+						DisplayWallet(CoinType, WIF, Address, EncWIF);
 						
 						$('.encrypting').fadeOut(300);
 						
@@ -127,7 +127,7 @@ function InitBIP38()
 			DisplayWallets();
 			}
 			
-		DisplayWallet(CurrentCoinType, WIF, Address, false);
+		DisplayWallet(CurrentCoinType, WIF, Address, undefined);
 		});
 		
 	$('#decrypt-password').keyup(function ()

@@ -1,6 +1,4 @@
 
-var Multiple_Wallets = false;
-
 var InitPremium;
 
 function InitPage()

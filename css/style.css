@@ -1391,6 +1391,8 @@ box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0
 	padding:10px;
 	font-size:12px;
 	text-align: center;
+	margin-left: 18%;
+	width: 80%;
 }
 .private-key-address-manual.address-box
 {
@@ -2829,6 +2831,10 @@ left: 318px;
 float: left;
 width: 100%;
 }
+.key-wallet .encrypted
+{
+display: block !important;
+}
 .encrypted
 {
 display: none;
@@ -3257,7 +3263,9 @@ margin-bottom: 5px;
 border: 1px solid #555;
 }
 
-.key-wallet .keys .key .encrypted
+.key-wallet .keys .key .encrypted,
+.key-wallet .keys .key .armory,
+.key-wallet .keys .key .electrum
 {
 display: block;
 width: 20px;
@@ -3266,6 +3274,16 @@ float: left;
 position: absolute;
 left: 388px;
 margin-top: 7px;
+}
+.key-wallet .keys .key .armory
+{
+background: url('../images/armory.png');
+background-size: 100%;
+}
+.key-wallet .keys .key .electrum
+{
+background: url('../images/electrum.png');
+background-size: 100%;
 }
 
 .key-wallet.expand-y .keys .key
@@ -3629,7 +3647,7 @@ height: 85px !important;
 .coin-wallets.key-chain .coin-wallet-address.address-1
 {
 display: block;
-left: -121px;
+left: -112px;
 top: 169px;
 }
 .coin-wallets.key-chain .coin-wallet-address-qr.qr-1

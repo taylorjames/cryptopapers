@@ -207,6 +207,8 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="js/cryptopapers-common.js"></script>
 	
 	<script type="text/javascript" src="js/cryptopapers-coin-info.js"></script>	
+	<script type="text/javascript" src="js/cryptopapers-private-key-wallets.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-private-key-chains.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
 	
@@ -640,6 +642,7 @@ $().ready(function ()
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
 				Thanks, and stay safe!</p>
 			</span>
+			
 			<div class="row no-print">
 				<ul id="coin-setup-menu" class="menu no-print">
 					<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
@@ -831,6 +834,53 @@ $().ready(function ()
 					</div>
 				</div>
 		
+				<div class="print-encryption round-block colfive last help-section">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						<div class="encrypted"></div>
+						
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
+							<br/><br/>
+							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
+							<br/>
+							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
+							<br/><br/>
+							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
+							This makes brute-forcing BIP38 keys very difficult.
+							<br/><br/>
+							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
+							</span>
+						</div>
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" enter-button="encrypt-button" autocomplete="off" />
+							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" enter-button="encrypt-button" autocomplete="off" />
+							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
+							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">		
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">			
+							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label" for="encrypted-key">Encrypted:</label>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+							<div class="encrypting progress"></div>
+							<label class="left-label" for="verified-encrypted-key">Verified:</label>
+							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
+							<div class="verifying progress"></div>
+						</div>
+					</div>
+				</div>	
+			
 				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
 					<div class="colinner"> 
 						<div class="chain-keys"> 
@@ -1042,6 +1092,9 @@ $().ready(function ()
 									
 									<a></a>
 								</div>
+								
+								<label class="left-label" for="private-key-encrypted">Private Key BIP38:</label>
+								<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
 							</div>
 														
 							<div class="manual-hide">
@@ -1136,55 +1189,8 @@ $().ready(function ()
 						</div>						
 					</div>
 				</div>
-				
-				
-				<div class="print-encryption round-block colfive last help-section">
-					<div class="colinner">	
-						<h3>BIP38 Wallet Encryption</h3>
-						<div class="encrypted"></div>
-						
-						<div class="help-bubble hide" style="float:left;">
-							<span>
-							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
-							<br/><br/>
-							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
-							<br/>
-							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
-							<br/><br/>
-							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
-							This makes brute-forcing BIP38 keys very difficult.
-							<br/><br/>
-							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
-							</span>
-						</div>
-						
-						<div class="encryption-keys">
-							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" enter-button="encrypt-button" autocomplete="off" />
-							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" enter-button="encrypt-button" autocomplete="off" />
-							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
-							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
-						</div>
-						
-						<div class="encryption-buttons">		
-							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
-							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
-						</div>
-						
-						<div class="encryption-details hide">			
-							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
-							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label" for="encrypted-key">Encrypted:</label>
-							<input type="text" id="encrypted-key" autocomplete="off" readonly />
-							<div class="encrypting progress"></div>
-							<label class="left-label" for="verified-encrypted-key">Verified:</label>
-							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
-							<div class="verifying progress"></div>
-						</div>
-					</div>
-				</div>	
 			</div>
+				
 			<div class="sub-section coin-setup-print">
 				<div class="warning dismissable beta-software no-print">
 					<p><b>WARNING: This is Beta software.</b>
