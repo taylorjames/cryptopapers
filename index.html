@@ -207,6 +207,8 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="js/cryptopapers-common.js"></script>
 	
 	<script type="text/javascript" src="js/cryptopapers-coin-info.js"></script>	
+	<script type="text/javascript" src="js/cryptopapers-private-key-wallets.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-private-key-chains.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-private-key.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-prng.js"></script>	
 	
@@ -264,26 +266,33 @@ $().ready(function ()
 		</a>
 		<span class="copyright">&copy; 2014</span>
 		
-		
 		<div class="zero-trust-seal hidden">
 			
 		</div>
 		
-		<!--
-		<div id="coin-selected" data="btc"><img src="images/coin-icons/btc-logo.png" class="btc-coin"/><em>BTC</em><div class="notch"></div><div class="notchBack"></div></div>
-		-->
-		<div class="coin-type selector-grid no-print" rowheight="105px" colwidth="100px">
-			<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
-				<!-- Dynamically filled -->
+		<div class="key-wallet empty">
+			<div>
+				<div class="wallet-image"></div>
+				<div class="key-count">0</div>
+				
+				<div class="keys">
+					<!-- Dynamically filled -->
+				</div>
 			</div>
-		</div>
-		
+		</div>		
 	</div>
 </div>
 
 <form id="form1">
 
-<div id="page" class="wrapper">
+<noscript>
+	<p>
+		This application relies on JavaScript to work properly. <br><br>
+		Please enable JavaScript to continue
+	</p>
+</noscript>
+
+<div id="page" class="wrapper" style="display:none;">
 	<div class="inner">
 		<div class="section how-to no-print">
 		</div>
@@ -642,6 +651,7 @@ $().ready(function ()
 				we've done or this tool is useful for you, any donation amount would be greatly appreciated!<br />
 				Thanks, and stay safe!</p>
 			</span>
+			
 			<div class="row no-print">
 				<ul id="coin-setup-menu" class="menu no-print">
 					<li id="generate" class="step active one" section="coin-setup-keys">Step 1 - Private Keys</li>
@@ -662,6 +672,12 @@ $().ready(function ()
 
 			<div class="sub-section coin-setup-keys no-print row">
 				
+				<div class="coin-type selector-grid no-print" rowheight="105px" colwidth="100px">
+					<div class="coins-grid-wrapper box-padding selector-grid-wrapper">
+						<!-- Dynamically filled -->
+					</div>
+				</div>
+				
 				<div class="key-import round-block help-section colseven first">
 					<div class="colinner">
 						<div class="private-key-address-manual bubble-text hide">
@@ -672,11 +688,13 @@ $().ready(function ()
 							<br/>
 							It's up to you to make sure that they are correct.
 						</div>
+						
 						<div class="private-key-address-manual address-box hide">
 							<label for="private-key-address-manual">Address</label>
 							<input type="text" id="private-key-address-manual" maxlength="40" autocomplete="off" />
 							<div class="qr-icon" for="private-key-address-manual"></div>
 						</div>
+						
 						<h3>Private Key</h3>
 						<div class="input-key">
 							<div class="help-bubble" style="float:left;">
@@ -761,7 +779,15 @@ $().ready(function ()
 							<input type="button" id="private-key-decrypt" class="button decrypt-button" value="Decrypt" disabled />			
 						</div>
 						
-						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" value="Generate New Key" fixed-height="50px" disabled />
+						<div class="save-remove-buttons">
+							<input type="button" id="private-key-remove" class="remove-button large-button" value="New Key" fixed-height="50px" disabled />
+							<input type="button" id="private-key-remove-no" class="remove-button-no large-button" style="display: none" value="Cancel" fixed-height="50px" />
+							<input type="button" id="private-key-remove-yes" class="remove-button-yes large-button" style="display: none" value="Confirm" fixed-height="50px" />
+							<input type="button" id="private-key-add" class="add-button large-button" value="Save Key" fixed-height="50px" disabled />
+						</div>
+						
+						<input type="button" id="private-key-generate" class="generate-button manual-hide large-button" style="display: none" value="Generate New Key" fixed-height="50px" disabled />
+						
 					</div>
 				</div>			
 				
@@ -1024,6 +1050,54 @@ $().ready(function ()
 					</div>
 				</div>
 				
+		
+				<div class="print-encryption round-block colfive last help-section">
+					<div class="colinner">	
+						<h3>BIP38 Wallet Encryption</h3>
+						<div class="encrypted"></div>
+						
+						<div class="help-bubble hide" style="float:left;">
+							<span>
+							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
+							<br/><br/>
+							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
+							<br/>
+							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
+							<br/><br/>
+							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
+							This makes brute-forcing BIP38 keys very difficult.
+							<br/><br/>
+							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
+							</span>
+						</div>
+						
+						<div class="encryption-keys">
+							<label class="left-label" for="encryption-key">Password:</label>
+							<input type="password" id="encryption-key" enter-button="encrypt-button" autocomplete="off" />
+							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
+							<input type="password" id="encryption-key-confirm" enter-button="encrypt-button" autocomplete="off" />
+							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
+							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
+						</div>
+						
+						<div class="encryption-buttons">		
+							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
+							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
+						</div>
+						
+						<div class="encryption-details hide">			
+							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
+							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
+							<label class="left-label" for="encrypted-key">Encrypted:</label>
+							<input type="text" id="encrypted-key" autocomplete="off" readonly />
+							<div class="encrypting progress"></div>
+							<label class="left-label" for="verified-encrypted-key">Verified:</label>
+							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
+							<div class="verifying progress"></div>
+						</div>
+					</div>
+				</div>	
+			
 				<div class="key-details round-block help-section colseven first minimizable minimized" minimized-height="165">
 					<div class="colinner"> 
 						<div class="chain-keys"> 
@@ -1157,7 +1231,7 @@ $().ready(function ()
 						<div class="single-key">
 							<div class="coin btc-coin changing-coin"></div>
 							<h3 class="stay">Key Details</h3>
-
+						
 							<div class="coin-wallet-address-qr qr-1"></div>
 							<div class="coin-wallet-private-key-qr qr-1"></div>
 							
@@ -1182,11 +1256,10 @@ $().ready(function ()
 									
 									<input type="radio" name="compression" value="Yes" id="compressed" autocomplete="off" checked />
 									<label for="compressed">Yes</label>
-
 									<a></a>
 								</div>
 							</div>
-							
+					
 							<div class="">
 								<span class="key-info-public-address">
 								
@@ -1200,7 +1273,6 @@ $().ready(function ()
 								<input type="text" id="public-address" autocomplete="off" readonly />
 								</span>						
 							</div>
-							
 							
 							<div class="manual-hide">
 								<div class="help-bubble" style="float:left;">
@@ -1234,12 +1306,14 @@ $().ready(function ()
 									<br/>
 									<br/><br/>
 									</span>
+									
+									<a></a>
 								</div>
-								<label class="left-label" for="private-key-encrypted">Private Key Encrypted:</label>
+								
+								<label class="left-label" for="private-key-encrypted">Private Key BIP38:</label>
 								<input type="text" id="private-key-encrypted" autocomplete="off" readonly />
-								<div class="encrypted"></div>
 							</div>
-							
+														
 							<div class="manual-hide">
 								<div class="help-bubble" style="float:left;">
 									<span>
@@ -1331,54 +1405,8 @@ $().ready(function ()
 						</div>						
 					</div>
 				</div>
-				
-				<div class="print-encryption round-block colfive last help-section">
-					<div class="colinner">	
-						<h3>BIP38 Wallet Encryption</h3>
-						<div class="encrypted"></div>
-						
-						<div class="help-bubble hide" style="float:left;">
-							<span>
-							BIP38 Encryption is an additional, optional layer of security, for those who want to have even more safety with their paper wallets.
-							<br/><br/>
-							When you use BIP38 encryption, the private keys on the wallet are encrypted using the password you supply.
-							<br/>
-							If you use a strong password, this will make retrieving private keys very difficult, even if someone were able to steal the paper wallet.
-							<br/><br/>
-							BIP38 uses Scrypt, which means that it takes a significant amount of time and resources to try just one password.
-							This makes brute-forcing BIP38 keys very difficult.
-							<br/><br/>
-							Before they can be used, all BIP38 keys are automatically verified to ensure they match the original keys.
-							</span>
-						</div>
-						
-						<div class="encryption-keys">
-							<label class="left-label" for="encryption-key">Password:</label>
-							<input type="password" id="encryption-key" enter-button="encrypt-button" autocomplete="off" />
-							<label class="left-label" for="encryption-key-confirm">Confirm:</label>
-							<input type="password" id="encryption-key-confirm" enter-button="encrypt-button" autocomplete="off" />
-							<label class="left-label encryption-key-persist" for="encryption-key-persist">Encrypt all keys with this password:</label>
-							<input type="checkbox" id="encryption-key-persist" autocomplete="off" />
-						</div>
-						
-						<div class="encryption-buttons">		
-							<input type="button" id="encrypt-button" class="medium-button left" value="Encrypt" disabled />
-							<input type="button" id="encrypt-remove-button" class="medium-button left last" value="Remove" disabled />
-						</div>
-						
-						<div class="encryption-details hide">			
-							<label class="left-label" for="unencrypted-key">Unencrypted:</label>
-							<input type="text" id="unencrypted-key" autocomplete="off" readonly />
-							<label class="left-label" for="encrypted-key">Encrypted:</label>
-							<input type="text" id="encrypted-key" autocomplete="off" readonly />
-							<div class="encrypting progress"></div>
-							<label class="left-label" for="verified-encrypted-key">Verified:</label>
-							<input type="text" id="verified-encrypted-key" autocomplete="off" readonly />
-							<div class="verifying progress"></div>
-						</div>
-					</div>
-				</div>	
 			</div>
+				
 			<div class="sub-section coin-setup-print">
 				<div class="warning dismissable beta-software no-print">
 					<p><b>WARNING: This is Beta software.</b>
@@ -1501,14 +1529,8 @@ $().ready(function ()
 								<a></a>
 							</div>
 							
-							<!--
-							<label class="left-label design-label">Custom:</label>
-							<div class="design-type-custom" >
-								<input type="file" id="custom-design">
-							</div>
-							-->
+							<input type="button" id="generate-new-wallet" class="button generate-button manual-hide large-button" value="New Address" fixed-height="50px" disabled />
 							
-							<input type="button" id="generate-new-wallet" class="button generate-button manual-hide large-button" value="Generate New Address" fixed-height="50px" disabled />
 							<input type="button" id="print-button" class="large-button right" value="Print" />
 							<br />
 						</div>
@@ -1519,27 +1541,38 @@ $().ready(function ()
 							<h3>Appearance</h3>
 							
 							<label id="current-frame-label" class="left-label">Frame:</label>
-							<!--
-							<div id="current-frame"><img src="" id="current-frame-img"/></div>
-							-->
 							
 							<div class="frame-type selector-grid" fade="true" scroll="false" colwidth="207px" rowheight="67px">
 								<div class="frame-grid-wrapper box-padding selector-grid-wrapper">
 									<!-- Dynamically filled -->
 								</div>
 							</div>
-
 							
-							<label class="left-label design-label">Design:</label>
-							
-							<!--
-							<div id="current-bkg"><img src="" id="current-bkg-img" /></div>
-							-->
-							
-							<div class="design-type selector-grid" fade="false" scroll="true" effect="false" colwidth="207px" rowheight="67px">
-								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-									<!-- Dynamically filled -->
+							<div class="design-backgrounds">
+								<label class="left-label design-label">Design:</label>
+								
+								<div class="design-type selector-grid" fade="false" scroll="false" effect="false" colwidth="207px" rowheight="67px">
+									<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+										<!-- Dynamically filled -->
+									</div>
 								</div>
+							</div>
+
+							<div class="custom-backgrounds">
+								<label class="left-label design-label">Custom:</label>
+								
+								<div class="design-type">
+									<div class="design selector show">
+										<p>Click or Drop Image Here</p>
+										<img class="custom coin-wallet-background">
+									</div>
+								</div>
+								
+								<div class="design-type-custom" >
+									<input type="file" id="custom-design">
+								</div>
+								
+								<input type="button" class="print-appearance-reset" Value="Reset" />
 							</div>
 							
 							<div class="hue-shift hide premium">
@@ -1553,16 +1586,33 @@ $().ready(function ()
 									</span>
 								</div>	
 								
-								<label class="left-label color-shift-label">Color Shift:</label>
-								<!--
-								<input type="button" class="hue-shift-button hue-shift-down" Value="-" />
-								<input type="button" class="hue-shift-button hue-shift-up" Value="+" />
-								-->
-								<span class="hue-shift-amount">0&deg;</span>
+								<label class="left-label color-shift-label">
+									<span class="hue-shift-amount">0&deg;</span>
+									Color Shift:
+								</label>
 								
 								<div id="hue-slider"></div>
-								<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
 							</div>
+							
+							<div class="background-options">			
+								<label class="left-label color-shift-label">
+									<span class="custom-design-zoom-amount">50%</span>
+									Zoom:
+								</label>
+								<div id="custom-design-zoom-slider"></div>
+								
+								<label class="left-label color-shift-label">
+									<span class="custom-design-x-amount">50%</span>		
+									X Position:
+								</label>					
+								<div id="custom-design-x-slider"></div>
+								
+								<label class="left-label color-shift-label">
+									<span class="custom-design-y-amount">0%</span>
+									Y Position:
+								</label>					
+								<div id="custom-design-y-slider"></div>
+							</div>						
 						</div>
 					</div>
 				</div>

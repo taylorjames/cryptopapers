@@ -2,9 +2,6 @@
 var DefaultBG = 'fractal-1';
 var DefaultFrame = 'Frame-4';
 
-var HueShift = 0;
-var HueShiftChange = 5;
-
 var WalletFrames = 6;
 
 var Frames = 
@@ -179,7 +176,6 @@ var Backgrounds =
 		
 	$('#print-button').click(function() 
 		{
-		$('.coin-wallet').attr('style', '');
 		window.print();
 		});
 	
@@ -197,7 +193,6 @@ var Backgrounds =
 			}
 
 		});
-	
 	
 	$('.frame-grid-row-header').click(function()
 		{
@@ -246,7 +241,7 @@ var Backgrounds =
 		
 	$('.design.selector').click(function()
 		{
-		$('.hue-shift-reset').click();
+		$('.print-appearance-reset').click();
 		
 		SetLettering();
 		});
@@ -258,14 +253,27 @@ var Backgrounds =
 			
 		SetDesign($(this).attr('data'));
 		});
+	$('.custom.coin-wallet-background').click(function()
+		{
 		
+		});
 		
 	$('#custom-design').change(function(evt)
 		{		
 		var fr = new FileReader();
-		var	filecontent = fr.readAsArrayBuffer(evt.target.files[0]);
-		var binary = window.btoa(filecontent);
 		
+		fr.onload = (function(theFile) {
+			return function(e) {				
+			
+				$('.coin-wallet .coin-wallet-background').attr('src', e.target.result);
+				$('.custom.coin-wallet-background').attr('src', e.target.result);				
+				};
+			})(evt.target.files[0]);
+
+		// Read in the image file as a data URL.
+		var a = fr.readAsDataURL(evt.target.files[0]);
+		
+		Log(a);
 	//	$('.coin-wallet').css('background-image', 'url("' + '' + '")');
 		});
 	}
@@ -283,7 +291,6 @@ function BGString(Category, Number)
 	return Out;	
 	}
 	
-
 function AddFrames()
 	{
 	var cols = 10;

@@ -32,8 +32,7 @@ var Vanity_AtTheStart = true;
  function InitVanity()
 	{
 	$('.vanity-addresses.minimized').click(function() {
-		});
-	
+		});	
 		
 	$('#vanity-address-start').click(function() {
 				
@@ -152,6 +151,14 @@ var Vanity_AtTheStart = true;
 	$('#vanity-custom-text').keyup(function() {
 		UpdateVantiyOptions();
 	});
+	}
+	
+function RefreshVanity()
+	{
+	if (ArmoryMode || ElectrumMode || CoinInfo[CurrentCoinType].manual)
+		$('.vanity-addresses').fadeOut(300);
+	else
+		$('.vanity-addresses').fadeIn(300);	
 	}
 	
 DictionaryWords_Split = false;
@@ -541,9 +548,10 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 	
 	sr.seedTime();
 	
-	var PubKeyBytes = GetPublicKeyBytes(PrivateBytes, Default_Compress);
+	var KeyDetails = new Omnicoin.ECKey(PrivateBytes, eval('0x' + CoinInfo[CoinType].addressVersion), Default_Compress).getDetails();
 	
-	var Address = GetAddressFromBytes(CoinType, PubKeyBytes);
+	var PubKey = KeyDetails.publicKey;
+	var Address = KeyDetails.address;
 	
 	if (Vanity != '')
 		{
@@ -676,8 +684,6 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 				CountWordLength = Result2[1];
 			if (Result3 != null && Result3[0] && CountWordLength < Result3[1])
 				CountWordLength = Result3[1];
-			
-			Log(CountWordLength);
 			
 			if (Count_Best == -1 || CountWordLength > Count_Best)
 				{

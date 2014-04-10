@@ -34,7 +34,7 @@ $.fn.allVisible = 	function() {
 	var Out = true;
 	
 	this.each(function() {
-		if ($(this).css('height') == undefined || parseFloat($(this).css('opacity')) <= 0 || $(this).css('display') == 'none')
+		if (this != undefined && $(this) != undefined && $(this).css('height') == undefined || parseFloat($(this).css('opacity')) <= 0 || $(this).css('display') == 'none')
 			{
 			Out = false;
 			return;
@@ -48,6 +48,9 @@ $.fn.snazzyShow = function(speed, callback) {
 	if (this.allVisible())
 		{
 		$(this).show();
+		
+		if (callback)
+			callback();
 		return; // Already visible
 		}
 	
@@ -64,6 +67,9 @@ $.fn.snazzyShow = function(speed, callback) {
 			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
 				if (!minimized)
 					$(this).css('height', 'inherit');
+					
+			if (callback)
+				callback();
 		});
 	else
 		$(this).show().css('height', '0').animate({'padding-top': $(this).attr('oldpadding-top'), 'padding-bottom': $(this).attr('oldpadding-bottom'), 'height': height}, speed, function() {
@@ -72,19 +78,28 @@ $.fn.snazzyShow = function(speed, callback) {
 			if ($(this).attr('fixed-height') == undefined || $(this).attr('fixed-height') == null || $(this).attr('fixed-height').length == 0)
 				if (!minimized)
 					$(this).css('height', 'inherit');
+	
+			if (callback)
+				callback();
 			});
 			
 		});
-	
-	if (callback)
-		callback();
+		
+	if ($(this).length == 0)
+		if (callback)
+			callback();
 	};
 
 $.fn.snazzyHide = function(speed, callback) {
+	
+	var Count = this.length;
+	
 	this.each(function() {
 		if (!$(this).allVisible())
 			{
 			$(this).hide();
+			if (callback)
+				callback();
 			return; // Already hidden
 			}
 			
@@ -97,14 +112,27 @@ $.fn.snazzyHide = function(speed, callback) {
 			
 			$(this).animate({'padding-top': '0px', 'padding-bottom': '0px', height: '0px'}, speed, function() {
 				$(this).css('display', 'none');
+				if (Count == 1)
+					{
+					if (callback)
+						callback();
+					}
 				});
 			});
 		});
 	
-	setTimeout(function() {
-	if (callback)
-		callback();
-		}, speed*2+1);
+	if (Count == 0)
+		{
+		if (callback)
+			callback();
+		}
+	else if (Count > 1)
+		{
+		setTimeout(function() {
+		if (callback)
+			callback();
+			}, speed*2+10);
+		}
 };
 
 $.fn.getTrueHeight = function() {
