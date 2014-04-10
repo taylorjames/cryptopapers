@@ -2,9 +2,6 @@
 var DefaultBG = 'fractal-1';
 var DefaultFrame = 'Frame-4';
 
-var HueShift = 0;
-var HueShiftChange = 5;
-
 var WalletFrames = 6;
 
 var Frames = 

@@ -334,7 +334,8 @@ cursor: pointer;
 }
 
 #page.wrapper .inner{
-	min-height: 600px;
+	min-height: 100%;
+	height: auto !important;
 }
 
 div.inner{
@@ -3072,10 +3073,13 @@ position: absolute;
 }
 .design-type.selecting
 {
+max-height: 509px;
+overflow-y: scroll;
 max-width: 1114px;
 left: -433px;
 top: 12px;
 height: auto;
+padding: 0px;
 }
 .frame-type.selecting
 {

@@ -3,21 +3,24 @@
  var TopPercent = 0;
  var ZoomPercent = 100;
  
+
+var HueShift = 0;
+var HueShiftChange = 5;
+
  function InitPremium()
 	{
 	$('.premium').show();
 	
 	$('.print-appearance-reset').click(function () {
 		HueShift = 0;
-		$( "#hue-slider" ).slider('value',0);
-		$( "#custom-design-x-slider" ).slider('value',50);
-		$( "#custom-design-y-slider" ).slider('value',0);
-		$( "#custom-design-zoom-slider" ).slider('value',100);
+		LeftPercent = 50;
+		TopPercent = 0;
+		ZoomPercent = 100;
 		
-		$('.custom-design-x-amount').html(x + '%');
-		$('.custom-design-y-amount').html(y + '%');
-		$('.custom-design-zoom-amount').html(zoom + '%');
-		$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
+		$( "#hue-slider" ).slider('value', HueShift);
+		$( "#custom-design-x-slider" ).slider('value', LeftPercent);
+		$( "#custom-design-y-slider" ).slider('value', TopPercent);
+		$( "#custom-design-zoom-slider" ).slider('value', ZoomPercent);
 		
 		UpdateBackground();
 		
