@@ -557,6 +557,9 @@ h6 {
 }
 .coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.bottom {
   left: 913px;
+  transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
 }
 .coin-wallets.key-chain .coin-wallet-address {
   transform: rotate(-90deg);
@@ -570,7 +573,7 @@ h6 {
 }
 .coin-wallets.key-chain .coin-wallet-address.address-1 {
   display: block;
-  left: -112px;
+  left: -118px;
   top: 169px;
 }
 .coin-wallets.key-chain .coin-wallet-address.address-2 {
@@ -1894,6 +1897,7 @@ input[type=button].error {
   top: 16px;
 }
 .chain-keys .coin-wallet-private-key-qr.qr-master:before {
+  top: -10px;
   content: 'Master Key';
 }
 .chain-keys .left-label {
@@ -2094,6 +2098,7 @@ input#compress-decompress-button {
   float: right;
   width: 36%;
   padding: 20px;
+  clear: right;
 }
 .coin-wallet-2 {
   margin-top: 90px;
@@ -2274,7 +2279,6 @@ a:focus {
   padding: 0px;
   display: inline-block;
   float: right;
-  position: absolute;
 }
 .chain-keys .coin-wallet-private-key-qr:before,
 .key-details .coin-wallet-private-key-qr:before {
@@ -2695,20 +2699,6 @@ a:focus {
   overflow: hidden;
   min-height: 78px;
 }
-.selecting .frame-grid-wrapper {
-  overflow: visible;
-}
-.selecting .frame-grid-row-header {
-  height: 63px;
-  padding-top: 18px;
-  text-align: center;
-  border-top: 2px solid;
-  margin-top: 6px;
-  width: 400px;
-}
-.selecting .frame-grid-row-header:hover {
-  background-color: #ccc;
-}
 .frame-grid-row-header,
 .design-grid-row-header {
   display: none;
@@ -2744,6 +2734,20 @@ a:focus {
   float: left;
   clear: right;
   border-bottom: 2px solid;
+}
+.selecting .frame-grid-wrapper {
+  overflow: visible;
+}
+.selecting .frame-grid-row-header {
+  height: 63px;
+  padding-top: 18px;
+  text-align: center;
+  border-top: 2px solid;
+  margin-top: 6px;
+  width: 400px;
+}
+.selecting .frame-grid-row-header:hover {
+  background-color: #ccc;
 }
 #current-frame-label {
   margin-bottom: 67px;
@@ -2872,6 +2876,7 @@ a:focus {
   padding: 5px;
 }
 .print-instructions {
+  clear: right;
   float: right;
   position: relative;
   width: 36%;
@@ -3173,4 +3178,9 @@ label:disabled {
   text-align: center;
   margin: 6px;
   font-weight: bold;
+}
+.coin-setup-print .chain-set-buttons {
+  position: relative;
+  float: right;
+  margin-right: 243px;
 }

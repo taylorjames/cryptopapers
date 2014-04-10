@@ -86,6 +86,7 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 		ChainMode = true;
 		ElectrumMode = true;
 		
+		$('.coin-setup-print .chain-set-buttons').show();
 		$('.key-import .private-key').snazzyHide();
 		$('.key-import .electrum').snazzyShow();
 		$('.electrum-icon.toggle').animate({opacity: 1}, 300);
@@ -165,6 +166,7 @@ function ShowElectrum(Show, ElectrumChange, PKChange)
 			
 		ChainMode = false;
 		ElectrumMode = false;
+		$('.coin-setup-print .chain-set-buttons').hide();
 		$('.key-import .private-key').snazzyShow();
 		$('.key-import .electrum').snazzyHide();
 		$('.electrum-icon.toggle').animate({opacity: 0.3}, 300);
@@ -193,6 +195,8 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 		
 		ChainMode = true;
 		ArmoryMode = true;
+		
+		$('.coin-setup-print .chain-set-buttons').show();
 		
 		$('.key-import .armory').snazzyShow();
 		$('.armory-icon.toggle').animate({opacity: 1}, 300);
@@ -246,6 +250,7 @@ function ShowArmory(Show, ArmoryChange, PKChange)
 			
 		ChainMode = false;
 		ArmoryMode = false;
+		$('.coin-setup-print .chain-set-buttons').hide();
 		$('.key-import .armory').snazzyHide();
 		$('.armory-icon.toggle').animate({opacity: 0.3}, 300);
 		$('.armory-icon.toggle').removeClass('selected');

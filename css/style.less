@@ -615,6 +615,9 @@ h1, h2, h3, h4, h5, h6 {
 				}
 				&.bottom {
 					left: 913px;
+					transform: rotate(90deg);
+					-ms-transform: rotate(90deg);
+					-webkit-transform: rotate(90deg);
 				}
 			}
 		}
@@ -629,7 +632,7 @@ h1, h2, h3, h4, h5, h6 {
 			}
 			&.address-1 {
 				display: block;
-				left: -112px;
+				left: -118px;
 				top: 169px;
 			}
 			&.address-2 {
@@ -2161,6 +2164,7 @@ input[type=button].error {
 			left: 46px;
 			top: 16px;
 			&:before {
+				top: -10px;
 				content: 'Master Key';
 			}
 		}
@@ -2383,6 +2387,7 @@ input#compress-decompress-button {
 	float: right;
 	width: 36%;
 	padding: 20px;
+	clear: right;
 }
 .coin-wallet-1 {
 }
@@ -2589,7 +2594,6 @@ a:hover, a:active, a:focus {
 	padding: 0px;
 	display: inline-block;
 	float: right;
-	position: absolute;
 }
 .chain-keys .coin-wallet-private-key-qr:before,
 .key-details .coin-wallet-private-key-qr:before {
@@ -3064,22 +3068,6 @@ a:hover, a:active, a:focus {
 	overflow: hidden;
 	min-height: 78px;
 }
-.selecting {
-	.frame-grid-wrapper {
-		overflow: visible;
-	}
-	.frame-grid-row-header {
-		height: 63px;
-		padding-top: 18px;
-		text-align: center;
-		border-top: 2px solid;
-		margin-top: 6px;
-		width: 400px;
-		&:hover {
-			background-color: #ccc;
-		}
-	}
-}
 .frame-grid-row-header,
 .design-grid-row-header {
 	display: none;
@@ -3117,6 +3105,23 @@ a:hover, a:active, a:focus {
 	float: left;
 	clear: right;
 	border-bottom: 2px solid;
+}
+
+.selecting {
+	.frame-grid-wrapper {
+		overflow: visible;
+	}
+	.frame-grid-row-header {
+		height: 63px;
+		padding-top: 18px;
+		text-align: center;
+		border-top: 2px solid;
+		margin-top: 6px;
+		width: 400px;
+		&:hover {
+			background-color: #ccc;
+		}
+	}
 }
 #current-frame-label {
 	margin-bottom: 67px;
@@ -3256,6 +3261,7 @@ a:hover, a:active, a:focus {
 	padding: 5px;
 }
 .print-instructions {
+	clear: right;
 	float: right;
 	position: relative;
 	width: 36%;
@@ -3600,5 +3606,13 @@ label:disabled {
 		text-align: center;
 		margin: 6px;
 		font-weight: bold;
+	}
+}
+
+.coin-setup-print {
+	.chain-set-buttons {
+		position: relative;
+		float: right;
+		margin-right: 243px;
 	}
 }
