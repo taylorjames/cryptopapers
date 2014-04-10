@@ -1,5 +1,5 @@
 
-var Vanity_Enabled = false;
+var Vanity_Enabled = true;
  
 var Vanity = '';
 var VanityCaseSensitive = false;
@@ -44,26 +44,27 @@ var Vanity_AtTheStart = true;
 		
 		Vanity_Stop = false;
 		GenerateVanity(false, 
-			function(KeyBytes, KeyAddress) { // Good
+			function(KeyBytes, KeyAddress, HighlightStart, HighlightLength) { // Good
 				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
 				
+				
 				$('.vanity-good-results').insertAt(1, '<div class="result">' +
-					'<div class="result-address">' + KeyAddress + '</div>' + 
+					'<div class="result-address">' + HighlightAddress(KeyAddress, HighlightStart, HighlightLength) + '</div>' + 
 					'<div class="result-key">' + KeyHex + '</div>' + 
 					'</div>', 1);
 				},
-			function(KeyBytes, KeyAddress) { // New Best
+			function(KeyBytes, KeyAddress, HighlightStart, HighlightLength) { // New Best
 				
 				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
 				
 				$('.vanity-good-results .best').removeClass('best');
 				
 				$('.vanity-good-results').prepend('<div class="result best">' +
-					'<div class="result-address">' + KeyAddress + '</div>' + 
+					'<div class="result-address">' + HighlightAddress(KeyAddress, HighlightStart, HighlightLength) + '</div>' + 
 					'<div class="result-key">' + KeyHex + '</div>' + 
 					'</div>');
 				},
-			function(KeyBytes, KeyAddress) { // Perfect
+			function(KeyBytes, KeyAddress, HighlightStart, HighlightLength) { // Perfect
 				Vanity_Stop = true;
 				
 				$('.vanity-addresses > div > .progress').fadeOut();
@@ -73,7 +74,7 @@ var Vanity_AtTheStart = true;
 				$('.vanity-good-results .best').removeClass('best');
 				
 				$('.vanity-good-results').prepend('<div class="result best">' +
-					'<div class="result-address">' + KeyAddress + '</div>' + 
+					'<div class="result-address">' + HighlightAddress(KeyAddress, HighlightStart, HighlightLength) + '</div>' + 
 					'<div class="result-key">' + KeyHex + '</div>' + 
 					'</div>');
 					
@@ -154,7 +155,30 @@ var Vanity_AtTheStart = true;
 		UpdateVantiyOptions();
 	});
 	}
-	
+
+function HighlightAddress(KeyAddress, HighlightStart, HighlightLength)
+	{
+	if (HighlightStart == undefined || HighlightLength == undefined)
+		{
+		return KeyAddress;
+		}
+	else
+		{
+		if (HighlightStart == 0)
+			{
+			return '<b>' + KeyAddress.substr(0, HighlightLength) + '</b>' + KeyAddress.substr(HighlightStart + HighlightLength)
+			}
+		else if (HighlightStart + HighlightLength == KeyAddress.length)
+			{
+			return KeyAddress.substr(0, HighlightStart) + '<b>' + KeyAddress.substr(HighlightStart, HighlightLength) + '</b>';
+			}
+		else
+			{
+			return KeyAddress.substr(0, HighlightStart) + '<b>' + KeyAddress.substr(HighlightStart, HighlightLength) + '</b>' + KeyAddress.substr(HighlightStart + HighlightLength)
+			}
+		}
+	}
+
 function RefreshVanity()
 	{
 	if (ArmoryMode || ElectrumMode || CoinInfo[CurrentCoinType].manual || !Vanity_Enabled)
@@ -579,7 +603,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 1, Count_Best);
 			}
 			
 		if (Vanity.length > 1 && Vanity[1] != AddressLower[2])
@@ -594,7 +618,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 1, Count_Best);
 			}
 			
 		if (Vanity.length > 2 && Vanity[2] != AddressLower[3])
@@ -602,7 +626,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			if (Count_Best == 2)
 				{
 				if (GlobalGoodFound)
-					GlobalGoodFound(PrivateBytes, Address);				
+					GlobalGoodFound(PrivateBytes, Address, 1, Count_Best);				
 				}
 				
 			GenerateContinue(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Best, Address_Best, Count_Best, Vanity_Time_Begin, TestCount, TestCounted);
@@ -615,7 +639,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 1, Count_Best);
 			}
 			
 		if (Vanity.length > 3 && Vanity[3] != AddressLower[4])
@@ -623,7 +647,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			if (Count_Best == 3)
 				{
 				if (GlobalGoodFound)
-					GlobalGoodFound(PrivateBytes, Address);				
+					GlobalGoodFound(PrivateBytes, Address, 1, Count_Best);				
 				}
 				
 			GenerateContinue(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Best, Address_Best, Count_Best, Vanity_Time_Begin, TestCount, TestCounted);
@@ -636,7 +660,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 1, Count_Best);
 			}
 			
 		if (Vanity.length > 4 && Vanity[4] != AddressLower[5])
@@ -644,7 +668,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			if (Count_Best == 4)
 				{
 				if (GlobalGoodFound)
-					GlobalGoodFound(PrivateBytes, Address);				
+					GlobalGoodFound(PrivateBytes, Address, 1, Count_Best);				
 				}
 				
 			GenerateContinue(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Best, Address_Best, Count_Best, Vanity_Time_Begin, TestCount, TestCounted);
@@ -657,7 +681,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 1, Count_Best);
 			}
 		}
 	else if (VanityDictionary)
@@ -678,14 +702,24 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 		
 		if ((Result != null && Result[0]) || (Result2 != null && Result2[0]) || (Result3 != null && Result3[0]))
 			{
+			var Start = 0;
 			var CountWordLength = 0;
 			
 			if (Result != null && Result[0])
+				{
+				Start = 0;
 				CountWordLength = Result[1];
+				}
 			if (Result2 != null && Result2[0] && CountWordLength < Result2[1])
+				{
+				Start = 1;
 				CountWordLength = Result2[1];
+				}
 			if (Result3 != null && Result3[0] && CountWordLength < Result3[1])
+				{
 				CountWordLength = Result3[1];
+				Start = Address.length - CountWordLength;
+				}
 			
 			if (Count_Best == -1 || CountWordLength > Count_Best)
 				{
@@ -694,12 +728,12 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 				Address_Best = Address;
 				
 				if (GlobalNewBestFound)
-					GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+					GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, Start, CountWordLength);
 				}
 			else if (CountWordLength >= VanityDictionary_MinLetters)
 				{
 				if (GlobalGoodFound)
-					GlobalGoodFound(PrivateBytes, Address);
+					GlobalGoodFound(PrivateBytes, Address, Start, CountWordLength);
 				}
 			}
 		}
@@ -714,18 +748,18 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstUpper(Address));
 			}
 		else if (CountCaps == Count_Best)
 			{
 			if (GlobalGoodFound)
-				GlobalGoodFound(PrivateBytes, Address);
+				GlobalGoodFound(PrivateBytes, Address, 0,  IndexFirstUpper(Address));
 			}
 		
 		if (CountCaps == 0)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstUpper(Address));
 			return;
 			}
 		else
@@ -745,18 +779,18 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonUpper(Address));
 			}
 		else if (CountCaps == Count_Best)
 			{
 			if (GlobalGoodFound)
-				GlobalGoodFound(PrivateBytes, Address);
+				GlobalGoodFound(PrivateBytes, Address, 0,  IndexFirstNonUpper(Address));
 			}
 		
 		if (CountCaps == Address.length-1)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonUpper(Address));
 			return;
 			}
 		else
@@ -776,18 +810,18 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstDigit(Address.substr(1))+1);
 			}
 		else if (CountNum == Count_Best)
 			{
 			if (GlobalGoodFound)
-				GlobalGoodFound(PrivateBytes, Address);
+				GlobalGoodFound(PrivateBytes, Address, 0,  IndexFirstDigit(Address));
 			}
 		
 		if (CountNum == 0)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstDigit(Address.substr(1))+1);
 			return;
 			}
 		else
@@ -807,18 +841,18 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonDigit(Address.substr(1))+1);
 			}
 		else if (CountNum == Count_Best)
 			{
 			if (GlobalGoodFound)
-				GlobalGoodFound(PrivateBytes, Address);
+				GlobalGoodFound(PrivateBytes, Address, 0,  IndexFirstNonDigit(Address));
 			}
 		
 		if (CountNum == Address.length-1)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonDigit(Address.substr(1)));
 			return;
 			}
 		else
@@ -838,7 +872,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstLower(Address));
 			}
 		else if (CountLower == Count_Best)
 			{
@@ -849,7 +883,7 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 		if (CountLower == 0)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstLower(Address));
 			return;
 			}
 		else
@@ -869,18 +903,18 @@ function GenerateLoop(TestSpeed, tries, tries_count2, CoinType, PrivKeyBytes_Bes
 			Address_Best = Address;
 			
 			if (GlobalNewBestFound)
-				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best);
+				GlobalNewBestFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonLower(Address));
 			}
 		else if (CountLower == Count_Best)
 			{
 			if (GlobalGoodFound)
-				GlobalGoodFound(PrivateBytes, Address);
+				GlobalGoodFound(PrivateBytes, Address, 0,  IndexFirstNonLower(Address));
 			}
 		
 		if (CountLower == Address.length-1)
 			{
 			if (GlobalPerfectFound)
-				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best);
+				GlobalPerfectFound(PrivKeyBytes_Best, Address_Best, 0,  IndexFirstNonLower(Address));
 			return;
 			}
 		else

@@ -1,1446 +1,1461 @@
-
-@media print
-{
-	@page {size: landscape}
-	
-	.no-print,
-	.no-print li,
-	.round-block,
-	label,
-	em,
-	li,
-	a,
-	.coin-type,
-	.left-label,
-	.preload,
-	#header,
-	input
-	{
-		display: none !important;
-	}
-	#form1{
-		overflow: hidden !important;
-	}
-	.inner .section .sub-section.coin-setup-print{
-		min-height: 0px !important;
-	}
-	* 
-	{
-	background-color: none !important;
-	border: none !important;
-	}
-	body
-	{
-		margin: 0px;
-		padding: 0px;
-		zoom: 0.81;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(0.81);
-	}
-	.inner
-	{
-		max-width: 1220px !important;
-	}
-	#page.wrapper .inner
-	{
-		background-color: white !important;
-	}
-	.inner .section, 
-	.inner .section .sub-section,
-	#header,
-	.coin-setup-print,
-	.coin-setup,
-	.wrapper,
-	form,
-	body
-	{
-		margin: 0px !important;
-		padding: 0px !important;
-	}
-	.coin-wallets
-	{
-		float: left !important;
-		background-color: white !important;
-		zoom: 1.00 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.00) !important;	
-		height: auto !important;
-		border: none !important;
-		max-width: auto !important;
-		padding: 0px !important;
-		margin-bottom: 0px !important;
-		background-color: none !important;
-		margin-top:  0px !important;
-		margin-right: 0px !important;
-	}
-	.coin-wallets.back
-	{
-		float: right !important;
-	}
-	.coin-wallet.zoom-90
-	{
-		zoom: 0.90 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(0.90)  !important;
-	}
-	.coin-wallet.zoom-95
-	{
-		zoom: 0.95 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(0.95)  !important;
-	}
-	.coin-wallet.zoom-100
-	{
-		zoom: 1.00 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.00)  !important;
-	}
-	.coin-wallet.zoom-105
-	{
-		zoom: 1.05 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.05)  !important;
-	}
-	.coin-wallet.zoom-110
-	{
-		zoom: 1.10 !important;
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.10)  !important;
-	}
-	body
-	{
-	background-color: white !important;
-	}
-	.donate-reminder
-	{
-	display: none;
-	background: none;
-	top: 400px;
-	left: 100px;
-	position: absolute
-	}
-	.inner .section, .inner .section .sub-section
-	{
-		margin:0px;
-	}
-	.coin-wallets.key-chain .coin-wallet-address-qr
-	{
-	}
-	.coin-wallets.key-chain .coin-wallet-address
-	{
-		margin-left:-13px !important;
-	}
+@media print {
+  @page {
+    size: landscape;
+  }
+  .no-print,
+  .no-print li,
+  .round-block,
+  label,
+  em,
+  li,
+  a,
+  .coin-type,
+  .left-label,
+  .preload,
+  #header,
+  input {
+    display: none !important;
+  }
+  #form1 {
+    overflow: hidden !important;
+  }
+  .inner .section .sub-section.coin-setup-print {
+    min-height: 0px !important;
+  }
+  * {
+    background-color: none !important;
+    border: none !important;
+  }
+  body {
+    margin: 0px;
+    padding: 0px;
+    zoom: 0.81;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(0.81);
+  }
+  .inner {
+    max-width: 1220px !important;
+  }
+  #page.wrapper .inner {
+    background-color: white !important;
+  }
+  .inner .section,
+  .inner .section .sub-section,
+  #header,
+  .coin-setup-print,
+  .coin-setup,
+  .wrapper,
+  form,
+  body {
+    margin: 0px !important;
+    padding: 0px !important;
+  }
+  .coin-wallets {
+    float: left !important;
+    background-color: white !important;
+    zoom: 1.00 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(1) !important;
+    height: auto !important;
+    border: none !important;
+    max-width: auto !important;
+    padding: 0px !important;
+    margin-bottom: 0px !important;
+    background-color: none !important;
+    margin-top: 0px !important;
+    margin-right: 0px !important;
+  }
+  .coin-wallets.back {
+    float: right !important;
+  }
+  .coin-wallet.zoom-90 {
+    zoom: 0.90 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(0.9) !important;
+  }
+  .coin-wallet.zoom-95 {
+    zoom: 0.95 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(0.95) !important;
+  }
+  .coin-wallet.zoom-100 {
+    zoom: 1.00 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(1) !important;
+  }
+  .coin-wallet.zoom-105 {
+    zoom: 1.05 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(1.05) !important;
+  }
+  .coin-wallet.zoom-110 {
+    zoom: 1.10 !important;
+    -moz-transform-origin: left top;
+    -moz-transform: scale(1.1) !important;
+  }
+  body {
+    background-color: white !important;
+  }
+  .donate-reminder {
+    display: none;
+    background: none;
+    top: 400px;
+    left: 100px;
+    position: absolute;
+  }
+  .inner .section,
+  .inner .section .sub-section {
+    margin: 0px;
+  }
+  .coin-wallets.key-chain .coin-wallet-address {
+    margin-left: -13px !important;
+  }
 }
-
 @-moz-document url-prefix() {
-	@media print {
-	body
-	{
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.10)  !important;
-	}
-	.coin-wallets
-	{
-		-moz-transform-origin: left top;
-		-moz-transform: scale(1.00)  !important;
-	}
+  @media print {
+    body {
+      -moz-transform-origin: left top;
+      -moz-transform: scale(1.1) !important;
+    }
+    .coin-wallets {
+      -moz-transform-origin: left top;
+      -moz-transform: scale(1) !important;
+    }
+  }
 }
+body {
+  margin: 0px;
+  padding: 0px;
+  background-color: #f2f2f2;
 }
-
-body{
-	margin:0px;
-	padding:0px;
-	background-color:#f2f2f2;
+body.dark-theme input[readonly] {
+  background-color: #444 !important;
 }
-
-p{
-	margin:0px;
+body p {
+  margin: 0px;
 }
-
-
-.verifying.progress
-{
-display: none;
-position: relative;
-top: -43px;
-left: 77px;
-margin-bottom:-16px;
+body p em {
+  font-size: 14px;
+  font-weight: regular;
 }
-
-p em{font-size:14px;font-weight:regular;}
-
-#dark-box{
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	min-height:4000px;
-	position:absolute;
-	background-color:#000;
-	z-index:9999;
-	opacity:0.6;
-	display:none;
+.verifying.progress {
+  display: none;
+  position: relative;
+  top: -43px;
+  left: 77px;
+  margin-bottom: -16px;
 }
-
-/**bkg colors**/
-
-.darkColor-bkg{
-	background-color:#13374E;
+#dark-box {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 4000px;
+  position: absolute;
+  background-color: #000;
+  z-index: 9999;
+  opacity: 0.6;
+  display: none;
 }
-
-.medColor-bkg{
-	background-color:#125781;
+.darkColor-bkg {
+  background-color: #13374E;
 }
-
-.brightColor-bkg{
-	background-color:#3EB5FF;
-
+.medColor-bkg {
+  background-color: #125781;
 }
-
-.bold
-{
-font-weight: 500;
+.brightColor-bkg {
+  background-color: #3EB5FF;
 }
-
-.inner .section, .inner .section .sub-section
-{
-	position: relative;
+.bold {
+  font-weight: 500;
 }
-
-.medium-button, .large-button{
-	background-color:#3EB5FF;
-	color:#fff;
+.inner .section,
+.inner .section .sub-section {
+  position: relative;
 }
-
-.medium-button:hover, .large-button:hover{
-}
-
-.medium-button{
-	width:48%;
-
-}
-
-.medium-button.left{
-	float:left;
-	margin-right:4%;
-}
-
-.medium-button.last{
-	margin-right:0%;
-}
-
+.medium-button,
 .large-button {
-	font-size: 27px;
-	margin-top:20px;
-	padding: 16px;
-	width:100%;
-	height:50px;
-
+  background-color: #3EB5FF;
+  color: #fff;
 }
-.save-remove-buttons
-{
-float: right;
-width: 100%;
+.medium-button {
+  width: 48%;
+}
+.medium-button.left {
+  float: left;
+  margin-right: 4%;
+}
+.medium-button.last {
+  margin-right: 0%;
+}
+.large-button {
+  font-size: 27px;
+  margin-top: 20px;
+  padding: 16px;
+  width: 100%;
+  height: 50px;
+}
+.save-remove-buttons {
+  float: right;
+  width: 100%;
 }
 .button {
-	font-size: 15px;
-	padding: 10px;
+  font-size: 15px;
+  padding: 10px;
+  height: 30px;
 }
-
-
-.wrapper{
-	width:100%;
+.wrapper {
+  width: 100%;
 }
 .key-error,
-.key-success
-{
-width: 100%;
-margin: 5px;
-color: red;
-margin-bottom: -21px;
-top: -32px;
-position: relative !important;
-opacity: 0;
+.key-success {
+  width: 100%;
+  margin: 5px;
+  color: red;
+  margin-bottom: -21px;
+  top: -32px;
+  position: relative !important;
+  opacity: 0;
 }
-.key-error
-{
-color: red;
+.key-error {
+  color: red;
 }
-.key-success
-{
-color: green;
+.key-success {
+  color: green;
 }
-.private-key-error
-{
-color: red;
-top: 45px;
-position: relative;
-display: none;
-float: left;
-margin-bottom: -16px;
-text-align: center;
-width: 100%;
+.private-key-error {
+  color: red;
+  top: 45px;
+  position: relative;
+  display: none;
+  float: left;
+  margin-bottom: -16px;
+  text-align: center;
+  width: 100%;
 }
-#header{
-	width:100%;
-	overflow: visible;
-	position: relative;
-	height: 86px;
-	overflow-y: visible;
-	margin-bottom: 23px;
+#header {
+  width: 100%;
+  overflow: visible;
+  position: relative;
+  height: 86px;
+  overflow-y: visible;
+  margin-bottom: 23px;
 }
-#header .inner
-{
-	position: relative;
-	overflow-y: visible;
-	overflow: visible;
-	height: 117px;
-	margin-bottom: 53px;
+#header .inner {
+  position: relative;
+  overflow-y: visible;
+  overflow: visible;
+  height: 117px;
+  margin-bottom: 53px;
 }
-
-.switch-toggle.theme
-{
-	float: right;
-	width: 75px;
+.switch-toggle {
+  width: 70%;
+  float: left;
+  margin-bottom: 18px;
 }
-
-#logo{
-	margin: auto;
-	display: block;
-	width:162px;
-	float:left;
-	margin-top: 20px;
-	margin-bottom:10px;
+.switch-toggle.theme {
+  float: right;
+  width: 75px;
 }
-
-.section.security .left-label
-{
-width: 600px;
-text-align: left;
-height: 50px;
-padding: 19px;
-font-size: 12px;
+.switch-toggle label {
+  cursor: pointer;
 }
-.security-questions .switch-toggle
-{
-	width: 130px;
-	height: 50px;
+.switch-toggle.coins {
+  width: 100%;
 }
-.security-questions .switch-toggle label
-{
-	padding-top: 10px;
+.switch-toggle.right {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left: 1px solid #fff;
 }
-
-.switch-toggle label
-{
-cursor: pointer;
+.switch-toggle.right a {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
-
-#page.wrapper .inner{
-	min-height: 100%;
-	height: auto !important;
+.switch-toggle.switch-2 {
+  max-width: 200px;
 }
-
-div.inner{
-	max-width:1170px;
-	margin:auto;
+#logo {
+  margin: auto;
+  display: block;
+  width: 162px;
+  float: left;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
-
-/**************
-	Columns
-***************/
-.row{
-		position: relative;
-		display:block;
-		max-width:100%;
-		width:100%;
-		float:left;
-		clear:both;
-
-		        box-sizing:border-box;
-		   -moz-box-sizing:border-box;
-		-webkit-box-sizing:border-box;
+.section.security .left-label {
+  width: 600px;
+  text-align: left;
+  height: 50px;
+  padding: 19px;
+  font-size: 12px;
 }
-
-form .row .row{
-	width:100%;
+.section.security .round-block {
+  padding: 22px;
 }
-
-form .row .row > div{
-	padding:10px;
+.security-questions .switch-toggle {
+  width: 130px;
+  height: 50px;
 }
-
-.colone, .coltwo, .colthree, .colfour, .colfive, .colsix, .colseven, .coleight, .colnine, .colten, .coleleven, .coltwelve{
-			display: inline-block;
-			float:left;
-			overflow:auto;
-			margin-left:1%;
-			box-sizing:border-box;
-		   -moz-box-sizing:border-box;
-		-webkit-box-sizing:border-box;
+.security-questions .switch-toggle label {
+  padding-top: 10px;
 }
-
-.colinner{
-	padding:20px;
-	overflow: initial;
-	position: relative;
+#page.wrapper .inner {
+  min-height: 100%;
+  height: auto !important;
 }
-
-.colinner > h3{
-	text-align:center;
-	margin-bottom:10px;
+div.inner {
+  max-width: 1170px;
+  margin: auto;
 }
-.first{
-	margin-left:0px;
-	clear:left;
-
+div.rng-status {
+  border-radius: 5px;
 }
-
-.last{
-	float:right;
-	margin-right:0px;
+.row {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  width: 100%;
+  float: left;
+  clear: both;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
-
-.center{
-	float:none;
-	margin:auto;
+form .row .row {
+  width: 100%;
 }
-
-.colone{width:7.333%;}.coltow{width:15.666%;}.colthree{width:23.999%;}.colfour{width:32.333%;}.colfive{width:40.666%;}.colsix{width:48.999%;}.colseven{width:57.333%;}.coleight{width:65.666%;}.colnine{width:73.999%;}.colten{width:82.333%;}.coleleven{width:90.666%}.coltwelve{width:98.999%;}
-
-
-
-h1, h2, h3, h4, h5, h6{
-	font-weight:500;
-	color:#13374E;
+form .row .row > div {
+  padding: 10px;
 }
-
-
-.coin-wallets .encrypting.progress
-{
-width: 150px;
-height: 150px;
-background-size: 100%;
-margin-bottom: -150px;
-position: absolute;
+.colone,
+.coltwo,
+.colthree,
+.colfour,
+.colfive,
+.colsix,
+.colseven,
+.coleight,
+.colnine,
+.colten,
+.coleleven,
+.coltwelve {
+  display: inline-block;
+  float: left;
+  overflow: auto;
+  margin-left: 1%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
-.coin-wallets.frame-1 .encrypting.progress
-{
-width: 114px;
-height: 114px;
-top: 115px;
-left: 359px;
+.colinner {
+  padding: 20px;
+  overflow: initial;
+  position: relative;
 }
-.coin-wallets.frame-2 .encrypting.progress
-{
-width: 114px;
-height: 114px;
-top: 115px;
-left: 612px;
+.colinner > h3 {
+  text-align: center;
+  margin-bottom: 10px;
 }
-.coin-wallets.frame-3 .encrypting.progress
-{
-width: 114px;
-height: 114px;
-top: 92px;
-left: 55px;
+.first {
+  margin-left: 0px;
+  clear: left;
 }
-.coin-wallets.frame-4 .encrypting.progress
-{
-top: 97px;
-left: 504px;
+.last {
+  float: right;
+  margin-right: 0px;
 }
-.coin-wallets.frame-5 .encrypting.progress
-{
-top: 108px;
-left: 518px;
-width: 131px;
-height: 131px;
+.center {
+  float: none;
+  margin: auto;
 }
-.coin-wallets.frame-9 .encrypting.progress
-{
-top: 113px;
-left: 497px;
-height: 115px;
-width: 115px;
+.colone {
+  width: 7.333%;
 }
-
-.coin-type
-{
-top: -48px;
-left: 22px;
-height: 105px;
-background: #fff;
-z-index: 100000;
-position: absolute;
-padding: 0px;
-border: 1px solid #e2e2e2;
-border-radius: 5px;
-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+.coltow {
+  width: 15.666%;
 }
-
-#coin-key{
-	float: left;
-	width: 100%;
-	text-align: center;
+.colthree {
+  width: 23.999%;
 }
-#private-key-encrypt
-{
-margin: auto;
-margin-top: 10px;
+.colfour {
+  width: 32.333%;
 }
-.private-key-encrypted
-{
-display: block;
-opacity: 0;
-float: left;
-clear: left;
-width: 100%;
-margin-bottom: 15px;
-height: 0px;
+.colfive {
+  width: 40.666%;
 }
-#private-key-encrypted
-{
-width: 75%;
+.colsix {
+  width: 48.999%;
 }
-
-
-.coin-type .coin-type-radio,
-.wallet-backup-radio {
-	border: 1px solid;
-	padding: 4px;
-	border-radius: 5px;
-	margin: 3px;
-	background-color: #eeeeee;
+.colseven {
+  width: 57.333%;
 }
-.selector-grid[disabled],
-.selector-grid[disabled] .selector
-{
-cursor: default;
+.coleight {
+  width: 65.666%;
 }
-.selector-grid-wrapper
-{
-	z-index:10000;
-	max-width: 1102px;
+.colnine {
+  width: 73.999%;
 }
-
-.selector-grid-row{
-	display: block;
-	width: 100%;
-	height: 0px;
-	
-	background-color: #eee;
+.colten {
+  width: 82.333%;
 }
-
-.coin-type .selector-grid-wrapper.selecting .selector-grid-row{
-	height: 105px;
+.coleleven {
+  width: 90.666%;
 }
-
-.coins-grid-wrapper{
-	height:auto;
-	overflow:visible;
-	border-radius:10px;
+.coltwelve {
+  width: 98.999%;
 }
-.coin-grid-row{
-
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  color: #13374E;
 }
-.coins-grid-wrapper.selecting .coin-grid-row{
-	height: 105px;
+.coin-wallets {
+  zoom: 65%;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(0.65);
+  border: 1px dashed;
+  border-radius: 16px;
+  float: left;
+  padding: 15px;
+  margin-bottom: 50px;
+  background-color: #ddd;
+  min-height: 854px;
+  margin-top: 0px;
+  margin-right: -500px;
+  margin-bottom: -279px;
 }
-
-.design-grid-wrapper .design
-{
-	display:none;
-	width: 100px;
-	height: 100px;
-	background-size: 100%;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	float:left;
-	padding:115px 0px 0px 0px;
-	background-repeat:no-repeat;
-	background-position:center 10px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
-
-	border:1px solid #fff;
+.coin-wallets .encrypting.progress {
+  width: 150px;
+  height: 150px;
+  background-size: 100%;
+  margin-bottom: -150px;
+  position: absolute;
 }
-.coins-grid-wrapper .coin{
-	display:none;
-	width: 100px;
-	height: 100px;
-	background-size: 100%;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	float:left;
-	padding:115px 0px 0px 0px;
-	background-repeat:no-repeat;
-	background-position:center 10px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
-
-	border:1px solid #fff;
+.coin-wallets.frame-1 .encrypting.progress {
+  width: 114px;
+  height: 114px;
+  top: 115px;
+  left: 359px;
 }
-
-.selector-grid-wrapper .selector.active{
-	display: block;
+.coin-wallets.frame-2 .encrypting.progress {
+  width: 114px;
+  height: 114px;
+  top: 115px;
+  left: 612px;
 }
-	
-.selector-grid-wrapper.selecting .selector{
-	display: block;
-	background-color:#f3f3f3;
-	z-index: 1000;
+.coin-wallets.frame-3 .encrypting.progress {
+  width: 114px;
+  height: 114px;
+  top: 92px;
+  left: 55px;
 }
-.selector-grid-wrapper.selecting .frame.selector{
-	background-color:#888888;
+.coin-wallets.frame-4 .encrypting.progress {
+  top: 97px;
+  left: 504px;
 }
-
-.current-coin{
-	display:block;
-	width:120px;
-	height:105px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	padding:10px 10px 0px 10px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
-	background-color:#fff;
-	float:left;
+.coin-wallets.frame-5 .encrypting.progress {
+  top: 108px;
+  left: 518px;
+  width: 131px;
+  height: 131px;
 }
-
-.current-coin em{
-
-	font-weight: bold;
-	width: 100%;
-	font-style: normal;
-	display: inline-block;
-	text-align: center;
-	border-radius: 5px;
-	height: 25px;
+.coin-wallets.frame-9 .encrypting.progress {
+  top: 113px;
+  left: 497px;
+  height: 115px;
+  width: 115px;
 }
-.coins-grid-wrapper .coin:hover, 
-.coins-grid-wrapper .coin.active{
-	background-color:#eee;
+.coin-wallets .coin-logo {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: 65px;
+  left: 205px;
+  padding-top: 108px;
+  text-align: center;
+  background-repeat: no-repeat;
+  font-size: 26px;
+  opacity: 0.85;
 }
-.coins-grid-wrapper.selecting{
-	width: 100%;
-	overflow: visible;
-	float: left;
-	position: relative;
-	background-color:#eee;
-	margin-bottom: 10px;
-	box-shadow:0px 5px 10px rgba(0, 0, 0, 0.3);
+.coin-wallets .coin-logo:after {
+  color: white;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 7px;
+  border-radius: 25px;
 }
-
-
-
-.coin.selector{
-width: 80px;
-height: 105px;
+.coin-wallets.back .coin-logo {
+  top: 105px;
+  left: 300px;
+  background-size: 100%;
+  width: 133px;
+  height: 133px;
+}
+.coin-wallets.back .coin-logo:after {
+  content: none;
+  background-color: none;
+}
+.coin-wallets.back .zero-trust-wallet-seal {
+  left: 500px;
+  top: 40px;
+  z-index: 3;
+}
+.coin-wallets.back.key-chain .wallet-frame {
+  background: url('../images/wallet-frames/armory-frame-back.png') !important;
+}
+.coin-wallets.back.key-chain .coin-logo {
+  width: 200px;
+  height: 200px;
+  left: 269px;
+  top: 73px;
+}
+.coin-wallets.back.key-chain .chain-set {
+  display: none;
+}
+.coin-wallets.back.key-chain .chain-logo {
+  display: block;
+}
+.coin-wallets.key-chain .wallet-frame {
+  background: url('../images/wallet-frames/armory-frame.png') !important;
+}
+.coin-wallets.key-chain .coin-wallet-left {
+  margin: 0px !important;
+  position: absolute !important;
+  top: 0px !important;
+  left: 11px !important;
+}
+.coin-wallets.key-chain .coin-wallet-right {
+  margin: 0px;
+  top: 0px;
+  padding: 0px;
+  width: 359px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr {
+  left: 191px;
+  position: relative;
+  top: 30px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr canvas {
+  margin-top: 5px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  top: 166px;
+  position: absolute;
+  width: 313px;
+  font-size: 11px;
+  font-weight: bold;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.top {
+  left: 741px;
+}
+.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.bottom {
+  left: 913px;
+}
+.coin-wallets.key-chain .coin-wallet-address {
+  transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -webkit-transform: rotate(-90deg);
+  position: absolute;
+  display: block !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.bottom {
+  display: none !important;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-1 {
+  display: block;
+  left: -112px;
+  top: 169px;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-2 {
+  display: block;
+  top: 169px;
+  left: 6px;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-3 {
+  display: block;
+  top: 169px;
+  left: 38px;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-4 {
+  display: block;
+  top: 169px;
+  left: 170px;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-5 {
+  display: block;
+  top: 169px;
+  left: 202px;
+}
+.coin-wallets.key-chain .coin-wallet-address.address-6 {
+  display: block;
+  top: 169px;
+  left: 328px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr {
+  position: absolute;
+  margin: 0px !important;
+  width: 100px !important;
+  height: 132px !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr:before {
+  width: 100px !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr:after {
+  width: 100px !important;
+  font-size: 11px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr canvas {
+  width: 85px !important;
+  height: 85px !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-1 {
+  top: 29px;
+  left: 26px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-1:before {
+  content: '⇚ Address 1' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-2 {
+  display: block;
+  top: 193px;
+  left: 36px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-2:before {
+  content: 'Address 2 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-3 {
+  display: block;
+  top: 29px;
+  left: 185px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-3:before {
+  content: '⇚ Address 3' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-4 {
+  display: block;
+  top: 193px;
+  left: 199px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-4:before {
+  content: 'Address 4 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-4:before {
+  content: 'Change 1 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-5:before {
+  content: '⇚ Change 1' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-6:before {
+  content: 'Change 1 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-5:before {
+  content: '⇚ Change 2' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-6:before {
+  content: 'Change 2 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.change.change-3.qr-6:before {
+  content: 'Change 3 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-5 {
+  display: block;
+  top: 29px;
+  left: 347px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-5:before {
+  content: '⇚ Address 5' !important;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-6 {
+  display: block;
+  top: 193px;
+  left: 355px;
+}
+.coin-wallets.key-chain .coin-wallet-address-qr.qr-6:before {
+  content: 'Address 6 ⇛' !important;
+}
+.coin-wallets.key-chain .coin-logo.coin-name {
+  left: 509px;
+  top: 31px;
+}
+.coin-wallets.key-chain .cryptopapers-logo {
+  left: 486px;
+  top: 293px;
+}
+.coin-wallets.key-chain .chain-logo {
+  display: block;
+  width: 120px;
+  height: 120px;
+  position: absolute;
+  left: 50px;
+  top: 109px;
+  border-radius: 22px;
+  display: none;
+}
+.coin-wallets.key-chain.armory .chain-logo {
+  background: url('../images/armory.png');
+  background-size: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+.coin-wallets.key-chain.electrum .chain-logo {
+  background: url('../images/electrum.png');
+  background-size: 100%;
+}
+.coin-wallets.key-chain .coin-wallet-private-key-qr:after {
+  margin-top: 13px;
+}
+.coin-wallets.key-chain .chain-set {
+  display: block;
+  position: absolute;
+  top: 200px;
+  left: 500px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  padding: 5px;
+  color: black;
+  font-weight: bold;
+}
+.coin-wallets.key-chain .chain-set h1 {
+  font-size: 30px;
+  float: left;
+  margin: 0;
+  color: black;
+  font-weight: bold;
+}
+.coin-wallets.key-chain .chain-set .chain-set-number {
+  font-size: 30px;
+  float: left;
+  margin-top: 6px;
+  margin-left: 11px;
+  margin-right: 11px;
+}
+.coin-wallets .chain-set {
+  display: none;
+}
+.coin-type {
+  top: -48px;
+  left: 22px;
+  height: 105px;
+  background: #fff;
+  z-index: 100000;
+  position: absolute;
+  padding: 0px;
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.2);
+}
+.coin-type .selector-grid-wrapper.selecting .selector-grid-row {
+  height: 105px;
+}
+.coin-type .coin {
+  width: 100px;
+  margin: 0px;
+  padding: 0px;
+  text-align: center;
 }
 .coin-type .coin img {
-height: 80px;
-width: auto;
+  height: 80px;
+  width: auto;
 }
-
-/*
+.coin-type .coin:hover {
+  border-radius: 5px;
+  background-color: #e2e2e2;
+}
+#coin-key {
+  float: left;
+  width: 100%;
+  text-align: center;
+}
+#private-key-encrypt {
+  margin: auto;
+  margin-top: 10px;
+}
+.private-key-encrypted {
+  display: block;
+  opacity: 0;
+  float: left;
+  clear: left;
+  width: 100%;
+  margin-bottom: 15px;
+  height: 0px;
+}
+#private-key-encrypted {
+  width: 75%;
+}
 .coin-type .coin-type-radio,
 .wallet-backup-radio {
-	border: 1px solid;
-	padding: 4px;
-	border-radius: 5px;
-	margin: 3px;
-	background-color: #eeeeee;
+  border: 1px solid;
+  padding: 4px;
+  border-radius: 5px;
+  margin: 3px;
+  background-color: #eeeeee;
 }
-.selector-grid-wrapper
-{
-	z-index:10000;
-	max-width: 1102px;
+.selector-grid[disabled],
+.selector-grid[disabled] .selector {
+  cursor: default;
 }
-.selector-grid-row{
-	display: block;
-	width: 100%;
-	height: 0px;
+.selector-grid-wrapper {
+  z-index: 10000;
+  max-width: 1102px;
 }
-
-.coin-type .selector-grid-wrapper.selecting .selector-grid-row{
-	height: 140px;
+.selector-grid-wrapper .selector.active {
+  display: block;
 }
-
-.coins-grid-wrapper{
-	height:auto;
-	overflow:visible;
+.selector-grid-wrapper.selecting .selector {
+  display: block;
+  background-color: #f3f3f3;
+  z-index: 1000;
 }
-.coin-grid-row{
-
+.selector-grid-wrapper.selecting .frame.selector {
+  background-color: #888888;
 }
-.coins-grid-wrapper.selecting .coin-grid-row{
-	height: 140px;
+.selector-grid-row {
+  display: block;
+  width: 100%;
+  height: 0px;
+  background-color: #eee;
 }
-
-.design-grid-wrapper .design
-{
-	display:none;
-	width: 100px;
-	height: 100px;
-	background-size: 100%;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	float:left;
-	padding:115px 0px 0px 0px;
-	background-repeat:no-repeat;
-	background-position:center 10px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
-
-	border:1px solid #fff;
+.coins-grid-wrapper {
+  height: auto;
+  overflow: visible;
+  border-radius: 10px;
 }
-.coins-grid-wrapper .coin{
-	background-size: 100%;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	float:left;
-	background-repeat:no-repeat;
-	background-position:left 10px;
-	background-size:50px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
+.coins-grid-wrapper.selecting {
+  width: 100%;
+  overflow: visible;
+  float: left;
+  position: relative;
+  background-color: #eee;
+  margin-bottom: 10px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.3);
 }
-
-.selector-grid-wrapper .selector.active{
-	display: block;
+.coins-grid-wrapper.selecting .coin-grid-row {
+  height: 105px;
 }
-	
-.selector-grid-wrapper.selecting .selector{
-	display: block;
-	background-color:#fff;
-	z-index: 1000;
+.coins-grid-wrapper .coin {
+  display: none;
+  width: 100px;
+  height: 100px;
+  background-size: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  float: left;
+  padding: 115px 0px 0px 0px;
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #fff;
 }
-.selector-grid-wrapper.selecting .frame.selector{
-	background-color:#888888;
+.coins-grid-wrapper .coin em {
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  padding-bottom: 5px;
+  font-style: normal;
+  padding-top: 2px;
+  background: #dddddd;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 0px;
+  font-weight: bold;
+  color: #666;
 }
-
-.current-coin{
-	display:block;
-	width:120px;
-	height:140px;
-	box-sizing:border-box;
-	-moz-box-sizing:border-box;
-	padding:10px 10px 0px 10px;
-	border-radius:5px;
-	-moz-border-radius:5px;
-	cursor:pointer;
-	background-color:#fff;
-	float:left;
+.design-grid-wrapper .design {
+  display: none;
+  width: 100px;
+  height: 100px;
+  background-size: 100%;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  float: left;
+  padding: 115px 0px 0px 0px;
+  background-repeat: no-repeat;
+  background-position: center 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  cursor: pointer;
+  border: 1px solid #fff;
 }
-
-.current-coin em{
-
-	font-weight: 500;
-	width: 100%;
-	font-style: normal;
-	display: inline-block;
-	text-align: center;
-	border-radius: 5px;
-	height: 25px;
+.current-coin {
+  display: block;
+  width: 120px;
+  height: 105px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  padding: 10px 10px 0px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  cursor: pointer;
+  background-color: #fff;
+  float: left;
 }
-.coins-grid-wrapper .coin:hover, 
-.coins-grid-wrapper .coin.active{
-	background-color:transparent;
+.current-coin em {
+  font-weight: bold;
+  width: 100%;
+  font-style: normal;
+  display: inline-block;
+  text-align: center;
+  border-radius: 5px;
+  height: 25px;
 }
-.coins-grid-wrapper.selecting{
-	width: 100%;
-	overflow: visible;
-	float: left;
-	position: relative;
-	background-color:#eee;
-	margin-bottom: 10px;
-	box-shadow:0px 5px 10px rgba(0, 0, 0, 0.3);
+.coins-grid-wrapper .coin:hover,
+.coins-grid-wrapper .coin.active {
+  background-color: #eee;
 }
-
-
-
-.coins-grid-wrapper .coin em{
-	display:inline-block;
-	text-align:center;
-	font-style: normal;
-	color: #3a7abc;
-	display:block;
-	width: 100%;
-	padding:5px 0px 5px 0px;
-	text-transform:uppercase;
-	position:relative;
-	z-index:100;
-	border-radius:5px;
-	text-align:center;
+.coin.selector {
+  height: 105px;
+  padding: 0px;
 }
-
-.coin.selector img{
-	display:block;
-	width:50px;
-	margin:auto;
+.coin.disabled {
+  -webkit-filter: grayscale(100%);
+  cursor: default !important;
 }
-
-#coin-selected{
-	position:absolute;
-	display:block;
-	top:110px;
-	right:0px;
-}
-
-#coin-selected:hover{
-	cursor:pointer;
-}
-
-#coin-selected img{
-	float: left;
-	display: block;
-	width: 50px;
-	position: relative;
-	z-index: 1000;
-}
-
-#coin-selected em{
-	display:inline-block;
-	text-align:center;
-	font-style: normal;
-	background-color: #3a7abc;
-	color: #fff;
-	display:block;
-	float:left;
-	width: 70px;
-	padding:5px 5px 5px 10px;
-	margin-left:-16px;
-	position:relative;
-	z-index:100;
-	margin-top:13px;
-	border-radius:5px;
-	text-transform:uppercase;
-}
-
-#coin-selected .notch{
-	border-left: 8px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #ffffff;
-	display: none;
-	position: absolute;
-	top: 58px;
-	width: 0;
-	height: 0;
-	z-index: 1000000;
-	left: 17px;
-}
-
-#coin-selected .notchBack{
-	border-left: 8px solid transparent;
-	border-right: 10px solid transparent;
-	border-bottom: 10px solid #e2e2e2;
-	display: none;
-	position: absolute;
-	top: 56px;
-	width: 0;
-	height: 0;
-	z-index: 100009;
-	left: 17px;
-}
-
-#coin-selected.active .notch, #coin-selected.active .notchBack{
-	display:block;
-}
-*/
 .coin-wallets.btc .coin-logo,
 .coin.btc-coin {
-	background-image:url('../images/coin-icons/btc-logo.png');
+  background-image: url('../images/coin-icons/btc-logo.png');
 }
-.btc .coin-name:after
-{
-content: 'Bitcoin';
+.btc .coin-name:after {
+  content: 'Bitcoin';
 }
-
 .coin-wallets.ltc .coin-logo,
-.coin.ltc-coin{
-	background-image:url('../images/coin-icons/ltc-logo.png');
+.coin.ltc-coin {
+  background-image: url('../images/coin-icons/ltc-logo.png');
 }
-.ltc .coin-name:after
-{
-content: 'Litecoin';
+.ltc .coin-name:after {
+  content: 'Litecoin';
 }
-
 .coin-wallets.nmc .coin-logo,
-.coin.nmc-coin{
-	background-image:url('../images/coin-icons/nmc-logo.png');
+.coin.nmc-coin {
+  background-image: url('../images/coin-icons/nmc-logo.png');
 }
-.nmc .coin-name:after
-{
-content: 'Namecoin';
+.nmc .coin-name:after {
+  content: 'Namecoin';
 }
-
 .coin-wallets.nxt .coin-logo,
-.coin.nxt-coin{
-	background-image:url('../images/coin-icons/nxt-logo.png');
+.coin.nxt-coin {
+  background-image: url('../images/coin-icons/nxt-logo.png');
 }
-.nxt .coin-name:after
-{
-content: 'NXT';
+.nxt .coin-name:after {
+  content: 'NXT';
 }
-
 .coin-wallets.nem .coin-logo,
-.coin.nem-coin{
-	background-image:url('../images/coin-icons/nem-logo.png');
+.coin.nem-coin {
+  background-image: url('../images/coin-icons/nem-logo.png');
 }
-.nem .coin-name:after
-{
-content: 'NEM';
+.nem .coin-name:after {
+  content: 'NEM';
 }
-
 .coin-wallets.ppc .coin-logo,
-.coin.ppc-coin{
-	background-image:url('../images/coin-icons/ppc-logo.png');
+.coin.ppc-coin {
+  background-image: url('../images/coin-icons/ppc-logo.png');
 }
-.ppc .coin-name:after
-{
-content: 'Peercoin';
+.ppc .coin-name:after {
+  content: 'Peercoin';
 }
-
 .coin-wallets.doge .coin-logo,
-.coin.doge-coin{
-	background-image:url('../images/coin-icons/doge-logo.png');
+.coin.doge-coin {
+  background-image: url('../images/coin-icons/doge-logo.png');
 }
-.doge .coin-name:after
-{
-content: 'Dogecoin';
+.doge .coin-name:after {
+  content: 'Dogecoin';
 }
-
-
 .coin-wallets.xpm .coin-logo,
-.coin.xpm-coin{
-	background-image:url('../images/coin-icons/xpm-logo.png');
+.coin.xpm-coin {
+  background-image: url('../images/coin-icons/xpm-logo.png');
 }
-.xpm .coin-name:after
-{
-content: 'Primecoin';
+.xpm .coin-name:after {
+  content: 'Primecoin';
 }
-
-
 .coin-wallets.aur .coin-logo,
-.coin.aur-coin{
-	background-image:url('../images/coin-icons/aur-logo.png');
+.coin.aur-coin {
+  background-image: url('../images/coin-icons/aur-logo.png');
 }
-.aur .coin-name:after
-{
-content: 'Auroracoin';
+.aur .coin-name:after {
+  content: 'Auroracoin';
 }
-
-
 .coin-wallets.msc .coin-logo,
-.coin.msc-coin{
-	background-image:url('../images/coin-icons/msc-logo.png');
+.coin.msc-coin {
+  background-image: url('../images/coin-icons/msc-logo.png');
 }
-.msc .coin-name:after
-{
-content: 'Mastercoin';
+.msc .coin-name:after {
+  content: 'Mastercoin';
 }
-
-
 .coin-wallets.vtc .coin-logo,
-.coin.vtc-coin{
-	background-image:url('../images/coin-icons/vtc-logo.png');
+.coin.vtc-coin {
+  background-image: url('../images/coin-icons/vtc-logo.png');
 }
-.vtc .coin-name:after
-{
-content: 'Vertcoin';
+.vtc .coin-name:after {
+  content: 'Vertcoin';
 }
-
 .coin-wallets.mint .coin-logo,
-.coin.mint-coin{
-	background-image:url('../images/coin-icons/mint-logo.png');
+.coin.mint-coin {
+  background-image: url('../images/coin-icons/mint-logo.png');
 }
-.mint .coin-name:after
-{
-content: 'Mintcoin';
+.mint .coin-name:after {
+  content: 'Mintcoin';
 }
-
 .coin-wallets.xcp .coin-logo,
-.coin.xcp-coin{
-	background-image:url('../images/coin-icons/xcp-logo.png');
+.coin.xcp-coin {
+  background-image: url('../images/coin-icons/xcp-logo.png');
 }
-.xcp .coin-name:after
-{
-content: 'Counterparty';
+.xcp .coin-name:after {
+  content: 'Counterparty';
 }
-
 .coin-wallets.ftc .coin-logo,
-.coin.ftc-coin{
-	background-image:url('../images/coin-icons/ftc-logo.png');
+.coin.ftc-coin {
+  background-image: url('../images/coin-icons/ftc-logo.png');
 }
-.ftc .coin-name:after
-{
-content: 'Feathercoin';
+.ftc .coin-name:after {
+  content: 'Feathercoin';
 }
-
 .coin-wallets.pts .coin-logo,
-.coin.pts-coin{
-	background-image:url('../images/coin-icons/pts-logo.png');
+.coin.pts-coin {
+  background-image: url('../images/coin-icons/pts-logo.png');
 }
-.pts .coin-name:after
-{
-content: 'ProtoShares';
+.pts .coin-name:after {
+  content: 'ProtoShares';
 }
-
 .coin-wallets.qrk .coin-logo,
-.coin.qrk-coin{
-	background-image:url('../images/coin-icons/qrk-logo.png');
+.coin.qrk-coin {
+  background-image: url('../images/coin-icons/qrk-logo.png');
 }
-.qrk .coin-name:after
-{
-content: 'Quark';
+.qrk .coin-name:after {
+  content: 'Quark';
 }
-
 .coin-wallets.cgb .coin-logo,
-.coin.cgb-coin{
-	background-image:url('../images/coin-icons/cgb-logo.png');
+.coin.cgb-coin {
+  background-image: url('../images/coin-icons/cgb-logo.png');
 }
-.cgb .coin-name:after
-{
-content: 'Cryptogenic';
+.cgb .coin-name:after {
+  content: 'Cryptogenic';
 }
-
 .coin-wallets.dtc .coin-logo,
-.coin.dtc-coin{
-	background-image:url('../images/coin-icons/dtc-logo.png');
+.coin.dtc-coin {
+  background-image: url('../images/coin-icons/dtc-logo.png');
 }
-.dtc .coin-name:after
-{
-content: 'Datacoin';
+.dtc .coin-name:after {
+  content: 'Datacoin';
 }
-
 .coin-wallets.dvc .coin-logo,
-.coin.dvc-coin{
-	background-image:url('../images/coin-icons/dvc-logo.png');
+.coin.dvc-coin {
+  background-image: url('../images/coin-icons/dvc-logo.png');
 }
-.dvc .coin-name:after
-{
-content: 'Devcoin';
+.dvc .coin-name:after {
+  content: 'Devcoin';
 }
-
 .coin-wallets.dgc .coin-logo,
-.coin.dgc-coin{
-	background-image:url('../images/coin-icons/dgc-logo.png');
+.coin.dgc-coin {
+  background-image: url('../images/coin-icons/dgc-logo.png');
 }
-.dgc .coin-name:after
-{
-content: 'Digitalcoin';
+.dgc .coin-name:after {
+  content: 'Digitalcoin';
 }
-
 .coin-wallets.ifc .coin-logo,
-.coin.ifc-coin{
-	background-image:url('../images/coin-icons/ifc-logo.png');
+.coin.ifc-coin {
+  background-image: url('../images/coin-icons/ifc-logo.png');
 }
-.ifc .coin-name:after
-{
-content: 'Infinitecoin';
+.ifc .coin-name:after {
+  content: 'Infinitecoin';
 }
-
 .coin-wallets.ixc .coin-logo,
-.coin.ixc-coin{
-	background-image:url('../images/coin-icons/ixc-logo.png');
+.coin.ixc-coin {
+  background-image: url('../images/coin-icons/ixc-logo.png');
 }
-.ixc .coin-name:after
-{
-content: 'Ixcoin';
+.ixc .coin-name:after {
+  content: 'Ixcoin';
 }
-
 .coin-wallets.mmc .coin-logo,
-.coin.mmc-coin{
-	background-image:url('../images/coin-icons/mmc-logo.png');
+.coin.mmc-coin {
+  background-image: url('../images/coin-icons/mmc-logo.png');
 }
-.mmc .coin-name:after
-{
-content: 'Memorycoin';
+.mmc .coin-name:after {
+  content: 'Memorycoin';
 }
-
 .coin-wallets.nvc .coin-logo,
-.coin.nvc-coin{
-	background-image:url('../images/coin-icons/nvc-logo.png');
+.coin.nvc-coin {
+  background-image: url('../images/coin-icons/nvc-logo.png');
 }
-.nvc .coin-name:after
-{
-content: 'Novacoin';
+.nvc .coin-name:after {
+  content: 'Novacoin';
 }
-
 .coin-wallets.trc .coin-logo,
-.coin.trc-coin{
-	background-image:url('../images/coin-icons/trc-logo.png');
+.coin.trc-coin {
+  background-image: url('../images/coin-icons/trc-logo.png');
 }
-.trc .coin-name:after
-{
-content: 'Terracoin';
+.trc .coin-name:after {
+  content: 'Terracoin';
 }
-
 .coin-wallets.wdc .coin-logo,
-.coin.wdc-coin{
-	background-image:url('../images/coin-icons/wdc-logo.png');
+.coin.wdc-coin {
+  background-image: url('../images/coin-icons/wdc-logo.png');
 }
-.wdc .coin-name:after
-{
-content: 'Worldcoin';
+.wdc .coin-name:after {
+  content: 'Worldcoin';
 }
-
 .coin-wallets.zet .coin-logo,
-.coin.zet-coin{
-	background-image:url('../images/coin-icons/zet-logo.png');
+.coin.zet-coin {
+  background-image: url('../images/coin-icons/zet-logo.png');
 }
-.zet .coin-name:after
-{
-content: 'Zetacoin';
+.zet .coin-name:after {
+  content: 'Zetacoin';
 }
-
 .coin-wallets.drk .coin-logo,
-.coin.drk-coin{
-	background-image:url('../images/coin-icons/drk-logo.png');
+.coin.drk-coin {
+  background-image: url('../images/coin-icons/drk-logo.png');
 }
-.drk .coin-name:after
-{
-content: 'Darkcoin';
+.drk .coin-name:after {
+  content: 'Darkcoin';
 }
-
-
-.key-details .coin
-{
-position:absolute;
-width: 35px;
-height: 35px;
-background-size: 100%;
-left:210px;
-top:24px;
+.key-details {
+  opacity: 0;
+  overflow: initial;
 }
-.coin-type .coin
-{
-width: 100px;
-margin: 0px;
-padding: 0px;
-text-align: center;
+.key-details .coin {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-size: 100%;
+  left: 210px;
+  top: 24px;
 }
-.coin-type .coin img
-{
+.key-details.minimized {
+  height: 165px;
 }
-.copyright
-{
-top: 17px;
-color: white;
-position: relative;
-left: -38px;
-text-shadow: 1px 1px 1px white;
-font-size: 11px;
-float: left;
+.key-details.minimized .minimize-hide {
+  display: none;
 }
-
-.coin-type .coin:hover{
-	border-radius:5px;
-	background-color:#e2e2e2;
+.key-details.minimized .chain-keys .coin-wallet-address-qr {
+  display: block;
+  top: -35px;
+  left: 182px;
 }
-
-.coin.disabled {
-	-webkit-filter: grayscale(100%);
-	cursor: default !important;
+.key-details.minimized .chain-keys .coin-wallet-private-key-qr {
+  display: none;
+  float: left;
 }
-.coming-soon{
-
-	width: 90px;
-	position: relative;
-	top: -32px;
-	float: inherit;
-	-webkit-transform: rotate(-10deg);
-	-moz-transform: rotate(-10deg);
-	
-	height: 0px;
-	font-weight: bolder;
-	text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
-	font-size: 13px;
-color: white;
+.key-details h3 {
+  margin-bottom: 60px;
 }
-
-.manual-hide
-{
-float: left;
-width: 100%;
+.key-details .coin-wallet-private-key-qr {
+  top: 40px;
+  left: 555px;
 }
-.coming-soon.manual-entry
-{
-width: 76px;
-left: 10px;
+.key-details .coin-wallet-address-qr {
+  top: 40px;
+  left: 460px;
 }
-
-.coming-soon.untested
-{
-left: 14px;
-text-shadow: 1px 1px 9px rgba(0, 0, 0, 1);
+.key-details .encrypted {
+  left: 611px;
+  position: relative;
+  width: 28px;
+  height: 35px;
+  margin-top: -33px;
+  margin-bottom: -7px;
 }
-
+.key-details .encrypted.top {
+  top: -47px;
+  margin-bottom: 0px;
+}
+.copyright {
+  top: 17px;
+  color: white;
+  position: relative;
+  left: -38px;
+  text-shadow: 1px 1px 1px white;
+  font-size: 11px;
+  float: left;
+}
+.coming-soon {
+  width: 90px;
+  position: relative;
+  top: -32px;
+  float: inherit;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  height: 0px;
+  font-weight: bolder;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.3);
+  font-size: 13px;
+  color: white;
+}
+.coming-soon.manual-entry {
+  width: 76px;
+  left: 10px;
+}
+.coming-soon.untested {
+  left: 14px;
+  text-shadow: 1px 1px 9px #000000;
+}
+.manual-hide {
+  float: left;
+  width: 100%;
+}
 label.left-label {
-	width: 140px;
-	display: block;
-	float: left;
-	clear: left;
-	background-color: #D8D8D8;
-	padding: 4px;
-	font-size: 12px;
-	border-bottom-left-radius: 3px;
-	border-top-left-radius: 3px;
-	border-right: none;
-	color: #000;
-	margin-bottom:2px;
-	padding-right:20px;
-	text-align:right;
-	font-weight: bolder;
+  width: 140px;
+  display: block;
+  float: left;
+  clear: left;
+  background-color: #D8D8D8;
+  padding: 4px;
+  font-size: 12px;
+  border-bottom-left-radius: 3px;
+  border-top-left-radius: 3px;
+  border-right: none;
+  color: #000;
+  margin-bottom: 2px;
+  padding-right: 20px;
+  text-align: right;
+  font-weight: bolder;
 }
-.random-info .left-label
-{	
-	margin-top: 10px;
-	width: 146px;
-	padding: 5px;
+label::-moz-focus-inner {
+  border: 0;
 }
-.random-info .rng-keep-collecting
-{
-	margin-top: 10px;
-	margin-bottom: 10px;
-	max-width: 158px !important;
+.random-info {
+  float: right;
+  position: relative;
+  height: 97px;
 }
-
+.random-info .left-label {
+  margin-top: 10px;
+  width: 146px;
+  padding: 5px;
+}
+.random-info .rng-keep-collecting {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  max-width: 158px !important;
+}
+.random-info h3 {
+  margin-top: 10px;
+}
+.random-info label:first-child {
+  padding-top: 0px;
+}
 .coin-setup > div,
 .coin-setup > .key-import > div {
-	min-height: 50px
+  min-height: 50px;
 }
-.hue-shift-button
-{
-float: left;
-height: 50px;
-width: 50px !important;
+.hue-shift-button {
+  float: left;
+  height: 50px;
+  width: 50px !important;
 }
-.coin-wallet-background
-{
-position: absolute;
-top: 0px;
-left: 0px;
-z-index: 1;
-width: 100%;
-max-width: none;
+.coin-wallet-background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
+  width: 100%;
+  max-width: none;
 }
-.design-type .coin-wallet-background
-{
-top: 5px;
-border-radius: 10px;
-width: 207px;
-height: 67px;
-margin: auto;
-position: inherit;
-z-index: 0;
+.design-type {
+  top: 138px;
+  height: 77px;
+  overflow: hidden;
 }
-
-.input-key
-{
-float: left;
-clear: both;
-width: 100%;
-border-radius: 10px;
+.design-type .coin-wallet-background {
+  top: 5px;
+  border-radius: 10px;
+  width: 207px;
+  height: 67px;
+  margin: auto;
+  position: inherit;
+  z-index: 0;
 }
-.decrypt-key
-{
-float: left;
-clear: both;
-text-align: center;
-margin-top: 12px;
-margin-bottom: 10px;
-width: 100%;
+.design-type .active > .coin-wallet-background {
+  border: 5px solid;
 }
-.design-type .active > .coin-wallet-background
-{
-border: 5px solid;
+.design-type.selecting {
+  max-height: 509px;
+  overflow-y: scroll;
+  max-width: 1114px;
+  left: -433px;
+  top: 12px;
+  height: auto;
+  padding: 0px;
 }
-.dismissable
-{
-position: relative;
+.input-key {
+  float: left;
+  clear: both;
+  width: 100%;
+  border-radius: 10px;
 }
-.dismissable .close-button
-{
-background-image: url('../images/close.png');
-width: 22px;
-height: 22px;
-background-size: 100%;
-position: absolute;
-right: 8px;
-top: 8px;
-cursor: pointer;
-opacity: 0.5;
-z-index: 1;
+.input-key .electrum .left-label {
+  width: 185px;
+  padding: 9px;
 }
-.minimizable
-{
+.decrypt-key {
+  float: left;
+  clear: both;
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 10px;
+  width: 100%;
 }
-.minimizable.minimized
-{
-overflow: hidden;
+.decrypt-key .progress {
+  margin-bottom: 5px;
+  margin-left: -7px;
+  margin: auto;
+  top: 75px;
+  position: relative;
+  float: left;
+  left: 67%;
 }
-.minimizable .minimize-button
-{
-z-index:1;
-background-image: url('../images/minus.png');
-width: 22px;
-height: 22px;
-background-size: 100%;
-position: absolute;
-left: 8px;
-top: 8px;
-cursor: pointer;
-opacity: 0.5;
-z-index: 1;
+.dismissable {
+  position: relative;
 }
-.minimizable.minimized .minimize-button
-{
-background-image: url('../images/plus.png');
+.dismissable .close-button {
+  background-image: url('../images/close.png');
+  width: 22px;
+  height: 22px;
+  background-size: 100%;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 1;
 }
-.private-key-error-correction
-{
-display: block;
-max-height: none;
-padding-top: 0px;
-padding-bottom: 0px;
-opacity: 1;
-height: inherit;
-background: rgba(0,0,0,0.05);
-border-radius: 38px;
-margin-top: 66px;
-padding: 23px;
-padding-bottom: 96px;
+.minimizable.minimized {
+  overflow: hidden;
 }
-.error-correct-options
-{
-text-align: center;
-margin:10px;
+.minimizable.minimized .minimize-button {
+  background-image: url('../images/plus.png');
 }
-.error-correct-options > div
-{
-display: inline-block;
-width: 360px;
+.minimizable .minimize-button {
+  background-image: url('../images/minus.png');
+  width: 22px;
+  height: 22px;
+  background-size: 100%;
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  cursor: pointer;
+  opacity: 0.5;
+  z-index: 1;
 }
-.error-correct-options label
-{
-float: left;
-clear: right;
-font-weight: bold;
+.private-key-error-correction {
+  display: block;
+  max-height: none;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  opacity: 1;
+  height: inherit;
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 38px;
+  margin-top: 66px;
+  padding: 23px;
+  padding-bottom: 96px;
 }
-.error-correct-options input
-{
-float: left;
-clear: left;
+.error-correct-options {
+  text-align: center;
+  margin: 10px;
 }
-.help-toggle
-{
-background-image: url('../images/help.png');
-width: 22px;
-height: 22px;
-float: right;
-cursor: pointer;
-opacity: 0.5;
-top: 8px;
-right: 8px;
-position:absolute;
-z-index: 1;
+.error-correct-options > div {
+  display: inline-block;
+  width: 360px;
 }
-#private-key-recover-no
-{
-width: 45%;
-float: left;
+.error-correct-options label {
+  float: left;
+  clear: right;
+  font-weight: bold;
 }
-#private-key-recover-yes
-{
-width: 45%;
-float: right;
+.error-correct-options input {
+  float: left;
+  clear: left;
 }
-
-
-.help-active .help-toggle
-{
-opacity: 1.0;
+.help-toggle {
+  background-image: url('../images/help.png');
+  width: 22px;
+  height: 22px;
+  float: right;
+  cursor: pointer;
+  opacity: 0.5;
+  top: 8px;
+  right: 8px;
+  position: absolute;
+  z-index: 1;
+}
+#private-key-recover-no {
+  width: 45%;
+  float: left;
+}
+#private-key-recover-yes {
+  width: 45%;
+  float: right;
+}
+.help-active .help-toggle {
+  opacity: 1.0;
+}
+.help-active .help-bubble {
+  display: block;
 }
 .bubble-text,
-.help-bubble
-{
-border:1px solid;
-border-radius: 5px;
-margin-top:0px;
-margin-bottom:10px;
-height: 0px;
-display: none;
-opacity: 0;
-background-color: rgba(255, 255, 255, 0.61);
-border-color: #ccc;
-width: 100%;
-box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+.help-bubble {
+  border: 1px solid;
+  border-radius: 5px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  height: 0px;
+  display: none;
+  opacity: 0;
+  background-color: rgba(255, 255, 255, 0.61);
+  border-color: #ccc;
+  width: 100%;
+  box-shadow: 0 3px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
-
-.private-key-address-manual.bubble-text
-{
-	padding:10px;
-	font-size:12px;
-	text-align: center;
-	margin-left: 18%;
-	width: 80%;
+.private-key-address-manual.bubble-text {
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+  margin-left: 18%;
+  width: 80%;
 }
-.private-key-address-manual.address-box
-{
-text-align: center;
+.private-key-address-manual.address-box {
+  text-align: center;
 }
-.private-key-address-manual.address-box label
-{
-font-size: 1.6875rem;
+.private-key-address-manual.address-box label {
+  font-size: 1.6875rem;
 }
-
-
-.help-bubble > span
-{
-margin: 20px;
-display: block;
+.private-key-address-manual .qr-icon {
+  top: -29px;
 }
-.help-active .help-bubble
-{
-display: block;
+.help-bubble > span {
+  margin: 20px;
+  display: block;
 }
-
-noscript p
-{
-width: 523px;
-margin: auto;
-background: rgba(0,0,0,0.1);
-padding: 15px;
-border-radius: 10px;
-border: 2px solid rgba(0,0,0,0.2);
-box-shadow: 3px 5px 13px rgba(0,0,0,0.5);
-font-weight: bold;
+noscript p {
+  width: 523px;
+  margin: auto;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 3px 5px 13px rgba(0, 0, 0, 0.5);
+  font-weight: bold;
 }
-
-.risk-contact-us
-{
-margin-top: 10px;
+.risk-contact-us {
+  margin-top: 10px;
 }
-#form1{
-	overflow: visible;
-	text-align: center;
+#form1 {
+  overflow: visible;
 }
-input{
-	font-weight:300;
+input {
+  font-weight: 300;
 }
 input[type=text],
-input[type=password]{
-	height:30px;
-	margin:0px;
+input[type=password] {
+  height: 30px;
+  margin: 0px;
 }
-
 #private-key-wif,
 #private-key-hex,
 #public-key-hex,
@@ -1449,2353 +1464,1579 @@ input[type=password]{
 #public-key-address-checksum,
 #public-key-hash160,
 #coin-address-verify,
-#private-key-checksum
-{
-	width: 75%;
-	display:block;
-	float:left;
-	margin-bottom:20px;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-	padding: 3px;
+#private-key-checksum {
+  width: 75%;
+  display: block;
+  float: left;
+  margin-bottom: 20px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  padding: 3px;
 }
-
 input[readonly],
-textarea[readonly]
-{
-	background-color: #fff;
-	cursor: default;
-	border-radius:5px;
-	box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+textarea[readonly] {
+  background-color: #fff;
+  cursor: default;
+  border-radius: 5px;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
-
 #private-key-generate {
-	display: block;
-	width: 100%;
-	border:none;
-	border-right: none;
-	border-radius: 5px;
-	top: 23px;
-	font-weight: bolder;
-	margin-bottom:20px;
-	height: 50px;
-	height: 0px;
-	opacity: 0;
-	padding: 0px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-right: none;
+  border-radius: 5px;
+  top: 23px;
+  font-weight: bolder;
+  margin-bottom: 20px;
+  height: 50px;
+  height: 0px;
+  opacity: 0;
+  padding: 0px;
 }
-
-#private-key-generate[disabled]{
-	border:none;
-	opacity:0.8;
-	text-shadow:none;
+#private-key-generate.enabled {
+  opacity: 1;
 }
-
-#private-key-generate.enabled{
-	opacity:1;
+#private-key-generate[disabled] {
+  border: none;
+  opacity: 0.8;
+  text-shadow: none;
 }
-
-#private-key-compressed{
-	width:45px;
-	float:left;
+#private-key-compressed {
+  width: 45px;
+  float: left;
 }
-
 #private-key-input,
 #decrypt-password,
 #private-key-address-manual,
 #private-key-armory,
 #private-key-electrum,
 #private-key-electrum-root,
-#private-key-electrum-chain-key
-{
-	display: inline;
-	width: 100%;
-	font-size: 12px;
-	height: 40px;
-	border: 1px solid #999;
-	border-radius: 5px;
-	position: relative;
-	margin: auto;
-	margin-bottom: 15px;
-	text-align: center;
+#private-key-electrum-chain-key {
+  display: inline;
+  width: 100%;
+  font-size: 12px;
+  height: 40px;
+  border: 1px solid #999;
+  border-radius: 5px;
+  position: relative;
+  margin: auto;
+  margin-bottom: 15px;
+  text-align: center;
 }
-.input-key .electrum .left-label
-{
-width: 185px;
-padding: 9px;
+input[readonly] {
+  background-color: #f3f3f3;
 }
-body.dark-theme input[readonly]
-{
-background-color: #444 !important;
+#private-key-input {
+  margin-bottom: 20px;
 }
-input[readonly]
-{
-background-color: #f3f3f3;
+#decrypt-password {
+  width: 450px;
 }
-
-#private-key-input
-{
-	margin-bottom: 20px;
+#private-key-decrypt {
+  margin: auto;
+  width: 200px;
+  margin-top: 10px;
 }
-#decrypt-password
-{
-width: 450px;
+#private-key-submit {
+  margin-left: 19%;
+  margin-top: 6px;
+  float: left;
+  width: 250px;
+  height: 72px;
+  font-size: 18px;
 }
-#private-key-decrypt
-{
-margin: auto;
-width: 200px;
-margin-top: 10px;
+* {
+  -webkit-transition: color 300ms ease-out;
+  -moz-transition: color 300ms ease-out;
+  transition: color 300ms ease-out;
+  -webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+  -webkit-transition: background-image 300ms ease-out;
+  -moz-transition: background-image 300ms ease-out;
+  transition: background-image 300ms ease-out;
 }
-.decrypt-key .progress
-{
-margin-bottom: 5px;
-margin-left: -7px;
-margin: auto;
-top: 75px;
-position: relative;
-float: left;
-left: 67%;
+input[type=button] {
+  display: block;
+  color: white;
+  background-color: #205D82;
+  font-size: 16px;
+  font-weight: normal;
+  border-radius: 5px;
+  box-shadow: 0 2px 0px #13374e, inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  line-height: 3px;
+  height: 50px;
+  border: none;
 }
-
-#private-key-submit{
-	margin-left: 19%;
-	margin-top: 6px;
-	float: left;
-	width: 250px;
-	height: 72px;
-	font-size: 18px;
+input[type=button]:hover {
+  background-color: #13374E;
 }
-
-.button{
-	height:30px;
+.warning {
+  border-color: #ccc;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 1px 1px 30px rgba(233, 75, 120, 0.5);
+  margin-bottom: 23px;
+  border: 1px solid #e94b78;
+  padding: 10px;
+  color: #444;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 25px;
+  max-width: 1170px;
+  float: left;
 }
-
-*
-{
-    -webkit-transition: color 300ms ease-out;
-	-moz-transition: color 300ms ease-out;
-	transition: color 300ms ease-out;
-	
-    -webkit-transition: background-color 300ms ease-out;
-	-moz-transition: background-color 300ms ease-out;
-	transition: background-color 300ms ease-out;
-	
-    -webkit-transition: background-image 300ms ease-out;
-	-moz-transition: background-image 300ms ease-out;
-	transition: background-image 300ms ease-out;
+.warning p {
+  color: #e94b78;
 }
-
-input[type=button]
-{
-	display:block;
-	color: white;
-	background-color:#205D82;
-	font-size:16px;
-	font-weight:normal;
-    border-radius: 5px;
-    box-shadow: 0 2px 0px #13374E, inset 0 1px 1px rgba(255, 255, 255, 0.45);
-    line-height:3px;
-    height:50px;
-    border:none;
-
+.warning p.subtext {
+  color: #000000;
 }
-
-input[type=button]:hover{
-	background-color:#13374E;
+.warning em {
+  color: #000;
 }
-.warning
-{
-border-color: #ccc;
-width: 100%;
-background-color: #fff;
-box-shadow: 1px 1px 30px rgba(233, 75, 120, 0.5);
-margin-bottom: 23px;
-border: 1px solid #e94b78;
-padding: 10px;
-color: #444;
-text-align: center;
-font-weight: 500;
-border-radius: 10px;
-padding: 25px;
-max-width: 1170px;
-float: left;
+input[type=button]:disabled {
+  background-color: #A5A5A5;
+  box-shadow: 0 2px 0px #87939b, inset 0 1px 1px rgba(255, 255, 255, 0.45);
 }
-.warning.beta-software
-{
+input[type=button].error {
+  background-color: #BB3B3B;
 }
-.warning p{
-	color:#e94b78;
+.print-buttons {
+  clear: left;
 }
-.warning p.subtext{
-	color:#000000;
+.print-buttons input[type=button] {
+  margin: auto;
 }
-
-.warning em{
-	color:#000;
+.inner .section,
+.inner .section .sub-section {
+  margin-top: 30px;
 }
-input[type=button]:disabled
-{
-background-color: #A5A5A5;
-box-shadow: 0 2px 0px #87939B, inset 0 1px 1px rgba(255, 255, 255, 0.45);
+.inner .section .sub-section.coin-setup-print {
+  min-height: 1065px;
 }
-
-
-input[type=button].error
-{
-	background-color:#BB3B3B;
+.inner,
+.warning {
+  min-width: 1170px;
 }
-.print-buttons input[type=button]{
-	margin:auto;
+.round-block {
+  position: relative;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+  margin-bottom: 25px;
+  overflow: auto;
+  border: 1px solid #ccc;
+  box-shadow: 0px 1px 18px rgba(0, 0, 0, 0.15);
 }
-
-.inner .section, 
-.inner .section .sub-section
-{
-	margin-top: 30px;
+.round-block.print-appearance {
+  float: right;
+  width: 61%;
+  position: relative;
+  overflow: visible;
 }
-
-.inner .section .sub-section.coin-setup-keys{
+.round-block .colinner em {
+  display: block;
+  margin-top: -10px;
+  font-weight: 100;
+  color: #666;
 }
-
-.inner .section .sub-section.coin-setup-print{
-min-height: 1065px;
+.choose-coin {
+  display: block;
+  font-size: 15px;
+  font-weight: 500;
+  margin: 0px 5px 5px 5px;
 }
-/* this acts very weird.
-.inner .section .sub-section.up{	
-	-webkit-transition: all .3s ease-in-out;
-    -moz-transition: all .3s ease-in-out;
-    -o-transition: all .3s ease-in-out;
-    transition: all .3s ease-in-out;
+.key-import {
+  float: left;
+  overflow: visible;
 }
-*/
-
-.inner, .warning {min-width:1170px;}
-.round-block.print-appearance
-{
-float: right;
-width: 61%;
-position: relative;
-overflow: visible;
+.key-import .qr-icon:hover:before {
+  content: 'Scan QR Code';
+  font-size: 11px;
+  position: absolute;
+  top: -22px;
+  left: -55px;
 }
-
-.print-buttons
-{
-	clear: left;
+.entropy-satisfied {
+  display: none;
+  position: relative;
+  top: -2px;
+  left: 1px;
 }
-
-.round-block
-{
-	position: relative;
-	border-radius: 5px;
-	background-color: #f7f7f7;
-	margin-bottom:25px;
-	overflow:auto;
-	border: 1px solid #ccc;
-	box-shadow: 0px 1px 18px rgba(0, 0, 0, 0.15);
-
+#random-pool {
+  height: 122px;
+  font-size: 10px;
+  width: 100%;
 }
-
-
-.section.security .round-block
-{
-	padding: 22px;
+.qr-webcam {
+  max-height: none;
+  display: none;
+  height: inherit;
+  opacity: 0;
+  height: 0;
+  position: absolute;
+  top: -53px;
+  z-index: 6;
+  margin: 0 auto;
+  margin-left: 33%;
+  margin-right: 33%;
+  box-shadow: 0px 0px 202px black;
 }
-
-.round-block .colinner em{
-	display:block;
-	margin-top:-10px;
-	font-weight:100;
-	color:#666;
+.qr-webcam .qr-icon {
+  left: -30%;
+  margin: auto;
+  margin-bottom: -20px;
+  top: 8px;
+  cursor: default;
 }
-
-.choose-coin
-{
-	display: block;
-	font-size: 15px;
-	font-weight: 500;
-	margin: 0px 5px 5px 5px;
+.webcam-area {
+  width: 435px;
+  height: 364px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 18px;
+  margin-bottom: 10px;
+  text-align: center;
 }
-.key-import
-{
-	float: left;
-	overflow: visible;
+.webcam-area .connecting {
+  top: 47%;
+  position: absolute;
+  z-index: 2;
+  margin: auto;
+  left: 19%;
+  width: 300px;
 }
-.random-info
-{
-	float: right;
-	position: relative;
-	height: 97px;
+.webcam-area .result {
+  font-size: 11px;
 }
-.random-info h3
-{
-	margin-top: 10px;
+.webcam-area canvas {
+  display: none;
 }
-.entropy-satisfied
-{
-display: none;
-position: relative;
-top: -2px;
-left: 1px;
-}
-#random-pool
-{
-	height: 122px;
-	font-size: 10px;
-	width: 100%;
-}
-
-.key-details{
-	opacity: 0;
-	overflow: initial;
-}
-.qr-webcam
-{
-max-height: none;
-display: none;
-height: inherit;
-opacity: 0;
-height: 0;
-position: absolute;
-top: -53px;
-z-index: 6;
-margin: 0 auto;
-margin-left: 33%;
-margin-right: 33%;
-box-shadow: 0px 0px 202px black;
-}
-.qr-webcam .qr-icon
-{
-left: -30%;
-margin: auto;
-margin-bottom: -20px;
-top: 8px;
-cursor: default;
-}
-.key-import .qr-icon:hover:before
-{
-content: 'Scan QR Code';
-font-size: 11px;
-position:absolute;
-top:-22px;
-left:-55px;
-}
-
-.webcam-area
-{
-width: 435px;
-height: 364px;
-
-background: rgba(0,0,0,0.1);
-border-radius: 18px;
-margin-bottom: 10px;
-text-align: center;
-
-}
-.webcam-area .connecting
-{
-top: 47%;
-position: absolute;
-z-index: 2;
-margin: auto;
-left: 19%;
-width: 300px;
-}
-
-.webcam-area .result
-{
-font-size: 11px;
-}
-
 .webcam-area canvas,
-.webcam-area video
-{
-width: 100%;
-z-index: 3;
-margin-top: 18px;
-position: relative;
+.webcam-area video {
+  width: 100%;
+  z-index: 3;
+  margin-top: 18px;
+  position: relative;
 }
-.webcam-area canvas
-{
-display: none;
+#encryption-key-persist {
+  zoom: 3.0;
 }
-.key-details.minimized
-{
-height: 165px;
+.print-encryption {
+  display: none;
+  clear: right;
+  width: 41%;
+  float: right;
 }
-.key-details.minimized .minimize-hide
-{
-display: none;
+.print-encryption label {
+  width: 96px;
+  margin-bottom: 2px;
+  text-align: left;
+  margin-top: 0px;
+  padding: 13px;
 }
-
-#encryption-key-persist
-{
-zoom: 3.0;
+.print-encryption label.encryption-key-persist {
+  width: 89%;
 }
-.print-encryption label.encryption-key-persist
-{
-width: 89%;
+.print-encryption .encrypted {
+  position: absolute;
+  left: 55px;
+  top: 25px;
+  width: 26px;
+  height: 32px;
 }
-
-.key-details h3 
-{
-margin-bottom: 60px;
+.pool-status-bar {
+  height: 35px;
+  width: 100%;
+  margin: auto;
+  background-color: #ca3a3a;
+  border-radius: 5px;
 }
-.manual-hide.compression
-{
+.pool-status-complete {
+  height: 35px;
+  background-color: #205D82;
+  border-radius: 5px;
 }
-
-.pool-status-bar
-{
-	height: 35px;
-	width: 100%;
-	margin: auto;
-	background-color: #ca3a3a;
-	border-radius:5px;
+.qr-icon {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  background-image: url('../images/qr-small.png');
+  cursor: pointer;
+  left: 95%;
+  top: -50px;
+  background-size: 100%;
+  margin-bottom: -20px;
 }
-.pool-status-complete
-{
-	height: 35px;
-	background-color: #205D82;
-	border-radius:5px;
+.qr-icon.qr-electrum {
+  top: -46px;
 }
-.qr-icon
-{
-position: relative;
-width: 20px;
-height: 20px;
-background-image: url('../images/qr-small.png');
-cursor: pointer;
-left: 95%;
-top: -50px;
-background-size: 100%;
-margin-bottom: -20px;
+.qr-icon.qr-armory {
+  top: -50px;
 }
-
-.electrum-icon.toggle
-{
-background-image: url('../images/electrum.png');
-background-size: 30px;
-width: 30px;
-height: 40px;
-position: relative;
-top: -10px;
-opacity: 0.3;
-cursor: pointer;
-padding-left: 116px;
-background-repeat: no-repeat;
-background-color: rgba(0,0,0,0.2);
-border-radius: 5px;
-background-position-x: 5px;
-background-position-y: 5px;
-float: left;
-margin-right:10px;
+.qr-icon.qr-armory:before {
+  margin-top: -6px;
 }
-.electrum-icon.toggle:after
-{
-content: 'Electrum';
-left: 39px;
-position: absolute;
-top: 11px;
-font-weight: bold;
-font-size: 17px;
+.electrum-icon.toggle {
+  background-image: url('../images/electrum.png');
+  background-size: 30px;
+  width: 30px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  opacity: 0.3;
+  cursor: pointer;
+  padding-left: 116px;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-position-x: 5px;
+  background-position-y: 5px;
+  float: left;
+  margin-right: 10px;
 }
-.armory-icon.toggle
-{
-background-image: url('../images/armory.png');
-background-size: 30px;
-width: 30px;
-height: 40px;
-position: relative;
-top: -10px;
-opacity: 0.3;
-cursor: pointer;
-padding-left: 106px;
-background-repeat: no-repeat;
-background-color: rgba(0,0,0,0.2);
-border-radius: 5px;
-background-position-x: 5px;
-background-position-y: 5px;
-float: left;
-margin-right: 10px;
+.electrum-icon.toggle:after {
+  content: 'Electrum';
+  left: 39px;
+  position: absolute;
+  top: 11px;
+  font-weight: bold;
+  font-size: 17px;
 }
-.chain-keys .chain-type-icon
-{
-background-size: 100%;
-width: 35px;
-height: 35px;
-position: absolute;
-left: 142px;
-top: 24px;
+.armory-icon.toggle {
+  background-image: url('../images/armory.png');
+  background-size: 30px;
+  width: 30px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  opacity: 0.3;
+  cursor: pointer;
+  padding-left: 106px;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  background-position-x: 5px;
+  background-position-y: 5px;
+  float: left;
+  margin-right: 10px;
 }
-.chain-keys.armory .chain-type-icon
-{
-background-image: url('../images/armory.png');
+.armory-icon.toggle:after {
+  content: 'Armory';
+  left: 39px;
+  position: absolute;
+  top: 11px;
+  font-weight: bold;
+  font-size: 17px;
 }
-.chain-keys.electrum .chain-type-icon
-{
-background-image: url('../images/electrum.png');
+.chain-keys {
+  margin: 0px;
+  text-align: center;
 }
-
-.armory-icon.toggle:after
-{
-content: 'Armory';
-left: 39px;
-position: absolute;
-top: 11px;
-font-weight: bold;
-font-size: 17px;
+.chain-keys .chain-type-icon {
+  background-size: 100%;
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 142px;
+  top: 24px;
+}
+.chain-keys.armory .chain-type-icon {
+  background-image: url('../images/armory.png');
+}
+.chain-keys.electrum .chain-type-icon {
+  background-image: url('../images/electrum.png');
+}
+.chain-keys .coin {
+  left: 183px;
+}
+.chain-keys h3 {
+  margin-bottom: 10px;
+}
+.chain-keys .chain-key {
+  margin-bottom: 20px;
+}
+.chain-keys .chain-key input {
+  width: 375px;
+  margin-bottom: 10px;
+  font-size: 12px;
+  padding: 4px;
+}
+.chain-keys .coin-wallet-address-qr {
+  position: relative;
+  float: right;
+  top: 36px;
+  left: 0px;
+}
+.chain-keys .coin-wallet-address-qr:before {
+  top: -10px;
+}
+.chain-keys .coin-wallet-address-qr.change:before {
+  background-color: rgba(255, 255, 0, 0.6);
+}
+.chain-keys .coin-wallet-private-key-qr {
+  position: relative;
+  float: right;
+  top: 36px;
+  left: 0px;
+}
+.chain-keys .coin-wallet-private-key-qr.change:before {
+  background-color: rgba(255, 255, 0, 0.6);
+}
+.chain-keys .coin-wallet-private-key-qr:before {
+  top: -10px;
+}
+.chain-keys .coin-wallet-private-key-qr.qr-master {
+  position: absolute;
+  left: 46px;
+  top: 16px;
+}
+.chain-keys .coin-wallet-private-key-qr.qr-master:before {
+  content: 'Master Key';
+}
+.chain-keys .left-label {
+  width: 103px;
+  padding-right: 6px;
+  height: 30px;
+  padding-top: 9px;
 }
 #private-key-electrum,
-#private-key-electrum-root
-{
-margin-bottom: 15px;
+#private-key-electrum-root {
+  margin-bottom: 15px;
 }
-.qr-icon.qr-electrum
-{
-top: -46px;
+.chain-progress {
+  margin-left: 10px;
 }
-.chain-progress
-{
-margin-left: 10px;
+#private-key-armory {
+  min-width: 629px;
+  max-width: 629px;
+  min-height: 52px;
+  max-height: 52px;
+  text-align: center;
+  font-family: monospace;
+  font-size: 14px;
+  margin-bottom: 15px;
 }
-#private-key-armory
-{
-min-width: 629px;
-max-width: 629px;
-min-height: 52px;
-max-height: 52px;
-text-align: center;
-font-family: monospace;
-font-size:14px;
-margin-bottom: 15px;
+span.rng-status-text {
+  margin-top: 11px;
+  display: block;
+  position: absolute;
+  color: #fff;
+  width: 94%;
+  text-align: center;
 }
-.qr-icon.qr-armory
-{
-top: -50px;
+.key-info-public-address input {
+  font-size: 18px;
+  font-weight: 500;
 }
-.qr-icon.qr-armory:before
-{
-margin-top:-6px;
-}
-.private-key-address-manual .qr-icon
-{
-top: -29px;
-}
-.random-info label:first-child{
-	padding-top:0px;
-}
-
-div.rng-status{
-	border-radius:5px;
-}
-
-span.rng-status-text{
-	margin-top: 11px;
-	display: block;
-	position: absolute;
-	color: #fff;
-	width:94%;
-	text-align:center;
-}
-.key-info-public-address label
-{
-	
-}
-.key-info-public-address input
-{
-	font-size: 18px;
-	font-weight: 500;
-}
-
-
-/*************
-* Navigation *
-*************/
-
 .menu {
-	background-color: transparent;
-
+  background-color: transparent;
 }
-
 .menu ul {
-	padding: 0px 0px 0px 10px;
-	text-align: left;
-	overflow:auto;
-	float:left;
+  padding: 0px 0px 0px 10px;
+  text-align: left;
+  overflow: auto;
+  float: left;
 }
-
 .menu ul li {
-
-	color:#ececec;
-	display: inline-block;
-	font-size: 14px;
-	cursor: pointer;
-	padding:10px 20px 10px 20px;
-	border-radius:5px;
-	float: left;
-	height:86px;
-	line-height:21px;
-	height:40px;
-	margin-top:23px;
-	margin-right:12px;
-	font-weight:300;
-
+  color: #ececec;
+  display: inline-block;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 10px 20px 10px 20px;
+  border-radius: 5px;
+  float: left;
+  height: 86px;
+  line-height: 21px;
+  height: 40px;
+  margin-top: 23px;
+  margin-right: 12px;
+  font-weight: 300;
 }
 .menu ul li.disabled {
-	color: #3a7abc;
-	cursor: default;
-	background:transparent;
+  color: #3a7abc;
+  cursor: default;
+  background: transparent;
 }
 .menu ul li.active {
-	background-color:rgba(0,0,0,0.4);
+  background-color: rgba(0, 0, 0, 0.4);
 }
-
-.menu ul li.last{
-	margin-right:0px;
+.menu ul li.last {
+  margin-right: 0px;
 }
 .menu ul li.right {
-	float: right;
+  float: right;
 }
 .menu ul li.menu-key-donate {
-	font-size: 14px;
-	border: 1px solid #ececec;
-	border-radius: 3px;
-	margin-right: 0px;
-	margin-left:40px;
-	height: 50px;
-	margin-top: 18px;
-	line-height: 29px;
+  font-size: 14px;
+  border: 1px solid #ececec;
+  border-radius: 3px;
+  margin-right: 0px;
+  margin-left: 40px;
+  height: 50px;
+  margin-top: 18px;
+  line-height: 29px;
 }
-
-#main-menu{
-	float:right;
+#main-menu {
+  float: right;
 }
-
-#coin-setup-menu{
-	position:relative;
-	margin:0px;
-	margin-bottom:20px;
+#coin-setup-menu {
+  margin: 0px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: visible;
 }
-
-#coin-setup-menu a{
-	display:block;
-	width:200px;
-	height:40px;
-	left:0;
-	top:0;
-	border-radius:3px;
+#coin-setup-menu a {
+  display: block;
+  width: 200px;
+  height: 40px;
+  left: 0;
+  top: 0;
+  border-radius: 3px;
 }
-
-ul#coin-setup-menu.menu{
-	width: 100%;
-	display: block;
-	background: transparent;
-	float: left;
+ul#coin-setup-menu.menu {
+  width: 100%;
+  display: block;
+  background: transparent;
+  float: left;
 }
-
-ul#coin-setup-menu li{
-
-	padding:20px;
-	margin-right:20px;
-	height:40px;
-	list-style-type: none;
-	float:left;
-	line-height:0px;
-	color: #233b4e;
-	font-size: 14px;
-	font-weight:300;
-	cursor:pointer;
-	width:220px;
-	text-align:center;
-	margin-left:-10px;
-	border-radius:3px;
-	
+ul#coin-setup-menu li {
+  padding: 20px;
+  margin-right: 20px;
+  height: 40px;
+  list-style-type: none;
+  float: left;
+  line-height: 0px;
+  color: #233b4e;
+  font-size: 14px;
+  font-weight: 300;
+  cursor: pointer;
+  width: 220px;
+  text-align: center;
+  margin-left: -10px;
+  border-radius: 3px;
 }
-
-ul#coin-setup-menu li.disabled{
-	background-color: #ddd;
-	cursor: default;
-
+ul#coin-setup-menu li.disabled {
+  background-color: #ddd;
+  cursor: default;
 }
-
-ul#coin-setup-menu li.active{
-	color:#ececec;
+ul#coin-setup-menu li.active {
+  color: #ececec;
 }
-
-#lights{
-	margin-top:27px;
-	margin-right:30px;
+#lights {
+  margin-top: 27px;
+  margin-right: 30px;
 }
-
-.coin-wallet
-{
-	width: 1100px;
-	height: 360px;
-	overflow: hidden;
-	
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-bottom: 0px;	
-	
-	position: relative;
+.coin-wallet {
+  width: 1100px;
+  height: 360px;
+  overflow: hidden;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  position: relative;
 }
-
-.zoom-90 .coin-wallet
-{
-	zoom: 0.90;
-	-moz-transform-origin: left top;
-	-moz-transform: scale(0.90);
+.coin-wallet .wallet-frame {
+  width: 100%;
+  height: 100%;
+  padding: 23px;
+  padding-top: 30px;
+  background-repeat: no-repeat;
+  z-index: 2;
+  position: absolute;
+  top: 0px;
+  left: 0px;
 }
-.zoom-95 .coin-wallet
-{
-	zoom: 0.95;
-	-moz-transform-origin: left top;
-	-moz-transform: scale(0.95);
+.coin-wallet .encrypted {
+  position: absolute;
+  margin-left: 180px;
+  width: 25px;
+  height: 32px;
+  margin-top: 5px;
 }
-.zoom-100 .coin-wallet
-{
-	zoom: 1.00;
-	-moz-transform-origin: left top;
-	-moz-transform: scale(1.00);
+.zoom-90 .coin-wallet {
+  zoom: 0.90;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(0.9);
 }
-.zoom-105 .coin-wallet
-{
-	zoom: 1.05;
-	-moz-transform-origin: left top;
-	-moz-transform: scale(1.05);
+.zoom-95 .coin-wallet {
+  zoom: 0.95;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(0.95);
 }
-.zoom-110 .coin-wallet
-{
-	zoom: 1.10;
-	-moz-transform-origin: left top;
-	-moz-transform: scale(1.10);
+.zoom-100 .coin-wallet {
+  zoom: 1.00;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1);
 }
-
-#print-button
-{
-	float: right;
-width: 61%;
+.zoom-105 .coin-wallet {
+  zoom: 1.05;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.05);
 }
-
-input#compress-decompress-button{
-	float:left;
-	margin-left:10px;
+.zoom-110 .coin-wallet {
+  zoom: 1.10;
+  -moz-transform-origin: left top;
+  -moz-transform: scale(1.1);
 }
-
-#coin-setup-menu
-{
-position: relative;
-overflow: visible;
+#print-button {
+  float: right;
+  width: 61%;
 }
-
-.coin-wallets
-{
-zoom: 65%;
--moz-transform-origin: left top;
--moz-transform: scale(0.65);
-border: 1px dashed;
-border-radius: 16px;
-float: left;
-padding: 15px;
-margin-bottom: 50px;
-background-color: #ddd;
-min-height: 854px;
-margin-top: 0px;
-/* FF Fixes */
-margin-right: -500px;
-margin-bottom: -279px;
+input#compress-decompress-button {
+  float: left;
+  margin-left: 10px;
 }
-
-.frame-instructions
-{
-float: right;
-width: 36%;
-padding: 20px;
+.frame-instructions {
+  float: right;
+  width: 36%;
+  padding: 20px;
 }
-
-.coin-wallets .coin-logo
-{
-	height: 100px;
-	width: 100px;
-	position: absolute;
-	top: 65px;
-	left: 205px;
-	padding-top: 108px;
-	text-align: center;
-	background-repeat: no-repeat;
-	font-size: 26px;
-
-	opacity: 0.85;
+.coin-wallet-2 {
+  margin-top: 90px;
 }
-.coin-wallets .coin-logo:after
-{
-	color: white;
-	background-color: rgba(0,0,0,0.7);
-	padding: 7px;
-	border-radius: 25px;
+.hue-shift {
+  float: left;
+  width: 50%;
+  position: relative;
 }
-.coin-wallets.back .coin-logo
-{
-	top: 105px;
-	left: 300px;
-	background-size: 100%;
-	width: 133px;
-	height: 133px;
-}
-.coin-wallets.back .coin-logo:after
-{
-	content: none;
-	background-color: none;
-}
-.coin-wallets.back .zero-trust-wallet-seal
-{
-	top: 40px;
-	left: 500px;	
-	top: 40px;
-	z-index: 3;
-}
-.coin-wallet-1
-{
-
-}
-
-.coin-wallet-2
-{
-	margin-top: 90px;
-}
-
-.hue-shift
-{
-float: left;
-width: 50%;
-position: relative;
-}
-.hue-shift-amount
-{
-position: absolute;
-top: 7px;
-left: 7px;
+.hue-shift-amount {
+  position: absolute;
+  top: 7px;
+  left: 7px;
 }
 .print-appearance-reset {
-width: 117px !important;
-height: 56px !important;
-margin-left: 20px !important;
-font-size: 18px !important;
+  width: 117px !important;
+  height: 56px !important;
+  margin-left: 20px !important;
+  font-size: 18px !important;
 }
-
-.coin-wallet .wallet-frame
-{
-	width: 100%;
-	height: 100%;
-	padding: 23px;
-	padding-top: 30px;
-	background-repeat: no-repeat;
-	z-index: 2;
-	position: absolute;
-	top: 0px;
-	left: 0px;
+.back .coin-wallet {
+  width: 1100px;
+  height: 360px;
+  margin-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
-
-.back .coin-wallet
-{
-	width: 1100px;
-	height: 360px;
-	
-	margin-left: 0px;
-	margin-top: 0px;
-	margin-bottom: 0px;	
+.back .coin-wallet-2 {
+  margin-top: 90px;
 }
-
-.back .coin-wallet-2
-{
-	margin-top: 90px;
+.back .coin-wallet-left,
+.back .coin-wallet-right {
+  display: none;
 }
-
-.back .coin-wallet-left, 
-.back .coin-wallet-right
-{
-	display: none;
-} 
-
-
-.frame-3 .coin-wallets.back .zero-trust-wallet-seal
-	{
-	left: 700px;
-	}
-
-
-.switch-toggle{
-	width:70%;
-	float:left;
-	margin-bottom:18px;
+.frame-3 .coin-wallets.back .zero-trust-wallet-seal {
+  left: 700px;
 }
-
-.switch-toggle.coins{
-	width:100%;
+.frame-3 .coin-wallet .encrypted {
+  margin-left: 0px;
+  margin-top: 6px;
 }
-
-.switch-toggle.right{
-	border-top-left-radius:0px;
-	border-bottom-left-radius:0px;
-	border-left:1px solid #fff;
-}
-
-.switch-toggle.right a{
-	border-top-left-radius:0px;
-	border-bottom-left-radius:0px;
-}
-
-.switch-toggle.switch-2{
-	max-width:200px;
-}
-
-
 :focus {
-	outline: 0;
+  outline: 0;
 }
-
-label::-moz-focus-inner { 
-  border: 0; 
+a:hover,
+a:active,
+a:focus {
+  outline: 0;
+  border: none;
 }
-
-a:hover, a:active, a:focus {
-  outline:0;
-  border:none;
-}
-
 .key-details .left-label,
-.vanity-addresses .left-label
-{
-	font-size: 12px;
-	margin-top: 0px;
-	padding-top: 9px;
-	padding-bottom: 9px;
-	padding-right: 5px;
+.vanity-addresses .left-label {
+  font-size: 12px;
+  margin-top: 0px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+  padding-right: 5px;
 }
-
-#print-settings
-{
-float: left;
-width: 100%;
-position: relative;
+#print-settings {
+  float: left;
+  width: 100%;
+  position: relative;
 }
-
-.vanity-address-buttons
-{
-float: right;
-width: 44%;
+#print-settings .left-label {
+  width: 110px;
+  margin-top: 0px;
+  padding: 9px;
 }
-#vanity-address-test
-{
-	
+#print-settings .left-label span {
+  float: left;
 }
-
-#vanity-address-start
-{
-
+#print-settings .print-buttons {
+  width: 38%;
+  float: left;
+  padding-right: 10px;
+  min-height: 342px;
 }
-
-#vanity-address-stop
-{
-
+.vanity-address-buttons {
+  float: right;
+  width: 44%;
 }
-
-#print-settings .left-label
-{
-width: 110px;
-margin-top: 0px;
-padding: 9px;
+.design-backgrounds {
+  float: right;
+  width: 49%;
 }
-
-#print-settings .left-label span
-{
-float: left;
+.custom-backgrounds {
+  float: right;
+  height: 171px;
 }
-
-#print-settings .print-buttons
-{
-width: 38%;
-float: left;
-padding-right: 10px;
-min-height: 342px;
+.custom-backgrounds .design.selector {
+  border: 3px dashed rgba(0, 0, 0, 0.5);
+  max-height: 100px;
+  overflow: hidden;
 }
-
-.design-backgrounds
-{
-float: right;
-width: 49%
+.custom-backgrounds .design.selector p {
+  margin-top: 16px;
+  font-weight: bold;
+  margin-bottom: -41px;
 }
-.custom-backgrounds
-{
-float: right;
-height: 171px;
-}
-.custom-backgrounds .design.selector
-{
-border: 3px dashed rgba(0,0,0,0.5);
-max-height: 100px;
-overflow: hidden;
+.custom-backgrounds input[type="file"] {
+  width: 63%;
+  height: 76px;
+  top: -96px;
+  position: relative;
+  opacity: 0;
+  float: right;
+  cursor: pointer;
 }
 .custom-backgrounds .design-type:hover .design.selector,
-.custom-backgrounds .design.selector:hover
-{
-background-color: rgba(0,0,0,0.1);
+.custom-backgrounds .design.selector:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
-
-.custom-backgrounds .design.selector p
-{
-margin-top: 16px;
-font-weight: bold;
-margin-bottom: -41px;
+.background-options {
+  float: left;
+  width: 50%;
 }
-
-.custom-backgrounds input[type="file"]
-{
-width: 63%;
-height: 76px;
-top: -96px;
-position: relative;
-opacity: 0;
-float: right;
-cursor: pointer;
+.sample .coin-wallet-address-qr:before {
+  content: 'SAMPLE WALLET' !important;
+  font-weight: bold !important;
+  background-color: #ff0000 !important;
 }
-.background-options
-{
-float: left;
-width: 50%;
+.sample .coin-wallet-address-qr:after {
+  content: 'DO NOT USE' !important;
+  font-weight: bold !important;
+  background-color: #ff0000 !important;
 }
-
-.sample .coin-wallet-address-qr:before
-{
-content: 'SAMPLE WALLET' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
+.sample .coin-wallet-private-key-qr:before {
+  content: 'SAMPLE KEY' !important;
+  font-weight: bold !important;
+  background-color: #ff0000 !important;
 }
-
-.sample .coin-wallet-address-qr:after
-{
-content: 'DO NOT USE' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
+.sample .coin-wallet-private-key-qr:after {
+  content: 'DO NOT USE' !important;
+  font-weight: bold !important;
+  background-color: #ff0000 !important;
 }
-
-
-.sample .coin-wallet-private-key-qr:before
-{
-content: 'SAMPLE KEY' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
+.donate-keys {
+  padding: 21px;
+  width: 900px;
+  margin: auto;
+  margin-bottom: 40px;
 }
-
-.sample .coin-wallet-private-key-qr:after
-{
-content: 'DO NOT USE' !important;
-font-weight: bold !important;
-background-color: rgba(255, 0, 0, 1) !important;
+.donate-keys h3 {
+  text-align: center;
+  margin-bottom: 40px;
 }
-
-
-.donate-keys
-{
-	padding: 21px;
-	width: 900px;
-	margin: auto;
-	margin-bottom:40px;
+.donate-keys .donate-key .coin {
+  width: auto;
+  height: 100px;
+  background-repeat: no-repeat;
+  padding-left: 93px;
+  margin-bottom: 15px;
+  background-size: 86px;
+  background-size: 60px;
 }
-
-.donate-keys h3{
-	text-align:center;
-	margin-bottom:40px;
+.donate-keys .donate-key .coin .donate-address {
+  width: 100%;
+  height: 60px;
+  background-color: #f3f3f3;
+  border-radius: 15px;
+  text-align: center;
+  font-size: 22px;
+  padding-top: 20px;
 }
-
-.donate-coins-auto{
-max-width:700px;
-margin:auto;
+.donate-coins-auto {
+  max-width: 700px;
+  margin: auto;
 }
-#generate-new-wallet
-{
-float: left;
-width: 36%;
+#generate-new-wallet {
+  float: left;
+  width: 36%;
 }
-
-
 .chain-keys .coin-wallet-private-key-qr,
 .chain-keys .coin-wallet-address-qr,
 .key-details .coin-wallet-private-key-qr,
-.key-details .coin-wallet-address-qr
-{
-margin:0px;
-padding:0px;
-display: inline-block;
-float: right;
-position: absolute;
-}
-.key-details .coin-wallet-private-key-qr
-{
-top: 40px;
-left: 555px;
+.key-details .coin-wallet-address-qr {
+  margin: 0px;
+  padding: 0px;
+  display: inline-block;
+  float: right;
+  position: absolute;
 }
 .chain-keys .coin-wallet-private-key-qr:before,
-.key-details .coin-wallet-private-key-qr:before
-{
-content: 'Private Key';
-position: absolute;
-top: -20px;
-font-size: 11px;
-text-decoration: underline;
-}
-.key-details .coin-wallet-address-qr
-{
-top: 40px;
-left: 460px;
+.key-details .coin-wallet-private-key-qr:before {
+  content: 'Private Key';
+  position: absolute;
+  top: -20px;
+  font-size: 11px;
+  text-decoration: underline;
 }
 .chain-keys .coin-wallet-address-qr:before,
-.key-details .coin-wallet-address-qr:before
-{
-content: 'Public Address';
-position: absolute;
-top: -20px;
-font-size: 11px;
-text-decoration: underline;
+.key-details .coin-wallet-address-qr:before {
+  content: 'Public Address';
+  position: absolute;
+  top: -20px;
+  font-size: 11px;
+  text-decoration: underline;
 }
-
-
 .chain-keys .coin-wallet-private-key-qr canvas,
 .chain-keys .coin-wallet-address-qr canvas,
 .key-details .coin-wallet-private-key-qr canvas,
-.key-details .coin-wallet-address-qr canvas
-{
-width: 75px;
-height: 75px;
-background-color: white;
-padding:5px;
-border-radius: 5px;
+.key-details .coin-wallet-address-qr canvas {
+  width: 75px;
+  height: 75px;
+  background-color: white;
+  padding: 5px;
+  border-radius: 5px;
 }
-
-.donate-keys .donate-key
-{
+.donate-reminder {
+  float: right;
+  cursor: pointer;
+  width: 462px;
+  text-align: center;
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  padding: 7px;
+  margin-top: -13px;
+  position: relative;
+  margin-bottom: -64px;
+  z-index: 5;
 }
-.donate-reminder
-{
-float: right;
-cursor: pointer;
-width: 462px;
-text-align: center;
-background-color: #f2f2f2;
-border-radius: 5px;
-border: 1px solid #ddd;
-padding: 7px;
-margin-top: -13px;
-position: relative;
-margin-bottom: -64px;
-z-index: 5;
+.donate-reminder p {
+  cursor: pointer;
+  font-size: 12px;
+  line-height: 10pt;
 }
-.donate-reminder p
-{
-cursor: pointer;
-font-size: 12px;
-line-height: 10pt;
+.donate-reminder img {
+  cursor: pointer;
+  margin-left: 10px;
+  float: right;
+  margin-right: 4px;
+  margin-top: 5px;
 }
-.donate-reminder img
-{
-cursor: pointer;
-	margin-left: 10px;
-	float: right;
-margin-right: 4px;
-margin-top: 5px;
+.trust-items {
+  width: 830px;
 }
-
-.donate-keys .donate-key .coin
-{
-	width: auto;
-	height: 100px;
-	background-repeat: no-repeat;
-	padding-left: 93px;
-	margin-bottom: 15px;
-	background-size: 86px;
-	background-size:60px;
+.trust-items .trust-item {
+  float: left;
+  margin: 5px;
+  background-color: #ddd;
+  border-radius: 10px;
+  text-align: center;
+  width: 120px;
+  border: 1px solid;
+  cursor: pointer;
 }
-.donate-keys .donate-key .coin .donate-address
-{
-	width: 100%;
-	height: 60px;
-	background-color: #f3f3f3;
-	border-radius: 15px;
-	text-align: center;
-	font-size: 22px;
-	padding-top: 20px;
+.trust-items .trust-item em {
+  background-color: #cccccc;
+  text-decoration: none !important;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  font-style: normal;
+  padding: 3px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  width: 100%;
+  display: inline-block !important;
 }
-.trust-items
-{
-	width: 830px;
+.trust-items .trust-item .trust-image {
+  width: 75px;
+  height: 85px;
+  margin: auto;
+  background-repeat: no-repeat;
 }
-
-.trust-items .trust-item
-{
-	float: left;
-	margin: 5px;
-	background-color: #ddd;
-	border-radius: 10px;
-	text-align: center;
-	width: 120px;
-	border: 1px solid;
-	cursor: pointer;
+.trust-items .trust-item.trust-bugs .trust-image {
+  background-image: url('../images/security-bug.png');
 }
-
-.trust-items .trust-item em
-{
-	background-color: #cccccc;
-	text-decoration: none !important;
-	border-top-left-radius: 10px;
-	border-top-right-radius: 10px;
-	font-style: normal;
-	padding: 3px;
-	font-weight: 500;
-	margin-bottom: 5px;
-	width: 100%;
-	display: inline-block !important;
+.trust-items .trust-item.trust-your-os .trust-image {
+  background-image: url('../images/security-os.png');
 }
-
-.trust-items .trust-item .trust-image
-{
-	width: 75px;
-	height: 85px;
-	margin: auto;
-	background-repeat: no-repeat;
+.trust-items .trust-item.trust-your-browser .trust-image {
+  background-image: url('../images/security-browser.png');
 }
-
-.trust-items .trust-item.trust-bugs .trust-image
-{
-	background-image: url('../images/security-bug.png');
+.trust-items .trust-item.trust-your-network .trust-image {
+  background-image: url('../images/security-network.png');
 }
-
-.trust-items .trust-item.trust-your-os .trust-image
-{
-	background-image: url('../images/security-os.png');
+.trust-items .trust-item.trust-this-tool .trust-image {
+  background-image: url('../images/security-this-tool.png');
 }
-
-.trust-items .trust-item.trust-your-browser .trust-image
-{
-	background-image: url('../images/security-browser.png');
+.trust-items .trust-item.trust-your-printer .trust-image {
+  background-image: url('../images/security-printer.png');
 }
-
-.trust-items .trust-item.trust-your-network .trust-image
-{
-	background-image: url('../images/security-network.png');
+.trust-items .security-level {
+  width: 100%;
+  color: white;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding: 3px;
 }
-
-.trust-items .trust-item.trust-this-tool .trust-image
-{
-	background-image: url('../images/security-this-tool.png');
+.trust-level-fully .security-level {
+  background-color: #cc0000;
 }
-.trust-items .trust-item.trust-your-printer .trust-image
-{
-	background-image: url('../images/security-printer.png');
+.trust-level-fully .security-level:before {
+  content: "Full Trust";
 }
-
-.trust-items .security-level
-{
-	width: 100%;
-	color: white;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	padding: 3px;
+.trust-level-some .security-level {
+  background-color: #CC6A00;
 }
-.trust-level-fully .security-level
-{
-background-color: #cc0000;
+.trust-level-some .security-level:before {
+  content: "Some Trust";
 }
-.trust-level-fully .security-level:before
-{
-content: "Full Trust";
+.trust-level-zero .security-level {
+  background-color: #000000;
 }
-.trust-level-some .security-level
-{
-background-color: #CC6A00;
+.trust-level-zero .security-level:before {
+  content: "Zero Trust";
 }
-.trust-level-some .security-level:before
-{
-content: "Some Trust";
+.security-risks h3 {
+  font-size: 22px;
+  text-shadow: 3px 3px 2px #888;
 }
-.trust-level-zero .security-level
-{
-background-color: #000000;
+.security-risks h4 {
+  font-size: 18px;
 }
-.trust-level-zero .security-level:before
-{
-content: "Zero Trust";
+.security-risks .risk {
+  font-size: 14px;
+  width: 1066px;
+  color: #333333;
+  height: 75px;
+  border: 1px solid;
+  border-top-left-radius: 10px;
+  background-color: #cccccc;
+  margin-bottom: 10px;
+  border-bottom-left-radius: 10px;
 }
-
-.security-risks h3
-{
-	font-size: 22px;
-	text-shadow: 3px 3px 2px #888;
+.security-risks .risk .risk-details {
+  width: 986px;
+  float: left;
+  padding: 5px;
 }
-
-.security-risks h4
-{
-	font-size: 18px;
+.security-risks .risk .risk-status:after {
+  display: block;
+  padding-top: 30px;
+  height: 75px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  padding-left: 18px;
+  width: 86px;
+  padding-right: 10px;
+  float: right;
+  margin-top: -1px;
+  font-size: 16px;
+  margin-right: -11px;
+  font-weight: 500;
+  text-shadow: 3px 3px 1px #333333;
+  text-align: center;
 }
-.zero-trust-wallet-seal
-{
-display: none;
-background: url('../images/zero-trust.png');
-width: 100px;
-height: 100px;
-position: absolute;
-top: 204px;
-left: 200px;
+.security-risks .risk.at-risk .risk-status:after {
+  content: 'At Risk';
+  background-color: #AD0000;
+  color: white;
 }
-.zero-trust .zero-trust-wallet-seal
-{
-display: block;
+.security-risks .risk.safe .risk-status:after {
+  content: 'Safe';
+  background-color: #00AD00;
+  color: white;
 }
-.zero-trust-seal
-{
-display: none;
-background: url('../images/zero-trust.png') no-repeat scroll 0% 0% transparent;
-width: 100px;
-height: 100px;
-background-size: 100%;
-position: absolute;
-top: -8px;
-left: 308px;
+.security-risks .risk.safe .risk-fix {
+  display: none;
 }
-
-.security-risks .risk
-{
-	font-size: 14px;
-	width: 1066px;
-	color: #333333;
-	height: 75px;
-	border: 1px solid;
-	border-top-left-radius: 10px;
-	background-color: #cccccc;
-	margin-bottom: 10px;
-	border-bottom-left-radius: 10px;
+.security-risks .risk-category {
+  background-color: #dddddd;
+  padding: 8px;
+  margin-top: 13px;
+  border-radius: 10px;
+  border: 1px solid #888888;
 }
-.security-risks  .risk-category
-{
-	background-color: #dddddd;
-	padding: 8px;
-	margin-top: 13px;
-	border-radius: 10px;
-	border: 1px solid #888888;
+.security-risks .risk-fix {
+  float: left;
+  margin-top: 5px;
+  background: #aaaaaa;
+  border-radius: 5px;
+  max-width: 586px;
+  padding: 5px;
+  margin-left: 5px;
 }
-.security-risks .risk .risk-details
-{
-	width: 986px;
-	float: left;
-	padding: 5px;
+.security-risks .risk-fix:before {
+  font-weight: 500;
+  content: "How to fix: ";
 }
-
-.security-risks .risk-fix
-{
-	float: left;
-	margin-top: 5px;
-	background: #aaaaaa;
-	border-radius: 5px;
-	max-width: 586px;
-	padding: 5px;
-	margin-left: 5px;
+.zero-trust-wallet-seal {
+  display: none;
+  background: url('../images/zero-trust.png');
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  top: 204px;
+  left: 200px;
 }
-.security-risks .risk-fix:before
-{
-	font-weight: 500;
-	content: "How to fix: ";
+.zero-trust .zero-trust-wallet-seal {
+  display: block;
 }
-
-.security-risks .risk .risk-status:after
-{
-display: block;
-padding-top: 30px;
-height: 75px;
-border-top-right-radius: 10px;
-border-bottom-right-radius: 10px;
-padding-left: 18px;
-width: 86px;
-padding-right: 10px;
-float: right;
-margin-top: -1px;
-font-size: 16px;
-margin-right: -11px;
-font-weight: 500;
-text-shadow: 3px 3px 1px #333333;
-text-align: center;
+.zero-trust-seal {
+  display: none;
+  background: url('../images/zero-trust.png') no-repeat scroll 0% 0% transparent;
+  width: 100px;
+  height: 100px;
+  background-size: 100%;
+  position: absolute;
+  top: -8px;
+  left: 308px;
 }
-
-.switch-candy input[disabled]
-{
-	cursor: default !important;
+.switch-candy input[disabled] {
+  cursor: default !important;
 }
-.switch-candy a[disabled]
-{
-	background-color: #888888;
-	cursor: default !important;
+.switch-candy a[disabled] {
+  background-color: #888888;
+  cursor: default !important;
 }
-
-.security-risks .risk.at-risk .risk-status:after
-{
-	content: 'At Risk';
-	background-color: #AD0000;
-	color: white;	
+.security-test {
+  padding-bottom: 0px;
+  float: right;
+  width: 327px;
+  margin-left: 14px;
 }
-.security-risks .risk.safe .risk-status:after
-{
-	content: 'Safe';
-	background-color: #00AD00;
-	color: white;	
+.security-test #js-test-refresh {
+  float: right;
+  width: 100px;
+  border-radius: 5px;
 }
-.security-risks .risk.safe .risk-fix
-{
-display: none;
+.security-test .js-test {
+  margin-bottom: 5px;
 }
-
-.security-test
-{
-	padding-bottom: 0px;
-	float: right;
-	width: 327px;
-	margin-left: 14px;
+.security-test .enabled {
+  color: #AD0000;
 }
-.security-test #js-test-refresh
-{
-	float: right;
-	width: 100px;
-	border-radius: 5px;
+.security-test .disabled {
+  color: #00AD00;
 }
-.security-test .js-test
-{
-	margin-bottom: 5px;
-}
-.security-test .enabled
-{
-color: #AD0000;
-}
-.security-test .disabled
-{
-color: #00AD00;
-}
-
-.print-encryption
-{
-display: none;
-clear: right;
-}
-.print-encryption label
-{
-width: 96px;
-margin-bottom:2px;
-text-align:left;
-margin-top: 0px;
-padding: 13px;
-}
-
-
 .print-encryption input[type=button]#encrypt-button,
-.print-encryption input[type=button]#encrypt-remove-button
-{
-	margin-top:10px;
-	margin-bottom:20px;
-	font-weight: bolder;
-}
-.print-encryption input[type=button]
-{
-
+.print-encryption input[type=button]#encrypt-remove-button {
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-weight: bolder;
 }
 .print-encryption input[type=text],
-.print-encryption input[type=password]
-{
-margin-bottom: 15px;
-width: 76%;
-background-color: #fff;
-cursor: default;
-border-radius: 5px;
-border:1px solid #ccc;
-height:38px;
-box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
-border-top-left-radius: 0px;
-border-bottom-left-radius: 0px;
+.print-encryption input[type=password] {
+  margin-bottom: 15px;
+  width: 76%;
+  background-color: #fff;
+  cursor: default;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  height: 38px;
+  box-shadow: 0 1px 0px rgba(0, 0, 0, 0.05), inset 0 1px 1px rgba(255, 255, 255, 0.45);
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
-#encrypt-remove-button
-{
-clear: right;
+#encrypt-remove-button {
+  clear: right;
 }
-
-.encryption-details
-{
+.encryption-details .encrypting {
+  position: relative;
+  top: -43px;
+  left: 77px;
 }
-.encryption-details .encrypting
-{
-position: relative;
-top: -43px;
-left: 77px;
+.encrypting {
+  display: none;
+  position: relative;
+  top: 14px;
+  margin-bottom: -16px;
+  left: 318px;
 }
-.encrypting
-{
-display: none;
-position: relative;
-top: 14px;
-margin-bottom: -16px;
-left: 318px;
+.encryption-buttons {
+  float: left;
+  width: 100%;
 }
-
-.encryption-buttons{
-float: left;
-width: 100%;
+.key-wallet {
+  float: left;
+  background-color: #1F1D5A;
+  padding: 10px;
+  color: white;
+  border-radius: 14px;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 190px;
+  width: 86px;
+  overflow: hidden;
+  z-index: 4;
+  padding-bottom: 0px;
 }
-.key-wallet .encrypted
-{
-display: block !important;
+.key-wallet .encrypted {
+  display: block !important;
 }
-.encrypted
-{
-display: none;
-background-image: url('../images/lock.png');
-background-size: 100%;
-width: 50px;
-height: 63px;
+.key-wallet.empty {
+  cursor: default;
 }
-.key-details .encrypted
-{
-left: 611px;
-position: relative;
-width: 28px;
-height: 35px;
-margin-top: -33px;
-margin-bottom: -7px;
+.key-wallet .wallet-image {
+  background-image: url('../images/safe.png');
+  width: 40px;
+  height: 40px;
+  float: left;
 }
-.key-details .encrypted.top
-{
-top: -47px;
-margin-bottom: 0px;
+.key-wallet .key-count {
+  float: left;
+  margin-top: 10px;
+  margin-left: 1px;
+  font-size: 19px;
+  width: 25px;
+  text-shadow: 1px 1px 3px #FFF;
+  margin-bottom: 14px;
 }
-.print-encryption
-{
-width: 41%;
-float: right;
+.key-wallet .keys {
+  float: left;
+  display: block;
+  max-width: 300px;
+  margin-right: -300px;
 }
-
-.print-encryption .encrypted
-{
-position: absolute;
-left: 55px;
-top: 25px;
-width: 26px;
-height: 32px;
+.key-wallet .keys .key {
+  display: none;
+  height: 0px;
+  opacity: 0;
+  width: 355px;
+  float: left;
+  background-color: #323266;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  border: 1px solid #555;
 }
-.coin-wallet .encrypted
-{
-position: absolute;
-margin-left: 180px;
-width: 25px;
-height: 32px;
-margin-top: 5px;
+.key-wallet .keys .key .armory {
+  background: url('../images/armory.png');
+  background-size: 100%;
 }
-
+.key-wallet .keys .key .electrum {
+  background: url('../images/electrum.png');
+  background-size: 100%;
+}
+.key-wallet .keys .key .wallet-coin-type {
+  background-size: 100%;
+  width: 36px;
+  height: 36px;
+  float: left;
+}
+.key-wallet .keys .key .address {
+  font-size: 12px;
+  margin-top: 13px;
+  float: left;
+  color: #fff;
+  margin-left: 5px;
+  text-align: center;
+  width: 258px;
+}
+.key-wallet .keys .key.current-key {
+  display: block;
+}
+.key-wallet.expand-y .keys .key {
+  display: block;
+}
+.key-wallet.expand-x .keys .key.current-key {
+  display: block;
+  opacity: 1;
+  height: 36px;
+  background-color: #484D81;
+  border-radius: 10px;
+}
+.key-wallet.expand-x .keys .key:hover {
+  background-color: #505591;
+  border-radius: 10px;
+}
+.encrypted {
+  display: none;
+  background-image: url('../images/lock.png');
+  background-size: 100%;
+  width: 50px;
+  height: 63px;
+}
 .frame-1 .coin-wallet .encrypted,
-.frame-2 .coin-wallet .encrypted
-{
-margin-left: 98px;
-margin-top: -6px;
+.frame-2 .coin-wallet .encrypted {
+  margin-left: 98px;
+  margin-top: -6px;
 }
-.frame-3 .coin-wallet .encrypted
-{
-margin-left: 0px;
-margin-top: 6px;
+.progress {
+  background-image: url('../images/progress.gif');
+  width: 16px;
+  height: 16px;
 }
-
-.progress
-{
-background-image: url('../images/progress.gif');
-width:16px;
-height:16px;
-}
-
-
 .frame-type,
-.design-type
-{
-overflow: hidden;
-display: block;
-float: left;
-background: #ddd;
-margin-bottom: 20px;
-border-radius: 10px;
-border-top-left-radius: 0px;
-z-index: 10;
-height: 77px;
-max-width: 218px;
+.design-type {
+  overflow: hidden;
+  display: block;
+  float: left;
+  background: #ddd;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border-top-left-radius: 0px;
+  z-index: 10;
+  height: 77px;
+  max-width: 218px;
 }
-
 .selecting.frame-type,
-.selecting.design-type
-{
-border-top-left-radius: 10px;
+.selecting.design-type {
+  border-top-left-radius: 10px;
 }
-
-.frame-grid-wrapper
-{
-z-index: 10000;
-max-width: 1102px;
-overflow: hidden;
-min-height: 78px;
+.frame-grid-wrapper {
+  z-index: 10000;
+  max-width: 1102px;
+  overflow: hidden;
+  min-height: 78px;
 }
-.selecting .frame-grid-wrapper
-{
-overflow: visible;
+.selecting .frame-grid-wrapper {
+  overflow: visible;
 }
-
-
-.design-type
-{
-top: 138px;
-height: 77px;
-overflow: hidden;
+.selecting .frame-grid-row-header {
+  height: 63px;
+  padding-top: 18px;
+  text-align: center;
+  border-top: 2px solid;
+  margin-top: 6px;
+  width: 400px;
+}
+.selecting .frame-grid-row-header:hover {
+  background-color: #ccc;
 }
 .frame-grid-row-header,
-.design-grid-row-header
-{
-display:none;
+.design-grid-row-header {
+  display: none;
 }
-.frame-grid-row-header
-{
-cursor:pointer;
+.frame-grid-row-header {
+  cursor: pointer;
 }
-
-.ui-slider
-{
-float:left;
-width: 62%;
-margin-left: 8px;
+.ui-slider {
+  float: left;
+  width: 62%;
+  margin-left: 8px;
 }
-
+.ui-slider .ui-slider-handle {
+  height: 36px;
+  margin-top: 2px;
+}
 .ui-slider,
-.ui-slider .ui-slider-handle
-{
-cursor: pointer;
-margin-top: 0px;
-height: 32px;
-margin-bottom: 8px;
+.ui-slider .ui-slider-handle {
+  cursor: pointer;
+  margin-top: 0px;
+  height: 32px;
+  margin-bottom: 8px;
 }
-.ui-slider .ui-slider-handle
-{
-height: 36px;
-margin-top: 2px;
-}
-
 .selecting .frame-grid-row-header,
-.selecting .design-grid-row-header
-{
-display: block;
-text-transform: capitalize;
-font-size: 24px;
-margin-left: 7px;
-margin-top: 10px;
-text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
-width: 98%;
-height: 28px;
-float: left;
-clear: right;
-border-bottom: 2px solid;
+.selecting .design-grid-row-header {
+  display: block;
+  text-transform: capitalize;
+  font-size: 24px;
+  margin-left: 7px;
+  margin-top: 10px;
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+  width: 98%;
+  height: 28px;
+  float: left;
+  clear: right;
+  border-bottom: 2px solid;
 }
-.selecting .frame-grid-row-header
-{
-height: 63px;
-padding-top: 18px;
-text-align: center;
-border-top: 2px solid;
-margin-top: 6px;
-width:400px;
+#current-frame-label {
+  margin-bottom: 67px;
 }
-.selecting .frame-grid-row-header:hover
-{
-background-color: #ccc;
+.frame.selector {
+  background-color: #888;
+  border-radius: 10px;
+  width: 205px;
+  height: 67px;
 }
-
-#current-frame-label
-{
-margin-bottom: 67px;
-}
-.frame.selector img
-{
-border-radius: 5px;
+.frame.selector img {
+  border-radius: 5px;
+  height: 67px;
 }
 .frame-type.selecting,
-.design-type.selecting
-{
-z-index: 11;
-top: 0px;
-left: 15px;
-padding: 10px;
-position: absolute;
+.design-type.selecting {
+  z-index: 11;
+  top: 0px;
+  left: 15px;
+  padding: 10px;
+  position: absolute;
 }
-.design-type.selecting
-{
-max-height: 509px;
-overflow-y: scroll;
-max-width: 1114px;
-left: -433px;
-top: 12px;
-height: auto;
-padding: 0px;
+.dark-theme .chain-set-buttons h1 {
+  color: white;
 }
-.dark-theme .ui-slider
-{
-
+.dark-theme .chain-set-buttons .chain-set-last {
+  background-image: url('../images/minus_dark.png');
 }
-
-.frame-type.selecting
-{
-top: 75px;
-left: -279px;
-max-width: 689px;
-height: auto;
+.dark-theme .chain-set-buttons .chain-set-next {
+  background-image: url('../images/plus_dark.png');
 }
-
+.frame-type.selecting {
+  top: 75px;
+  left: -279px;
+  max-width: 689px;
+  height: auto;
+}
 .frame-label,
-.design-label
-{
-margin-bottom: 93px;
+.design-label {
+  margin-bottom: 93px;
 }
-.color-shift-label
-{
-margin-top: 0px;
+.color-shift-label {
+  margin-top: 0px;
 }
-.design-label
-{
-margin-top: 47px;
-margin-bottom: 74px;
+.design-label {
+  margin-top: 47px;
+  margin-bottom: 74px;
 }
-
 .frame-type .selector-grid-row,
-.design-type .selector-grid-row
-{
-background: none;
+.design-type .selector-grid-row {
+  background: none;
 }
-
-.coin-setup-keys, .coin-setup-print
-{
-	float: left;
-	width: 100%;
+.coin-setup-keys,
+.coin-setup-print {
+  float: left;
+  width: 100%;
 }
-.instructions
-{
-	border-color: #ccc;
-	width: 100%;
-	border:1px solid #125781;
-	padding: 10px;
-	color: #444;
-	text-align: center;
-	font-weight: 500;
-	border-radius: 10px;
-	padding:30px;
-	max-width:1170px;
-	float: left;
+.instructions {
+  border-color: #ccc;
+  width: 100%;
+  border: 1px solid #125781;
+  padding: 10px;
+  color: #444;
+  text-align: center;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 1170px;
+  float: left;
 }
-
-.instructions.rng-move-mouse{
-	top:183px;
+.instructions.rng-move-mouse {
+  top: 183px;
+  box-shadow: 1px 3px 25px rgba(18, 87, 129, 0.5);
+  background-color: #fff;
 }
-.instructions.rng-move-mouse .subtext{
-	color: black;
+.instructions.rng-move-mouse .subtext {
+  color: black;
 }
-
-.instructions.rng-move-mouse
-{
-	box-shadow: 1px 3px 25px rgba(18,87,129,0.5);
-	background-color: #fff;
+.instructions.rng-move-mouse p {
+  color: #2c8fde;
 }
-.instructions.rng-move-mouse p{
-	color:#2c8fde;
+.instructions.rng-move-mouse p em {
+  color: #000;
+  margin-bottom: 10px;
 }
-
-.instructions.rng-move-mouse p em{
-	color:#000;
-	margin-bottom:10px;
-}
-
-
-
 .frame.selector,
-.design.selector
-{
-border-radius: 10px;
-float: left;
-margin: 5px;
-background-size: 100%;
-display: none;
-cursor: pointer;
+.design.selector {
+  border-radius: 10px;
+  float: left;
+  margin: 5px;
+  background-size: 100%;
+  display: none;
+  cursor: pointer;
 }
-.frame.selector
-{
-background-color: #888;
-border-radius: 10px;
-width:205px;
-height:67px;
+.design.selector {
+  width: 205px;
+  height: 67px;
 }
-.frame.selector img
-{
-height:67px;
+.design.selector.active {
+  display: block;
 }
-.design.selector
-{
-	width: 205px;
-height: 67px;
+.design.selector.fractal {
+  background-position-x: 100px;
 }
-.design.selector.active
-{
-display: block;
+.footer {
+  width: 100%;
+  clear: both;
+  height: 100px;
+  color: #fff;
+  text-align: center;
 }
-.design.selector.fractal
-{
-	background-position-x: 100px;
+.footer p {
+  width: 715px;
+  text-align: left;
+  padding-top: 10px;
+  margin: 0 auto;
+  font-size: 12px;
+  margin-top: 0px;
+  float: left;
 }
-
-.footer
-{
-width: 100%;
-clear: both;
-height: 100px;
-color: #fff;
-text-align:center;
+#open-self-tests {
+  float: right;
+  margin-top: 27px;
+  margin-right: 11px;
+  width: 123px;
+  padding: 5px;
 }
-.footer p
-{
-width: 715px;
-text-align: left;
-padding-top: 10px;
-margin: 0 auto;
-font-size: 12px;
-margin-top: 0px;
+.print-instructions {
+  float: right;
+  position: relative;
+  width: 36%;
+  background: white;
+  margin-bottom: 10px;
 }
-
-#open-self-tests
-{
-float: right;
-margin-top: 27px;
-margin-right: 11px;
-width: 123px;
-padding: 5px;
+.vanity-addresses h3 .progress {
+  position: absolute;
+  float: left;
+  margin-top: 11px;
+  margin-left: 18px;
 }
-
-.print-instructions
-{
-float: right;
-position: relative;
-width: 36%;
-background: white;
-margin-bottom: 10px;
+#vanity-custom-text {
+  width: 32%;
+  margin-bottom: 15px;
 }
-
-.vanity-addresses h3 .progress
-{
-position: absolute;
-float: left;
-margin-top: 11px;
-margin-left: 18px;
+.vanity-good-results {
+  float: left;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: scroll;
+  padding: 5px;
 }
-
-#vanity-custom-text
-{
-width: 32%;
-margin-bottom: 15px;
+.vanity-good-results .best.result {
+  font-weight: bold;
 }
-
-.vanity-good-results
-{
-float: left;
-width: 100%;
-max-height: 200px;
-overflow-y:scroll;
-padding:5px
+.vanity-good-results .result {
+  font-size: 12px;
+  width: 100%;
+  float: left;
 }
-
-.vanity-good-results .best.result
-{
-font-weight: bold;
+.vanity-good-results .result .result-address {
+  float: left;
 }
-
-.vanity-good-results .result
-{
-font-size: 12px;
-width: 100%;
-float: left;
+.vanity-good-results .result .result-key {
+  float: right;
+  font-size: 9px;
 }
-
-.vanity-good-results .result .result-address
-{
-float: left;
+.vanity-type {
+  width: 54%;
 }
-
-.vanity-good-results .result .result-key
-{
-float: right;
-font-size: 9px;
+.show {
+  display: block !important;
 }
-
-.vanity-type
-{
-width: 54%;
+#private-key-add {
+  float: left;
+  width: 49%;
+  top: 0px;
+  margin: 0px;
+  margin-bottom: 12px;
+  margin-left: 2%;
 }
-
-.show
-{
-display: block !important;
+#private-key-remove {
+  background-color: #BB3B3B;
+  float: left;
+  width: 49%;
+  top: 0px;
+  margin: 0px;
+  margin-bottom: 12px;
 }
-
-#private-key-add
-{
-float: left;
-width: 49%;
-top: 0px;
-margin: 0px;
-margin-bottom: 12px;
-margin-left: 2%
+#private-key-remove:disabled {
+  background-color: #BBBBBB;
 }
-
-#private-key-remove
-{
-background-color: #BB3B3B;
-float: left;
-width: 49%;
-top: 0px;
-margin: 0px;
-margin-bottom: 12px;
+#private-key-remove-yes {
+  background-color: #BB3B3B;
+  float: left;
+  width: 24%;
+  top: 0px;
+  margin: 0px;
+  margin-bottom: 12px;
 }
-
-#private-key-remove:disabled
-{
-background-color: #BBBBBB;
+#private-key-remove-no {
+  float: left;
+  width: 24%;
+  top: 0px;
+  margin: 0px;
+  margin-bottom: 12px;
+  margin-right: 1%;
 }
-
-#private-key-remove-yes
-{
-background-color: #BB3B3B;
-float: left;
-width: 24%;
-top: 0px;
-margin: 0px;
-margin-bottom: 12px;
-
+.address-effect {
+  position: absolute;
+  z-index: 1000;
 }
-
-#private-key-remove-no
-{
-float: left;
-width: 24%;
-top: 0px;
-margin: 0px;
-margin-bottom: 12px;
-margin-right: 1%;
-}
-
-
-.key-wallet
-{
-float: left;
-background-color: #1F1D5A;
-padding: 10px;
-color: white;
-border-radius: 14px;
-cursor: pointer;
-position: absolute;
-top: 10px;
-left: 190px;
-width: 86px;
-overflow: hidden;
-z-index: 4;
-padding-bottom: 0px;
-}
-.key-wallet.empty
-{
-cursor: default;
-}
-.address-effect
-{
-position: absolute;
-z-index: 1000;
-}
-
-.key-wallet .wallet-image
-{
-background-image: url('../images/safe.png');
-width: 40px;
-height: 40px;
-float: left;
-}
-
-.key-wallet .key-count
-{
-float: left;
-margin-top: 10px;
-margin-left: 1px;
-font-size: 19px;
-width: 25px;
-text-shadow: 1px 1px 3px #FFF;
-margin-bottom: 14px;
-}
-
-.key-wallet .keys
-{
-float: left;
-display: block;
-max-width: 300px;
-margin-right: -300px;
-}
-
-.key-wallet .keys .key
-{
-display: none;
-height: 0px;
-opacity: 0;
-width: 355px;
-float: left;
-background-color: #323266;
-border-radius: 10px;
-margin-bottom: 5px;
-border: 1px solid #555;
-}
-
 .key-wallet .keys .key .encrypted,
 .key-wallet .keys .key .armory,
-.key-wallet .keys .key .electrum
-{
-display: block;
-width: 20px;
-height: 20px;
-float: left;
-position: absolute;
-left: 388px;
-margin-top: 7px;
+.key-wallet .keys .key .electrum {
+  display: block;
+  width: 20px;
+  height: 20px;
+  float: left;
+  position: absolute;
+  left: 388px;
+  margin-top: 7px;
 }
-.key-wallet .keys .key .armory
-{
-background: url('../images/armory.png');
-background-size: 100%;
+.hide {
+  display: none;
 }
-.key-wallet .keys .key .electrum
-{
-background: url('../images/electrum.png');
-background-size: 100%;
+.snazzy-hide {
+  opacity: 0;
+  height: 0px;
+  display: none;
 }
-
-.key-wallet.expand-y .keys .key
-{
-display: block;
+.custom.coin-wallet-background {
+  width: 100%;
+  height: auto;
 }
-
-.key-wallet .keys .key .wallet-coin-type
-{
-background-size: 100%;
-width: 36px;
-height: 36px;
-float: left;
-}
-
-.key-wallet .keys .key .address
-{
-font-size: 12px;
-margin-top: 13px;
-float: left;
-color: #fff;
-margin-left: 5px;
-text-align: center;
-width: 258px;
-}
-
-.key-wallet .keys .key .print-status
-{
-}
-
-
-.key-wallet .keys .key.current-key
-{
-display: block;
-}
-.key-wallet.expand-x .keys .key.current-key
-{
-display: block;
-opacity: 1;
-height: 36px;
-background-color: #484D81;
-border-radius: 10px;
-}
-
-.key-wallet.expand-x .keys .key:hover
-{
-background-color: #505591;
-border-radius: 10px;
-}
-
-.key-wallet .keys .key.current-key .wallet-coin-type
-{
-}
-
-.key-wallet .keys .key.current-key .address
-{
-}
-
-.key-wallet .keys .key.current-key .print-status
-{
-}
-
-.coins-grid-wrapper .coin em{
-	width:100%;
-	display:inline-block;
-	text-align:center;
-	padding-bottom: 5px;
-	font-style: normal;
-	padding-top: 2px;
-	background: #dddddd;
-	border-bottom-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	margin-top: 0px;
-	font-weight: bold;
-	color: #666;
-}
-
-.hide
-{
-display: none;
-}
-.snazzy-hide
-{
-opacity: 0;
-height: 0px;
-display: none;
-}
-
-.custom.coin-wallet-background
-{
-width: 100%;
-height: auto;
-}
-
 *:disabled,
 input:disabled,
-label:disabled
-{
-background-color: #A5A5A5;
+label:disabled {
+  background-color: #A5A5A5;
 }
-
-
-
-.chain-keys
-{
-	margin: 0px;
-	text-align: center;
+.result-address b {
+  font-size: 18px;
+  font-weight: bold;
 }
-
-.chain-keys .coin
-{
-left: 183px;
+.single-key {
+  text-align: center;
 }
-
-.key-details.minimized .chain-keys .coin-wallet-address-qr
-{
-display: block;
-top: -35px;
-left: 182px;
+.minimized .chain-keys h3 {
+  margin-bottom: 58px;
 }
-
-.key-details.minimized .chain-keys .coin-wallet-private-key-qr
-{
-display: none;
-float: left;
+.minimized .chain-keys .coin-wallet-address-qr {
+  float: left;
 }
-
-.single-key
-{
-text-align: center;
+.minimized .chain-keys .coin-wallet-address-qr:before {
+  left: 10px;
 }
-
-.chain-keys h3
-{
-margin-bottom: 10px;
+.minimized .chain-keys .coin-wallet-address-qr.qr-1:before {
+  content: "Address 1" !important;
 }
-
-.minimized .chain-keys h3
-{
-margin-bottom: 58px;
+.minimized .chain-keys .coin-wallet-address-qr.qr-2:before {
+  content: "Address 2";
 }
-
-.chain-keys .chain-key
-{
-margin-bottom: 20px;
+.minimized .chain-keys .coin-wallet-address-qr.qr-3:before {
+  content: "Address 3";
 }
-
-.minimized .chain-keys .coin-wallet-address-qr
-{
-float: left;
+.minimized .chain-keys .coin-wallet-address-qr.qr-4:before {
+  content: "Address 4";
 }
-
-.chain-keys .coin-wallet-address-qr
-{
-position: relative;
-float: right;
-top: 36px;
-left: 0px;
+.minimized .chain-keys .coin-wallet-address-qr.qr-5:before {
+  content: "Address 5";
 }
-
-.chain-keys .coin-wallet-address-qr:before
-{
-top: -10px;
+.minimized .chain-keys .coin-wallet-address-qr.qr-6:before {
+  content: "Address 6";
 }
-.minimized .chain-keys .coin-wallet-address-qr:before
-{
-left: 10px;
+.minimized .chain-keys .coin-wallet-address-qr.change.change-1:before {
+  content: "Change 1" !important;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-1:before
-{
-content: "Address 1" !important;
+.minimized .chain-keys .coin-wallet-address-qr.change.change-2:before {
+  content: "Change 2" !important;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-2:before
-{
-content: "Address 2";
+.minimized .chain-keys .coin-wallet-address-qr.change.change-3:before {
+  content: "Change 3" !important;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-3:before
-{
-content: "Address 3";
+.minimized .chain-keys .coin-wallet-address-qr.change.change-4:before {
+  content: "Change 4" !important;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-4:before
-{
-content: "Address 4";
+.minimized .chain-keys .coin-wallet-address-qr.change.change-5:before {
+  content: "Change 5" !important;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-5:before
-{
-content: "Address 5";
+.minimized .chain-keys .coin-wallet-private-key-qr.qr-master {
+  display: block;
+  left: 10px;
+  top: 30px;
+  zoom: 1.5;
 }
-.minimized .chain-keys .coin-wallet-address-qr.qr-6:before
-{
-content: "Address 6";
-}
-
-.chain-keys .coin-wallet-address-qr.change:before
-{
-background-color: rgba(255,255, 0, 0.6);
-}
-.chain-keys .coin-wallet-private-key-qr.change:before
-{
-background-color: rgba(255,255, 0, 0.6);
-}
-.minimized .chain-keys .coin-wallet-address-qr.change.change-1:before
-{
-content: "Change 1" !important;
-}
-.minimized .chain-keys .coin-wallet-address-qr.change.change-2:before
-{
-content: "Change 2" !important;
-}
-.minimized .chain-keys .coin-wallet-address-qr.change.change-3:before
-{
-content: "Change 3" !important;
-}
-.minimized .chain-keys .coin-wallet-address-qr.change.change-4:before
-{
-content: "Change 4" !important;
-}
-.minimized .chain-keys .coin-wallet-address-qr.change.change-5:before
-{
-content: "Change 5" !important;
-}
-
-
-.chain-keys .coin-wallet-private-key-qr
-{
-position: relative;
-float: right;
-top: 36px;
-left: 0px;
-}
-.chain-keys .coin-wallet-private-key-qr:before
-{
-top: -10px;
-}
-.chain-keys .left-label
-{
-width: 103px;
-padding-right: 6px;
-height: 30px;
-padding-top: 9px;
-}
-.chain-keys .chain-key input
-{
-width: 375px;
-margin-bottom: 10px;
-font-size: 12px;
-padding: 4px;
-}
-.coin-wallets.key-chain .wallet-frame
-{
-background: url('../images/wallet-frames/armory-frame.png') !important;
-}
-.coin-wallets.back.key-chain .wallet-frame
-{
-background: url('../images/wallet-frames/armory-frame-back.png') !important;
-}
-.coin-wallets.key-chain .coin-wallet-left
-{
-margin: 0px !important;
-position: absolute !important;
-top: 0px !important;
-left: 11px !important;
-}
-.coin-wallets.key-chain .coin-wallet-right
-{
-margin: 0px;
-top: 0px;
-padding: 0px;
-width: 359px;
-}
-.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr
-{
-left: 191px;
-position: relative;
-top: 30px;
-}
-.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key
-{
-transform: rotate(-90deg);
--ms-transform: rotate(-90deg);
--webkit-transform: rotate(-90deg);
-top: 166px;
-position: absolute;
-width: 313px;
-font-size: 11px;
-font-weight: bold;
-}
-.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.top
-{
-left: 741px;
-}
-.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key.bottom
-{
-left: 913px;
-}
-
-
-
-.coin-wallets.key-chain .coin-wallet-address
-{
-transform:rotate(-90deg);
--ms-transform:rotate(-90deg); /* IE 9 */
--webkit-transform:rotate(-90deg); /* Opera, Chrome, and Safari */
-position: absolute;
-display: block !important;
-}
-.coin-wallets.key-chain .coin-wallet-address.bottom
-{
-display: none !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr
-{
-position: absolute;
-margin: 0px !important;
-width: 100px !important;
-height: 132px !important;
-}
-
 .coin-wallets .coin-wallet-address-qr.qr-2,
 .coin-wallets .coin-wallet-address-qr.qr-3,
 .coin-wallets .coin-wallet-address-qr.qr-4,
@@ -3805,421 +3046,130 @@ height: 132px !important;
 .coin-wallet-address.address-3,
 .coin-wallet-address.address-4,
 .coin-wallet-address.address-5,
-.coin-wallet-address.address-6
-{
-display: none;
+.coin-wallet-address.address-6 {
+  display: none;
 }
-
-
-.chain-keys .coin-wallet-private-key-qr.qr-master
-{
-position: absolute;
-left: 46px;
-top: 16px;
+.chain-logo {
+  display: none;
 }
-.minimized .chain-keys .coin-wallet-private-key-qr.qr-master
-{
-display: block;
-left: 10px;
-top: 30px;
-zoom: 1.5;
+.chain-set-buttons {
+  position: absolute;
+  right: 29px;
+  top: 8px;
+  width: 151px;
+  background: rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 14px;
 }
-
-.chain-keys .coin-wallet-private-key-qr.qr-master:before
-{
-content: 'Master Key';
+.chain-set-buttons h1 {
+  float: left;
+  font-size: 26px;
+  margin-right: 10px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
-
-.coin-wallets.key-chain .coin-wallet-address-qr:before
-{
-width: 100px !important;
+.chain-set-buttons .chain-set-last {
+  float: left;
+  background-image: url('../images/minus.png');
+  width: 14px;
+  height: 14px;
+  background-size: 100%;
+  cursor: pointer;
+  z-index: 1;
+  margin-top: 12px;
 }
-.coin-wallets.key-chain .coin-wallet-address-qr:after
-{
-width: 100px !important;
-font-size: 11px;
+.chain-set-buttons.set-1 .chain-set-last {
+  cursor: default;
+  opacity: 0.5;
 }
-.coin-wallets.key-chain .coin-wallet-address-qr canvas
-{
-width: 85px !important;
-height: 85px !important;
+.chain-set-buttons .chain-set-number {
+  float: left;
+  font-size: 26px;
+  margin-bottom: 0px;
+  margin-top: 6px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
-.coin-wallets.key-chain .coin-wallet-address.address-1
-{
-display: block;
-left: -112px;
-top: 169px;
+.chain-set-buttons .chain-set-next {
+  float: left;
+  background-image: url('../images/plus.png');
+  width: 14px;
+  height: 14px;
+  background-size: 100%;
+  cursor: pointer;
+  z-index: 1;
+  margin-top: 12px;
 }
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-1
-{
-top: 29px;
-left: 26px;
-}
-
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-1:before
-{
-content: '⇚ Address 1' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address.address-2
-{
-display: block;
-top: 169px;
-left: 6px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-2
-{
-display: block;
-top: 193px;
-left: 36px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-2:before
-{
-content: 'Address 2 ⇛' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address.address-3
-{
-display: block;
-top: 169px;
-left: 38px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-3
-{
-display: block;
-top: 29px;
-left: 185px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-3:before
-{
-content: '⇚ Address 3' !important;
-}
-
-.coin-wallets.key-chain .coin-wallet-address.address-4
-{
-display: block;
-top: 169px;
-left: 170px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-4
-{
-display: block;
-top: 193px;
-left: 199px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-4:before
-{
-content: 'Address 4 ⇛' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-4:before
-{
-content: 'Change 1 ⇛' !important;
-}
-
-.coin-wallets.key-chain .coin-wallet-address.address-5
-{
-display: block;
-top: 169px;
-left: 202px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-5
-{
-display: block;
-top: 29px;
-left: 347px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-5:before
-{
-content: '⇚ Address 5' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-5:before
-{
-content: '⇚ Change 1' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-5:before
-{
-content: '⇚ Change 2' !important;
-}
-
-.coin-wallets.key-chain .coin-wallet-address.address-6
-{
-display: block;
-top: 169px;
-left: 328px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-6
-{
-display: block;
-top: 193px;
-left: 355px;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.qr-6:before
-{
-content: 'Address 6 ⇛' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-1.qr-6:before
-{
-content: 'Change 1 ⇛' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-2.qr-6:before
-{
-content: 'Change 2 ⇛' !important;
-}
-.coin-wallets.key-chain .coin-wallet-address-qr.change.change-3.qr-6:before
-{
-content: 'Change 3 ⇛' !important;
-}
-
-.coin-wallets.key-chain .coin-logo.coin-name
-{
-left: 509px;
-top: 31px;
-}
-
-.coin-wallets.key-chain .cryptopapers-logo
-{
-left: 486px;
-top: 293px;
-}
-.chain-logo
-{
-display:none;
-}
-.coin-wallets.key-chain .chain-logo
-{
-display: block;
-width: 120px;
-height: 120px;
-position: absolute;
-left: 50px;
-top: 109px;
-}
-.coin-wallets.key-chain.armory .chain-logo
-{
-background: url('../images/armory.png');
-background-size: 100%;
-background-color: rgba(255,255,255,0.5);
-}
-.coin-wallets.key-chain.electrum .chain-logo
-{
-background: url('../images/electrum.png');
-background-size: 100%;
-}
-.coin-wallets.key-chain .chain-logo
-{
-border-radius: 22px;
-display: none;
-}
-.coin-wallets.back.key-chain .coin-logo 
-{
-width: 200px;
-height: 200px;
-left: 269px;
-top: 73px;
-}
-.coin-wallets.back.key-chain .chain-set
-{
-display: none;
-}
-
-.coin-wallets.back.key-chain .chain-logo
-{
-display: block;
-}
-.coin-wallets.key-chain .coin-wallet-private-key-qr:after
-{
-margin-top: 13px;
-}
-.coin-wallets.key-chain .coin-wallet-right .coin-wallet-private-key-qr canvas
-{
-margin-top: 5px;
-}
-
-.chain-set-buttons
-{
-position: absolute;
-right: 29px;
-top: 8px;
-width: 151px;
-background: rgba(0,0,0,0.1);
-padding: 10px;
-border-radius: 14px;
-}
-.chain-set-buttons h1
-{
-float: left;
-font-size: 26px;
-margin-right: 10px;
-margin-top: 0px;
-margin-bottom: 0px;
-}
-.dark-theme .chain-set-buttons h1
-{
-color: white;
-}
-.dark-theme .chain-set-buttons .chain-set-last
-{
-background-image: url('../images/minus_dark.png');
-}
-.dark-theme .chain-set-buttons .chain-set-next
-{
-background-image: url('../images/plus_dark.png');
-}
-.chain-set-buttons .chain-set-last
-{
-float: left;
-z-index:1;
-background-image: url('../images/minus.png');
-width: 14px;
-height: 14px;
-background-size: 100%;
-cursor: pointer;
-z-index: 1;
-margin-top: 12px;
-}
-.chain-set-buttons.set-1 .chain-set-last
-{
-cursor: default;
-opacity: 0.5;
-}
-.chain-set-buttons .chain-set-number
-{
-float: left;
-font-size: 26px;
-margin-bottom: 0px;
-margin-top: 6px;
-margin-left: 5px;
-margin-right: 5px;
-}
-.chain-set-buttons .chain-set-next
-{
-float: left;
-z-index:1;
-background-image: url('../images/plus.png');
-width: 14px;
-height: 14px;
-background-size: 100%;
-cursor: pointer;
-z-index: 1;
-margin-top: 12px;
-}
-
-.coin-wallets .chain-set
-{
-display: none;
-}
-
-.coin-wallets.key-chain .chain-set
-{
-display: block;
-position: absolute;
-top: 200px;
-left: 500px;
-background-color: rgba(255,255,255,0.7);
-border-radius: 15px;
-padding: 5px;
-color: black;
-font-weight: bold;
-}
-.coin-wallets.key-chain .chain-set h1
-{
-font-size: 30px;
-float: left;
-margin: 0;
-color: black;
-font-weight: bold;
-}
-.coin-wallets.key-chain .chain-set .chain-set-number
-{
-font-size: 30px;
-float: left;
-margin-top: 6px;
-margin-left: 11px;
-margin-right: 11px;
-}
-
 .coin-wallets.key-chain .coin-wallet-address-qr.change:after,
-.coin-wallets.key-chain .coin-wallet-address-qr.change:before
-{
-background-color: rgba(255, 255, 0, 0.6);
+.coin-wallets.key-chain .coin-wallet-address-qr.change:before {
+  background-color: rgba(255, 255, 0, 0.6);
 }
-
-.test-window
-{
-display: none;
-opacity: 0;
-position: fixed;
-width: 800px;
-height: 600px;
-background: #eee;
-padding: 20px;
-left: 23%;
-top: 50px;
-z-index: 100000;
-border-radius: 21px;
-box-shadow: 0px 0px 130px #000000;
+.test-window {
+  display: none;
+  opacity: 0;
+  position: fixed;
+  width: 800px;
+  height: 600px;
+  background: #eee;
+  padding: 20px;
+  left: 23%;
+  top: 50px;
+  z-index: 100000;
+  border-radius: 21px;
+  box-shadow: 0px 0px 130px #000000;
 }
-.test-window h1
-{
-font-size: 24px;
+.test-window h1 {
+  font-size: 24px;
 }
-.test-window small
-{
-float: left;
-position: absolute;
-top: 131px;
+.test-window small {
+  float: left;
+  position: absolute;
+  top: 131px;
 }
-.test-window textarea
-{
-min-height: 270px;
-max-height: 270px
+.test-window textarea {
+  min-height: 270px;
+  max-height: 270px;
 }
-.test-window .left-label
-{
-min-height: 30px;
-padding: 9px;
+.test-window .left-label {
+  min-height: 30px;
+  padding: 9px;
 }
-#run-self-tests
-{
-margin-left: 36px;
-padding: 16px;
-height: inherit;
-margin-top: 10px;
-margin-right: 61px;
+#run-self-tests {
+  margin-left: 36px;
+  padding: 16px;
+  height: inherit;
+  margin-top: 10px;
+  margin-right: 61px;
 }
-#stop-self-tests
-{
-height: inherit;
-padding: 16px;
-width: 106px;
+#stop-self-tests {
+  height: inherit;
+  padding: 16px;
+  width: 106px;
 }
-.test-details
-{
-float: right;
-width: 49%;
-background-color: rgba(0,0,0,0.15);
-padding: 5px;
-border-radius: 10px;
+.test-details {
+  float: right;
+  width: 49%;
+  background-color: rgba(0, 0, 0, 0.15);
+  padding: 5px;
+  border-radius: 10px;
 }
-.test-details ul
-{
-font-size: 12px;
+.test-details ul {
+  font-size: 12px;
 }
-.lengthy-tests
-{
-display: block;
-width: 361px;
-height: 176px;
-background-color: rgba(0,0,0,0.15);
-border-radius: 10px;
-float: left;
-clear: left;
-padding: 5px;
-margin-bottom: 10px;
+.lengthy-tests {
+  display: block;
+  width: 361px;
+  height: 176px;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  float: left;
+  clear: left;
+  padding: 5px;
+  margin-bottom: 10px;
 }
-.lengthy-tests p
-{
-font-size: 14px;
-text-align: center;
-margin: 6px;
-font-weight: bold;
+.lengthy-tests p {
+  font-size: 14px;
+  text-align: center;
+  margin: 6px;
+  font-weight: bold;
 }
-
