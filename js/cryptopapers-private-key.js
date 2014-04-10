@@ -295,8 +295,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, EncryptedKey)
 		$('.key-details .single-key').show();
 		}
 	
-	if (EncryptedKey != undefined)
-		$('#private-key-wif').val(PrivKeyWIF);
+	$('#private-key-wif').val(PrivKeyWIF);
 		
 	$('#public-address').val(Address);
 	

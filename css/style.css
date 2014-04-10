@@ -1150,10 +1150,12 @@ h6 {
 .key-details .coin-wallet-private-key-qr {
   top: 40px;
   left: 555px;
+  position: absolute;
 }
 .key-details .coin-wallet-address-qr {
   top: 40px;
   left: 460px;
+  position: absolute;
 }
 .key-details .encrypted {
   left: 611px;
@@ -1200,6 +1202,9 @@ h6 {
 .manual-hide {
   float: left;
   width: 100%;
+}
+.manual-hide.compression {
+  margin-top: -50px;
 }
 label.left-label {
   width: 140px;
