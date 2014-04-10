@@ -31,7 +31,9 @@ function InitPage()
 	
 	InitDismissable();
 	InitMinimizable();
-	 
+	
+	InitWallets();
+		
 	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
 	
 	$('#open-self-tests').click(function() {
@@ -67,6 +69,24 @@ function InitPage()
 		
 	if (InitPremium)
 		InitPremium();
+	
+	$('#page').show();
+	}
+	
+function InitWallets()
+	{
+	if (Multiple_Wallets)
+		{
+		$('.key-wallet').show();
+		$('#private-key-add').show();
+		$('#private-key-remove').show();
+		}
+	else
+		{
+		$('.key-wallet').hide();
+		$('#private-key-add').hide();
+		$('#private-key-remove').hide();
+		}
 	}
 	
 function InitMinimizable()
@@ -419,20 +439,30 @@ function AddDropdownCoins()
 		var NewCoinType = $(this).attr('data');
 		var CurrentCoinType_Persist = CurrentCoinType;
 		
-		if (NewCoinType == CurrentCoinType)
-			return;			
-		
-		$('.changing-coin').fadeOut(300, function() { 
-			$('.changing-coin').removeClass(CurrentCoinType_Persist + '-coin').addClass(NewCoinType + '-coin');
-			$('.changing-coin').fadeIn(300)
-			})
-		
-		if (CurrentCoinType == 'btc' && NewCoinType != 'btc')
-			$('.btc-only').fadeOut(300);
-		else if (NewCoinType == 'btc' && CurrentCoinType != 'btc')
-			$('.btc-only').fadeIn(300);
-		
-		if (CoinInfo[NewCoinType].manual)
+		ChangeCoinType(NewCoinType, true);
+		});
+	}
+
+function ChangeCoinType(NewCoinType, Clear)
+	{
+	var CurrentCoinType_Persist = CurrentCoinType;
+	
+	if (NewCoinType == CurrentCoinType)
+		return;			
+	
+	$('.changing-coin').fadeOut(300, function() { 
+		$('.changing-coin').removeClass(CurrentCoinType_Persist + '-coin').addClass(NewCoinType + '-coin');
+		$('.changing-coin').fadeIn(300)
+		})
+	
+	if (CurrentCoinType == 'btc' && NewCoinType != 'btc')
+		$('.btc-only').fadeOut(300);
+	else if (NewCoinType == 'btc' && CurrentCoinType != 'btc')
+		$('.btc-only').fadeIn(300);
+	
+	if (CoinInfo[NewCoinType].manual)
+		{
+		if ($('#main-menu .menu-key-import').hasClass('active') && !$('#coin-setup-menu #generate').hasClass('active'))
 			{
 			if ($('#main-menu .menu-key-import').hasClass('active') && !$('#coin-setup-menu #generate').hasClass('active'))
 				{
@@ -454,11 +484,16 @@ function AddDropdownCoins()
 			if (ArmoryMode)
 				ShowArmory(false, false, false);
 			}
-		else if (CoinInfo[CurrentCoinType].manual)
+		
+		if (Clear)
+			$('#private-key-input').val('');
+			
+		$('.private-key-address-manual').snazzyShow();
+		
+		if (!CoinInfo[NewCoinType].manual)
 			{
-			$('.warning.manual-keys').snazzyHide();
-			$('.manual-hide').snazzyShow();
-			$('.private-key-address-manual').snazzyHide();
+			$('#private-key-input').val('');
+			$('#private-key-address-manual').val('');
 			
 			if (!CoinInfo[NewCoinType].manual)
 				{
@@ -470,13 +505,29 @@ function AddDropdownCoins()
 				}
 			}
 		
-		CurrentCoinType = NewCoinType;
+		$('.key-details').snazzyHide();
 		
-		$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
+		$('.manual-hide').snazzyHide();
 		
+		$('.print-encryption').snazzyHide();
+		$('.warning.manual-keys').snazzyShow();
+		}
+	else if (CoinInfo[CurrentCoinType].manual)
+		{
+		$('.warning.manual-keys').snazzyHide();
+		$('.manual-hide').snazzyShow();
+		$('.private-key-address-manual').snazzyHide();
+		}
+	
+	CurrentCoinType = NewCoinType;
+	
+	$('.coin-full-name').html(CoinInfo[CurrentCoinType].fullName);
+	
+	if (Clear)
+		{
 		LastInput = '';
 		$('#private-key-input').change();
-		});
+		}
 	}
 	
 function AddDonateCoins()

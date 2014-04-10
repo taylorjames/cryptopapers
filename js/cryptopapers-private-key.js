@@ -12,573 +12,322 @@ var HasPrivateKey = false;
 var DefaultCoin = 'btc';
 var CurrentCoinType = DefaultCoin;
 
-var ChainMode = false;
-var ArmoryMode = false;
-var ElectrumMode = false;
-
 var VanityEnabled = undefined;
 
 var LastInput = '';
-var LastInput_Armory = '';
-var LastInput_Electrum = '';
-var LastInput_ElectrumRoot = '';
-
-var ChainSet = 0;
 
 function InitPrivateKeyPage()
-	{
-	$('input[name=electrum-change]').change(function()
-		{
-		LastInput = '';
-		$('#private-key-input').change();		
-		});
-		
-	$('.chain-set-last').click(function() 
-		{
-		if ($('.chain-set-buttons').hasClass('set-1'))
-			return;
-			
-		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
-		
-		ChainSet--;
-		
-		LastInput = '';
-		$('#private-key-input').change();
-		
-		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
-		$('.chain-set-number').html((ChainSet+1));
-		});
-		
-	$('.chain-set-next').click(function() 
-		{
-		$('.chain-set-buttons').removeClass('set-'+ (ChainSet+1));
-		
-		ChainSet++;
-		
-		LastInput = '';
-		$('#private-key-input').change();
-		
-		$('.chain-set-buttons').addClass('set-'+ (ChainSet+1));
-		});
+	{	
+	InitKeyChains();
+	InitKeyWallet();
 	
-	$('#private-key-electrum-root').keyup(function() 
-		{
-		$('#private-key-electrum-root').change();
-		});
-		
-	$('#private-key-electrum-root').change(function() 
-		{
-		if (ElectrumMode)
-			{
-			var InputElectrumRoot = $('#private-key-electrum-root').val();
-			
-			if (LastInput_ElectrumRoot == InputElectrumRoot)
-				{
-				return;
-				}
-			LastInput_ElectrumRoot = InputElectrumRoot;
-			
-			ShowElectrum(true, false, true);
-			}
-		});
-	$('#private-key-electrum').keyup(function() 
-		{
-		//$('#private-key-electrum').change();
-		});
-		
-	$('#private-key-electrum').change(function() 
-		{
-		if (ElectrumMode)
-			{
-			var InputElectrum = $('#private-key-electrum').val();
-			
-			if (LastInput_Electrum == InputElectrum)
-				{
-				return;
-				}
-			LastInput_Electrum = InputElectrum;
-			
-			ShowElectrum(true, true, false);
-			}
-		});
-		
-	$('.electrum-icon.toggle').click(function()
-		{
-		if ($(this).hasClass('selected'))
-			{
-			ShowElectrum(false, false, false);
-			}
-		else
-			{
-			ShowElectrum(true, false, true);
-			}
-		});
-		
-	$('#private-key-armory').mask('xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx\n' + 
-												'xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx xxxx');
-	
-	$('#private-key-armory').keyup(function() 
-		{
-		$('#private-key-armory').change();
-		});
-		
-	$('#private-key-armory').change(function() 
-		{
-		if (ArmoryMode)
-			{
-			var InputArmory = $('#private-key-armory').val();
-			
-			if (LastInput_Armory == InputArmory)
-				{
-				return;
-				}
-			LastInput_Armory = InputArmory;
-			
-			ShowArmory(true, true, false);
-			}
-		});
-		
-	$('.armory-icon.toggle').click(function()
-		{
-		if ($(this).hasClass('selected'))
-			{
-			ShowArmory(false, false, false);
-			}
-		else
-			{
-			ShowArmory(true, false, true);
-			}
-		});
-		
 	$('.generate-button').click(function()
 		{
-		if (VanityEnabled != undefined && VanityEnabled())
-			{
-			var AddressStart = '-----';
-			
-			GenerateVanity();
-			}
-		else
-			{
-			var bytes = sr.getBytes(32);
-			sr.seedTime();
-			var hex = Crypto.util.bytesToHex(bytes);
-						
-			$('#private-key-input').val(hex);
-			
-			if (ElectrumMode)
-				{
-				$('#private-key-electrum-root').val(hex.substr(0,32));
-				ShowElectrum(true, false, true);
-				}			
-			
-			$('#private-key-input').change();
-		
-			$('#security-generate-import-no').click();
-			}
+		GenerateButton_Click(this);
 		});
-		
+			
 	$('input[name=compression]').change(function() 
 		{
-		Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
-		
-		// If a WIF was entered, we must convert it to Hex in order to compute the other comressed/uncompressed version
-		var PrivKey = $('#private-key-input').val();
-		
-		if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
-			{
-			$('#private-key-input').val($('#private-key-hex').val());
-			}
-			
-		// Force refresh
-		LastInput = '';
-		$('#private-key-input').change();
+		Compression_Change(this);
 		});
 		
 	$('#private-key-input, #private-key-address-manual').keyup(function() 
 		{
-		$(this).change();
-		}
-		);
-	$('#private-key-input, #private-key-address-manual').change(function() 
-		{		
-		if (CoinInfo[CurrentCoinType].manual)
-			{
-			$('#private-key-hex').val('');
-			$('#private-key-encrypted').val('');
-			$('.private-key-encrypted').snazzyHide();
-			$('#private-key-checksum').val('');
-			$('#public-key-hex').val('');
-			$('#public-key-hash160').val('');
-			$('#public-key-address-checksum').val('');
-			
-			$('#public-address').val('');
-			$('#public-key-address-checksum').val('');
-			$('#private-key-wif').val('');
-
-			
-			var Address = $('#private-key-address-manual').val();
-			var Key = $('#private-key-input').val();
-			
-			DisplayWallet(CurrentCoinType, Key, Address, false);	
-			
-			if (Key.length == 0 || Address.length == 0)
-				{
-				$('#coin-setup-menu #print').addClass('disabled');
-				}
-			else
-				{
-				$('.key-details').snazzyShow();
-				$('#coin-setup-menu #print').removeClass('disabled');
-				}
-			}
-		else
-			{
-			if (Bitcoin.BIP38.isBIP38Format($(this).val()))
-				{
-				$('.decrypt-key').snazzyShow();
-				
-				return;
-				}
-			else
-				{
-				$('.decrypt-key').snazzyHide();
-				}
-			
-			// Invalid WIF error correction
-			var InputKey = $('#private-key-input').val();
-			var FirstChar = InputKey[0];
-			
-			if (LastInput == InputKey)
-				{
-				return;
-				}
-			LastInput = InputKey;
-			
-			if (IsEasy16(InputKey))
-				{
-				
-				var Sections = InputKey.split(' ');
-				
-				if (Sections.length == 18)
-					{
-					InputKey = Sections.slice(0, 9).join(' ') + '\n' + 
-						Sections.slice(9, 18).join(' ');
-						
-					$('#private-key-armory').val(InputKey);
-					
-					ShowArmory(true, true, false);
-					}
-				return;
-				}
-			else if (FirstChar != undefined &&
-				CoinInfo[CurrentCoinType].uncompressedKeyStart.indexOf(FirstChar) < 0 &&
-				CoinInfo[CurrentCoinType].compressedKeyStart.indexOf(FirstChar) < 0 &&
-				(InputKey.length == 50 || InputKey.length == 51 || InputKey.length == 52 || InputKey.length == 53))
-				{
-				var KeyBytes = Bitcoin.Base58.decode(InputKey);
-				
-				var KeyHex = Crypto.util.bytesToHex(KeyBytes);
-				
-				var Option1Key = KeyHex.substr(1, 64);
-				var Option1Address = new Omnicoin.ECKey(Option1Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
-				var Option2Key = KeyHex.substr(2, 64);
-				var Option2Address = new Omnicoin.ECKey(Option2Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
-				var Option3Key = KeyHex.substr(3, 64);
-				var Option3Address = new Omnicoin.ECKey(Option3Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
-				var Option4Key = KeyHex.substr(1, 64);
-				var Option4Address = new Omnicoin.ECKey(Option4Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
-				var Option5Key = KeyHex.substr(2, 64);
-				var Option5Address = new Omnicoin.ECKey(Option5Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
-				var Option6Key = KeyHex.substr(3, 64);
-				var Option6Address = new Omnicoin.ECKey(Option6Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
-				
-				var Options =
-					'<div><input type="radio" id="error-correct-1" name="error-correct" value="' + Option1Key + '">' + 
-					'<label for="error-correct-1">' + Option1Address + '</label></div>' + 
-					'<div><input type="radio" id="error-correct-2" name="error-correct" value="' + Option2Key + '">' + 
-					'<label for="error-correct-2">' + Option2Address + '</label></div>' + 
-					'<div><input type="radio" id="error-correct-3" name="error-correct" value="' + Option3Key + '">' + 
-					'<label for="error-correct-3">' + Option3Address + '</label></div>' + 
-					'<div><input type="radio" id="error-correct-4" name="error-correct" value="' + Option4Key + '">' + 
-					'<label for="error-correct-4">' + Option4Address + '</label></div>' + 
-					'<div><input type="radio" id="error-correct-5" name="error-correct" value="' + Option5Key + '">' + 
-					'<label for="error-correct-5">' + Option5Address + '</label></div>' + 
-					'<div><input type="radio" id="error-correct-6" name="error-correct" value="' + Option6Key + '">' + 
-					'<label for="error-correct-6">' + Option6Address + '</label></div>';
-				
-				$('.error-correct-options').html(Options);
-				
-				$('input[name=error-correct]').change(function() 
-					{
-					$('#private-key-recover-yes').removeAttr('disabled');
-					});
-					
-				$('#private-key-recover-yes').attr('disabled', '');
-				
-				$('.private-key-error-correction').snazzyShow();
-				}
-			else
-				{				
-				$('.private-key-error-correction').snazzyHide();
-				
-				var Address = GenerateAddress(true);	
-				
-				if (ArmoryMode)
-					ShowArmory(true, false, true);
-					
-				// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
-				$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
-				
-				SetLettering();
-				}
-				
-			}
+		PrivateKeyInput_KeyUp(this);
 		});
+		
+	$('#private-key-input, #private-key-address-manual').change(function() 
+		{
+		PrivateKeyInput_Change(this);
+		});
+	
 	$('#private-key-recover-no').click(function()
 		{
-			$('.private-key-error-correction').snazzyHide();
+		PrivateKeyRecoverNo_Click(this);
 		});
 	$('#private-key-recover-yes').click(function()
 		{
-			// Discard the WIF enclosure and extract the raw key.
-			KeyHex = $('input[name=error-correct]:checked').val();
-			
-			$('#private-key-input').val(KeyHex);
-			
-			$('.private-key-error-correction').snazzyHide();
+		PrivateKeyRecoverYes_Click(this);
 		});
 	}
-	
-function ShowElectrum(Show, ElectrumChange, PKChange)
-	{
-	var Switch = false;
-	if (Show)
-		{		
-		if (!ElectrumMode)
-			Switch = true;
-		
-		if (ArmoryMode)
-			{
-			ShowArmory(false, false, false);
-			}
-			
-		ChainMode = true;
-		ElectrumMode = true;
-		
-		$('.key-import .private-key').snazzyHide();
-		$('.key-import .electrum').snazzyShow();
-		$('.electrum-icon.toggle').animate({opacity: 1}, 300);
-		$('.electrum-icon.toggle').addClass('selected');
 
-		if ($('#private-key-electrum-root').val().length == 0 && $('#private-key-input').val().length == 64)
+function GenerateButton_Click(sender)
+	{	
+	if (VanityEnabled != undefined && VanityEnabled())
+		{
+		var AddressStart = '-----';
+		
+		GenerateVanity();
+		}
+	else
+		{			
+		var bytes = sr.getBytes(32);
+		sr.seedTime();
+		var hex = Crypto.util.bytesToHex(bytes);
+					
+		$('#private-key-input').val(hex);
+		$('#private-key-remove').val('New Key');
+		
+		if (ElectrumMode)
 			{
-			if ($('#private-key-electrum-root').val() != $('#private-key-input').val().substr(0,32))
-				{
-				PKChange = true;
-				$('#private-key-electrum-root').val($('#private-key-input').val().substr(0,32));
-				}
+			$('#private-key-electrum-root').val(hex.substr(0,32));
+			ShowElectrum(true, false, true);
+			}
+		
+		LastInput = '';
+		$('#private-key-input').change();
+			
+		$('#security-generate-import-no').click();
+		}
+	}
+	
+function Compression_Change(sender)
+	{
+	Default_Compress = $('input[name=compression]:checked').val() == 'Yes';
+	
+	// If a WIF was entered, we must convert it to Hex in order to compute the other comressed/uncompressed version
+	var PrivKey = $('#private-key-input').val();
+	
+	if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
+		{
+		$('#private-key-input').val($('#private-key-hex').val());
+		}
+		
+	// Force refresh
+	LastInput = '';
+	$('#private-key-input').change();
+	}
+	
+function PrivateKeyInput_KeyUp(sender)
+	{
+	if (!CoinInfo[CurrentCoinType].manual)
+		{
+		$(this).change();
+		}
+	}
+
+function PrivateKeyInput_Change(sender)
+	{
+	if (CoinInfo[CurrentCoinType].manual)
+		{
+		ClearKeyText();
+
+		var Address = $('#private-key-address-manual').val();
+		var Key = $('#private-key-input').val();
+		
+		DisplayWallet(CurrentCoinType, Key, Address, undefined);	
+		
+		if (Key.length == 0 || Address.length == 0)
+			{
+			$('#coin-setup-menu #print').addClass('disabled');
 			}
 		else
 			{
-			}
-		
-		if (PKChange && $('#private-key-electrum-root').val().length == 32)
-			{
-			// Forces keys to regenerate only if codes are changed
-			$('#private-key-electrum-chain-key').val('');
-			$('#private-key-electrum-chain-key').attr('for-code', '');
-			
-			var NewKey = $('#private-key-electrum-root').val();
-			
-			var Mnemonic = mn_encode(NewKey);
-
-			if ($('#private-key-electrum').val() != Mnemonic)
-				{
-				$('#private-key-electrum').val(Mnemonic);
-				Switch = true;
-				}
-				
-			if ($('#private-key-electrum-root').val() != NewKey)
-				{
-				$('#private-key-electrum-root').val(NewKey);
-				Switch = true;
-				}
-			}
-
-		if (ElectrumChange && $('#private-key-electrum').val().length > 0)
-			{
-			// Forces keys to regenerate only if codes are changed
-			$('#private-key-electrum-chain-key').val('');
-			$('#private-key-electrum-chain-key').attr('for-code', '');
-			
-			var NewMnemonic = $('#private-key-electrum').val();
-			
-			var NewKey = mn_decode(NewMnemonic);
-			
-			if (NewKey.length == 32)
-				{					
-				if ($('#private-key-electrum-root').val() != NewKey)
-					{
-					$('#private-key-electrum-root').val(NewKey);
-					Switch = true;
-					}
-				}
-			}
-			
-		if ($('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
-			return;
-			}			
-			
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
+			$('.key-details').animate({opacity: 1}, 300);
+			$('#coin-setup-menu #print').removeClass('disabled');
 			}
 		}
 	else
 		{
-		if (ElectrumMode)
-			Switch = true;
-			
-		ChainMode = false;
-		ElectrumMode = false;
-		$('.key-import .private-key').snazzyShow();
-		$('.key-import .electrum').snazzyHide();
-		$('.electrum-icon.toggle').animate({opacity: 0.3}, 300);
-		$('.electrum-icon.toggle').removeClass('selected');
-		
-		if (Switch)
+		if (Bitcoin.BIP38.isBIP38Format($(sender).val()))
 			{
-			LastInput = '';
-			$('#private-key-input').change();
-			}
-		}
-	}
-
-function ShowArmory(Show, ArmoryChange, PKChange)
-	{
-	var Switch = false;
-	if (Show)
-		{
-		if (ElectrumMode)
-			{
-			ShowElectrum(false, false, false);
-			}
+			$('.decrypt-key').snazzyShow();
 			
-		if (!ArmoryMode)
-			Switch = true;
+			return;
+			}
+		else
+			{
+			$('.decrypt-key').snazzyHide();
+			}
 		
-		ChainMode = true;
-		ArmoryMode = true;
+		// Invalid WIF error correction
+		var InputKey = $('#private-key-input').val();
+		var FirstChar = InputKey[0];
 		
-		$('.key-import .armory').snazzyShow();
-		$('.armory-icon.toggle').animate({opacity: 1}, 300);
-		$('.armory-icon.toggle').addClass('selected');
-		
-	//	$('.switch-toggle.compression input').attr('disabled', '');
-	//	$('.switch-toggle.compression a').attr('disabled', '');
-
-		if (PKChange && $('#private-key-hex').val().length == 64 && 
-			($('#private-key-armory').val().length == 0  || 
-			$('#private-key-armory').val().length == 89))
+		if (LastInput == InputKey)
+			{
+			return;
+			}
+		LastInput = InputKey;
+	
+		if (IsEasy16(InputKey))
 			{			
-			var Easy16Key = ConvertToEasy16(Crypto.util.hexToBytes($('#private-key-hex').val()));
-
-			if ($('#private-key-armory').val() != Easy16Key)
+			var Sections = InputKey.split(' ');
+			
+			if (Sections.length == 18)
 				{
-				$('#private-key-armory').val(Easy16Key);
-				Switch = true;
+				InputKey = Sections.slice(0, 9).join(' ') + '\n' + 
+					Sections.slice(9, 18).join(' ');
+					
+				$('#private-key-armory').val(InputKey);
+				
+				ShowArmory(true, true, false);
 				}
-			}
-
-		if (ArmoryChange && $('#private-key-armory').val().length == 89
-			&& $('#private-key-armory').val().indexOf('_') < 0)
-			{
-			
-			var HexKey = Crypto.util.bytesToHex(ConvertFromEasy16($('#private-key-armory').val()));
-			
-			if ($('#private-key-input').val() != HexKey)
-				{
-				$('#private-key-input').val(HexKey);
-				Switch = true;
-				}
-			}
-			
-		if ($('#compressed').is(':checked'))
-			{
-			$('#decompressed').click();
 			return;
-			}			
-			
-		if (Switch)
-			{
-			LastInput = '';
-			$('#private-key-input').change();
 			}
-		}
-	else
-		{
-		if (ArmoryMode)
-			Switch = true;
-			
-		ChainMode = false;
-		ArmoryMode = false;
-		$('.key-import .armory').snazzyHide();
-		$('.armory-icon.toggle').animate({opacity: 0.3}, 300);
-		$('.armory-icon.toggle').removeClass('selected');
-		
-		if (Switch)
+		else if (FirstChar != undefined &&
+			CoinInfo[CurrentCoinType].uncompressedKeyStart.indexOf(FirstChar) < 0 &&
+			CoinInfo[CurrentCoinType].compressedKeyStart.indexOf(FirstChar) < 0 &&
+			(InputKey.length == 50 || InputKey.length == 51 || InputKey.length == 52 || InputKey.length == 53))
 			{
-			LastInput = '';
-			$('#private-key-input').change();
+			var KeyBytes = Bitcoin.Base58.decode(InputKey);
+			
+			var KeyHex = Crypto.util.bytesToHex(KeyBytes);
+			
+			var Option1Key = KeyHex.substr(1, 64);
+			var Option1Address = new Omnicoin.ECKey(Option1Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
+			var Option2Key = KeyHex.substr(2, 64);
+			var Option2Address = new Omnicoin.ECKey(Option2Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
+			var Option3Key = KeyHex.substr(3, 64);
+			var Option3Address = new Omnicoin.ECKey(Option3Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), true).getDetails().address;
+			var Option4Key = KeyHex.substr(1, 64);
+			var Option4Address = new Omnicoin.ECKey(Option4Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
+			var Option5Key = KeyHex.substr(2, 64);
+			var Option5Address = new Omnicoin.ECKey(Option5Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
+			var Option6Key = KeyHex.substr(3, 64);
+			var Option6Address = new Omnicoin.ECKey(Option6Key, eval('0x' + CoinInfo[CurrentCoinType].addressVersion), false).getDetails().address;
+			
+			var Options =
+				'<div><input type="radio" id="error-correct-1" name="error-correct" value="' + Option1Key + '">' + 
+				'<label for="error-correct-1">' + Option1Address + '</label></div>' + 
+				'<div><input type="radio" id="error-correct-2" name="error-correct" value="' + Option2Key + '">' + 
+				'<label for="error-correct-2">' + Option2Address + '</label></div>' + 
+				'<div><input type="radio" id="error-correct-3" name="error-correct" value="' + Option3Key + '">' + 
+				'<label for="error-correct-3">' + Option3Address + '</label></div>' + 
+				'<div><input type="radio" id="error-correct-4" name="error-correct" value="' + Option4Key + '">' + 
+				'<label for="error-correct-4">' + Option4Address + '</label></div>' + 
+				'<div><input type="radio" id="error-correct-5" name="error-correct" value="' + Option5Key + '">' + 
+				'<label for="error-correct-5">' + Option5Address + '</label></div>' + 
+				'<div><input type="radio" id="error-correct-6" name="error-correct" value="' + Option6Key + '">' + 
+				'<label for="error-correct-6">' + Option6Address + '</label></div>';
+			
+			$('.error-correct-options').html(Options);
+			
+			$('input[name=error-correct]').change(function() 
+				{
+				$('#private-key-recover-yes').removeAttr('disabled');
+				});
+				
+			$('#private-key-recover-yes').attr('disabled', '');
+			
+			$('.private-key-error-correction').snazzyShow();
 			}
-
-	//	$('.switch-toggle.compression input').removeAttr('disabled');
-	//	$('.switch-toggle.compression a').removeAttr('disabled');
+		else
+			{
+			$('.private-key-error-correction').snazzyHide();
+			
+			var Address = GenerateAddress(true);	
+			
+			if (ArmoryMode)
+				ShowArmory(true, false, true);
+				
+			// $('ul#coin-setup-menu li#calibrate.step').removeClass('disabled');
+			$('ul#coin-setup-menu li#print.step').removeClass('disabled');		
+			
+			SetLettering();
+			}
 		}
 	}
 
-function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
-	{	
+function PrivateKeyRecoverNo_Click(sender)
+	{
+	$('.private-key-error-correction').snazzyHide();
+	}
+
+function PrivateKeyRecoverYes_Click(sender)
+	{
+	// Discard the WIF enclosure and extract the raw key.
+	KeyHex = $('input[name=error-correct]:checked').val();
+	
+	$('#private-key-input').val(KeyHex);
+	
+	$('.private-key-error-correction').snazzyHide();
+	}
+	
+function ClearKeyText()
+	{
+	$('#private-key-hex').val('');
+	$('#private-key-encrypted').val('');
+	$('.private-key-encrypted').snazzyHide();
+	$('#private-key-checksum').val('');
+	$('#public-key-hex').val('');
+	$('#public-key-hash160').val('');
+	$('#public-key-address-checksum').val('');
+	
+	$('#public-address').val('');
+	$('#public-key-address-checksum').val('');
+	$('#private-key-wif').val('');
+	$('#public-address').val('');
+	$('.coin-wallet-address').html('');	
+	$('.coin-wallet-address-qr').html('');
+	$('.coin-wallet-private-key-qr').html('');
+	}
+
+function CloseWindowWarning()
+	{
+    return 'You have possibly unsaved private keys stored. If you close this window, ' + 
+		'those private keys will be lost forever unless you have them backed up. \n' + 
+		'Are you sure you want to close this window?';
+	}
+
+function DisplayWallet(CoinType, PrivKeyWIF, Address, EncryptedKey)
+	{
+	Log(EncryptedKey);
+	
 	Armory.stop();
 	Electrum.stop();
 	
 	$('.coin-wallet').animate({opacity: 0}, 300);	
+	
+	if (ChainMode)
+		{
+		$('.key-details .chain-keys').show();
+		$('.key-details .single-key').hide();
+		}
+	else
+		{
+		$('.key-details .chain-keys').hide();
+		$('.key-details .single-key').show();
+		}
+	
+	if (EncryptedKey != undefined)
+		$('#private-key-wif').val(PrivKeyWIF);
 		
+	$('#public-address').val(Address);
+	
+	$('.coin-wallet').animate({opacity: 0}, 300);	
 	$('.key-details').animate({opacity: 0}, 300, function()
 		{
-		
-		if (ChainMode)
+		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && !Address != undefined && Address != '' || ElectrumMode)
 			{
-			$('.key-details .chain-keys').show();
-			$('.key-details .single-key').hide();
-			}
-		else
-			{
-			$('.key-details .chain-keys').hide();
-			$('.key-details .single-key').show();
-			}
+			window.onbeforeunload = CloseWindowWarning;
 			
-		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '' || ElectrumMode)
-			{
+			if (!WalletContains(CoinType, PrivKeyWIF))
+				{
+				$('#private-key-add').removeAttr('disabled');
+				}
+			else
+				{
+				$('#private-key-add').attr('disabled', '');
+				}
+				
+			$('#private-key-remove').removeAttr('disabled');
+			
 			if (!CoinInfo[CoinType].manual && !ChainMode)
-				$('.print-encryption').snazzyShow();			
+				$('.print-encryption').snazzyShow();
+			else
+				$('.print-encryption').snazzyHide();
 			}
 		else
 			{
+			$('#private-key-add').attr('disabled', '');
+			$('#private-key-remove').attr('disabled', '');
 			$('.print-encryption').snazzyHide();
 			}
 		
-		if (!Encrypted)
-			$('#private-key-wif').val(PrivKeyWIF);
-			
-		$('#public-address').val(Address);
 		$('.coin-wallet-address.address-1').html(Address);
 
-		var split = Encrypted ? 29 : 26;
+		var split = EncryptedKey != undefined ? 29 : 26;
 		
 		var PrivKeyWIF_Part1 = PrivKeyWIF.substr(0, split);
 		var PrivKeyWIF_Part2 = PrivKeyWIF.substr(split);
@@ -600,7 +349,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 		$('.coin-wallet-address-qr.qr-1').html('');
 		$('.coin-wallet-address-qr.qr-1').qrcode(Address, QRErrorCorrectLevel.H);
 		
-		if (!Encrypted)
+		if (EncryptedKey == undefined)
 			{
 			$('.print-encryption #unencrypted-key').val(PrivKeyWIF);
 			$('.print-encryption #encrypted-key').val('');
@@ -612,11 +361,13 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			$('.private-key-encrypted').snazzyHide();
 			$('#encrypt-remove-button').attr('disabled', '');
 			
-			if (PersistPassword != undefined && PersistPassword != '')
+			if (PersistPassword != undefined && PersistPassword != '' && !ArmoryMode && !ElectrumMode)
 				{
 				$('#encryption-key').val(PersistPassword);
 				$('#encryption-key-confirm').val(PersistPassword);
 				$('#encrypt-button').click();
+				
+				$('#private-key-add').attr('disabled', '');
 				}
 			else
 				{
@@ -629,6 +380,7 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			}
 		else
 			{
+			$('#encrypt-remove-button').removeAttr('disabled');
 			$('.coin-wallets').addClass('keys-encrypted');
 			$('.print-encryption #encrypted-key').val(PrivKeyWIF);
 			$('.private-key-encrypted').snazzyShow();
@@ -894,13 +646,51 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, Encrypted)
 			}
 		
 		SetLettering();
-	
-		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && Address != undefined && Address != '')
+		
+		if (PrivKeyWIF != undefined && PrivKeyWIF != '' && (!CoinInfo[CoinType].manual || (Address != undefined && Address != '')))
 			{
 			$('.key-details').animate({opacity: 1}, 300);
 			$('.coin-wallet').animate({opacity: 1}, 300);
 			}
 		});
+	}
+	
+function GetAddressPrefixHex(CoinType)
+	{
+	if (OverrideAddressPrefix != undefined)
+		return OverrideAddressPrefix;
+	
+	return CoinInfo[CoinType].addressVersion;
+	}
+
+function ClearCurrentKey(OnFinish)
+	{
+	ClearKeyText();		
+
+	CurrentKey = undefined;
+	
+	DisplayWallets();
+	
+	$('.key-wallet.expand-x').click();
+
+	$('#private-key-input').val('');
+	$('#private-key-address-manual').val('');
+	$('#private-key-add').attr('disabled', '');
+	$('#private-key-remove').attr('disabled', '');
+	$('.print-encryption').snazzyHide();
+	$('.key-details').animate({opacity: 0}, 300, function()
+		{ 
+		if (!CoinInfo[CurrentCoinType].manual && !Multiple_Wallets)
+			$('.generate-button').snazzyShow();	
+		
+		if (OnFinish != undefined)
+			OnFinish();
+		});
+	}
+
+function GetDefaultCompress(CoinType)
+	{
+	return CoinInfo[CoinType].defaultCompress;	
 	}
 	
 function GenerateAddress(display)
@@ -944,7 +734,7 @@ function GenerateAddress(display)
 		$('.private-key-error').fadeOut(300);
 		return;
 		}
-	
+		
 	try
 		{
 		if (PrivKey.length == 64)
@@ -970,7 +760,7 @@ function GenerateAddress(display)
 		PrivKeyHex = KeyDetails.privateKey;
 		PrivKeyWIF = KeyDetails.privateKeyWIF;
 		
-		Compressed = GetPrivateKeyCompressed(CoinType, PrivKeyWIF);
+		Compressed = KeyDetails.compressed;
 		
 		if (Compressed && !$('#compressed').is(':checked'))
 			{
@@ -985,7 +775,7 @@ function GenerateAddress(display)
 		}
 	else if (PrivKey.length == 50 || PrivKey.length == 51 || PrivKey.length == 52 || PrivKey.length == 53)
 		{		
-		Compressed = GetPrivateKeyCompressed(CoinType, KeyDetails.privateKeyWIF);
+		Compressed = KeyDetails.compressed;
 		
 		PrivKeyHex = KeyDetails.privateKey;		
 		PrivKeyWIF = KeyDetails.privateKeyWIF;
@@ -1012,7 +802,6 @@ function GenerateAddress(display)
 		
 		return;
 		}
-		
 	HasPrivateKey = true;
 	
 	var PubKeyHex;
@@ -1030,13 +819,12 @@ function GenerateAddress(display)
 		$('#public-key-hash160').val(KeyDetails.publicKeyHash);
 		$('#public-key-address-checksum').val(KeyDetails.addressChecksum);
 		
-		DisplayWallet(CoinType, PrivKeyWIF, Address, false);
+		DisplayWallet(CoinType, PrivKeyWIF, Address, undefined);
 		}
 	
 	return Address;
 	}
-	
-	
+
 function CurveAdd(PubKeyHex1, PubKeyHex2)
 	{
 	var ECCurve = getSECCurveByName("secp256k1");
@@ -1055,6 +843,7 @@ function CurveAdd(PubKeyHex1, PubKeyHex2)
 	
 	return PubKeyOut;	
 	}
+
 function CurveMultiply(PubKeyHex1, ECKey)
 	{
 	var ECCurve = getSECCurveByName("secp256k1");
@@ -1091,12 +880,12 @@ function GetPrivateKeyCompressed(CoinType, PrivateKeyWIF)
 	else
 		{
 		throw new Error('Invalid WIF - could not determine key compression');
-		// ?????
 		}
 	}
 	
 /* Obsolete - replaced by Omnicoin
 
+	
 function GetAddressPrefixHex(CoinType)
 	{
 	if (OverrideAddressPrefix != undefined)

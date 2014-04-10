@@ -70,7 +70,17 @@ function InitBIP38()
 						{
 						$('#verified-encrypted-key').val('Yes');
 						
-						DisplayWallet(CoinType, EncWIF, Address, true);
+						if (CurrentKey != undefined)
+							{
+							CurrentKey.encryptedKey = o;
+							DisplayWallets();
+							}
+						
+						$('.encrypting').fadeOut(300);
+						
+						$('.encrypted').fadeIn(300);			
+						
+						DisplayWallet(CoinType, WIF, Address, EncWIF);
 						
 						$('.encrypting').fadeOut(300);
 						
@@ -94,6 +104,7 @@ function InitBIP38()
 		
 		$('#encryption-key').val('');
 		$('#encryption-key-confirm').val('');
+		$('#private-key-encrypted').val('');
 		
 		var WIF = $('#unencrypted-key').val();
 		var Address = $('#public-address').val();
@@ -106,9 +117,17 @@ function InitBIP38()
 		$('.encryption-keys').snazzyShow();
 			
 		$('.encrypted').fadeOut(300);
-			
 		
-		DisplayWallet(CurrentCoinType, WIF, Address, false);
+		CurrentKey_Updated = true;
+		$('#private-key-add').removeAttr('disabled');
+		
+		if (CurrentKey != undefined)
+			{
+			CurrentKey.encryptedKey = undefined;
+			DisplayWallets();
+			}
+			
+		DisplayWallet(CurrentCoinType, WIF, Address, undefined);
 		});
 		
 	$('#decrypt-password').keyup(function ()

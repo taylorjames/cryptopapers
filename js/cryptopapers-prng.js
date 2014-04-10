@@ -87,7 +87,12 @@ function InitRNG()
 				$('.generate-button').removeAttr('disabled').addClass('enabled');
 				
 				if (!HasPrivateKey)
-					{					
+					{
+					$('.generate-button').removeAttr('disabled').addClass('enabled')
+					
+					if (!Multiple_Wallets)
+						$('.generate-button').snazzyShow();
+					
 					if ($('#private-key-input').val() == '' && WhenEntropyPoolFills_AutoGenerateKeys && !CoinInfo[CurrentCoinType].manual)
 						{
 						$('#private-key-generate').click();
