@@ -21,6 +21,9 @@
 	#form1{
 		overflow: hidden !important;
 	}
+	.inner .section .sub-section.coin-setup-print{
+		min-height: 0px !important;
+	}
 	* 
 	{
 	background-color: none !important;
@@ -1655,6 +1658,7 @@ input[type=button].error
 }
 
 .inner .section .sub-section.coin-setup-print{
+min-height: 1065px;
 }
 /* this acts very weird.
 .inner .section .sub-section.up{	
