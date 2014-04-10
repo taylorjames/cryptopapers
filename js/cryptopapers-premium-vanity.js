@@ -1,3 +1,5 @@
+
+var Vanity_Enabled = false;
  
 var Vanity = '';
 var VanityCaseSensitive = false;
@@ -155,7 +157,7 @@ var Vanity_AtTheStart = true;
 	
 function RefreshVanity()
 	{
-	if (ArmoryMode || ElectrumMode || CoinInfo[CurrentCoinType].manual)
+	if (ArmoryMode || ElectrumMode || CoinInfo[CurrentCoinType].manual || !Vanity_Enabled)
 		$('.vanity-addresses').fadeOut(300);
 	else
 		$('.vanity-addresses').fadeIn(300);	
