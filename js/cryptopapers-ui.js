@@ -69,6 +69,8 @@ function InitPage()
 		
 	if (InitPremium)
 		InitPremium();
+	
+	$('#page').show();
 	}
 	
 function InitWallets()

@@ -1414,6 +1414,17 @@ display: block;
 display: block;
 }
 
+noscript p
+{
+width: 523px;
+margin: auto;
+background: rgba(0,0,0,0.1);
+padding: 15px;
+border-radius: 10px;
+border: 2px solid rgba(0,0,0,0.2);
+box-shadow: 3px 5px 13px rgba(0,0,0,0.5);
+font-weight: bold;
+}
 
 .risk-contact-us
 {
@@ -1421,6 +1432,7 @@ margin-top: 10px;
 }
 #form1{
 	overflow: visible;
+	text-align: center;
 }
 input{
 	font-weight:300;
