@@ -93,8 +93,8 @@ var HueShiftChange = 5;
 function ApplyHueShift()
 	{	
 	$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
-	$('.coin-wallet-background').css('filter', 'hue-rotate(' + HueShift + 'deg)');
-	$('.coin-wallet-background').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
+	$('.coin-wallet-background, #header, .footer, #page .inner input[type=button], #page .inner .button, .pool-status-complete, .switch-toggle, #coin-setup-menu, .donate-reminder img').css('filter', 'hue-rotate(' + HueShift + 'deg)');
+	$('.coin-wallet-background, #header, .footer, #page .inner input[type=button], #page .inner .button, .pool-status-complete, .switch-toggle, #coin-setup-menu, .donate-reminder img').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
 	}
 	
 function UpdateBackground()

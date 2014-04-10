@@ -2375,7 +2375,7 @@ position: relative;
 }
 #print-settings .left-label
 {
-width: 115px;
+width: 110px;
 margin-top: 0px;
 padding: 9px;
 }
@@ -2395,6 +2395,7 @@ min-height: 342px;
 .design-backgrounds
 {
 float: right;
+width: 49%
 }
 .custom-backgrounds
 {
@@ -3081,6 +3082,11 @@ top: 12px;
 height: auto;
 padding: 0px;
 }
+.dark-theme .ui-slider
+{
+
+}
+
 .frame-type.selecting
 {
 top: 75px;
