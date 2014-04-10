@@ -829,7 +829,7 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 .coin-type {
-	top: -48px;
+	top: 4px;
 	left: 22px;
 	height: 105px;
 	background: #fff;
@@ -1483,6 +1483,7 @@ label {
 	max-width: none;
 }
 .design-type {
+	text-align: center;
 	top: 138px;
 	height: 77px;
 	overflow: hidden;
@@ -2052,7 +2053,7 @@ input[type=button].error {
 		border-radius: 5px;
 		background-position-x: 5px;
 		background-position-y: 5px;
-		float: left;
+		float: right;
 		margin-right: 10px;
 		&:after {
 			content: 'Electrum';
@@ -2080,7 +2081,7 @@ input[type=button].error {
 		border-radius: 5px;
 		background-position-x: 5px;
 		background-position-y: 5px;
-		float: left;
+		float: right;
 		margin-right: 10px;
 		&:after {
 			content: 'Armory';
@@ -2176,7 +2177,8 @@ input[type=button].error {
 	margin-bottom: 15px;
 }
 .chain-progress {
-	margin-left: 10px;
+margin-right: 39px;
+float: right;
 }
 #private-key-armory {
 	min-width: 629px;
@@ -3089,18 +3091,19 @@ a:hover, a:active, a:focus {
 	float: left;
 	width: 62%;
 	margin-left: 8px;
-	.ui-slider-handle {
-		height: 36px;
-		margin-top: 2px;
-	}
-}
-.ui-slider,
-.ui-slider .ui-slider-handle {
 	cursor: pointer;
 	margin-top: 0px;
 	height: 32px;
 	margin-bottom: 8px;
+	
+	.ui-slider-handle {
+		height: 36px;
+		margin-top: 2px;
+		cursor: pointer;
+		margin-bottom: 8px;
+	}
 }
+
 .selecting .frame-grid-row-header,
 .selecting .design-grid-row-header {
 	display: block;
