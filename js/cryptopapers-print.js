@@ -179,7 +179,6 @@ var Backgrounds =
 		
 	$('#print-button').click(function() 
 		{
-		$('.coin-wallet').attr('style', '');
 		window.print();
 		});
 	
@@ -283,7 +282,6 @@ function BGString(Category, Number)
 	return Out;	
 	}
 	
-
 function AddFrames()
 	{
 	var cols = 10;

@@ -2257,12 +2257,13 @@ padding: 20px;
 {
 float: left;
 width: 100%;
+position: relative;
 }
 .hue-shift-amount
 {
-position: relative;
-top: -10px;
-left: -246px;
+position: absolute;
+top: -7px;
+left: 242px;
 }
 .hue-shift-reset
 {
