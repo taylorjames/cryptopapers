@@ -197,7 +197,6 @@ var Backgrounds =
 
 		});
 	
-	
 	$('.frame-grid-row-header').click(function()
 		{
 		$(this).parent().find('.frame.selector').click();
@@ -245,7 +244,7 @@ var Backgrounds =
 		
 	$('.design.selector').click(function()
 		{
-		$('.hue-shift-reset').click();
+		$('.print-appearance-reset').click();
 		
 		SetLettering();
 		});

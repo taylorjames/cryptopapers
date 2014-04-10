@@ -7,12 +7,17 @@
 	{
 	$('.premium').show();
 	
-	$('.hue-shift-reset').click(function () {
+	$('.print-appearance-reset').click(function () {
 		HueShift = 0;
 		$( "#hue-slider" ).slider('value',0);
 		$( "#custom-design-x-slider" ).slider('value',50);
 		$( "#custom-design-y-slider" ).slider('value',0);
 		$( "#custom-design-zoom-slider" ).slider('value',100);
+		
+		$('.custom-design-x-amount').html(x + '%');
+		$('.custom-design-y-amount').html(y + '%');
+		$('.custom-design-zoom-amount').html(zoom + '%');
+		$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
 		
 		UpdateBackground();
 		
@@ -41,7 +46,7 @@
 		slide: function( event, ui ) {
 			var x = ui.value;
 			
-			$('.custom-design-x-amount').html('X: ' + x + '%');
+			$('.custom-design-x-amount').html(x + '%');
 			
 			LeftPercent = x;
 			
@@ -57,7 +62,7 @@
 		slide: function( event, ui ) {
 			var y = ui.value;
 			
-			$('.custom-design-y-amount').html('Y: ' + y + '%');
+			$('.custom-design-y-amount').html(y + '%');
 			
 			TopPercent = y;
 			
@@ -73,7 +78,7 @@
 		slide: function( event, ui ) {
 			var zoom = ui.value;
 			
-			$('.custom-design-zoom-amount').html('Zoom: ' + zoom + '%');
+			$('.custom-design-zoom-amount').html(zoom + '%');
 			
 			ZoomPercent = zoom;
 			
@@ -82,6 +87,13 @@
 		});
 	}
 
+function ApplyHueShift()
+	{	
+	$('.hue-shift-amount').html((HueShift > 0 ? '+' : '') + HueShift + '&deg;');
+	$('.coin-wallet-background').css('filter', 'hue-rotate(' + HueShift + 'deg)');
+	$('.coin-wallet-background').css('-webkit-filter', 'hue-rotate(' + HueShift + 'deg)');
+	}
+	
 function UpdateBackground()
 	{
 	var totalwidth = $('.coin-wallet .coin-wallet-background').css('width');

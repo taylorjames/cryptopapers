@@ -265,6 +265,9 @@ function ClearKeyText()
 
 function CloseWindowWarning()
 	{
+	if (Config == 'dev')
+		return undefined;
+		
     return 'You have possibly unsaved private keys stored. If you close this window, ' + 
 		'those private keys will be lost forever unless you have them backed up. \n' + 
 		'Are you sure you want to close this window?';

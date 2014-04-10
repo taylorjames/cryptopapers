@@ -1320,7 +1320,7 @@ $().ready(function ()
 								<a></a>
 							</div>
 							
-							<input type="button" id="generate-new-wallet" class="button generate-button manual-hide large-button" value="Generate New Address" fixed-height="50px" disabled />
+							<input type="button" id="generate-new-wallet" class="button generate-button manual-hide large-button" value="New Address" fixed-height="50px" disabled />
 							
 							<input type="button" id="print-button" class="large-button right" value="Print" />
 							<br />
@@ -1338,14 +1338,32 @@ $().ready(function ()
 									<!-- Dynamically filled -->
 								</div>
 							</div>
-
 							
-							<label class="left-label design-label">Design:</label>
-							
-							<div class="design-type selector-grid" fade="false" scroll="true" effect="false" colwidth="207px" rowheight="67px">
-								<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
-									<!-- Dynamically filled -->
+							<div class="design-backgrounds">
+								<label class="left-label design-label">Design:</label>
+								
+								<div class="design-type selector-grid" fade="false" scroll="true" effect="false" colwidth="207px" rowheight="67px">
+									<div class="designs-grid-wrapper box-padding selector-grid-wrapper">
+										<!-- Dynamically filled -->
+									</div>
 								</div>
+							</div>
+
+							<div class="custom-backgrounds">
+								<label class="left-label design-label">Custom:</label>
+								
+								<div class="design-type">
+									<div class="design selector show">
+										<p>Click or Drop Image Here</p>
+										<img class="custom coin-wallet-background">
+									</div>
+								</div>
+								
+								<div class="design-type-custom" >
+									<input type="file" id="custom-design">
+								</div>
+								
+								<input type="button" class="print-appearance-reset" Value="Reset" />
 							</div>
 							
 							<div class="hue-shift hide premium">
@@ -1359,38 +1377,33 @@ $().ready(function ()
 									</span>
 								</div>	
 								
-								<label class="left-label color-shift-label">Color Shift:</label>
-								<span class="hue-shift-amount">0&deg;</span>
+								<label class="left-label color-shift-label">
+									<span class="hue-shift-amount">0&deg;</span>
+									Color Shift:
+								</label>
 								
 								<div id="hue-slider"></div>
-								<input type="button" class="hue-shift-button hue-shift-reset" Value="Reset" />
 							</div>
 							
-							<div class="custom-backgrounds">
-							
-								<label class="left-label design-label">Custom:</label>
+							<div class="background-options">			
+								<label class="left-label color-shift-label">
+									<span class="custom-design-zoom-amount">50%</span>
+									Zoom:
+								</label>
+								<div id="custom-design-zoom-slider"></div>
 								
-								<div class="design-type">
-									<div class="design selector show">
-										<img class="custom coin-wallet-background">
-									</div>
-								</div>
-								
-								<div class="design-type-custom" >
-									<input type="file" id="custom-design">
-								</div>
-								
-														
-								<span class="custom-design-x-amount">X: 50%</span>							
+								<label class="left-label color-shift-label">
+									<span class="custom-design-x-amount">50%</span>		
+									X Position:
+								</label>					
 								<div id="custom-design-x-slider"></div>
 								
-								<span class="custom-design-y-amount">Y: 0%</span>							
+								<label class="left-label color-shift-label">
+									<span class="custom-design-y-amount">0%</span>
+									Y Position:
+								</label>					
 								<div id="custom-design-y-slider"></div>
-								
-								<span class="custom-design-zoom-amount">Zoom 50%</span>							
-								<div id="custom-design-zoom-slider"></div>
-							</div>
-							
+							</div>						
 						</div>
 					</div>
 				</div>

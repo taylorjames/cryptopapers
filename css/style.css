@@ -1237,13 +1237,7 @@ margin: auto;
 position: inherit;
 z-index: 0;
 }
-#hue-slider
-{
-margin-left: 20px;
-float: left;
-margin-top: 16px;
-width: 46%
-}
+
 .input-key
 {
 float: left;
@@ -1674,10 +1668,9 @@ input[type=button].error
 .round-block.print-appearance
 {
 float: right;
-width: 48%;
+width: 61%;
 position: relative;
 overflow: visible;
-padding-bottom: 10px;
 }
 
 .print-buttons
@@ -2269,20 +2262,22 @@ padding: 20px;
 .hue-shift
 {
 float: left;
-width: 100%;
+width: 50%;
 position: relative;
 }
 .hue-shift-amount
 {
 position: absolute;
-top: -7px;
-left: 242px;
+top: 7px;
+left: 7px;
 }
-.hue-shift-reset
-{
-width: 100px !important;
+.print-appearance-reset {
+width: 117px !important;
+height: 56px !important;
 margin-left: 20px !important;
+font-size: 18px !important;
 }
+
 .coin-wallet .wallet-frame
 {
 	width: 100%;
@@ -2379,18 +2374,62 @@ position: relative;
 }
 #print-settings .left-label
 {
-width: 117px;
+width: 115px;
 margin-top: 0px;
 padding: 9px;
 }
+#print-settings .left-label span
+{
+float: left;
+}
+
 #print-settings .print-buttons
 {
-width: 49%;
+width: 38%;
 float: left;
 padding-right: 10px;
 min-height: 342px;
 }
-#print-settings .print-buttons
+
+.design-backgrounds
+{
+float: right;
+}
+.custom-backgrounds
+{
+float: right;
+height: 171px;
+}
+.custom-backgrounds .design.selector
+{
+border: 3px dashed rgba(0,0,0,0.5);
+max-height: 100px;
+overflow: hidden;
+}
+.custom-backgrounds .design-type:hover .design.selector,
+.custom-backgrounds .design.selector:hover
+{
+background-color: rgba(0,0,0,0.1);
+}
+
+.custom-backgrounds .design.selector p
+{
+margin-top: 16px;
+font-weight: bold;
+margin-bottom: -41px;
+}
+
+.custom-backgrounds input[type="file"]
+{
+width: 63%;
+height: 76px;
+top: -96px;
+position: relative;
+opacity: 0;
+float: right;
+cursor: pointer;
+}
+.background-options
 {
 float: left;
 width: 50%;
@@ -2963,10 +3002,26 @@ display:none;
 {
 cursor:pointer;
 }
+
+.ui-slider
+{
+float:left;
+width: 62%;
+margin-left: 8px;
+}
+
 .ui-slider,
 .ui-slider .ui-slider-handle
 {
-cursor:pointer;
+cursor: pointer;
+margin-top: 0px;
+height: 32px;
+margin-bottom: 8px;
+}
+.ui-slider .ui-slider-handle
+{
+height: 36px;
+margin-top: 2px;
 }
 
 .selecting .frame-grid-row-header,
@@ -3018,7 +3073,7 @@ position: absolute;
 .design-type.selecting
 {
 max-width: 1114px;
-left: -568px;
+left: -433px;
 top: 12px;
 height: auto;
 }
