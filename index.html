@@ -102,27 +102,27 @@ cryptopapers-test				Test functions - not included in release
 
 External libraries:
 
-jquery-2.1.0					jQuery library, used throughout										http://code.jquery.com/jquery-2.1.0.js
+jquery-2.1.0						jQuery library, used throughout										http://code.jquery.com/jquery-2.1.0.js
 jquery-ui-1.10.4				For hue-shift slider														http://blog.jqueryui.com/2014/01/jquery-ui-1-10-4/
-jquery.lettering				For text rotations on circular wallets								https://github.com/davatron5000/Lettering.js
+jquery.lettering					For text rotations on circular wallets								https://github.com/davatron5000/Lettering.js
 jquery.maskedinput-1.3	Input masking (used in armory input text)						http://digitalbush.com/projects/masked-input-plugin/
 
-crypto-js						Cryptographic library (SHA256)										https://code.google.com/p/crypto-js/
-bitcoinjs-lib					Bitcoin-JS library															https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
-prng4							Pseudo-random generator, entropy modified from 			http://bitcoinpaperwallet.com, http://bitaddress.org
-bitcoin-bip38					BIP38 encryption of wallet import keys 							http://www.bit2factor.org/
+crypto-js							Cryptographic library (SHA256)										https://code.google.com/p/crypto-js/
+bitcoinjs-lib						Bitcoin-JS library															https://github.com/bitcoinjs/bitcoinjs-lib/tree/master/src
+prng4								Pseudo-random generator, entropy modified from 		http://bitcoinpaperwallet.com, http://bitaddress.org
+bitcoin-bip38						BIP38 encryption of wallet import keys 							http://www.bit2factor.org/
 crypto-scrypt					Scrypt implementation for BIP38									http://www.bit2factor.org/
 
-armory							Armory chain generation												http://brainwallet.org/js/armory.js
-electrum						Electrum chain generation											http://brainwallet.org/js/electrum.js
+armory								Armory chain generation												http://brainwallet.org/js/armory.js
+electrum							Electrum chain generation												http://brainwallet.org/js/electrum.js
 mnemonic						mnemonic for Electrum chain conversion to words			http://brainwallet.org/js/mnemonic.js
 
-ed25519						Curve25519 implementation for NXT addresses				http://www.flownet.com/ron/code/djbec.js
-jsSHA							dependency of ed25519												https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
+ed25519							Curve25519 implementation for NXT addresses				http://www.flownet.com/ron/code/djbec.js
+jsSHA								dependency of ed25519												https://github.com/Caligatio/jsSHA/releases/tag/v1.5.0
 
 jquery-qrcode					JQuery script for generating QR codes							https://github.com/lrsjng/jQuery.qrcode
 say-cheese						JQuery HTML5 Webcam library										https://github.com/leemachin/say-cheese
-jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/jsqrcode
+jsqrcode							JavaScript QR code reader												https://github.com/LazarSoft/jsqrcode
 
 -->
 
@@ -219,7 +219,9 @@ jsqrcode							JavaScript QR code reader											https://github.com/LazarSoft/
 	<script type="text/javascript" src="js/cryptopapers-qr-read.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-bip38.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-print.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-dictionary.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-premium.js"></script>
+	<script type="text/javascript" src="js/cryptopapers-premium-vanity.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-security.js"></script>
 	<script type="text/javascript" src="js/cryptopapers-ui.js"></script>
 	
@@ -840,6 +842,213 @@ $().ready(function ()
 						<textarea id="random-pool" readonly></textarea>
 					</div>
 				</div>
+				
+				<div class="vanity-addresses round-block help-section colseven first minimizable minimized premium">
+					<div class="colinner">
+						
+						<h3>
+							<div class="progress hide"></div>
+							Vanity Addresses
+						</h3>
+					
+						<div class="vanity-address-buttons">
+							<div class="vanity-test-result">
+								<div class="vanity-generate-speed"></div>
+								<div class="vanity-generate-guesses"></div>
+								<div class="vanity-generate-estimate"></div>
+								<div class="vanity-generated"></div>
+							</div>
+							
+							<div class="progress hide"></div>
+							<input type="button" id="vanity-address-start" class="vanity-start-button manual-hide large-button" value="Start Searching" fixed-height="50px" disabled />
+							<input type="button" id="vanity-address-stop" class="vanity-stop-button manual-hide large-button" value="Stop Searching" fixed-height="50px" disabled />
+						</div>
+						
+						
+						<div class="switch-toggle vanity-type switch-3 switch-candy ">
+							<input type="radio" name="vanity-type" value="text" id="vanity-type-text" autocomplete="off" checked />
+							<label for="vanity-type-text">Text</label> 
+							
+							<input type="radio" name="vanity-type" value="characters" id="vanity-type-characters" autocomplete="off" />
+							<label for="vanity-type-characters">Characters</label> 
+							
+							<input type="radio" name="vanity-type" value="dictionary" id="vanity-type-dictionary" autocomplete="off" />
+							<label for="vanity-type-dictionary">Dictionary</label> 
+
+							<a></a>
+						</div>
+						
+						<div class="vanity-text-options">
+							<label class="left-label">Custom Text:</label>
+							<input type="text" id="vanity-custom-text" maxlength="64" autocomplete="off" />
+							
+							<label class="left-label">Case Sensitive:</label>
+							<div class="switch-toggle vanity-case-sensitive switch-2 switch-candy ">
+								<input type="radio" name="vanity-case-sensitive" value="No" id="vanity-case-sensitive-less" autocomplete="off" checked />
+								<label for="vanity-case-sensitive-less">No</label> 
+								
+								<input type="radio" name="vanity-case-sensitive" value="Yes" id="vanity-case-sensitive-more" autocomplete="off" />
+								<label for="vanity-case-sensitive-more">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">1337:</label>
+							<div class="switch-toggle vanity-leet switch-2 switch-candy ">
+								<input type="radio" name="vanity-leet" value="No" id="vanity-leet-off" autocomplete="off" checked />
+								<label for="vanity-leet-off">No</label> 
+								
+								<input type="radio" name="vanity-leet" value="Yes" id="vanity-leet-on" autocomplete="off"  />
+								<label for="vanity-leet-on">Yes</label>
+
+								<a></a>
+							</div>
+						</div>
+						
+						<div class="vanity-characters-options hide">
+							<label class="left-label">Numbers:</label>
+							<div class="switch-toggle vanity-numbers switch-2 switch-candy ">
+								<input type="radio" name="vanity-numbers" value="No" id="vanity-numbers-less" autocomplete="off" />
+								<label for="vanity-numbers-less">No</label> 
+								
+								<input type="radio" name="vanity-numbers" value="Yes" id="vanity-numbers-more" autocomplete="off" checked />
+								<label for="vanity-numbers-more">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">Capital Letters:</label>
+							<div class="switch-toggle vanity-caps switch-2 switch-candy ">
+								<input type="radio" name="vanity-caps" value="No" id="vanity-caps-less" autocomplete="off" />
+								<label for="vanity-caps-less">No</label> 
+								
+								<input type="radio" name="vanity-caps" value="Yes" id="vanity-caps-more" autocomplete="off" checked />
+								<label for="vanity-caps-more">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">Lower Case Letters:</label>
+							<div class="switch-toggle vanity-caps switch-2 switch-candy ">
+								<input type="radio" name="vanity-lower" value="No" id="vanity-lower-less" autocomplete="off" />
+								<label for="vanity-lower-less">No</label> 
+								
+								<input type="radio" name="vanity-lower" value="Yes" id="vanity-lower-more" autocomplete="off" checked />
+								<label for="vanity-lower-more">Yes</label>
+
+								<a></a>
+							</div>
+						</div>
+						
+						
+						<div class="vanity-dictionary-options hide">
+							<label class="left-label">Dictionary Words:</label>
+							<div class="switch-toggle vanity-words switch-2 switch-candy ">
+								<input type="radio" name="vanity-words" value="No" id="vanity-words-off" autocomplete="off" />
+								<label for="vanity-words-off">No</label> 
+								
+								<input type="radio" name="vanity-words" value="Yes" id="vanity-words-on" autocomplete="off"  />
+								<label for="vanity-words-on">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">1337:</label>
+							<div class="switch-toggle vanity-leet switch-2 switch-candy ">
+								<input type="radio" name="vanity-leet" value="No" id="vanity-leet-off" autocomplete="off" checked />
+								<label for="vanity-leet-off">No</label> 
+								
+								<input type="radio" name="vanity-leet" value="Yes" id="vanity-leet-on" autocomplete="off"  />
+								<label for="vanity-leet-on">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">UPPER CASE:</label>
+							<div class="switch-toggle vanity-dictionary-lower switch-2 switch-candy ">
+								<input type="radio" name="vanity-dictionary-caps" value="No" id="vanity-dictionary-caps-no" autocomplete="off" />
+								<label for="vanity-dictionary-caps-no">No</label> 
+								
+								<input type="radio" name="vanity-dictionary-caps" value="Yes" id="vanity-dictionary-caps-yes" autocomplete="off" checked  />
+								<label for="vanity-dictionary-caps-yes">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">lower case:</label>
+							<div class="switch-toggle vanity-dictionary-lower switch-2 switch-candy ">
+								<input type="radio" name="vanity-dictionary-lower" value="No" id="vanity-dictionary-lower-no" autocomplete="off"  />
+								<label for="vanity-dictionary-lower-no">No</label> 
+								
+								<input type="radio" name="vanity-dictionary-lower" value="Yes" id="vanity-dictionary-lower-yes" autocomplete="off" checked />
+								<label for="vanity-dictionary-lower-yes">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">Title Case:</label>
+							<div class="switch-toggle vanity-dictionary-title switch-2 switch-candy ">
+								<input type="radio" name="vanity-dictionary-title" value="No" id="vanity-dictionary-title-no" autocomplete="off"  />
+								<label for="vanity-dictionary-title-no">No</label> 
+								
+								<input type="radio" name="vanity-dictionary-title" value="Yes" id="vanity-dictionary-title-yes" autocomplete="off" checked />
+								<label for="vanity-dictionary-title-yes">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">MiXEd cASe:</label>
+							<div class="switch-toggle vanity-dictionary-mixed switch-2 switch-candy ">
+								<input type="radio" name="vanity-dictionary-mixed" value="No" id="vanity-dictionary-mixed-no" autocomplete="off" checked />
+								<label for="vanity-dictionary-mixed-no">No</label> 
+								
+								<input type="radio" name="vanity-dictionary-mixed" value="Yes" id="vanity-dictionary-mixed-yes" autocomplete="off"  />
+								<label for="vanity-dictionary-mixed-yes">Yes</label>
+
+								<a></a>
+							</div>
+							
+							<label class="left-label">Word Position:</label>
+							<div class="switch-toggle vanity-dictionary-position switch-3 switch-candy ">
+								<input type="radio" name="vanity-dictionary-position" value="start" id="vanity-dictionary-position-start" autocomplete="off" checked />
+								<label for="vanity-dictionary-position-start">Start</label>
+								
+								<input type="radio" name="vanity-dictionary-position" value="end" id="vanity-dictionary-position-end" autocomplete="off"  />
+								<label for="vanity-dictionary-position-end">End</label>
+								
+								<input type="radio" name="vanity-dictionary-position" value="both" id="vanity-dictionary-position-both" autocomplete="off"  />
+								<label for="vanity-dictionary-position-both">Both</label>
+
+								<a></a>
+							</div>
+							
+							
+							<label class="left-label">Minimum Length:</label>
+							<div class="switch-toggle vanity-dictionary-length switch-5 switch-candy ">
+								<input type="radio" name="vanity-dictionary-length" value="3" id="vanity-dictionary-length-3" autocomplete="off" />
+								<label for="vanity-dictionary-length-3">3</label> 
+								
+								<input type="radio" name="vanity-dictionary-length" value="4" id="vanity-dictionary-length-4" autocomplete="off" checked />
+								<label for="vanity-dictionary-length-4">4</label>
+								
+								<input type="radio" name="vanity-dictionary-length" value="5" id="vanity-dictionary-length-5" autocomplete="off"  />
+								<label for="vanity-dictionary-length-5">5</label>
+								
+								<input type="radio" name="vanity-dictionary-length" value="6" id="vanity-dictionary-length-6" autocomplete="off"  />
+								<label for="vanity-dictionary-length-6">6</label>
+								
+								<input type="radio" name="vanity-dictionary-length" value="7" id="vanity-dictionary-length-7" autocomplete="off"  />
+								<label for="vanity-dictionary-length-7">7</label>
+								<a></a>
+							</div>
+							
+						</div>
+						
+						<div class="vanity-good-results">
+							
+						</div>
+					</div>
+				</div>
 		
 				<div class="print-encryption round-block colfive last help-section">
 					<div class="colinner">	
@@ -1168,7 +1377,6 @@ $().ready(function ()
 					</div>
 				</div>	
 
-				
 				<div class="qr-webcam round-block dismissable colfive last" style="display: none; opacity: 0;">
 					<div class="colinner"> 
 						<h3>
@@ -1347,6 +1555,8 @@ $().ready(function ()
 										<!-- Dynamically filled -->
 									</div>
 								</div>
+								
+								<input type="button" class="print-appearance-reset" Value="Reset" />
 							</div>
 
 							<div class="custom-backgrounds">

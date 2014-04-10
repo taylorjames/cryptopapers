@@ -9,6 +9,9 @@ var HueShiftChange = 5;
 
  function InitPremium()
 	{
+	InitVanity();
+	
+	
 	$('.premium').show();
 	
 	$('.print-appearance-reset').click(function () {

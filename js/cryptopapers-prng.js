@@ -275,6 +275,8 @@ sr.getBytes = function(count)
 		temp++;
 		}
 	
+	sr.seedTime();
+	
 	return Out;
 	}
 	

@@ -2359,7 +2359,8 @@ a:hover, a:active, a:focus {
   border:none;
 }
 
-.key-details .left-label
+.key-details .left-label,
+.vanity-addresses .left-label
 {
 	font-size: 12px;
 	margin-top: 0px;
@@ -2367,18 +2368,41 @@ a:hover, a:active, a:focus {
 	padding-bottom: 9px;
 	padding-right: 5px;
 }
+
 #print-settings
 {
 float: left;
 width: 100%;
 position: relative;
 }
+
+.vanity-address-buttons
+{
+float: right;
+width: 44%;
+}
+#vanity-address-test
+{
+	
+}
+
+#vanity-address-start
+{
+
+}
+
+#vanity-address-stop
+{
+
+}
+
 #print-settings .left-label
 {
 width: 110px;
 margin-top: 0px;
 padding: 9px;
 }
+
 #print-settings .left-label span
 {
 float: left;
@@ -2436,6 +2460,36 @@ cursor: pointer;
 float: left;
 width: 50%;
 }
+
+.sample .coin-wallet-address-qr:before
+{
+content: 'SAMPLE WALLET' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
+}
+
+.sample .coin-wallet-address-qr:after
+{
+content: 'DO NOT USE' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
+}
+
+
+.sample .coin-wallet-private-key-qr:before
+{
+content: 'SAMPLE KEY' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
+}
+
+.sample .coin-wallet-private-key-qr:after
+{
+content: 'DO NOT USE' !important;
+font-weight: bold !important;
+background-color: rgba(255, 0, 0, 1) !important;
+}
+
 
 .donate-keys
 {
@@ -3230,6 +3284,57 @@ background: white;
 margin-bottom: 10px;
 }
 
+.vanity-addresses h3 .progress
+{
+position: absolute;
+float: left;
+margin-top: 11px;
+margin-left: 18px;
+}
+
+#vanity-custom-text
+{
+width: 32%;
+margin-bottom: 15px;
+}
+
+.vanity-good-results
+{
+float: left;
+width: 100%;
+max-height: 200px;
+overflow-y:scroll;
+padding:5px
+}
+
+.vanity-good-results .best.result
+{
+font-weight: bold;
+}
+
+.vanity-good-results .result
+{
+font-size: 12px;
+width: 100%;
+float: left;
+}
+
+.vanity-good-results .result .result-address
+{
+float: left;
+}
+
+.vanity-good-results .result .result-key
+{
+float: right;
+font-size: 9px;
+}
+
+.vanity-type
+{
+width: 54%;
+}
+
 .show
 {
 display: block !important;
@@ -3254,6 +3359,7 @@ top: 0px;
 margin: 0px;
 margin-bottom: 12px;
 }
+
 #private-key-remove:disabled
 {
 background-color: #BBBBBB;

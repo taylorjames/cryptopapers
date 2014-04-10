@@ -36,6 +36,7 @@ function InitBIP38()
 			return;
 		
 		var WIF = $('#unencrypted-key').val();
+		
 		var Compressed =  GetPrivateKeyCompressed(CoinType, WIF); // $('input[name=compression]:checked').val() == "Yes";
 
 		var CoinVersion = eval('0x' + CoinInfo[CoinType].addressVersion);

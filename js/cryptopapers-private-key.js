@@ -108,6 +108,8 @@ function PrivateKeyInput_KeyUp(sender)
 
 function PrivateKeyInput_Change(sender)
 	{
+	RefreshVanity();
+	
 	if (CoinInfo[CurrentCoinType].manual)
 		{
 		ClearKeyText();
