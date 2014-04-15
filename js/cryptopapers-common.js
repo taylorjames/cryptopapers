@@ -57,9 +57,8 @@ $.fn.snazzyShow = function(speed, callback) {
 	speed = speed == undefined ?  300 : speed;
 	
 	var minimized = $(this).hasClass('minimized')
-	var height = minimized ? $(this).attr('minimized-height') : $(this).getTrueHeight();
+	var height = (minimized && $(this).attr('minimized-height') != undefined) ? $(this).attr('minimized-height') : $(this).getTrueHeight();
 	
-	$(this).attr('oldpadding-top') 
 	if ($(this).attr('oldpadding-top') == undefined)
 		$(this).css('display', 'block').animate({'height': height}, speed, function() {
 			$(this).animate({opacity: '1'}, speed);

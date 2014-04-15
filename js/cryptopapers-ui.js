@@ -97,7 +97,7 @@ function InitMinimizable()
 	$('.minimizable .minimize-button').click(function() {
 	
 		var height = $(this).parent().attr('minimized-height') == undefined ? 40 : parseInt($(this).parent().attr('minimized-height'));
-		var oldheight = $(this).parent().attr('maximized-height') == undefined || $(this).parent().attr('maximized-height') == '' ? $(this).parent().getTrueHeight() : $(this).parent().attr('maximized-height');
+		var oldheight = $(this).parent().getTrueHeight();
 		
 		if ($(this).parent().hasClass('minimized'))
 			{
