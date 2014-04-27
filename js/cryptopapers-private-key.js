@@ -386,10 +386,10 @@ function DisplayWallet(CoinType, PrivKeyWIF, Address, EncryptedKey)
 			{
 			$('#encrypt-remove-button').removeAttr('disabled');
 			$('.coin-wallets').addClass('keys-encrypted');
-			$('.print-encryption #encrypted-key').val(PrivKeyWIF);
+			$('.print-encryption #encrypted-key').val(EncryptedKey);
 			$('.private-key-encrypted').snazzyShow();
 			$('.warning-encryption').fadeIn(300);
-			$('#private-key-encrypted').val(PrivKeyWIF);
+			$('#private-key-encrypted').val(EncryptedKey);
 			$('.encryption-details').show().css('height', 'auto').css('opacity','1');
 			$('.encryption-keys').hide();
 			}	
